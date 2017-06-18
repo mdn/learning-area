@@ -11,6 +11,48 @@
     <!--[if lt IE 9]>
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+	<style>
+
+		p {
+		font-size: 110%;
+		}
+		
+            ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+    border: 1px solid #555;
+}
+
+li a {
+    display: block;
+    color: blue;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+li {
+    text-align: center;
+    border-bottom: 1px solid #555;
+}
+
+li:last-child {
+    border-bottom: none;
+}
+
+li a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+
+	</style>
   </head>
 
   <body>
@@ -28,7 +70,8 @@
           <li><a href="#">Projects</a></li>
           <li><a href="#">Contact</a></li>
         </ul>
-
+		<br>
+		<br>
         <!-- A Search form is another commmong non-linear way to navigate through a website. -->
 
         <form role="search">
