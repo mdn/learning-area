@@ -15,6 +15,7 @@ body {
   margin: 0 auto;
 }
 
+
 /* || typography */
 
 h1, h2, h3 {
@@ -134,3 +135,14 @@ aside li {
 footer {
   margin-top: 10px;
 }
+ #for_inline{
+   	display: inline;
+   	margin-right: 30px;
+   	font-size:30px;
+    }
+    #bob{
+    		display: inline;
+   	margin-right: 30px;
+   	font-size:30px;
+    	margin-left: 700px;
+    }
