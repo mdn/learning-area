@@ -4,6 +4,12 @@ html, body {
   margin: 0;
   padding: 0;
 }
+a:link{
+  font-size: 20px;
+}
+a:hover{
+  font-size: 22px;
+}
 
 html {
   font-size: 10px;
