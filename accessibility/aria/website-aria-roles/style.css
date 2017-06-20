@@ -9,6 +9,12 @@ html {
   font-size: 10px;
   background-color: #a9a9a9;
 }
+a:link{
+  font-size: 20px;
+}
+a:hover{
+  font-size: 22px;
+}
 
 body {
   width: 70%;
