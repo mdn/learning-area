@@ -4,6 +4,12 @@ html, body {
   margin: 0;
   padding: 0;
 }
+a:link{
+  font-size: 20px;
+}
+a:hover{
+  font-size: 22px;
+}
 
 html {
   font-size: 10px;
@@ -14,6 +20,7 @@ body {
   width: 70%;
   margin: 0 auto;
 }
+
 
 /* || typography */
 
@@ -134,3 +141,14 @@ aside li {
 footer {
   margin-top: 10px;
 }
+ #for_inline{
+   	display: inline;
+   	margin-right: 30px;
+   	font-size:30px;
+    }
+    #bob{
+    		display: inline;
+   	margin-right: 30px;
+   	font-size:30px;
+    	margin-left: 700px;
+    }
