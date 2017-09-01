@@ -31,8 +31,8 @@
 
     request.onload = function() {
       var superHeroes = request.response;
-      populateHeader(superHeroes);
-      showHeroes(superHeroes);
+      populateHeader( JSON.parse(superHeroes));
+      showHeroes( JSON.parse(superHeroes));
     }
 
     function populateHeader(jsonObj) {
@@ -49,7 +49,7 @@
     function showHeroes(jsonObj) {
       var heroes = jsonObj['members'];
 
-      for(i = 0; i < heroes.length; i++) {
+      for(var i = 0; i < heroes.length; i++) {
         var myArticle = document.createElement('article');
         var myH2 = document.createElement('h2');
         var myPara1 = document.createElement('p');
@@ -63,7 +63,7 @@
         myPara3.textContent = 'Superpowers:';
 
         var superPowers = heroes[i].powers;
-        for(j = 0; j < superPowers.length; j++) {
+        for(var j = 0; j < superPowers.length; j++) {
           var listItem = document.createElement('li');
           listItem.textContent = superPowers[j];
           myList.appendChild(listItem);
