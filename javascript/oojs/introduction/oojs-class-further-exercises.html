@@ -67,7 +67,7 @@
             // except for the last one, which needs an and & a full stop 
             for(var i = 0; i < this.interests.length; i++) {
               if(i === this.interests.length - 1) {
-                string += 'and ' + this.interests[i] + '.';
+                string = string.slice(0, -2) + ' and ' + this.interests[i] + '.';
               } else {
                 string += this.interests[i] + ', ';
               }
