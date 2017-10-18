@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Jogo adivinhe o número</title>
+
+    <style>
+      html {
+        font-family: sans-serif;
+      }
+      body {
+        width: 50%;
+        max-width: 800px;
+        min-width: 480px;
+        margin: 0 auto;
+      }
+      .lastResult {
+        color: white;
+        padding: 3px;
+      }
+    </style>
+  </head>
+
+  <body>
+      <h1>Jogo adivinhe o número</h1>
+
+      <p>Nós selecionamos um número aleatório entre 1 e 100. Veja se consegue adivinhar em 10 chances ou menos. Nós lhe diremos se seu palpite foi muito alto ou muito baixo.</p>
+
+<div class="form">
+  <label for="guessField">Digite seu palpite: </label><input type="text" id="guessField" class="guessField">
+  <input type="submit" value="Enviar palpite" class="guessSubmit">
+</div>
+
+<div class="resultParas">
+  <p class="guesses"></p>
+  <p class="lastResult"></p>
+  <p class="lowOrHi"></p>
+</div>
+
+</body>
+
+<script>
+  var randomNumber = Math.floor(Math.random()) + 1;
+  var guesses = document.querySelector('.guesses');
+  var lastResult = document.querySelector('.lastResult');
+  var lowOrHi = document.querySelector('lowOrHi');
+  var guessSubmit = document.querySelector('.guessSubmit');
+  var guessField = document.querySelector('.guessField');
+  var guessCount = 1;
+  var resetButton;
+  function checkGuess() {
+ 
+    var userGuess = Number(guessField.value);
+    if(guessCount === 1) {
+      guesses.textContent = 'Previous guesses: ';
+    }
+    guesses.textContent += userGuess + ' ';
+ 
+    if(userGuess === randomNumber) {
+      lastResult.textContent = 'Parabéns! Você acertou!';
+      lastResult.style.backgroundColor = 'green';
+      lowOrHi.textContent = '';
+      setGameOver();
+    } else if(guessCount === 10) {
+      lastResult.textContent = '!!!FIM DE JOGO!!!';
+      setGameOver();
+    } else {
+      lastResult.textContent = 'Errado!';
+      lastResult.style.backgroundColor = 'red';
+      if(userGuess < randomNumber) {
+        lowOrHi.textContent = 'Seu palpite foi muito baixo!';
+      } else if(userGuess > randomNumber) {
+        lowOrHi.textContent = 'Seu palpite foi muito alto!';
+      }
+    }
+ 
+    guessCount++;
+    guessField.value = '';
+    guessField.focus();
+  }
+  guessSubmit.addeventListener('click', checkGuess);
+  
+  function setGameOver() {
+	  guessField.disabled = true;
+	  guessSubmit.disabled = true;
+	  resetButton = document.createElement('button');
+	  resetButton.textContent = 'Iniciar novo jogo';
+	  document.body.appendChild(resetButton);
+	  resetButton.addeventListener('click', resetGame);
+  }
+  
+  function resetGame() {
+	  guessCount = 1;
+	
+	  var resetParas = document.querySelectorAll('.resultParas p');
+	  for(var i = 0; i < resetParas.length; i++) {
+		  resetParas[i].textContent = '';
+	  }
+	  resetButton.parentNode.removeChild(resetButton);
+	
+	  guessField.disabled = false;
+	  guessSubmit.disabled = false;
+	  guessField.value = '';
+	  guessField.focus();
+	
+	  lastResult.style.backgroundColor = 'white';
+	
+	  randomNumber = Math.floor(Math.random()) + 1;
+  }
+</script>
+</html>
