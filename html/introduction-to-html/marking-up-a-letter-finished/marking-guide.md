@@ -46,8 +46,8 @@ The overall mark awarded is out of 47. Work out their final mark, and then divid
 <dd>"Dr. Eleanor Gaye", "Miss Eileen Dover", "Tel", and "Email" should be wrapped in a &lt;strong&gt; element.</dd>
 <dt>The four dates in the document should be given appropriate elements containing machine-readable dates (2 marks, half a mark each)</dt>
 <dd>All four dates should be marked up using a &lt;time&gt; element. Each one should have a datetime attribute containing a machine readable date. For example &lt;time datetime="2016-01-20"&gt;20 January 2016&lt;/time&gt;</dd>
-<dt>The first address and first date in the letter should be given a class attribute value of "receiver-column"; the CSS you'll add later will then cause these to be right aligned, as should be the case in a classic letter layout. (2 marks)</dt>
-<dd>The first &lt;p&gt; element in the document should be given an attribute of class="receiver-column"; the first date should be wrapped in a &lt;p&gt;, which should also be given the class="receiver-column" attribute.</dd>
+<dt>The first address and first date in the letter should be given a class attribute value of "sender-column"; the CSS you'll add later will then cause these to be right aligned, as should be the case in a classic letter layout. (2 marks)</dt>
+<dd>The first &lt;p&gt; element in the document should be given an attribute of class="sender-column"; the first date should be wrapped in a &lt;p&gt;, which should also be given the class="sender-column" attribute.</dd>
 <dt>The five acronyms/abbreviations in the main text of the letter should be marked up to provide expansions of each acronym/abbreviation. (2.5 marks, half a mark each)</dt>
 <dd>Each acronym/abbreviation in the main text of the letter — "PhD", "HTML", "CSS", "BC" and "Esq" — should be wrapped in an &lt;abbr&gt; element with a title attribute, for example &lt;abbr title="Cascading Style Sheets"&gt;CSS&lt;/abbr&gt;</dd>
 <dt>The six sub/superscripts should be marked up appropriately (3 marks, half a mark each).</dt>
