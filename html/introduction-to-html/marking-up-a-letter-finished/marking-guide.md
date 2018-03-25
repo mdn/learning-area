@@ -36,7 +36,7 @@ The overall mark awarded is out of 47. Work out their final mark, and then divid
 </ul>
 </dd>
 <dt>The two addresses can just be put inside paragraphs; each line of the address should sit on a new line, but not be in a new paragraph. (3 marks)</dt>
-<dd>Wrap both of the addresses in an &lt;p&gt; element, and put a &lt;br&gt; element at the end of each line of the address, except for the last line in each case.</dd>
+<dd>Wrap both of the addresses in an &lt;p&gt; element, and put a &lt;br&gt; element at the end of each line of the address, except for the last line in each case. The <code>&lt;address&gt;</code> is not appropriate, because Dr. Gaye and the sender did not create the page; just some of the content. See [Marking up contact details](https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Advanced_text_formatting#Marking_up_contact_details)</dd>
 </dl>
 
 ## Inline semantics
@@ -46,8 +46,8 @@ The overall mark awarded is out of 47. Work out their final mark, and then divid
 <dd>"Dr. Eleanor Gaye", "Miss Eileen Dover", "Tel", and "Email" should be wrapped in a &lt;strong&gt; element.</dd>
 <dt>The four dates in the document should be given appropriate elements containing machine-readable dates (2 marks, half a mark each)</dt>
 <dd>All four dates should be marked up using a &lt;time&gt; element. Each one should have a datetime attribute containing a machine readable date. For example &lt;time datetime="2016-01-20"&gt;20 January 2016&lt;/time&gt;</dd>
-<dt>The first address and first date in the letter should be given a class attribute value of "receiver-column"; the CSS you'll add later will then cause these to be right aligned, as should be the case in a classic letter layout. (2 marks)</dt>
-<dd>The first &lt;p&gt; element in the document should be given an attribute of class="receiver-column"; the first date should be wrapped in a &lt;p&gt;, which should also be given the class="receiver-column" attribute.</dd>
+<dt>The first address and first date in the letter should be given a class attribute value of "sender-column"; the CSS you'll add later will then cause these to be right aligned, as should be the case in a classic letter layout. (2 marks)</dt>
+<dd>The first &lt;p&gt; element in the document should be given an attribute of class="sender-column"; the first date should be wrapped in a &lt;p&gt;, which should also be given the class="sender-column" attribute.</dd>
 <dt>The five acronyms/abbreviations in the main text of the letter should be marked up to provide expansions of each acronym/abbreviation. (2.5 marks, half a mark each)</dt>
 <dd>Each acronym/abbreviation in the main text of the letter — "PhD", "HTML", "CSS", "BC" and "Esq" — should be wrapped in an &lt;abbr&gt; element with a title attribute, for example &lt;abbr title="Cascading Style Sheets"&gt;CSS&lt;/abbr&gt;</dd>
 <dt>The six sub/superscripts should be marked up appropriately (3 marks, half a mark each).</dt>
@@ -79,7 +79,7 @@ The overall mark awarded is out of 47. Work out their final mark, and then divid
 <dl>
   <dt>The character set of the document should be specified as utf-8 using an appropriate meta tag (1 mark)</dt>
   <dd>The answer should be &lt;meta charset="utf-8"&gt; or equivalent, included inside the &lt;head&gt; element.</dd>
-  <dt>The author/coder/content creator of the letter should be specified in an appropriate meta tag (1 mark)</dt>
+  <dt>The author of the letter should be specified in an appropriate meta tag (1 mark)</dt>
   <dd>The answer should be something like &lt;meta name="author" content="Dr. Eleanor Gaye"&gt;, included inside the &lt;head&gt; element.</dd>
   <dt>The provided CSS should be included inside an appropriate tag (2 marks)</dt>
   <dd>The CSS from the provided CSS file should be pasted inside a &lt;style&gt; element, included inside the &lt;head&gt; element. OR, it would also be acceptable (in fact better) if the student put the CSS inside an external CSS file and linked it via a &lt;link&gt; element.</dd>

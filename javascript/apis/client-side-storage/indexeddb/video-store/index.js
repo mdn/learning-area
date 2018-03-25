@@ -42,7 +42,7 @@ function init() {
     );
     let webmBlob = fetch('videos/' + video.name + '.webm').then(response =>
       response.blob()
-    );;
+    );
 
     // Only run the next code when both promises have fulfilled
     Promise.all([mp4Blob, webmBlob]).then(function(values) {
