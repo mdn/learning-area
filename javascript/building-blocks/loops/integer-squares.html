@@ -17,17 +17,17 @@
     
 
     <script>
-    var para = document.querySelector('p');
-    var input = document.querySelector('input');
-    var btn = document.querySelector('button');
+    let para = document.querySelector('p');
+    let input = document.querySelector('input');
+    let btn = document.querySelector('button');
 
     btn.addEventListener('click', function() {
       para.textContent = 'Output: ';
-      var num = input.value;
+      let num = input.value;
       input.value = '';
       input.focus();
       for (var i = 1; i <= num; i++) {
-        var sqRoot = Math.sqrt(i);
+        let sqRoot = Math.sqrt(i);
         if(Math.floor(sqRoot) !== sqRoot) {
           continue;
         }
