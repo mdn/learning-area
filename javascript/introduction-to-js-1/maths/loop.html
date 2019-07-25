@@ -49,19 +49,19 @@
 
   <script>
 
-    var totals = [191.45, 890.56, 67.99, 12.34, 235.64];
+    let totals = [191.45, 890.56, 67.99, 12.34, 235.64];
 
-    var beforeList = document.querySelector('.before');
-    var afterList = document.querySelector('.after');
+    let beforeList = document.querySelector('.before');
+    let afterList = document.querySelector('.after');
 
-    for(var i = 0; i < totals.length; i++) {
-      var listItem = document.createElement('li');
+    for(let i = 0; i < totals.length; i++) {
+      let listItem = document.createElement('li');
       listItem.textContent = totals[i];
       beforeList.appendChild(listItem);
     }
 
-    for(var j = 0; j < totals.length; j++) {
-      var listItem = document.createElement('li');
+    for(let j = 0; j < totals.length; j++) {
+      let listItem = document.createElement('li');
       listItem.textContent = (totals[j] * 1.06).toFixed(2);
       afterList.appendChild(listItem);
     }
