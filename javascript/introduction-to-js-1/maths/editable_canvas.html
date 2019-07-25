@@ -75,13 +75,13 @@ ctx.fillRect(10, 10, x, y);
   </body>
 
   <script>
-    var canvas = document.getElementById('canvas');
-    var para = document.querySelector('p');
-    var ctx = canvas.getContext('2d');
-    var textarea = document.getElementById('code');
-    var reset = document.getElementById('reset');
-    var edit = document.getElementById('edit');
-    var code = textarea.value;
+    let canvas = document.getElementById('canvas');
+    let para = document.querySelector('p');
+    let ctx = canvas.getContext('2d');
+    let textarea = document.getElementById('code');
+    let reset = document.getElementById('reset');
+    let edit = document.getElementById('edit');
+    let code = textarea.value;
 
     function drawCanvas() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -111,11 +111,11 @@ ctx.fillRect(10, 10, x, y);
     };
 
     function insertAtCaret(text) {
-      var scrollPos = textarea.scrollTop;
-      var caretPos = textarea.selectionStart;
+      let scrollPos = textarea.scrollTop;
+      let caretPos = textarea.selectionStart;
 
-      var front = (textarea.value).substring(0, caretPos);
-      var back = (textarea.value).substring(textarea.selectionEnd, textarea.value.length);
+      let front = (textarea.value).substring(0, caretPos);
+      let back = (textarea.value).substring(textarea.selectionEnd, textarea.value.length);
       textarea.value = front + text + back;
       caretPos = caretPos + text.length;
       textarea.selectionStart = caretPos;
