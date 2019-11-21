@@ -92,7 +92,13 @@ fallbackLabel.style.display = 'none';
 
 // test whether a new date input falls back to a text input or not
 var test = document.createElement('input');
-test.type = 'date';
+
+try {
+  test.type = 'time';
+} catch (e) {
+  console.log(e.description);
+}
+    
 // if it does, run the code inside the if() {} block
 if(test.type === 'text') {
   // hide the native picker and show the fallback
