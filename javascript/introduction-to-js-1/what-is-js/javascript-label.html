@@ -30,6 +30,7 @@
 
       function updateName() {
         let name = prompt('Enter a new name');
+        name = name.toUpperCase();
         para.textContent = 'Player 1: ' + name;
       }
     </script>
