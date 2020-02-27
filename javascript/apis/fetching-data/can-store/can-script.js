@@ -100,7 +100,7 @@ function initialize(products) {
     } else {
       // Make sure the search term is converted to lower case before comparison. We've kept the
       // product names all lower case to keep things simple
-      let lowerCaseSearchTerm = searchTerm.value.trim().toLowerCase();
+      const lowerCaseSearchTerm = searchTerm.value.trim().toLowerCase();
       // For each product in categoryGroup, see if the search term is contained inside the product name
       // (if the indexOf() result doesn't return -1, it means it is) — if it is, then push the product
       // onto the finalGroup array
@@ -141,7 +141,7 @@ function initialize(products) {
   // display it
   function fetchBlob(product) {
     // construct the URL path to the image file from the product.image property
-    let url = 'images/' + product.image;
+    const url = 'images/' + product.image;
     // Use fetch to fetch the image, and convert the resulting response to a blob
     // Again, if any errors occur we report them in the console.
     fetch(url).then(function(response) {
