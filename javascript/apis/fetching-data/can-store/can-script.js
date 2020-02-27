@@ -114,31 +114,31 @@ function initialize(products) {
   finalGroup = [];
 
 
-    // selectProducts() Takes the group of products selected by selectCategory(), and further
-    // filters them by the tnered search term (if one has bene entered)
-    function selectProducts() {
-      // If no search term has been entered, just make the finalGroup array equal to the categoryGroup
-      // array — we don't want to filter the products further — then run updateDisplay().
-      if(searchTerm.value.trim() === '') {
-        finalGroup = categoryGroup;
-        updateDisplay();
-      } else {
-        // Make sure the search term is converted to lower case before comparison. We've kept the
-        // product names all lower case to keep things simple
-        const lowerCaseSearchTerm = searchTerm.value.trim().toLowerCase();
-        // For each product in categoryGroup, see if the search term is contained inside the product name
-        // (if the indexOf() result doesn't return -1, it means it is) — if it is, then push the product
-        // onto the finalGroup array
-        for(let i = 0; i < categoryGroup.length ; i++) {
-          if(categoryGroup[i].name.indexOf(lowerCaseSearchTerm) !== -1) {
-            finalGroup.push(categoryGroup[i]);
-          }
+  // selectProducts() Takes the group of products selected by selectCategory(), and further
+  // filters them by the tnered search term (if one has bene entered)
+  function selectProducts() {
+    // If no search term has been entered, just make the finalGroup array equal to the categoryGroup
+    // array — we don't want to filter the products further — then run updateDisplay().
+    if(searchTerm.value.trim() === '') {
+      finalGroup = categoryGroup;
+      updateDisplay();
+    } else {
+      // Make sure the search term is converted to lower case before comparison. We've kept the
+      // product names all lower case to keep things simple
+      const lowerCaseSearchTerm = searchTerm.value.trim().toLowerCase();
+      // For each product in categoryGroup, see if the search term is contained inside the product name
+      // (if the indexOf() result doesn't return -1, it means it is) — if it is, then push the product
+      // onto the finalGroup array
+      for(let i = 0; i < categoryGroup.length ; i++) {
+        if(categoryGroup[i].name.indexOf(lowerCaseSearchTerm) !== -1) {
+          finalGroup.push(categoryGroup[i]);
         }
-
-        // run updateDisplay() after this second round of filtering has been done
-        updateDisplay();
       }
+
+      // run updateDisplay() after this second round of filtering has been done
+      updateDisplay();
     }
+  }
 
   function selectCategory(e) {
     // Use preventDefault() to stop the form submitting — that would ruin
