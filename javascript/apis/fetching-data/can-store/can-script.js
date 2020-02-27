@@ -8,7 +8,7 @@ fetch('products.json').then(function(response) {
   let products = json;
   initialize(products);
 }).catch(function(err) {
-  console.log('Fetch problem: ' + err.message);
+  console.log(`Fetch problem:${err.message}`);
 });
 
 // sets up the app logic, declares required variables, contains all the other functions
@@ -141,7 +141,7 @@ function initialize(products) {
   // display it
   function fetchBlob(product) {
     // construct the URL path to the image file from the product.image property
-    const url = 'images/' + product.image;
+    const url = `images/${product.image}`;
     // Use fetch to fetch the image, and convert the resulting response to a blob
     // Again, if any errors occur we report them in the console.
     fetch(url).then(function(response) {
@@ -173,7 +173,7 @@ function initialize(products) {
     // Give the <p> textContent equal to the product "price" property, with a $ sign in front
     // toFixed(2) is used to fix the price at 2 decimal places, so for example 1.40 is displayed
     // as 1.40, not 1.4.
-    para.textContent = '$' + product.price.toFixed(2);
+    para.textContent = `$${product.price.toFixed(2)}`;
 
     // Set the src of the <img> element to the ObjectURL, and the alt to the product "name" property
     image.src = objectURL;
