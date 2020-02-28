@@ -1,16 +1,3 @@
-// use fetch to retrieve the products and pass them to init
-// report any errors that occur in the fetch operation
-// once the products have been successfully loaded and formatted as a JSON object
-// using response.json(), run the initialize() function
-fetch('products.json').then(function(response) {
-  return response.json();
-}).then(function(json) {
-  const products = json;
-  initialize(products);
-}).catch(function(err) {
-  console.log(`Fetch problem:${err.message}`);
-});
-
 // sets up the app logic, declares required variables, contains all the other functions
 function initialize(products) {
   // grab the UI elements that we need to manipulate
@@ -72,16 +59,14 @@ function initialize(products) {
     const url = `images/${product.image}`;
     // Use fetch to fetch the image, and convert the resulting response to a blob
     // Again, if any errors occur we report them in the console.
-    fetch(url).then(function(response) {
-        return response.blob();
-    }).then(function(blob) {
+    fetch(url).then((response) => response.blob())
+      .then((blob) => {
       // Convert the blob to an object URL — this is basically an temporary internal URL
       // that points to an object stored inside the browser
-      let objectURL = URL.createObjectURL(blob);
-      // invoke showProduct
-      showProduct(objectURL, product);
-    });
-
+        const objectURL = URL.createObjectURL(blob);
+        // invoke showProduct
+        showProduct(objectURL, product);
+      });
   }
 
   // start the process of updating the display with the new set of products
@@ -92,13 +77,13 @@ function initialize(products) {
     }
 
     // if no products match the search term, display a "No results to display" message
-    if(finalGroup.length === 0) {
+    if (finalGroup.length === 0) {
       const para = document.createElement('p');
       para.textContent = 'No results to display!';
       main.appendChild(para);
       // for each product we want to display, pass its product object to fetchBlob()
     } else {
-      for(let i = 0; i < finalGroup.length; i++) {
+      for (let i = 0; i < finalGroup.length; i += 1) {
         fetchBlob(finalGroup[i]);
       }
     }
@@ -119,18 +104,18 @@ function initialize(products) {
   function selectProducts() {
     // If no search term has been entered, just make the finalGroup array equal to the categoryGroup
     // array — we don't want to filter the products further — then run updateDisplay().
-    if(searchTerm.value.trim() === '') {
+    if (searchTerm.value.trim() === '') {
       finalGroup = categoryGroup;
       updateDisplay();
     } else {
       // Make sure the search term is converted to lower case before comparison. We've kept the
       // product names all lower case to keep things simple
       const lowerCaseSearchTerm = searchTerm.value.trim().toLowerCase();
-      // For each product in categoryGroup, see if the search term is contained inside the product name
-      // (if the indexOf() result doesn't return -1, it means it is) — if it is, then push the product
-      // onto the finalGroup array
-      for(let i = 0; i < categoryGroup.length ; i++) {
-        if(categoryGroup[i].name.indexOf(lowerCaseSearchTerm) !== -1) {
+      // For each product in categoryGroup, see if the search term is contained inside the product
+      //  name (if the indexOf() result doesn't return -1, it means it is) — if it is, then push
+      // the product onto the finalGroup array
+      for (let i = 0; i < categoryGroup.length; i += 1) {
+        if (categoryGroup[i].name.indexOf(lowerCaseSearchTerm) !== -1) {
           finalGroup.push(categoryGroup[i]);
         }
       }
@@ -152,7 +137,7 @@ function initialize(products) {
     // if the category and search term are the same as they were the last time a
     // search was run, the results will be the same, so there is no point running
     // it again — just return out of the function
-    if(category.value === lastCategory && searchTerm.value.trim() === lastSearch) {
+    if (category.value === lastCategory && searchTerm.value.trim() === lastSearch) {
       return;
     }
     // update the record of last category and search term
@@ -160,7 +145,7 @@ function initialize(products) {
     lastSearch = searchTerm.value.trim();
     // In this case we want to select all products, then filter them by the search
     // term, so we just set categoryGroup to the entire JSON object, then run selectProducts()
-    if(category.value === 'All') {
+    if (category.value === 'All') {
       categoryGroup = products;
       selectProducts();
       // If a specific category is chosen, we need to filter out the products not in that
@@ -170,11 +155,11 @@ function initialize(products) {
       // the values in the <option> elements are uppercase, whereas the categories
       // store in the JSON (under "type") are lowercase. We therefore need to convert
       // to lower case before we do a comparison
-      let lowerCaseType = category.value.toLowerCase();
-      for(let i = 0; i < products.length ; i++) {
+      const lowerCaseType = category.value.toLowerCase();
+      for (let i = 0; i < products.length; i += 1) {
         // If a product's type property is the same as the chosen category, we want to
         // dispay it, so we push it onto the categoryGroup array
-        if(products[i].type === lowerCaseType) {
+        if (products[i].type === lowerCaseType) {
           categoryGroup.push(products[i]);
         }
       }
@@ -186,3 +171,22 @@ function initialize(products) {
   // a search running to select the category of products we want to display
   searchBtn.onclick = selectCategory;
 }
+
+// use fetch to retrieve the products and pass them to init
+// report any errors that occur in the fetch operation
+// once the products have been successfully loaded and formatted as a JSON object
+// using response.json(), run the initialize() function
+fetch('products.json').then((response) => response.json())
+  .then((json) => {
+    const products = json;
+    initialize(products);
+  }).catch((err) => console.log(`Fetch problem:${err.message}`));
+
+// fetch('products.json').then(function(response) {
+//   return response.json();
+// }).then(function(json) {
+//   const products = json;
+//   initialize(products);
+// }).catch(function(err) {
+//   console.log(`Fetch problem:${err.message}`);
+// });
