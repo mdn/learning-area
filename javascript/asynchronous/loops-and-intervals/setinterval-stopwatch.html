@@ -44,7 +44,7 @@
       const stopBtn = document.querySelector('.stop');
       const resetBtn = document.querySelector('.reset');
 
-      // When the start button is pressed, start running displayCount() once per second using displayInterval()
+      // When the start button is pressed, start running displayCount() once per second using setInterval()
       startBtn.addEventListener('click', () => {
         stopWatch = setInterval(displayCount, 1000);
         startBtn.disabled = true;

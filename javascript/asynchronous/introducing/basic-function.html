@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Simple synchronous JavaScript example</title>
+  </head>
+  <body>
+    <button>Click me</button>
+    <script>
+    const btn = document.querySelector('button');
+    btn.addEventListener('click', () => {
+      alert('You clicked me!');
+
+      let pElem = document.createElement('p');
+      pElem.textContent = 'This is a newly-added paragraph.';
+      document.body.appendChild(pElem);
+    });
+    </script>
+  </body>
+</html>

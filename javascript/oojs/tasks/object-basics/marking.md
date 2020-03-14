@@ -90,6 +90,8 @@ When you are done, write your own object called `cat2`, which has the same struc
 
 Call both `greeting()` methods to check that they log appropriate greetings to the console.
 
+"How would you make the code more DRY?": By creating a `cat` class in which to define the properties and method so they are only defined once, and then creating instances of that class. 
+
 The code should look like this:
 
 ```
