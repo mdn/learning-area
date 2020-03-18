@@ -1,86 +1,86 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>NY Times API example</title>
-    <link href="nytimes.css" rel="stylesheet">
-  </head>
-  <body>
-    <h1>NY Times article search</h1>
+<head>
+  <meta charset="utf-8">
+  <title>NY Times API example</title>
+  <link href="nytimes.css" rel="stylesheet">
+</head>
+<body>
+  <h1>NY Times article search</h1>
 
-    <div class="wrapper">
+  <div class="wrapper">
 
-      <div class="controls">
-        <form>
-          <p>
-            <label for="search">Enter a SINGLE search term (required): </label>
-            <input type="text" id="search" class="search" required>
-          </p>
-          <p>
-            <label for="start-date">Enter a start date (format YYYYMMDD): </label>
-            <input type="date" id="start-date" class="start-date" pattern="[0-9]{8}">
-          </p>
-          <p>
-            <label for="end-date">Enter an end date (format YYYYMMDD): </label>
-            <input type="date" id="end-date" class="end-date" pattern="[0-9]{8}">
-          </p>
-          <p>
-            <button class="submit">Submit search</button>
-          </p>
-        </form>
-      </div>
-
-      <div class="results">
-        <nav>
-          <button class="prev">Previous 10</button>
-          <button class="next">Next 10</button>
-        </nav>
-
-        <section>
-        </section>
-      </div>
-
+    <div class="controls">
+      <form>
+        <p>
+          <label for="search">Enter a SINGLE search term (required): </label>
+          <input type="text" id="search" class="search" required>
+        </p>
+        <p>
+          <label for="start-date">Enter a start date (format YYYYMMDD): </label>
+          <input type="date" id="start-date" class="start-date" pattern="[0-9]{8}">
+        </p>
+        <p>
+          <label for="end-date">Enter an end date (format YYYYMMDD): </label>
+          <input type="date" id="end-date" class="end-date" pattern="[0-9]{8}">
+        </p>
+        <p>
+          <button class="submit">Submit search</button>
+        </p>
+      </form>
     </div>
 
-    <script>
+    <div class="results">
+      <nav>
+        <button class="prev">Previous 10</button>
+        <button class="next">Next 10</button>
+      </nav>
 
-    // Defining a baseURL and key to as part of the request URL
+      <section>
+      </section>
+    </div>
 
-const baseURL = 'https://api.nytimes.com/svc/search/v2/articlesearch.json';
-const key = 'INSERT-YOUR-API-KEY-HERE';
-let url;
+  </div>
 
-// Grab references to all the DOM elements you'll need to manipulate
+  <script>
 
-const searchTerm = document.querySelector('.search');
-const startDate = document.querySelector('.start-date');
-const endDate = document.querySelector('.end-date');
-const searchForm = document.querySelector('form');
+  // Defining a baseURL and key to as part of the request URL
 
-// This is never used
-// const submitBtn = document.querySelector('.submit');
+  const baseURL = 'https://api.nytimes.com/svc/search/v2/articlesearch.json';
+  const key = 'INSERT-YOUR-API-KEY-HERE';
+  let url;
 
-const nextBtn = document.querySelector('.next');
-const previousBtn = document.querySelector('.prev');
+  // Grab references to all the DOM elements you'll need to manipulate
 
-const section = document.querySelector('section');
-const nav = document.querySelector('nav');
+  const searchTerm = document.querySelector('.search');
+  const startDate = document.querySelector('.start-date');
+  const endDate = document.querySelector('.end-date');
+  const searchForm = document.querySelector('form');
 
-// Hide the "Previous"/"Next" navigation to begin with, as we don't need it immediately
-nav.style.display = 'none';
+  // This is never used
+  // const submitBtn = document.querySelector('.submit');
 
-// define the initial page number and status of the navigation being displayed
-let pageNumber = 0;
+  const nextBtn = document.querySelector('.next');
+  const previousBtn = document.querySelector('.prev');
 
-// This is never used
-// let displayNav = false;
+  const section = document.querySelector('section');
+  const nav = document.querySelector('nav');
 
-// Event listeners to control the functionality
+  // Hide the "Previous"/"Next" navigation to begin with, as we don't need it immediately
+  nav.style.display = 'none';
+
+  // define the initial page number and status of the navigation being displayed
+  let pageNumber = 0;
+
+  // This is never used
+  // let displayNav = false;
+
+  // Event listeners to control the functionality
 
 
 
-    </script>
+  </script>
 
 
-  </body>
+</body>
 </html>
