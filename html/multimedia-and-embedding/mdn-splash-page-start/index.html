@@ -99,6 +99,7 @@
   <body>
     <header>
       <h1>Mozilla</h1>
+      <img src="images/firefox-logo-150w.png" alt="Mozilla firefox logo">
       <!-- insert <img> element, link to the small
           version of the Firefox logo -->
 
@@ -107,6 +108,7 @@
     <main>
       <article>
         <!-- insert iframe from youtube -->
+        <iframe width="400" height="225" src="https://www.youtube.com/embed/ojcNcvb1olg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
         <h2>Rocking the free web</h2>
 
@@ -118,22 +120,27 @@
       <div class="further-info">
         <!-- insert images with srcsets and sizes -->
         <a href="https://www.mozilla.org/en-US/firefox/new/">
-          <img>
+          <img srcset="images/firefox-logo-150w.png 150w, images/firefox-logo-400w.png 400w" sizes="(max-width: 600px) 150px, 400px" alt="Firefox logo">
         </a>
         <a href="https://www.mozilla.org/">
-          <img>
+          <img srcset="images/mozilla-dinosaur-head-red-150w.png 150w, images/mozilla-dinosaur-head-red-400w.png 400w" sizes="(max-width: 600px) 150px, 400px" alt="Mozilla dinosaur head in red">
         </a>
         <a href="https://addons.mozilla.org/">
-          <img>
+          <img srcset="images/firefox-addons-150w.png 150w, images/firefox-addons-400w.png 400w" sizes="(max-width: 600px) 150px, 400px" alt="Mozilla addons icon">
         </a>
-        <a href="https://developer.mozilla.org/en-US/">
-          <img>
+        <a href="https://developer.mozilla.org/en-US/" alt="Mozilla dinosaur head blue">
+          <img src="originals/mdn.svg">
         </a>
         <div class="clearfix"></div>
       </div>
 
       <div class="red-panda">
         <!-- insert picture element -->
+        <picture>
+          <source media="(max-width:600px)" srcset="images/red-panda-600w.jpg">
+          <source media="(max-width:1000px)" srcset="images/red-panda-1000w.jpg">
+          <img src="images/red-panda-original.jpg" alt="Red panda on a tree">
+        </picture>
       </div>
 
     </main>
