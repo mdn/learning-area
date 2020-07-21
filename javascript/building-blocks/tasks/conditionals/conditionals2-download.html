@@ -29,7 +29,12 @@
     let response;
     let score = 75;
     let machineActive = false;
-  
+  (score<0||score>100)?response="This is not possible, an error has occurred":
+(score<=0||score>19)?response="That was a terrible score — total fail!":
+(score<20||score>39)?response="You know some things, but it's a pretty bad score. Needs improvement.":
+(score<40||score>69)?response="You did a passable job, not bad!":
+(score<70||score>89)?response="That\'s a great score, you really know your stuff.":
+(score<90||score>=100)?response="What an amazing score! Did you cheat? Are you for real?";
     // Add your code here
 
     // Don't edit the code below here!
