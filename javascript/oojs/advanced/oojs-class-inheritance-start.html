@@ -68,10 +68,10 @@
           // all, adding each one to the main string followed by a comma,
           // except for the last one, which needs an and & a full stop
           for(let i = 0; i < this.interests.length; i++) {
-            if(i === this.interests.length - 1) {
-              string += 'and ' + this.interests[i] + '.';
-            } else {
+            if(i !== this.interests.length - 1) {
               string += this.interests[i] + ', ';
+            } else {
+              string += 'and ' + this.interests[i] + '.';
             }
           }
         }
