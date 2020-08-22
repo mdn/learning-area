@@ -36,23 +36,21 @@
       };
 
       Person.prototype.bio = function() {
-        // First define a string, and make it equal to the part of
-        // the bio that we know will always be the same.
         let string = this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years old. ';
-        // define a variable that will contain the pronoun part of
-        // the second sentence
         let pronoun;
-
         // check what the value of gender is, and set pronoun
         // to an appropriate value in each case
-        if(this.gender === 'male' || this.gender === 'Male' || this.gender === 'm' || this.gender === 'M') {
+        const genderRegex = {male:/m(ale)*/i, female:/f(emale)*/i}
+        const male = genderRegex.male.test(this.gender)
+        const female = genderRegex.female.test(this.gender)
+        if(male) {
           pronoun = 'He likes ';
-        } else if(this.gender === 'female' || this.gender === 'Female' || this.gender === 'f' || this.gender === 'F') {
+        } else if(female) {
           pronoun = 'She likes ';
         } else {
           pronoun = 'They like ';
         }
-
+      
         // add the pronoun string on to the end of the main string
         string += pronoun;
 
