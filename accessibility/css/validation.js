@@ -40,6 +40,7 @@ function createLink(testItem) {
   anchor.href = '#' + testItem.input.name;
   anchor.onclick = function() {
     testItem.input.focus();
+    return false;
   };
   listItem.appendChild(anchor);
   errorList.appendChild(listItem);
