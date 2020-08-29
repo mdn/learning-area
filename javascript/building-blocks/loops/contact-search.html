@@ -26,14 +26,17 @@
       const searchName = input.value.toLowerCase();
       input.value = '';
       input.focus();
+      let found = false;
       for(let i = 0; i < contacts.length; i++) {
         let splitContact = contacts[i].split(':');
         if(splitContact[0].toLowerCase() === searchName) {
           para.textContent = splitContact[0] + '\'s number is ' + splitContact[1] + '.';
+          found = true;
           break;
-        } else {
-          para.textContent = 'Contact not found.';
         }
+      }
+      if (!found) {
+        para.textContent = 'Contact not found.';
       }
     });
       
