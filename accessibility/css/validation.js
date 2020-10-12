@@ -38,8 +38,13 @@ function createLink(testItem) {
   const anchor = document.createElement('a');
   anchor.textContent = testItem.input.name + ' field is empty: fill in your ' + testItem.input.name + '.';
   anchor.href = '#' + testItem.input.name;
-  anchor.onclick = function() {
+  anchor.onclick = function(e) {
     testItem.input.focus();
+    // Prevent the browser to follow the link.
+    // In some browsers (e.g. firefox) following the link breaks the functionality
+    e.preventDefault()
+    // one more step to insure that the browser will not
+    // follow the link and will not propagate
     return false;
   };
   listItem.appendChild(anchor);
