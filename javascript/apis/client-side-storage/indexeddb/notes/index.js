@@ -152,8 +152,9 @@ window.onload = function() {
 
     // open a database transaction and delete the task, finding it using the id we retrieved above
     let transaction = db.transaction(['notes_os'], 'readwrite');
-    let objectStore = transaction.objectStore('notes_os');
-    let request = objectStore.delete(noteId);
+    transaction.objectStore('notes_os').delete(noteId);
+    //let objectStore = transaction.objectStore('notes_os');
+    //let request = objectStore.delete(noteId);
 
     // report that the data item has been deleted
     transaction.oncomplete = function() {
