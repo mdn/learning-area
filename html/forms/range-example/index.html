@@ -53,23 +53,22 @@
     <form>
 
       <div>
-        <label for="price">Choose a maximum house price: </label>
-        <input type="range" name="price" id="price" min="50000" max="500000" step="100" value="250000">
-        <output class="price-output" for="price"></output>
-        <!-- prova -->
+        <label for="prezzo">Scegli il prezzo massimo della casa: </label>
+        <input type="range" name="prezzo" id="prezzo" min="50000" max="500000" step="100" value="250000">
+        <output class="prezzo-output" for="prezzo"></output>
       </div>
       <div>
         <button>Submit</button>
       </div>
     </form>
     <script>
-      const price = document.querySelector('#price')
-      const output = document.querySelector('.price-output')
+      const prezzo = document.querySelector('#prezzo')
+      const output = document.querySelector('.prezzo-output')
 
-      output.textContent = price.value
+      output.textContent = prezzo.value
 
-      price.addEventListener('input', function() {
-        output.textContent = price.value
+      prezzo.addEventListener('input', function() {
+        output.textContent = prezzo.value
       });
     </script>
 </body>
