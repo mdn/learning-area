@@ -40,4 +40,15 @@ let cat = {
   </body>
   <script class="editable"></script>
   <script src="../playable.js"></script>
+  <script>
+    const textarea = document.querySelector('textarea');
+    textarea.addEventListener('keydown', event =>
+    {
+        if(event.keyCode === 9)
+        {
+            event.preventDefault();
+            textarea.value += "    ";
+        }
+    });
+  </script>
 </html>
