@@ -32,13 +32,13 @@ randomize.addEventListener('click', result);
 function result() {
 
   if(customName.value !== '') {
-    let name = customName.value;
+    const name = customName.value;
 
   }
 
   if(document.getElementById("uk").checked) {
-    let weight = Math.round(300);
-    let temperature =  Math.round(94);
+    const weight = Math.round(300);
+    const temperature =  Math.round(94);
 
   }
 
