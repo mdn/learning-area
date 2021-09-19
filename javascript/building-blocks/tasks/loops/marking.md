@@ -54,7 +54,7 @@ let phonebook = [
 
 // Add your code here
 
-do {
+while (i < phonebook.length) {
   if(phonebook[i].name === name) {
     para.textContent = `${ phonebook[i].name }'s number is ${ phonebook[i].number }.`;
     break;
@@ -65,7 +65,7 @@ do {
   }
 
   i++;
-} while(i < phonebook.length);
+}
 ```
 
 ## Task 3
