@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Sorm Control</title>
+</head>
+<body>
+    <!-- This is our main container for our control.
+         The tabindex attribute is what allows the user to focus the control.
+         We'll see later that it's better to set it through JavaScript. -->
+    <div class="select" tabindex="0">
+        <!-- This container will be used to display the current value of the control -->
+        <span class="value">Cherry</span>
+        <!-- This container will contain all the options available for our control.
+             Because it's a list, it makes sense to use the ul element. -->
+        <ul class="optList">
+             <!-- Each option only contains the value to be displayed, we'll see later
+                  how to handle the real value that will be sent with the form data -->
+            <li class="option">Cherry</li>
+            <li class="option">Lemon</li>
+            <li class="option">Banana</li>
+            <li class="option">Strawberry</li>
+            <li class="option">Apple</li>
+        </ul>
+    </div>
+</body>
+</html>
