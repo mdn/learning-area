@@ -1,0 +1,32 @@
+.select {
+    /* This will create a positioning context for the list of options;
+       adding this to .select:focus-within will be a better option when fully supported */
+    position: relative;
+
+    /* This will make our control become part of the text flow and sizable at the same time */
+    display: inline-block;
+}
+
+.select .active,
+.select:active {
+    outline: none;
+
+    /* This box-shadow property is not exactly required, however it's imperative to ensure
+       active state is visible, especially to keyboard users, that we use it as a default value. */
+    box-shadow: 0 0 3px 1px #227755;
+}
+
+/* The .select selector here helps to make we only select element inside our control. */
+.select .optList {
+    /* This will make sure our list of options will be displayed below the value and out of the HTML flow */
+    position: absolute;
+    top: 100%;
+    left: 0;
+}
+
+.select .optList.hidden {
+    /* This is a simple way to hide the list in an accessible way;
+       we will talk more about accessibility in the end */
+    max-height: 0;
+    visibility: hidden;
+}
