@@ -1,3 +1,5 @@
+/*** Required Styles ***/
+
 .select {
     /* This will create a positioning context for the list of options;
        adding this to .select:focus-within will be a better option when fully supported */
@@ -29,4 +31,98 @@
        we will talk more about accessibility in the end */
     max-height: 0;
     visibility: hidden;
+}
+
+/*** Beautification ***/
+
+.select {
+    /* The computations are made assuming 1em == 16px which is the default value in most browsers.
+       If you are lost with px to em conversion, try http://riddle.pl/emcalc/ */
+    font-size: 0.625em; /* this (10px) is the new font size context for em value in this context */
+    font-family: Verdana, Arial, sans-serif;
+
+    box-sizing: border-box;
+
+    /* We need extra room for the down arrow we will add */
+    padding: 0.1em 2.5em 0.2em 0.5em;
+    width: 10em; /* 100px */
+
+    border: 0.2em solid #000;
+    border-radius: 0.4em;
+    box-shadow: 0 0.1em 0.2em rgba(0, 0, 0, .45);
+
+    /* The first declaration is for browsers that do not support linear gradients. */
+    background: #F0F0F0;
+    background: linear-gradient(0deg, #E3E3E3, #FCFCFC 50%, #F0F0F0);
+}
+
+.select .value {
+    /* Because the value can be wider than our control, we have to make sure it will not
+       change the control's width. If the content overflows, we display an ellipsis */
+    
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    vertical-align: top;
+}
+
+.select:after {
+    content: "\25BC"; /* We use the unicode character U+25BC; make sure to set a charset meta tag */
+    position: absolute;
+    z-index: 1; /* This will be important to keep the arrow from overlapping the list of options */
+    top: 0;
+    right: 0;
+
+    box-sizing: border-box;
+
+    height: 100%;
+    width: 2em;
+    padding-top: 0.1em;
+
+    border-left: 0.2em solid #000;
+    border-radius: 0 0.1em 0.1em 0;
+
+    background-color: #000;
+    color: #FFF;
+    text-align: center;
+}
+
+.select .optList {
+    z-index: 2; /* We explicitly said the list of options will always be on top of the down arrow */
+
+    /* this will reset the default style of the ul element */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+
+    /* If the values are smaller than the control, the list of options will be as wide as the control itself */
+    min-width: 100%;
+
+    /* In case the list is too long, its content will overflow vertically
+       (which will add a vertical scrollbar automatically) but never horizontally
+       (because we haven't set a width, the list will adjust its width automatically.
+       If it can't, the content will be truncated) */
+    max-height: 10em; /* 100px */
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    border: 0.2em solid #000;
+    border-top-width: 0.1em;
+    border-radius: 0 0 0.4em .4em;
+
+    box-shadow: 0 0.2em 0.4em rgba(0, 0, 0, 0.4);
+    background: #F0F0F0;
+}
+
+.select .option {
+    padding: 0.2em 0.3em; /* 2px 3px */
+}
+
+.select .highlight {
+    color: #FFFFFF;
+    background: #000;
 }
