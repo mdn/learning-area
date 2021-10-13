@@ -126,3 +126,15 @@
     color: #FFFFFF;
     background: #000;
 }
+
+.widget select,
+.no-widget .select {
+    /* This CSS selector basically says:
+       - either we have set the body class to "widget" and thus we hide the actual <select> element
+       - or we have not changed the body class, therefore the body class is still "no-widget",
+         so the elements whose class is "select" must be hidden */
+    position: absolute;
+    left: -5000em;
+    height: 0;
+    overflow: hidden;
+}
