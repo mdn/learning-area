@@ -2,6 +2,42 @@ NodeList.prototype.forEach = function (callback) {
     Array.prototype.forEach.call(this, callback);
 }
 
+// This function updates the displayed value and synchronizes it with the native control.
+// It takes two parameters:
+// select : the DOM node with the class `select` containing the value to update
+// index  : the index of the value to be selected
+function updateValue(select, index) {
+    // We need to get the native control for the given custom control
+    // In our example, that native control is a sibling of the custom control
+    const nativeWidget = select.previousElementSibling;
+
+    // We also need  to get the value placeholder of our custom control
+    const value = select.querySelector('.value');
+
+    // And we need the whole list of options
+    const optionList = select.querySelectorAll('.option');
+
+    // We set the selected index to the index of our choice
+    nativeWidget.selectedIndex = index;
+
+    // We update the value placeholder accordingly
+    value.innerHTML = optionList[index].innerHTML;
+
+    // And we highlight the corresponding option of our custom control
+    highlightOption(select, optionList[index]);
+}
+
+// This function returns the current selected index in the native control
+// It takes one parameter:
+// select : the DOM node with the class `select` related to the native control
+function getIndex(select) {
+    // We need to access the native control for the given custom control
+    // In our example, that native control is a sibling of the custom control
+    const nativeWidget = select.previousElementSibling;
+
+    return nativeWidget.selectedIndex;
+}
+
 // This function will be used each time we want to deactivate a custom control
 // It takes one parameter
 // select : the DOM node with the `select` class to deactivate
@@ -124,6 +160,46 @@ window.addEventListener('load', () => {
             if (event.keyCode === 27) {
                 deactivateSelect(select);
             }
+        });
+    });
+});
+
+window.addEventListener('load', () => {
+    const selectList = document.querySelectorAll('.select');
+
+    // Each custom control needs to be initialized
+    selectList.forEach((select) => {
+        const optionList = select.querySelectorAll('.option');
+        const selectedIndex = getIndex(select);
+
+        // We make our custom control focusable
+        select.tabIndex = 0;
+
+        // We make the native control no longer focusable
+        select.previousElementSibling.tabIndex = -1;
+
+        // We make sure that the default selected value is correctly displayed
+        updateValue(select, selectedIndex);
+
+        // Each time a user clicks on an option, we update the value accordingly
+        optionList.forEach((option, index) => {
+            option.addEventListener('click', () => {
+                updateValue(select, index);
+            });
+        });
+
+        // Each time a user uses their keyboard on a focused control, we update the value accordingly
+        select.addEventListener('keyup', (event) => {
+            let length = optionList.length;
+            let index = getIndex(select);
+
+            // When the user hits the down arrow, we jump to the next option
+            if (event.keyCode === 40 && index < length - 1) index++;
+
+            // When the user hits the up arrow, we jump to the previous option
+            if (event.keyCode === 38 && index > 0) index--;
+
+            updateValue(select, index);
         });
     });
 });
