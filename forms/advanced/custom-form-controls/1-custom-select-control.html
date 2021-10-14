@@ -19,12 +19,14 @@
             <!-- This is our main container for our control.
                  The tabindex attribute is what allows the user to focus the control.
                  We'll see later that it's better to set it through JavaScript. -->
-            <div class="select" tabindex="0">
+            <!-- We add the role="listbox" attribute to our top element -->
+            <div class="select" tabindex="0" role="listbox">
                 <!-- This container will be used to display the current value of the control -->
                 <span class="value">Cherry</span>
                 <!-- This container will contain all the options available for our control.
                      Because it's a list, it makes sense to use the ul element. -->
-                <ul class="optList hidden">
+                <!-- We also add the role="presentation" to the ul element -->
+                <ul class="optList hidden" role="presentation">
                      <!-- Each option only contains the value to be displayed, we'll see later
                           how to handle the real value that will be sent with the form data -->
                     <li class="option">Cherry</li>

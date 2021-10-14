@@ -17,6 +17,14 @@ function updateValue(select, index) {
     // And we need the whole list of options
     const optionList = select.querySelectorAll('.option');
 
+    // We make sure that all the options are not selected
+    optionList.forEach((option) => {
+        option.setAttribute('aria-selected', 'false');
+    });
+
+    // We make sure the chosen option is selected
+    optionList[index].setAttribute('aria-selected', 'true');
+
     // We set the selected index to the index of our choice
     nativeWidget.selectedIndex = index;
 
