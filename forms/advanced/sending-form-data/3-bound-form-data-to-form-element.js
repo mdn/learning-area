@@ -16,7 +16,7 @@ window.addEventListener('load', () => {
         // Define what happens in case of error
         httpRequest.addEventListener('error', (event) => {
             alert('Oops! Something went wrong.');
-            console.error(event.target);
+            console.error('Error: ' + event.target);
         })
 
         // Set up our request
