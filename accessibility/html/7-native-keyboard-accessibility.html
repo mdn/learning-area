@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="7-native-keyboard-accessibility.css">
+    <script src="7-native-keyboard-accessibility.js" defer></script>
+    <title>Native Keyboard Accessibility</title>
+</head>
+<body>
+    <h1>Links</h1>
+    <p>This is a link to <a href="https://www.mozilla.org">Mozilla</a>.</p>
+    <p>Another link, to the <a href="https://developer.mozilla.org">Mozilla Developer Network</a>.</p>
+    <h2>Buttons</h2>
+    <p>
+        <button data-message="This is from the first button">Click Me!</button>
+        <button data-message="This is from the second button">Click Me Too!</button>
+        <button data-message="This is from the third button">And Me!</button>
+    </p>
+    <h2>Form</h2>
+    <form>
+        <div>
+            <label for="name">Fill in your name:</label>
+            <input type="text" name="name" id="name">
+        </div>
+        <div>
+            <label for="age">Enter your age:</label>
+            <input type="text" name="age" id="age">
+        </div>
+        <div>
+            <label for="mood">Choose your mood:</label>
+            <select name="mood" id="mood">
+                <option value="happy">Happy</option>
+                <option value="sad">Sad</option>
+                <option value="angrty">Angrty</option>
+                <option value="worried">Worried</option>
+            </select>
+        </div>
+    </form>
+</body>
+</html>
