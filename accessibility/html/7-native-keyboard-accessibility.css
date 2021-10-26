@@ -1,0 +1,12 @@
+input {
+    margin-bottom: 10px;
+}
+
+button {
+    margin-right: 10px;
+}
+
+a:hover, input:hover, button:hover, select:hover,
+a:focus, input:focus, button:focus, select:focus {
+    font-weight: bold;
+}
