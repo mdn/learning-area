@@ -1,0 +1,18 @@
+div {
+    padding: 0 6px;
+    margin-right: 10px;
+    width: 120px;
+    background-color: rgb(240, 240, 240);
+    font-family: sans-serif;
+    font-size: 11px;
+    text-align: center;
+    border: 1px outset rgb(218, 218, 218);
+    border-radius: 5px;
+    line-height: 20px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+div:hover, div:focus {
+    font-weight: bold;
+}
