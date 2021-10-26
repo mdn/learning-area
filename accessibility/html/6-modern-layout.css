@@ -1,0 +1,132 @@
+/* General Setup */
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    background-color: #A9A9A9;
+    font-size: 10px;
+}
+
+body {
+    margin: 0 auto;
+    width: 70%;
+}
+
+/* Typography */
+
+h1, h2, h3 {
+    color: #2A2A2A;
+    font-family: 'Sonsie One', cursive;
+}
+
+p, input, li {
+    color: #2A2A2A;
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+h1 {
+    color: white;
+    font-size: 4rem;
+    text-align: center;
+    text-shadow: 2px 2px 10px black;
+}
+
+h2 {
+    font-size: 3rem;
+    text-align: center;
+}
+
+h3 {
+    font-size: 2.2rem;
+}
+
+p, li {
+    font-size: 1.6rem;
+    line-height: 1.5;
+}
+
+/* Header Layout */
+
+nav, article, aside, footer {
+    padding: 1%;
+    background-color: white;
+}
+
+nav {
+    margin-bottom: 10px;
+    height: 50px;
+    background-color: #FF80FF;
+    display: flex;
+}
+
+nav ul {
+    padding: 0;
+    list-style-type: none;
+    flex: 2;
+    display: flex;
+}
+
+nav li {
+    display: inline;
+    text-align: center;
+    flex: 1;
+}
+
+nav a {
+    color: black;
+    font-size: 2rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+}
+
+nav form {
+    padding: 0 2em;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    flex: 1;
+}
+
+input {
+    height: 32px;
+    font-size: 1.6rem;
+}
+
+input[type="search"] {
+    flex: 3;
+}
+
+input[type="submit"] {
+    margin-left: 1rem;
+    color: white;
+    background: #333;
+    border: 0;
+    flex: 1;
+}
+
+/* Main Layout */
+
+main {
+    display: flex;
+}
+
+article {
+    flex: 4;
+}
+
+aside {
+    margin-left: 10px;
+    background-color: #FF80FF;
+    flex: 1;
+}
+
+aside li {
+    padding-bottom: 10px;
+}
+
+footer {
+    margin-top: 10px;
+}
