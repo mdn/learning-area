@@ -16,6 +16,6 @@ document.onkeydown = function(event) {
     // console.log(event.key);
     if (event.key === 'Enter') {
         console.log('click');
-        document.activeElement.click(event);
+        document.activeElement.click();
     }
 };
