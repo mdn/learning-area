@@ -1,0 +1,20 @@
+body {
+    padding: 1em;
+    margin: 0;
+    color: #333;
+    background-color: #FFF;
+    font: 1em / 1.4 Helvetica Neue, Helvetics, Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.button {
+    padding: 10px;
+    width: 170px;
+    color: white;
+    background-color: blue;
+    text-align: center;
+    border-radius: 10px;
+}
