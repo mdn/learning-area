@@ -1,0 +1,36 @@
+html {
+    font-family: sans-serif;
+}
+
+form {
+    padding: 20px;
+    width: 300px;
+    background: #EEE;
+    border-radius: 20px;
+    box-shadow: 1px 1px 1px black;
+}
+
+div:first-of-type label {
+    margin-bottom: 20px;
+}
+
+label {
+    padding: 4px;
+    width: 130px;
+    text-align: right;
+    float: left;
+}
+
+input {
+    width: 130px;
+    float: right;
+}
+
+label, input {
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+div {
+    clear: both;
+}
