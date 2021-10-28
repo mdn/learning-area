@@ -1,0 +1,30 @@
+body {
+    padding: 1em;
+    margin: 0;
+    color: #333;
+    background-color: #FFF;
+    font: 1em / 1.4 Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0 auto;
+    width: 400px;
+}
+
+main img {
+    margin: 20px auto;
+    width: 250px;
+    display: block;
+    box-shadow: 5px 5px 0 black;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
