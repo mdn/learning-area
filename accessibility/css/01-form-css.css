@@ -3,11 +3,11 @@ html {
 }
 
 form {
-    padding: 20px;
-    width: 300px;
     background: #EEE;
     border-radius: 20px;
     box-shadow: 1px 1px 1px black;
+    padding: 20px;
+    width: 300px;
 }
 
 div:first-of-type label {
@@ -15,10 +15,10 @@ div:first-of-type label {
 }
 
 label {
-    padding: 4px;
     width: 130px;
-    text-align: right;
     float: left;
+    text-align: right;
+    padding: 4px;
 }
 
 input {
