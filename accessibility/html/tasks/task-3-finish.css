@@ -1,0 +1,11 @@
+body {
+    padding: 1em;
+    margin: 0;
+    color: #333;
+    background-color: #FFF;
+    font: 1em / 1.4 Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
