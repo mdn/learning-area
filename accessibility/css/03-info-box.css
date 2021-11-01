@@ -1,0 +1,81 @@
+/* General Setup */
+
+html {
+    font-family: sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+/* Info-Box Setup */
+
+.info-box {
+    margin: 20px auto 0;
+    width: 452px;
+    height: 400px;
+}
+
+/* Styling Info-Box Tabs */
+
+.info-box ul {
+    padding: 0;
+    margin: 0;
+    height: 50px;
+    border: 1px solid #B60000;
+    overflow: hidden;
+}
+
+.info-box li {
+    width: 150px;
+    list-style-type: none;
+    float: left;
+}
+
+.info-box li a {
+    width: 100%;
+    color: #B60000;
+    background: white;
+    text-align: center;
+    font-weight: bold;
+    line-height: 50px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.info-box li a:focus,
+.info-box li a:hover {
+    color: white;
+    background-color: #B60000;
+}
+
+.info-box li a.active {
+    color: white;
+    background-color: #B60000;
+}
+
+/* Styling Info-Box Panels */
+
+.info-box .panels {
+    height: 352px;
+    position: relative;
+    clear: both;
+}
+
+.info-box article {
+    padding: 10px 20px;
+    height: 352px;
+    top: 0;
+    left: 0;
+    color: white;
+    background-color: #B60000;
+    position: absolute;
+}
+
+.info-box .active-panel {
+    z-index: 1;
+}
