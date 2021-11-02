@@ -1,0 +1,25 @@
+a {
+    color: #666;
+    text-decoration: none;
+    outline: none;
+}
+
+a {
+    width: 250px;
+    display: inline-block;
+}
+a:visited {
+    color: green;
+    background: white;
+}
+
+a:hover,
+a:focus {
+    color: #FFF;
+    background-color: #333;
+}
+
+a:active {
+    color: whitesmoke;
+    background-color: black;
+}
