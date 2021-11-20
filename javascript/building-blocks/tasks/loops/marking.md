@@ -8,20 +8,20 @@ Note: We didn't provide live editable versions of these tasks because of the ris
 
 ## Task 1
 
-In our first looping task we want you start by creating a simple `for()` loop that goes through all the items in the provided `myArray` and prints them out on the screen inside list items, which are appended to the provided `list`. 
+In our first looping task we want you start by creating a simple `for...of` loop that goes through all the items in the provided `myArray` and prints them out on the screen inside list items, which are appended to the provided `list`.
 
-Note that using an array method like. `forEach()` would also be acceptable, as would a different loop. structure such as `while()`.
+Note that using a `for()` would also be acceptable, as would a different loop structure such as `while()`.
 
 The finished code should look something like this:
 
 ```
-let myArray = ['tomatoes', 'chick peas', 'onions', 'rice', 'black beans'];
+const myArray = ['tomatoes', 'chick peas', 'onions', 'rice', 'black beans'];
 
-let list = document.createElement('ul');
+const list = document.createElement('ul');
 
-for(let i = 0; i < myArray.length; i++) {
-  let listItem = document.createElement('li');
-  listItem.textContent = myArray[i];
+for (let item of myArray) {
+  const listItem = document.createElement('li');
+  listItem.textContent = item;
   list.appendChild(listItem);
 }
 ```
@@ -37,11 +37,10 @@ You should use a type of loop that you've not used in the previous task.
 The finished code should look something like this:
 
 ```
-let name = 'Mustafa';
-let i = 0;
-let para = document.createElement('p');
+const name = 'Mustafa';
+const para = document.createElement('p');
 
-let phonebook = [
+const phonebook = [
   { name : 'Chris', number : '1549' },
   { name : 'Li Kang', number : '9634' },
   { name : 'Anne', number : '9065' },
@@ -53,8 +52,7 @@ let phonebook = [
 ]
 
 // Add your code here
-
-do {
+for (let i = 0; i < phonebook.length; i++) {
   if(phonebook[i].name === name) {
     para.textContent = `${ phonebook[i].name }'s number is ${ phonebook[i].number }.`;
     break;
@@ -65,7 +63,7 @@ do {
   }
 
   i++;
-} while(i < phonebook.length);
+}
 ```
 
 ## Task 3
