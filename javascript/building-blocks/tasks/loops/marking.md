@@ -10,7 +10,7 @@ Note: We didn't provide live editable versions of these tasks because of the ris
 
 In our first looping task we want you start by creating a simple `for...of` loop that goes through all the items in the provided `myArray` and prints them out on the screen inside list items, which are appended to the provided `list`.
 
-Note that using a `for()` would also be acceptable, as would a different loop structure such as `while()`.
+Note that using a `for()` loop would also be acceptable, as would a different loop structure such as `while()`.
 
 The finished code should look something like this:
 
