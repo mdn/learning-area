@@ -1,4 +1,4 @@
-let name = 'Chris';
+const name = 'Chris';
 function greeting() {
-  alert('Hello ' + name + ': welcome to our company.');
+  alert(`Hello ${name}: welcome to our company.`);
 }

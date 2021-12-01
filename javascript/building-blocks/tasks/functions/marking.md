@@ -34,14 +34,14 @@ You'll want to clear the canvas before drawing, so that when the code is updated
 The finished code should look something like this:
 
 ```
-let canvas = document.querySelector('canvas');
-let ctx = canvas.getContext('2d');
+const canvas = document.querySelector('canvas');
+const ctx = canvas.getContext('2d');
 
-let x = 50;
-let y = 60;
-let width = 100;
-let height = 75;
-let color = 'blue';
+const x = 50;
+const y = 60;
+const width = 100;
+const height = 75;
+const color = 'blue';
 
 function drawSquare(x, y, width, height, color) {
   ctx.fillStyle = 'white';
@@ -77,4 +77,18 @@ function chooseItem(array) {
 }
 
 para.textContent = chooseItem(names);
+```
+
+## Task 4
+
+In this task, you are asked to change the named `isShort()` function into an arrow function expression.
+
+The finished code should look something like this:
+
+```
+const names = ['Chris', 'Li Kang', 'Anne', 'Francesca', 'Mustafa', 'Tina', 'Bert', 'Jada']
+const para = document.createElement('p');
+
+const shortNames = names.filter(name => name.length < 5);
+para.textContent = shortNames;
 ```
