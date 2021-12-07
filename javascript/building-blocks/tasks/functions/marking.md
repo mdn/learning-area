@@ -11,13 +11,12 @@ In the first task, you have to create a simple function that prints a random nam
 The finished code should look something like this:
 
 ```
-let names = ['Chris', 'Li Kang', 'Anne', 'Francesca', 'Mustafa', 'Tina', 'Bert', 'Jada']
-
-let para = document.querySelector('p');
+const names = ['Chris', 'Li Kang', 'Anne', 'Francesca', 'Mustafa', 'Tina', 'Bert', 'Jada']
+const para = document.querySelector('p');
 
 function chooseName() {
-  let randomNumber = Math.floor(Math.random() * names.length);
-  let choice = names[randomNumber];
+  const randomNumber = Math.floor(Math.random() * names.length);
+  const choice = names[randomNumber];
   para.textContent = choice;
 }
 
@@ -62,17 +61,16 @@ In this task, you return to the problem posed in Task 1, with the aim of improvi
 3. Print this returned result into the paragraph.   
 
 ```
-let names = ['Chris', 'Li Kang', 'Anne', 'Francesca', 'Mustafa', 'Tina', 'Bert', 'Jada']
+const names = ['Chris', 'Li Kang', 'Anne', 'Francesca', 'Mustafa', 'Tina', 'Bert', 'Jada']
+const para = document.querySelector('p');
 
-let para = document.querySelector('p');
-
-function random(min,max) {
+function random(min, max) {
   const num = Math.floor(Math.random() * (max - min)) + min;
   return num;
 }
 
 function chooseItem(array) {
-  let choice = array[random(0, array.length)];
+  const choice = array[random(0, array.length)];
   return choice;
 }
 

@@ -16,7 +16,7 @@ The finished code should look something like this:
 let season = 'summer';
 let response;
 
-if(season === 'summer') {
+if (season === 'summer') {
   response = 'It\'s probably nice and warm where you are; enjoy the sun!';
 } else if(season === 'winter') {
   response = 'I hope you are not too cold. Put some warm clothes on!';
@@ -27,7 +27,7 @@ if(season === 'summer') {
 
 ## Task 2
 
-Task 2 tests some more complex conditionals, like not equal, less than, greater than, etc., along with a nested structure. 
+Task 2 tests some more complex conditionals, like not equal, less than, greater than, etc., along with a nested structure.
 
 You are given two variables containing an indicator of the answer machine being switched on or not (`true`/`false`), and a score. You are also given an uninitialized `response` variable.
 
@@ -49,8 +49,8 @@ let response;
 let score = 75;
 let machineActive = false;
 
-if(machineActive) {
-  if(score < 0 || score > 100) {
+if (machineActive) {
+  if (score < 0 || score > 100) {
     response = 'This is not possible, an error has occurred.';
   } else if(score >= 0 && score < 20) {
     response = 'That was a terrible score — total fail!';
@@ -77,7 +77,7 @@ Use the switch `default` option for the "not possible" option.
 The full `if ... else` block including added `switch` statement should look like this:
 
 ```
-if(machineActive) {
+if (machineActive) {
 	switch (true) {
 		case (score >= 0 && score < 20):
 		  response = 'That was a terrible score — total fail!';
@@ -117,7 +117,7 @@ let pwd = 'cheese';
 let machineResult;
 let pwdResult;
 
-if(machineActive) {
+if (machineActive) {
   machineResult = 'Machine is active. Trying login.'
   pwdResult = pwd === 'cheese' ? 'Login successful.' : 'Password incorrect; login failed.'
 } else {

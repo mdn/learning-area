@@ -17,9 +17,7 @@
       const select = document.querySelector('select');
       const html = document.querySelector('html');
 
-      select.onchange = function() {
-        select.value === 'black' ? update('black','white') : update('white','black');
-      }
+      select.addEventListener('change', () => ( select.value === 'black' ) ? update('black','white') : update('white','black'));
 
       function update(bgColor, textColor) {
         html.style.backgroundColor = bgColor;

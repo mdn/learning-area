@@ -30,13 +30,12 @@
       const lname = document.getElementById('lname');
       const para = document.querySelector('p');
 
-      form.onsubmit = function(e) {
-        if(fname.value === '' || lname.value === '') {
+      form.addEventListener('submit', e => {
+        if (fname.value === '' || lname.value === '') {
           e.preventDefault();
-          para.textContent = 'You need to fill in both names!'
+          para.textContent = 'You need to fill in both names!';
         }
-      }
-
+      });
     </script>
   </body>
 </html>

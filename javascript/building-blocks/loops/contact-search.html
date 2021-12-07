@@ -22,7 +22,7 @@
     const input = document.querySelector('input');
     const btn = document.querySelector('button');
 
-    btn.addEventListener('click', function() {
+    btn.addEventListener('click', () => {
       const searchName = input.value.toLowerCase();
       input.value = '';
       input.focus();
@@ -36,7 +36,7 @@
         }
       }
     });
-      
+
     </script>
 
   </body>

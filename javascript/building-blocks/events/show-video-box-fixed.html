@@ -46,20 +46,23 @@
 
       const btn = document.querySelector('button');
       const videoBox = document.querySelector('div');
-      const video = document.querySelector('video');
 
-      btn.onclick = function() {
-        videoBox.setAttribute('class','showing');
+      function displayVideo() {
+        if (videoBox.getAttribute('class') === 'hidden') {
+          videoBox.setAttribute('class','showing');
+        }
       }
 
-      videoBox.onclick = function() {
-        videoBox.setAttribute('class','hidden');
-      };
+      btn.addEventListener('click', displayVideo);
 
-      video.onclick = function(e) {
+      videoBox.addEventListener('click', () => videoBox.setAttribute('class', 'hidden'));
+
+      const video = document.querySelector('video');
+
+      video.addEventListener('click', e => {
         e.stopPropagation();
         video.play();
-      };
+      });
 
     </script>
   </body>

@@ -13,10 +13,10 @@ The HTML should not be changed; just the JavaScript.
 The finished code should look something like this:
 
 ```
-let btn = document.querySelector('button');
+const btn = document.querySelector('button');
 
 btn.addEventListener('click', () => {
-  if(btn.className === 'on') {
+  if (btn.className === 'on') {
     btn.textContent = 'Machine is off';
     btn.className = "off";
   } else {
@@ -34,8 +34,8 @@ The finished code should look something like this:
 
 
 ```
-let canvas = document.querySelector('canvas');
-let ctx = canvas.getContext('2d');
+const canvas = document.querySelector('canvas');
+const ctx = canvas.getContext('2d');
 
 function drawCircle(x, y, size) {
   ctx.fillStyle = 'white';
@@ -55,7 +55,7 @@ drawCircle(x, y, size);
 
 // Add your code here
 
-window.addEventListener('keydown', (e) => {
+window.addEventListener('keydown', e => {
   switch(e.key) {
     case 'a':
       x -= 2;
@@ -79,12 +79,12 @@ window.addEventListener('keydown', (e) => {
 
 Our final events-related task involves making use of bubbling and event objects. You need to set a click listener on the buttons' parent element, which when invoked by clicking any of the buttons will use `e.target` to grab the `data-color` attribute of the particular button that was clicked, and set the background of the `button-bar` to that color.
 
-You should be able to solve this without looping through all the buttons and giving each one their own event listener. 
+You should be able to solve this without looping through all the buttons and giving each one their own event listener.
 
 The code should look like this:
 
 ```
-let buttonBar = document.querySelector('.button-bar');
+const buttonBar = document.querySelector('.button-bar');
 
   // Add your code here
 

@@ -40,7 +40,7 @@
 
       const btn = document.querySelector('button');
 
-      btn.onclick = displayMessage;
+      btn.addEventListener('click', displayMessage);
 
       function displayMessage() {
         const html = document.querySelector('html');
