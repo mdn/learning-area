@@ -1,9 +1,9 @@
 # JavaScript
 An introduction to JavaScript in web programming. I have provided some resources and some practice code.
 <!--  SHIELDS  -->
-![GitHub](https://img.shields.io/github/license/wonntann/oop?color=informational&logoColor=yellow&style=for-the-badge)
-![GitHub forks](https://img.shields.io/github/forks/wonntann/oop?color=red&style=for-the-badge)
-![GitHub Issues](https://img.shields.io/github/issues-raw/wonntann/oop?color=critical&style=for-the-badge)
+![GitHub](https://img.shields.io/github/license/wonntann/learning-area?color=informational&logoColor=yellow&style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/wonntann/learning-area?color=red&style=for-the-badge)
+![GitHub Issues](https://img.shields.io/github/issues-raw/wonntann/learning-area?color=critical&style=for-the-badge)
 
 
 <!--  PROJECT INTRO  -->
@@ -16,16 +16,13 @@ An introduction to JavaScript in web programming. I have provided some resources
   <summary>Table of Contents</summary>
   <ol>
         <li>
-        <a href="#what-is-oop">What is JavaScript?</a>
+        <a href="#what-is-oop">What is JavaScript?</a></li>
         <ul>
             <li><a href="#getting-started">Getting Started</a></li>
             <li><a href="#prerequisites">Prerequisites</a></li>
-            <li><a href="#how-to-use">How to Use</a></li>
             <li><a href="#key-notes">Key Notes</a></li>
         </ul>      
         <li><a href="#contributing">Contributing</a></li>
-        <li><a href="#license">License</a></li>
-        <li><a href="#contact">Contact</a></li>
         <li><a href="#resources">Resources</a></li>
     </ol>
 </details>
@@ -46,6 +43,7 @@ An introduction to JavaScript in web programming. I have provided some resources
     - Online: [codepen](https://codepen.io/, [replit](https://replit.com/))
     - Local: [VS Code](https://code.visualstudio.com/), [atom](https://atom.io/)
         - Setup: [VS Code](https://code.visualstudio.com/docs/languages/javascript)
+
 - Running the code
     - Create an html
     - Create js script
@@ -59,6 +57,7 @@ An introduction to JavaScript in web programming. I have provided some resources
         - Type <em>node <filename> <em>
 
     ** If you have nodejs and visual code installed/setup on your machine, you can run it "without debugging".
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
@@ -66,12 +65,14 @@ An introduction to JavaScript in web programming. I have provided some resources
 - Computer
 - Web Browser (if using online editor)
 - Code Editor (if using local machine)
-- nodejs (if using local machine)
+- nodejs (if using local machine, not required)
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
 ## How to Use
 Follow the resources in the [Resources Section](#resources). I have provided my brief notes with no explanation, might be better to follow the resource links or contact me with questions. I multi-line commented out each problem that I worked through, which if you want to test it out yourself, just copy the code between the open and close multi-line comment symbols.
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 # Key Notes
@@ -185,18 +186,6 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-## License
-Distributed under the MIT License. See [License](https://github.com/wonntann/Python_Projects/blob/main/LICENSE)` for more information.
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-## Contact
-![Twitter](https://img.shields.io/twitter/follow/wonntann?color=red&style=for-the-badge)
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
 # Resources
 - [freecodecamp](https://www.youtube.com/watch?v=PkZNo7MFNFg)
 - [MDN JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
@@ -223,13 +212,6 @@ Distributed under the MIT License. See [License](https://github.com/wonntann/Pyt
 - or ||
 - else if
 - Template Literal (have to use backtick around arguments \`${Object.property}\`)
-
-# Functions/Keywords
-- length
-- strip
-- pop
-- shift
-- delete
 - [return](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
