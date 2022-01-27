@@ -2,18 +2,17 @@
 // report any errors that occur in the fetch operation
 // once the products have been successfully loaded and formatted as a JSON object
 // using response.json(), run the initializeProducts() function
-async function initialize() {
-  try {
-    const response = await fetch('products.json');
-    const json = await response.json();
-    initializeProducts(json);
-  }
-  catch(err) {
+fetch('products.json')
+  .then((response) => {
+    return response.json();
+  })
+  .then((json) => {
+    const products = json;
+    initializeProducts(products);
+  })
+  .catch((err) => {
     console.error(`Fetch problem: ${err.message}`);
-  }
-}
-
-initialize();
+  });
 
 // sets up the app logic, declares required variables, contains all the other functions
 function initializeProducts(products) {
