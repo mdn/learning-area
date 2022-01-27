@@ -16,16 +16,16 @@
       canvas.width = 640;
       canvas.height = 480;
       document.body.appendChild(canvas);
-      let ctx = canvas.getContext('2d');
+      const ctx = canvas.getContext('2d');
 
-      let alertBtn = document.querySelector('.alert');
-      let fillBtn = document.querySelector('.fill');
+      const alertBtn = document.querySelector('.alert');
+      const fillBtn = document.querySelector('.fill');
 
       function degToRad(degrees) {
         return degrees * Math.PI / 180;
       };
 
-      function random(min,max) {
+      function random(min, max) {
         var num = Math.floor(Math.random()*(max-min)) + min;
         return num;
       }

@@ -1,18 +1,22 @@
 // use fetch to retrieve the products and pass them to init
 // report any errors that occur in the fetch operation
 // once the products have been successfully loaded and formatted as a JSON object
-// using response.json(), run the initialize() function
-fetch('products.json').then(function(response) {
-  return response.json();
-}).then(function(json) {
-  let products = json;
-  initialize(products);
-}).catch(function(err) {
-  console.log('Fetch problem: ' + err.message);
-});
+// using response.json(), run the initializeProducts() function
+async function initialize() {
+  try {
+    const response = await fetch('products.json');
+    const json = await response.json();
+    initializeProducts(json);
+  }
+  catch(err) {
+    console.error(`Fetch problem: ${err.message}`);
+  }
+}
+
+initialize();
 
 // sets up the app logic, declares required variables, contains all the other functions
-function initialize(products) {
+function initializeProducts(products) {
   // grab the UI elements that we need to manipulate
   const category = document.querySelector('#category');
   const searchTerm = document.querySelector('#searchTerm');

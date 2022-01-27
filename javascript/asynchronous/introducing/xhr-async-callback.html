@@ -7,7 +7,7 @@
   <body>
     <script>
       function loadAsset(url, type, callback) {
-        let xhr = new XMLHttpRequest();
+        const xhr = new XMLHttpRequest();
         xhr.open('GET', url);
         xhr.responseType = type;
 
@@ -19,9 +19,9 @@
       }
 
       function displayImage(blob) {
-        let objectURL = URL.createObjectURL(blob);
+        const objectURL = URL.createObjectURL(blob);
 
-        let image = document.createElement('img');
+        const image = document.createElement('img');
         image.src = objectURL;
         document.body.appendChild(image);
       }
