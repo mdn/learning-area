@@ -30,7 +30,11 @@
     const list = document.createElement('ul');
 
     // Add your code here
-
+  for(const veg of myArray){
+      let li = document.createElement('li');
+      li.textContent = veg;
+      list.appendChild(li);
+    }
     // Don't edit the code below here!
 
     const section = document.querySelector('section');
