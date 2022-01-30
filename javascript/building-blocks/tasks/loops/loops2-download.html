@@ -41,7 +41,13 @@
     ]
 
     // Add your code here
-
+    for (let obj of phonebook){
+      
+      if (obj.name === name){
+        para.textContent = `${name} : ${obj.number}`;
+        break;
+      }
+    }
     // Don't edit the code below here!
     const section = document.querySelector('section');
     section.appendChild(para);
