@@ -19,8 +19,8 @@ function rand(min, max) {
 let length = 250;
 let moveOffset = 20;
 
-for(var i = 0; i < length; i++) {
-  ctx.fillStyle = 'rgba(' + (255-length) + ',0,' + (255-length) + ',0.9)';
+for (let i = 0; i < length; i++) {
+  ctx.fillStyle = `rgba(${255-length},0,${255-length},0.9)`;
   ctx.beginPath();
   ctx.moveTo(moveOffset,moveOffset);
   ctx.lineTo(moveOffset+length,moveOffset);

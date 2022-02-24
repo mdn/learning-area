@@ -1,25 +1,23 @@
 //main block for doing the video recording
 
 if (navigator.mediaDevices.getUserMedia) {
-  let constraints = {
+  const constraints = {
      audio: false,
      video: true
   }
 
   navigator.mediaDevices.getUserMedia(constraints)
-  .then(function(stream) {
+  .then(stream => {
     const video = document.createElement('video');
     video.srcObject = stream;
-    video.onloadedmetadata = function() {
+    video.addEventListener('loadedmetadata', () => {
       video.play();
       threeRender(video);
-    };
+    });
   })
-  .catch(function(err) {
-    console.log('The following gUM error occured: ' + err);
-  });
+  .catch(err => console.error(`The following gUM error occured: ${err}`));
 } else {
-   console.log('getUserMedia not supported on your browser!');
+   console.error('getUserMedia not supported on your browser!');
 }
 
 // three.js cube drawing
@@ -35,21 +33,21 @@ function threeRender(video) {
   document.body.appendChild( renderer.domElement );
 
   // load a texture, set wrap mode to repeat
-  let texture = new THREE.Texture(video);
+  const texture = new THREE.Texture(video);
   texture.wrapS = THREE.RepeatWrapping;
   texture.wrapT = THREE.RepeatWrapping;
   texture.repeat.set( 1, 1 );
 
-  let geometry = new THREE.BoxGeometry(3,3,3);
-  let material = new THREE.MeshLambertMaterial( { map: texture, shading: THREE.FlatShading } );
-  let cube = new THREE.Mesh( geometry, material );
+  const geometry = new THREE.BoxGeometry(3,3,3);
+  const material = new THREE.MeshLambertMaterial( { map: texture, shading: THREE.FlatShading } );
+  const cube = new THREE.Mesh( geometry, material );
   scene.add( cube );
 
   camera.position.x = 0;
   camera.position.y = 0;
   camera.position.z = 5;
 
-  let light = new THREE.AmbientLight( 'rgb(100,100,100)' ); // soft white light
+  const light = new THREE.AmbientLight( 'rgb(100,100,100)' ); // soft white light
   scene.add( light );
 
   // White directional light at half intensity shining from the top.
@@ -58,7 +56,7 @@ function threeRender(video) {
   //scene.add( directionalLight );
 
   // white spotlight shining from the side, casting shadow
-  let spotLight = new THREE.SpotLight( 'rgb(255,255,255)' );
+  const spotLight = new THREE.SpotLight( 'rgb(255,255,255)' );
   spotLight.position.set( 100, 1000, 1000 );
   spotLight.castShadow = true;
   spotLight.shadowMapWidth = 1024;
@@ -85,26 +83,26 @@ function threeRender(video) {
 
   const body = document.querySelector('body');
 
-  body.onkeydown = function(e) {
+  body.addEventListener('keydown', e => {
     // 37 is arrow left, 39 is arrow right,
     // 38 is arrow up, 40 is arrow down
 
-    if(e.keyCode == 37) {
+    if (e.keyCode == 37) {
       camera.position.x += 0.05;
     };
 
-    if(e.keyCode == 39) {
+    if (e.keyCode == 39) {
       camera.position.x -= 0.05;
     };
 
-    if(e.keyCode == 38) {
+    if (e.keyCode == 38) {
       camera.position.y -= 0.05;
     };
 
-    if(e.keyCode == 40) {
+    if (e.keyCode == 40) {
       camera.position.y += 0.05;
     };
-  }
+  });
 
   function onWindowResize() {
       renderer.setSize( window.innerWidth, window.innerHeight );

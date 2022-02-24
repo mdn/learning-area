@@ -18,9 +18,7 @@ function degToRad(degrees) {
 
 // update sizepicker output value
 
-sizePicker.oninput = function() {
-  output.textContent = sizePicker.value;
-}
+sizePicker.addEventListener('input', () => output.textContent = sizePicker.value);
 
 // store mouse pointer coordinates, and whether the button is pressed
 let curX;
@@ -28,26 +26,22 @@ let curY;
 let pressed = false;
 
 // update mouse pointer coordinates
-document.onmousemove = function(e) {
+document.addEventListener('mousemove', e => {
   curX = (window.Event) ? e.pageX : e.clientX + (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
   curY = (window.Event) ? e.pageY : e.clientY + (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
-}
+});
 
-canvas.onmousedown = function() {
-  pressed = true;
-};
+canvas.addEventListener('mousedown', () => pressed = true);
 
-canvas.onmouseup = function() {
-  pressed = false;
-}
+canvas.addEventListener('mouseup', () => pressed = false);
 
-clearBtn.onclick = function() {
+clearBtn.addEventListener('click', () => {
   ctx.fillStyle = 'rgb(0,0,0)';
   ctx.fillRect(0,0,width,height);
-}
+});
 
 function draw() {
-  if(pressed) {
+  if (pressed) {
     ctx.fillStyle = colorPicker.value;
     ctx.beginPath();
     ctx.arc(curX, curY-85, sizePicker.value, degToRad(0), degToRad(360), false);
