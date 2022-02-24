@@ -61,8 +61,6 @@ for (let i = 0; i < phonebook.length; i++) {
   if(i === phonebook.length - 1) {
     para.textContent = 'Name not found in the phonebook';
   }
-
-  i++;
 }
 ```
 
