@@ -17,7 +17,7 @@
     <div id="map_canvas"></div>
     <script>
     function initMap() {
-      var myOptions = {
+      const myOptions = {
         zoom: 8,
         center: {lat: 53.480759, lng: -2.242631},
         mapTypeId: google.maps.MapTypeId.TERRAIN,
@@ -27,13 +27,13 @@
         mapTypeControl: true,
         scaleControl: true
       }
-      var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+      const map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
       // Step 2. Add custom icon
 
-      var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+      const iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
 
-      var marker = new google.maps.Marker({
+      const marker = new google.maps.Marker({
         position: {lat: 53.480759, lng: -2.242631},
         icon: iconBase + 'flag_maps.png',
         map: map

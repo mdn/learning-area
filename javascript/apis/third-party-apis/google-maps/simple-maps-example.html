@@ -17,13 +17,13 @@
     <div id="map_canvas"></div>
     <script>
     function initMap() {
-      var myOptions = {
+      const myOptions = {
         zoom: 8,
         center: {lat: 53.480759, lng: -2.242631},
         mapTypeId: google.maps.MapTypeId.TERRAIN,
         disableDefaultUI: true
       }
-      var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+      const map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
     }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=ENTER-API-KEY-HERE&callback=initMap"
