@@ -30,8 +30,7 @@ article p {
   line-height: 1.5;
 }
 
-article p:nth-of-type(2) {
-  font-size: 14px;
+article p.keywords {
   line-height: 2;
 }
 
@@ -58,10 +57,6 @@ img {
   float: right;
   margin-left: 20px;
   max-width: 200px;
-}
-
-.clearfix {
-  clear: both;
 }
 
 span {
