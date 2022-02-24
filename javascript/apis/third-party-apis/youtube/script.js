@@ -96,10 +96,10 @@ function displayVideo(result, i) {
     const myId = e.target.id;
     const duration = e.target.getDuration();
     if (duration === 0) {
-      console.log('Video ' + myId + ' cannot be played, so it was deleted.');
+      console.log(`Video ${myId} cannot be played, so it was deleted.`);
       section.removeChild(e.target.a);
     } else {
-      console.log('Video ' + myId + ' ready to play.');
+      console.log(`Video ${myId} ready to play.`);
     }
   }
 }
