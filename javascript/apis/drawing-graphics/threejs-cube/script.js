@@ -24,10 +24,10 @@ loader.load('metal003.png', texture => {
 	draw();
 });
 
-let light = new THREE.AmbientLight('rgb(255,255,255)'); // soft white light
+const light = new THREE.AmbientLight('rgb(255,255,255)'); // soft white light
 scene.add(light);
 
-let spotLight = new THREE.SpotLight('rgb(255,255,255)');
+const spotLight = new THREE.SpotLight('rgb(255,255,255)');
 spotLight.position.set( 100, 1000, 1000 );
 spotLight.castShadow = true;
 scene.add(spotLight);

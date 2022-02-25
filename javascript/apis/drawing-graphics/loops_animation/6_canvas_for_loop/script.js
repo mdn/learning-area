@@ -24,7 +24,7 @@ for (let i = 0; i < length; i++) {
   ctx.beginPath();
   ctx.moveTo(moveOffset,moveOffset);
   ctx.lineTo(moveOffset+length,moveOffset);
-  let triHeight = length/2 * Math.tan(degToRad(60));
+  const triHeight = length/2 * Math.tan(degToRad(60));
   ctx.lineTo(moveOffset+(length/2),moveOffset+triHeight);
   ctx.lineTo(moveOffset,moveOffset);
   ctx.fill();

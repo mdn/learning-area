@@ -14,7 +14,7 @@ ctx.fillStyle = 'rgb(255,0,0)';
 ctx.beginPath();
 ctx.moveTo(50,50);
 ctx.lineTo(150,50);
-let triHeight = 50 * Math.tan(degToRad(60));
+const triHeight = 50 * Math.tan(degToRad(60));
 ctx.lineTo(100,50+triHeight);
 ctx.lineTo(50,50);
 ctx.fill();
