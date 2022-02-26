@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <title>Simple setInterval clock</title>
+    <style>
+        body{
+            background-color: blueviolet;
+        }
+    #main{
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+    } 
+
+      
+      #pcontainer{
+        display: flex;
+      
+       align-items: center;
+      justify-content: center;
+      flex:0 200px;
+      height: 200px;
+      background-color: aliceblue;
+      border: 4px solid white;
+      }
+      p{
+        font-family: sans-serif;
+        
+        
+        
+        font-size: xx-large;
+        font-weight: 500;
+        
+        text-align: center;
+      }
+   
+     button{
+         margin-top: -450px;
+         margin-right: 5px;
+         display: block;
+         background-color:aliceblue;
+         color:black;
+         height: 40px;
+         font-size: medium;
+     }
+     #break {
+  flex-basis: 100%;
+  min-height:0;
+}
+    </style>
+  </head>
+  <body> 
+    <div id="main" >  
+      <div id="pcontainer" > 
+          <p class="clock">0 : 0 : 0</p> 
+    </div>
+    
+   <div div id="break"> </div>
+    <button type='button' class='start'>START</button>
+    <button type='button' class='stop'>STOP</button>
+    <button type='button' class='reset'>RESET</button>
+    
+</div>
+</body>
+    <script>
+        let ob;
+        let cnt=0,hr=0,min=0;
+        const clk=document.getElementsByClassName('clock');
+      function displayTime() {
+        
+         cnt+=1;
+         console.log(cnt);
+         if(cnt==0)
+         {
+           hr=0;
+           min=0;
+         }
+         hr=Math.floor(cnt/3600);
+         min=Math.floor(cnt/60);
+        clk[0].textContent=`${hr} : ${min} : ${cnt}`;
+      }
+
+      
+      function startfxn(e)
+      {
+        ob=setInterval(displayTime,1000);
+      }
+      function stopfxn(e)
+      {
+          clearInterval(ob);
+      } 
+      function resetfxn(e)
+      {
+        cnt=0;
+        clk[0].textContent=`${cnt}`;
+        clearInterval(ob);
+      }
+    
+      const start=document.getElementsByClassName('start');
+      const stopp=document.getElementsByClassName('stop');
+      const reset=document.getElementsByClassName('reset');
+      start[0].addEventListener('click',startfxn);
+      stopp[0].addEventListener('click',stopfxn);
+      reset[0].addEventListener('click',resetfxn);
+    </script>
+  </body>
+</html>
