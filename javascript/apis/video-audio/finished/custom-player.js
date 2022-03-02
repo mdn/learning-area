@@ -96,20 +96,9 @@ function windForward() {
 function setTime() {
   const minutes = Math.floor(media.currentTime / 60);
   const seconds = Math.floor(media.currentTime - minutes * 60);
-  let minuteValue;
-  let secondValue;
 
-  if (minutes < 10) {
-    minuteValue = `0${minutes}`;
-  } else {
-    minuteValue = minutes;
-  }
-
-  if (seconds < 10) {
-    secondValue = `0${seconds}`;
-  } else {
-    secondValue = seconds;
-  }
+  const minuteValue = minutes.toString().padStart(2, '0');
+  const secondValue = seconds.toString().padStart(2, '0');
 
   const mediaTime = `${minuteValue}:${secondValue}`;
   timer.textContent = mediaTime;
