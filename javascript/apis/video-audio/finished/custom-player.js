@@ -94,26 +94,26 @@ function windForward() {
 }
 
 function setTime() {
-  let minutes = Math.floor(media.currentTime / 60);
-  let seconds = Math.floor(media.currentTime - minutes * 60);
+  const minutes = Math.floor(media.currentTime / 60);
+  const seconds = Math.floor(media.currentTime - minutes * 60);
   let minuteValue;
   let secondValue;
 
   if (minutes < 10) {
-    minuteValue = '0' + minutes;
+    minuteValue = `0${minutes}`;
   } else {
     minuteValue = minutes;
   }
 
   if (seconds < 10) {
-    secondValue = '0' + seconds;
+    secondValue = `0${seconds}`;
   } else {
     secondValue = seconds;
   }
 
-  let mediaTime = minuteValue + ':' + secondValue;
+  const mediaTime = `${minuteValue}:${secondValue}`;
   timer.textContent = mediaTime;
 
-  let barLength = timerWrapper.clientWidth * (media.currentTime/media.duration);
-  timerBar.style.width = barLength + 'px';
+  const barLength = timerWrapper.clientWidth * (media.currentTime/media.duration);
+  timerBar.style.width = `${barLength}px`;
 }
