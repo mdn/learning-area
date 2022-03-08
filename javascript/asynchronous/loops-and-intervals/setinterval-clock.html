@@ -2,24 +2,71 @@
 <html lang="en-US">
   <head>
     <meta charset="utf-8">
-    <title>Simple setInterval clock</title>
+    <title>second chronograph</title>
     <style>
+      body,html{
+        background-image: url('../../../images/tide.png');
+        background-repeat: no-repeat;
+        background-size: 100vw 100vh;
+      }
       p {
         font-family: sans-serif;
       }
+      .clock_box{
+        position: absolute;
+        width: 450px;
+        height: 300px;
+        background-color: rgba(247, 247, 247, 0.466);
+        border-radius: 15px;
+        top:50%;
+        left:50%;
+        -webkit-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+      }
+      
     </style>
   </head>
   <body>
-    <p class="clock"></p>
+    <div class="clock_box">
+      <h3>0</h3>
+    </div>
     <script>
-      function displayTime() {
-        let date = new Date();
-        let time = date.toLocaleTimeString();
-        document.querySelector('.clock').textContent = time;
-      }
+      // function displayTime() {
+      //   let date = new Date();
+      //   let time = date.toLocaleTimeString();
+      //   document.querySelector('.clock').textContent = time;
+      // }
 
-      displayTime();
-      const createClock = setInterval(displayTime, 1000);
+      // displayTime();
+      // const createClock = setInterval(displayTime, 1000);
+      //点击开始计时 let begin_time=Date.now();
+      //展示：距离点击的时间  Date.now()-begin_time+  渲染 每秒
+      //再点击 停止
+      console.log(3+("1"-0));
+      // console.log(Math.round(10/6));
+      let clock=document.querySelector('.clock_box');
+      let show=clock.querySelector('h3');
+      let flag=-1;
+      let timer1;
+      //  clock.innerText='sdfsdf5';
+      clock.addEventListener('click',()=>{
+        flag*=-1;
+        let begin_time=Date.now();
+        let last_time=show.innerHTML;
+        // console.log(last_time,begin_time);
+        if(flag>0){
+          timer1=setInterval(second_chronograph,1000,begin_time,last_time);
+        }else{
+          clearInterval(timer1);
+        }
+      })
+      function second_chronograph(begin_time,last_time){
+        let num_ms=Date.now()-begin_time+last_time*1000;
+        let num=Math.round(num/1000);
+        if(num>60)
+        show.innerText=num
+      }
     </script>
   </body>
 </html>
