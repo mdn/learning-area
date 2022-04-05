@@ -39,7 +39,7 @@ function threeRender(video) {
   texture.repeat.set( 1, 1 );
 
   const geometry = new THREE.BoxGeometry(3,3,3);
-  const material = new THREE.MeshLambertMaterial( { map: texture, shading: THREE.FlatShading } );
+  const material = new THREE.MeshLambertMaterial( { map: texture } );
   const cube = new THREE.Mesh( geometry, material );
   scene.add( cube );
 
