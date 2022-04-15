@@ -29,7 +29,16 @@
     let myArray = [ "Ryu", "Ken", "Chun-Li", "Cammy", "Guile", "Sakura", "Sagat", "Juri" ];
 
     // Add your code here
+function myFun(item, index, arr){
 
+ arr[index] = item + " (" + index + ")";
+
+}
+
+myArray.forEach(myFun);
+
+const myString = myArray.join(" - ");
+    
     // Don't edit the code below here!
 
     const section = document.querySelector('section');
