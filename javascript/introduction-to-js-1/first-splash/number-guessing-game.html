@@ -29,6 +29,10 @@
 
     <p>We have selected a random number between 1 and 100. See if you can guess it in 10 turns or fewer. We'll tell you if your guess was too high or too low.</p>
 
+
+    <input type="submit" value="Game start" class="startButton">
+    
+
     <div class="form">
       <label for="guessField">Enter a guess: </label><input type="text" id="guessField" class="guessField">
       <input type="submit" value="Submit guess" class="guessSubmit">
@@ -40,15 +44,62 @@
       <p class="lowOrHi"></p>
     </div>
 
+    <div class="timer">
+      <label for="timeLimit">Time limit: </label><span class="timeLimit">100</span>
+    </div>
+
     <script>
       let randomNumber = Math.floor(Math.random() * 100) + 1;
       const guesses = document.querySelector('.guesses');
       const lastResult = document.querySelector('.lastResult');
       const lowOrHi = document.querySelector('.lowOrHi');
-      const guessSubmit = document.querySelector('.guessSubmit');
-      const guessField = document.querySelector('.guessField');
+      const timeLimit = document.querySelector('.timeLimit');
+      let startButton = document.querySelector('.startButton');
+      let guessSubmit = document.querySelector('.guessSubmit');
+      let guessField = document.querySelector('.guessField');
       let guessCount = 1;
       let resetButton;
+      let timer;
+
+      guessField.disabled = true;
+
+      startButton.addEventListener("click", startGame);
+
+      function startGame() {
+        startButton.disabled = true;
+        guessField.disabled = false;
+        timeLimit.textContent = 100;
+        timer=setInterval("countDown()",1000);
+      }
+
+      function countDown() {
+        let sec=timeLimit.textContent;
+        sec=parseInt(sec);
+        tmWrite(sec-1);
+      }
+
+      function tmWrite(int)
+{
+  timeLimit.textContent=int;
+  if (int<=0)
+  {
+    lastResult.textContent = '!!!GAME OVER!!!';
+    lastResult.style.backgroundColor = 'red';
+    lowOrHi.textContent = '';
+    setGameOver();
+  }
+}
+
+      guessSubmit.disabled = true;
+      guessField.addEventListener("input", stateHandle);
+
+      function stateHandle() {
+        if(guessField.value === "") {
+          guessSubmit.disabled = true;
+        } else {
+          guessSubmit.disabled = false;
+        }
+      }
 
       function checkGuess() {
         const userGuess = Number(guessField.value);
@@ -80,11 +131,13 @@
         guessCount++;
         guessField.value = '';
         guessField.focus();
+        guessSubmit.disabled = true;
       }
 
       guessSubmit.addEventListener('click', checkGuess);
 
       function setGameOver() {
+        clearInterval(timer);
         guessField.disabled = true;
         guessSubmit.disabled = true;
         resetButton = document.createElement('button');
@@ -107,6 +160,7 @@
         guessField.focus();
         lastResult.style.backgroundColor = 'white';
         randomNumber = Math.floor(Math.random() * 100) + 1;
+        startGame();
       }
     </script>
   </body>

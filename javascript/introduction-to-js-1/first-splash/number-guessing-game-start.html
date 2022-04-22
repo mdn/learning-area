@@ -29,9 +29,11 @@
 
     <p>We have selected a random number between 1 and 100. See if you can guess it in 10 turns or fewer. We'll tell you if your guess was too high or too low.</p>
 
+    <input type="submit" value="Game start" class="startButton">
+    
+
     <div class="form">
-      <label for="guessField">Enter a guess: </label>
-      <input type="text" id="guessField" class="guessField">
+      <label for="guessField">Enter a guess: </label><input type="text" id="guessField" class="guessField">
       <input type="submit" value="Submit guess" class="guessSubmit">
     </div>
 
@@ -41,10 +43,9 @@
       <p class="lowOrHi"></p>
     </div>
 
-    <script>
-
-      // Your JavaScript goes here
-
-    </script>
+    <div class="timer">
+      <label for="timeLimit">Time limit: </label><span class="timeLimit">100</span>
+    </div>
+    <script src="number-guessing-game.js"></script>
   </body>
 </html>
