@@ -8,20 +8,18 @@
 </head>
 <body>
     <script>
-        let input = prompt("Enter your number"),
-        count = 1
-        if count < input{
-            if count % 3==0 && count % 5 ==0{
+        let input = parseInt(prompt("Enter your number"))
+        for (let i=1; i <= input; i++){
+            if (i%3 === 0 && i%5 === 0 ){
                 console.log("FizzBuzz")
+            } else if (i%3 === 0){
+                console.log("Fizz")
+            } else if(i%5===0) {
+                console.log("Buzz")
+            } else {
+                console.log(i)
             }
         }
-        let add7 =(num) => num+7;
-        function multiply(a,b){
-            return a*b
-        }
-        let capitalize = (string) => string[0].toUpperCase();
-        let lastLetter = (string) => string.slice(-1)
-
 
     </script>
 </body>
