@@ -44,7 +44,7 @@ button, .controls {
   background: linear-gradient(to bottom,#222,#666);
 }
 
-.player:hover .controls, player:focus .controls {
+.player:hover .controls, .player:focus .controls {
   opacity: 1;
 }
 
