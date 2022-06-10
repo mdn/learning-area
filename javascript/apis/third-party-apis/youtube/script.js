@@ -97,7 +97,8 @@ function displayVideo(result, i) {
     const duration = e.target.getDuration();
     if (duration === 0) {
       console.log(`Video ${myId} cannot be played, so it was deleted.`);
-      section.removeChild(e.target.a);
+      // e.target.i refers to the youtube iframe
+      section.removeChild(e.target.i);
     } else {
       console.log(`Video ${myId} ready to play.`);
     }
