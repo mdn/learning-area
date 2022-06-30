@@ -30,7 +30,10 @@
     const list = document.createElement('ul');
 
     // Add your code here
-
+for(const food of myArray){
+ list.textContent += `${food}, `;
+}
+list.textContent = list.textContent.slice(0, list.textContent.length -2) + "."
     // Don't edit the code below here!
 
     const section = document.querySelector('section');
