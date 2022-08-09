@@ -27,11 +27,32 @@
   </body>
   <script>
     const cat = {
-      name : 'Bertie',
-      breed : 'Cymric',
-      color : 'white',
-      greeting: function() {
-        console.log('Meow!');
+  name: 'Bertie',
+  breed: 'Cymric',
+  color: 'white',
+};
+
+const cat2 = {
+  name: 'Reddy',
+  breed: 'Bombay',
+  color: 'red',
+};
+
+function catCall(cat) {
+  this.cat = cat;
+  this.name = cat.name;
+  this.breed = cat.breed;
+  this.color = cat.color;
+  this.greeting = function() {
+    console.log(`Hello, said ${this.name} the ${this.breed}`);
+  }
+}
+
+const calledCat = new catCall(cat);
+calledCat.greeting();
+
+const calledCat2 = new catCall(cat2);
+calledCat2.greeting();
       }
     }
   </script>
