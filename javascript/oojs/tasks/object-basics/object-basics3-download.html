@@ -27,13 +27,25 @@
   </body>
   <script>
     const cat = {
-      name : 'Bertie',
-      breed : 'Cymric',
-      color : 'white',
-      greeting: function() {
-        console.log('Meow!');
-      }
-    }
+  name : 'Bertie',
+  breed : 'Cymric',
+  color : 'white',
+  greeting: function() {
+    console.log(`Hello, said ${this.name} the ${this.breed}`);
+  }
+};
+
+const cat2 = {
+  name : 'Reddy',
+  breed : 'Bombay',
+  color : 'red',
+  greeting: function() {
+    console.log(`Hello, said ${this.name} the ${this.breed}`);
+  }
+};
+
+cat.greeting();
+cat2.greeting();
   </script>
 
 </html>
