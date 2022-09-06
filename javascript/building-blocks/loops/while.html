@@ -20,11 +20,11 @@
 
     let i = 0;
 
-    while (i < cats.length) {
-      if (i === cats.length - 1) {
-        myFavoriteCats += `and ${cats[i]}.`;
-      } else {
-        myFavoriteCats += `${cats[i]}, `;
+    while (i < cats.length){   
+    if (i !== cats.length - 1) {
+      myFavoriteCats += `${cats[i]}, `;
+      } else { 
+      myFavoriteCats += `and ${cats[i]}.`;
       }
 
       i++;
