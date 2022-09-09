@@ -19,7 +19,7 @@ function result() {
 
   if(customName.value !== '') {
     const name = customName.value;
-
+    newStory.replace('Bob', customName);
   }
 
   if(document.getElementById("uk").checked) {
@@ -39,6 +39,9 @@ let zItem = randomValueFromArray(insertZ);
 
 
 newStory.replace(':insertx:',xItem);
+console.log(newStory);
 newStory.replace(':inserty:',yItem);
+console.log(newStory);
 newStory.replace(':insertz:',zItem);
+console.log(newStory);
 
