@@ -1,3 +1,5 @@
+<strong>debloated version for faster cloning</strong>: this branch contains only html tables
+
 # learning-area
 GitHub repo for the [MDN Learning Area](https://developer.mozilla.org/en-US/Learn).
 
