@@ -1,8 +1,0 @@
-body {
-  display: flex;
-}
-
-body > p {
-  flex: 1;
-  text-align: center;
-}
