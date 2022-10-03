@@ -12,11 +12,11 @@
           document.body.appendChild(para);
         }
 
-        const buttons = document.querySelectorAll('button');
+        const buttons = document.querySelector('button');
 
-        for (const button of buttons) {
-          button.addEventListener('click', createParagraph);
-        }
+     
+          buttons.addEventListener('click', createParagraph);
+       
       });
     </script>
   </head>
