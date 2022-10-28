@@ -14,3 +14,5 @@ ctx.strokeText('Canvas text', 50, 50);
 ctx.fillStyle = 'red';
 ctx.font = '48px georgia';
 ctx.fillText('Canvas text', 50, 150);
+
+canvas.setAttribute('aria-label', 'Canvas text');
