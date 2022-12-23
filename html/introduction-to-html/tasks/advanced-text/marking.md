@@ -11,10 +11,10 @@ This task covers understanding of HTML description lists. Ideally the answer sho
 
 <dl>
   <dt>Llama</dt>
-  <dd>Tall, wooly quadraped, pointy ears. Sometimes rideable, but grumpy and spits a lot. Big fan of list items.</dd>
+  <dd>Tall, woolly quadruped, pointy ears. Sometimes rideable, but grumpy and spits a lot. Big fan of list items.</dd>
   <dt>Anaconda</dt>
   <dd>A very large constrictor snake; travels rapidly by way of anchors to sneak up on his prey.</dd>
-  <dt>Hiphopapotamus</dt>
+  <dt>Hippopotamus</dt>
   <dd>His description is bottomless.</dd>
 </dl>
 ```
