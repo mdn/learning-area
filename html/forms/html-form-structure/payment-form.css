@@ -3,17 +3,14 @@ h1 {
 }
 
 ul {
-    margin: 0;
+    margin: 0 36px;
     padding: 0;
-    list-style: none;
+
 }
 
 form {
     margin: 0 auto;
-    width: 400px;
     padding: 1em;
-    border: 1px solid #CCC;
-    border-radius: 1em;
 }
 
 div+div {
@@ -21,9 +18,7 @@ div+div {
 }
 
 label span {
-    display: inline-block;
     width: 120px;
-    text-align: right;
 }
 
 input, textarea {
@@ -47,18 +42,6 @@ textarea {
     height: 5em;
     resize: vertical;
 }
-
-fieldset {
-    width: 250px;
-    box-sizing: border-box;
-    margin-right: 136px;
-    border: 1px solid #999;
-}
-
-button {
-    margin: 20px 0 0 124px;
-}
-
 label {
   position: relative;
 }
