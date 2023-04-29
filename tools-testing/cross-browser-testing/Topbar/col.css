@@ -1,0 +1,41 @@
+body{
+     background-image: url('./backpic11.jpg');
+}
+
+h3{
+     color: aqua;
+     
+}
+ul {
+     justify-content: space-around;
+     display:flex ;
+     flex-direction: row;
+     background-color: transparent;
+     padding: 10px;
+     margin-left: 500px;
+     margin-right: 70px;
+  
+}
+a{
+     text-decoration: none;
+     color: rgb(223, 215, 222);
+     background-color: transparent;
+
+}
+a:hover{
+     color: rgb(213, 121, 185);
+}
+img{
+     height: 50px;
+     width: 70px;
+}
+@media (max-width : 1000px){
+.links {
+
+          margin-left: -400px;
+     
+     }
+     a{
+          font-size: 300%;
+     }
+}
