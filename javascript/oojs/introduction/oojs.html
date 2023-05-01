@@ -10,6 +10,32 @@
     <p>This example requires you to enter commands in your browser's JavaScript console (see <a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools">What are browser developer tools</a> for more information).</p>
     
     <script>
+      const person = {
+        //changing the name the name member
+        name: {
+          first: 'Bob',
+          last: 'Smith'
+        },
+        age: 32,
+        bio(){
+          console.log(`${this.name.first} ${this.name.last} is ${this.age} years old`)
+        },
+        introduceSelf() {
+          console.log(`Hi, I'm ${this.name[0]}`)
+        }
+          }
+        person.farewell = function(){
+          console.log('Bye everyone')
+        }
+        const myDataName = "height";
+       const myDataValue = "1.75m";
+       person[myDataName] = myDataValue;
+       const person1 = {
+       name: "Chris",
+       introduceSelf() {
+       console.log(`Hi! I'm ${this.name}.`);
+  },
+};
 
     </script>
   </body>
