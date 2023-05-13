@@ -24,7 +24,7 @@
 
     btn.addEventListener('click', () => {
       para.textContent = 'Output: ';
-      const num = input.value;
+      const num = Number(input.value);
       input.value = '';
       input.focus();
       for (let i = 1; i <= num; i++) {
