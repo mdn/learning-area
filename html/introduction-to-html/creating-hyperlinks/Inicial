@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+    <html lang="pt-br">
+
+    <head>
+
+        <meta charset="UTF-8">
+
+        <meta http-equiv="X-UA-Competible"
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    	<title>Questão 2</title>
+
+</head>
+
+<body>
+
+	<h1>Trabalho</h1>
+
+    <h2>Questionário</h2>
+
+    <h3>Alunos: Lethycia Dias, Gabriel Gomes, João Victor Nunes, Samuel Natã, Patrick Humberto.</h3>
+        
+        <h4>Curso:GTI</h4>
+                
+    
+
+        <p>a.Na tag &lt;imput &gt; com atributo type="text"&gt;, para que serve o atributo "placeholder"?</p>
+
+        <p> É um atributo de entrada especifica uma dica curta que descreve o valor esperado de um campo de entra um valor de amostra ou uma breve descrição do formato esperado.</p>
+
+        <p>b.	Na tag &lt;input &gt;com atributo type="radio" ou type="radio", para que serve o atributo "checked"?</p>
+
+        <p> Especifica que um campo de entrada deve ser pré-selecionado quando a página for carregada</p>
+
+        <p> c.	Na tag &ltinput&gt; para que serve o atributo "value"?</p>
+
+        <p> É um atributo de entrada especifica um valor inicial para um campo de entrada</p>
+
+        <p> d.	Que atributo deve ser utilizado para agrupar vários botões de rádio em um formulário de modo que apenas um deles fique marcado de cada vez?</p>
+gt
+        <p> &lt;input type= "radio"&gt;</p>
+
+
+        <p>  Usado para indicar que um determinando campo de formulário é obrigatório para o envio do mesmo.</p>
+
+        <p> h.	Na tag &lt;form&gt; para que serve o atributo "action"?</p>
+
+        <p>O action atributo define a ação a ser executada quando o formulário é enviado. Normalmente, os dados do formulário são enviados para um arquivo no servidor quando o usuário clica no botão enviar.</p>
+
+        <p> i.	Na tag &lt;form&gt; para que serve o atributo "method"? Quais são os valores possíveis desse atributo?</p>
+
+        <p>O method atributo especifica o método HTTP a ser usado ao enviar os dados do formulário. Os dados do formulário podem ser enviados como variáveis de URL (com method="get") ou como pós-transação HTTP (com method="post"). Observações sobre GET: Anexa os dados do formulário ao URL, em pares de nome/valor NUNCA use GET para enviar dados confidenciais! (os dados do formulário enviado são visíveis na URL!) O comprimento de um URL é limitado (2048 caracteres) Útil para envios de formulários em que um usuário deseja marcar o resultado como favorito. GET é bom para dados não seguros, como strings de consulta no Google. Observações sobre o POST: Anexa os dados do formulário dentro do corpo da solicitação HTTP (os dados do formulário enviado não são mostrados na URL)</p>
+
+        <p>O POST não tem limitações de tamanho e pode ser usado para enviar grandes quantidades de dados. Os envios de formulário com POST não podem ser marcados  min : 0. max : 100. value : min + ( max - min )/2, ou min se max for menos que min. step : 1.</p>
+
+        <p>j.	Para que o valor digitado de uma senha não apareça na barra de endereços do navegador, qual deve ser o valor do atributo "method" na tag &lt;form&gt;?</p>
+
+        <p>Post é o valor usado para os dados do formulário não ser marcado, muito utilizado quando os dados são confidenciais.</p>
+
+        <p>k.	Qual valor deve ser informado no atributo "method" na tag &lt;form&gt; em um formulário que será usado para fazer upload de arquivos?</p>
+
+        <p>O POST, pois não tem limitações de tamanho e pode ser usado para enviar grandes quantidades de dados.</p>
+
+        <p>l.O que as tags &lt;fieldset&gt; e &l;legend&gt; produzem?</p>
+
+        <p>Fieldset agrupa elementos relacionados em um formulário e Legend define uma legenda para um elemento &lt;fieldset&gt;</p>
+
+    <a href="formulario.html/Formulário.html">Formulário</a>
+
+    </body>
+
+    </html>
