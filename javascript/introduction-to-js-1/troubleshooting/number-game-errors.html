@@ -65,7 +65,7 @@ console.log(lowOrHi);
     if(userGuess === randomNumber) {
       lastResult.textContent = 'Congratulations! You got it right!';
       lastResult.style.backgroundColor = 'green';
-      lowOrHi.textContent = '';
+      lowOrHi.textContent = 'Wrong!!';
       setGameOver();
     } else if(guessCount === 10) {
       lastResult.textContent = '!!!GAME OVER!!!';
