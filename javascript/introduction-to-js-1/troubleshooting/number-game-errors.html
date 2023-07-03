@@ -83,6 +83,8 @@
     guessField.value = '';
     guessField.focus();
   }
+	//Syntax errors: Uncaught TypeError: guessSubmit.addeventListener is not a function
+	//the solution of this error is to change addeventListener to ====> addEventListener
   guessSubmit.addeventListener('click', checkGuess);
 
   function setGameOver() {
