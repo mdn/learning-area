@@ -1,9 +1,7 @@
 # learning-area
-GitHub repo for the [MDN Learning Area](https://developer.mozilla.org/en-US/Learn).
+My repo containing exercise files and things for [MDN's Learning Area](https://developer.mozilla.org/en-US/Learn) Frontend web developer learning path.
 
-Most of the code examples shown and discussed in the Learning Area can be found here; the directories in the repo match the module structure of the articles.
 
-The one exception is the [Server-side website programming](https://developer.mozilla.org/en-US/docs/Learn/Server-side) examples — we broke these out into separate repos to make them easier to deal with:
-
+[Server-side website programming](https://developer.mozilla.org/en-US/docs/Learn/Server-side)
 * https://github.com/mdn/express-locallibrary-tutorial
 * https://github.com/mdn/django-locallibrary-tutorial
