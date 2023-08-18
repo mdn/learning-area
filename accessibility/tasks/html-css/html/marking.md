@@ -127,7 +127,7 @@ In our final HTML accessibility task, you are given a simple image gallery, whic
 
 So, on to the answers:
 
-1. The header image is decorative, so doesn't really need alt text. The best solution if you are going to use decorative HTML images is to put `alt=""`, so a screenreader will just read out nothing — rather than a descrition, or the image file name. It is not part of the content. 
+1. The header image is decorative, so doesn't really need alt text. The best solution if you are going to use decorative HTML images is to put `alt=""`, so a screenreader will just read out nothing — rather than a description, or the image file name. It is not part of the content. 
 2. The gallery images need alt text, and they are part of the content. The updated HTML could look something like this:
 
 ```
