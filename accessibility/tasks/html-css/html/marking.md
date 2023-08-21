@@ -122,7 +122,7 @@ But you should update it to something like this:
 
 In our final HTML accessibility task, you are given a simple image gallery, which has some accessibility problems. Can you fix them?
 
-1. The header image has an accessiiblity issue, and so do the gallery images.
+1. The header image has an accessibility issue, and so do the gallery images.
 2. You could take the header image further and implement it using CSS for better accessibility. Why is this better, and what would a solution look like?
 
 So, on to the answers:

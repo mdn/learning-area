@@ -15,7 +15,7 @@ if (navigator.mediaDevices.getUserMedia) {
       threeRender(video);
     });
   })
-  .catch(err => console.error(`The following gUM error occured: ${err}`));
+  .catch(err => console.error(`The following gUM error occurred: ${err}`));
 } else {
    console.error('getUserMedia not supported on your browser!');
 }

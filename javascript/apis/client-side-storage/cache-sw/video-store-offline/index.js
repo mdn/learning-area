@@ -102,7 +102,7 @@ request.addEventListener('error', () => console.error('Database failed to open')
 
 // success handler signifies that the database opened successfully
 request.addEventListener('success', () => {
-  console.log('Database opened succesfully');
+  console.log('Database opened successfully');
 
   // Store the opened database object in the db variable. This is used a lot below
   db = request.result;

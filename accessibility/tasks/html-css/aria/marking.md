@@ -42,7 +42,7 @@ The finished HTML should look something like this:
 ## Task 3
 For this final WAI-ARIA task, we return to an example we previously saw in the [CSS and JavaScript skilltest](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/CSS_and_JavaScript/Test_your_skills:_CSS_and_JavaScript_accessibility). As before, we have a simple app that presents a list of animal names. Clicking one of the animal names causes a further description of that animal to appear in a box below the list. Here, we are starting with a mouse- and keyboard-accessible version.  
 
-The problem we have now is that when the DOM changes to show a new decription, screenreaders cannot see what has changed. Can you update it so that description changes are annouced by the screenreader?
+The problem we have now is that when the DOM changes to show a new description, screenreaders cannot see what has changed. Can you update it so that description changes are announced by the screenreader?
 
 There are two ways to solve this:
 
