@@ -21,7 +21,7 @@ This task covers understanding of HTML description lists. Ideally the answer sho
 
 ## Task 2
 
-Our second task is designed to test knowledge of a number of different slighty-more-obscure semantic elements.
+Our second task is designed to test knowledge of a number of different slightly-more-obscure semantic elements.
 
 The finished code should look like this:
 
