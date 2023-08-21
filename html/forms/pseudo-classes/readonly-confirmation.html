@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html lang="en-us">
+  <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <title>:read-only demo — confirmation form</title>
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
     <style>
@@ -61,20 +62,18 @@
         margin: 20px auto;
       }
 
-      input:-moz-read-only, textarea:-moz-read-only,
-      input:read-only, textarea:read-only {
+      :is(input:read-only, input:-moz-read-only, textarea:-moz-read-only, textarea:read-only) {
         border: 0;
         box-shadow: none;
         background-color: white;
       }
 
-      textarea:-moz-read-write,
-      textarea:read-write {
+      :is(textarea:-moz-read-write, textarea:read-write) {
         box-shadow: inset 1px 1px 3px #ccc;
         border-radius: 5px;
       }
     </style>
-</head>
+  </head>
 
 <body>
     <form>

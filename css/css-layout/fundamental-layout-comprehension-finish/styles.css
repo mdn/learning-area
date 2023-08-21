@@ -23,7 +23,7 @@ body {
     max-width: 980px;
     display: grid;
     grid-template-columns: 3fr 1fr;
-    grid-gap: 20px;
+    gap: 20px;
   }
   
   nav {
@@ -52,7 +52,7 @@ body {
     margin: 0;
     padding: 0;
     display: grid;
-    grid-gap: 1px;
+    gap: 1px;
     grid-template-columns: 1fr 1fr;
   }
 

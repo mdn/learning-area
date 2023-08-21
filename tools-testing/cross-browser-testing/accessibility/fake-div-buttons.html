@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <title>Fake div buttons</title>
     <style>
       div {
@@ -47,7 +48,7 @@
       }
 
       document.onkeydown = function(e) {
-        if(e.keyCode === 13) { // The Enter/Return key
+        if(e.key === 'Enter') { // The Enter/Return key
           document.activeElement.onclick(e);
         }
       };

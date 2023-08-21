@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Fetch starting point</title>
+
+    <style>
+      html,
+      pre {
+        font-family: sans-serif;
+      }
+
+      body {
+        width: 500px;
+        margin: 0 auto;
+        background-color: #ccc;
+      }
+
+      pre {
+        line-height: 1.5;
+        letter-spacing: 0.05rem;
+        padding: 1rem;
+        background-color: white;
+      }
+
+      label {
+        width: 200px;
+        margin-right: 33px;
+      }
+
+      select {
+        width: 350px;
+        padding: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Fetch starting point</h1>
+
+    <form>
+      <label for="verse-choose">Choose a verse</label>
+      <select id="verse-choose" name="verse-choose">
+        <option>Verse 1</option>
+        <option>Verse 2</option>
+        <option>Verse 3</option>
+        <option>Verse 4</option>
+      </select>
+    </form>
+
+    <h2>The Conqueror Worm, <em>Edgar Allen Poe, 1843</em></h2>
+
+    <pre></pre>
+
+    <script>
+      const verseChoose = document.querySelector("select");
+      const poemDisplay = document.querySelector("pre");
+
+      verseChoose.addEventListener("change", () => {
+        const verse = verseChoose.value;
+        updateDisplay(verse);
+      });
+
+      function updateDisplay(verse) {
+        verse = verse.replace(" ", "");
+        verse = verse.toLowerCase();
+        const url = `${verse}.txt`;
+
+        // Call `fetch()`, passing in the URL.
+        fetch(url)
+          // fetch() returns a promise. When we have received a response from the server,
+          // the promise's `then()` handler is called with the response.
+          .then((response) => {
+            // Our handler throws an error if the request did not succeed.
+            if (!response.ok) {
+              throw new Error(`HTTP error: ${response.status}`);
+            }
+            // Otherwise (if the response succeeded), our handler fetches the response
+            // as text by calling response.text(), and immediately returns the promise
+            // returned by `response.text()`.
+            return response.text();
+          })
+          // When response.text() has succeeded, the `then()` handler is called with
+          // the text, and we copy it into the `poemDisplay` box.
+          .then((text) => (poemDisplay.textContent = text))
+          // Catch any errors that might happen, and display a message
+          // in the `poemDisplay` box.
+          .catch(
+            (error) =>
+              (poemDisplay.textContent = `Could not fetch verse: ${error}`)
+          );
+      }
+
+      updateDisplay("Verse 1");
+      verseChoose.value = "Verse 1";
+    </script>
+  </body>
+</html>

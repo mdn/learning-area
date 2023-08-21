@@ -1,16 +1,21 @@
 // setup canvas
 
-var canvas = document.querySelector('canvas');
-var ctx = canvas.getContext('2d');
+const canvas = document.querySelector('canvas');
+const ctx = canvas.getContext('2d');
 
-var width = canvas.width = window.innerWidth;
-var height = canvas.height = window.innerHeight;
+const width = canvas.width = window.innerWidth;
+const height = canvas.height = window.innerHeight;
 
 // function to generate random number
 
 function random(min,max) {
-  var num = Math.floor(Math.random()*(max-min)) + min;
-  return num;
+  return Math.floor(Math.random()*(max-min)) + min;
+}
+
+// function to generate rnadom color
+
+function randomRGB() {
+  return `rgb(${random(0, 255)},${random(0, 255)},${random(0, 255)})`;
 }
 
 // define Ball constructor
@@ -20,7 +25,7 @@ function Ball() {
   this.y = random(0,height);
   this.velX = random(-7,7);
   this.velY = random(-7,7);
-  this.color = 'rgb(' + random(0,255) + ',' + random(0,255) + ',' + random(0,255) +')';
+  this.color = randomRGB();
   this.size = random(10,20);
 }
 
@@ -59,14 +64,14 @@ Ball.prototype.update = function() {
 // define ball collision detection
 
 Ball.prototype.collisionDetect = function() {
-  for(j = 0; j < balls.length; j++) {
-    if( (!(this.x === balls[j].x && this.y === balls[j].y && this.velX === balls[j].velX && this.velY === balls[j].velY)) ) {
-      var dx = this.x - balls[j].x;
-      var dy = this.y - balls[j].y;
-      var distance = Math.sqrt(dx * dx + dy * dy);
+  for (const ball of balls) {
+    if ( (!(this.x === ball.x && this.y === ball.y && this.velX === ball.velX && this.velY === ball.velY)) ) {
+      const dx = this.x - ball.x;
+      const dy = this.y - ball.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
 
-      if (distance < this.size + balls[j].size) {
-        balls[j].color = this.color = 'rgb(' + random(0,255) + ',' + random(0,255) + ',' + random(0,255) +')';
+      if (distance < this.size + ball.size) {
+        ball.color = this.color =  randomRGB();
       }
     }
   }
@@ -74,7 +79,7 @@ Ball.prototype.collisionDetect = function() {
 
 // define array to store balls
 
-var balls = [];
+const balls = [];
 
 // define loop that keeps drawing the scene constantly
 
@@ -83,19 +88,18 @@ function loop() {
   ctx.fillRect(0,0,width,height);
 
   while(balls.length < 25) {
-    var ball = new Ball();
+    const ball = new Ball();
     balls.push(ball);
   }
 
-  for(i = 0; i < balls.length; i++) {
-    balls[i].draw();
-    balls[i].update();
-    balls[i].collisionDetect();
+  for (const ball of balls) {
+    ball.draw();
+    ball.update();
+    ball.collisionDetect();
   }
 
   requestAnimationFrame(loop);
 }
-
 
 
 loop();

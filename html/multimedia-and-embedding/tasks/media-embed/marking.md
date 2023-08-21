@@ -53,7 +53,7 @@ The finished code would probably look like something this:
 <h1>Embedding</h1>
 
 <object data="media/mypdf.pdf" type="application/pdf"
-        width="400" height="400" typemustmatch>
+        width="400" height="400">
 </object>
 
 <hr>

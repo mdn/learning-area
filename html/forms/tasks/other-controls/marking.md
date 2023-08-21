@@ -76,7 +76,7 @@ The finished markup should look something like this:
 
 In our final task of this set, we start with much the same list of food choices. However, this time we want to do things differently:
 
-1. Create a basic text input that is semantically associated with the provided label. This is done as you'd expect — use a simple `<input type="text">` with an `id` that maches the label's `for` value.
+1. Create a basic text input that is semantically associated with the provided label. This is done as you'd expect — use a simple `<input type="text">` with an `id` that matches the label's `for` value.
 2. Put the food choices into a list that can be associated with a form input. For this, you need to wrap each option in an `<option>` element, and wrap the whole series of them in a `<datalist>` element.
 3. Associate the list with your text input, so that when you type characters, any of the list options that match the character sequence are given in a dropdown list as autocomplete suggestions. To do this, you need to give the `<datalist>` an `id`, and then given the `<input>` a `list` attribute whose value matches the `<datalist>`'s `id`.
 

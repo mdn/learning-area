@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Search Appearance</title>
+    <style>
+      body, form > div {
+        display: flex;
+      }
+
+      body {
+        margin: 20px auto;
+        max-width: 800px;
+        justify-content: space-around;
+      }
+
+      form > div {
+        align-items: center;
+      }
+
+      input[type="search"] {
+        height: 32px;
+        padding: 0 10px;
+        font-size: 14px;
+        letter-spacing: 1px;
+      }
+
+      .appearance input[type="search"] {
+        appearance: none;
+      }
+    </style>
+  </head>
+
+<body>
+  <div>
+    <form>
+      <div>
+        <label for="search1">search: </label>
+        <input id="search1" name="search1" type="search">
+      </div>
+    </form>
+  </div>
+  <div class="appearance">
+    <form>
+      <div>
+        <label for="search2">search: </label>
+        <input id="search2" name="search2" type="search">
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>

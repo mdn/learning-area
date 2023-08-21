@@ -2,6 +2,7 @@
 <html lang="en-US">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
 
     <title>Random quotes</title>
 
@@ -66,7 +67,7 @@
     }
 
     function showQuote() {
-      var random = Math.floor((Math.random()*25));
+      const random = Math.floor((Math.random()*25));
       quotePara.textContent = quoteJson[random].quote + ' -- ' + quoteJson[random].author;
     }
     </script>

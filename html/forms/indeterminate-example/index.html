@@ -1,18 +1,18 @@
 <!doctype html>
-<html>
-
-<head>
-  <meta charset="utf-8">
-  <title>callback test</title>
-</head>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Indeterminate &lt;input type="checkbox"&gt; example</title>
+  </head>
 
 <body>
   <form>
     <fieldset>
     <legend>Complete the recipe</legend>
       <div>
-        <input type="checkbox" id="EnchTbl" name="EnchTbl">
-        <label for="EnchTbl">Enchantment table</label>
+        <input type="checkbox" id="enchantment" name="enchantment">
+        <label for="enchantment">Enchantment table</label>
         <ul>
           <li>
             <input type="checkbox" id="book" name="ingredient" value="book">
@@ -31,37 +31,36 @@
     </fieldset>
   </form>
   <script>
-  var overall = document.querySelector('input[id="EnchTbl"]');
-  var ingredients = document.querySelectorAll('ul input');
+    const overall = document.querySelector('#enchantment');
+    const ingredients = document.querySelectorAll('ul input');
 
-  overall.addEventListener('click', function(e) {
-    e.preventDefault();
-  });
+    overall.addEventListener('click', (e) => {
+      e.preventDefault();
+    });
 
-  for(var i = 0; i < ingredients.length; i++) {
-    ingredients[i].addEventListener('click', updateDisplay);
-  }
+    for(const ingredient of ingredients) {
+      ingredient.addEventListener('click', updateDisplay);
+    }
 
-  function updateDisplay() {
-    var checkedCount = 0;
-    for(var i = 0; i < ingredients.length; i++) {
-      if(ingredients[i].checked) {
-        checkedCount++;
+    function updateDisplay() {
+      let checkedCount = 0;
+      for(const ingredient of ingredients) {
+        if(ingredient.checked) {
+          checkedCount++;
+        }
+      }
+
+      if(checkedCount === 0) {
+        overall.checked = false;
+        overall.indeterminate = false;
+      } else if(checkedCount === ingredients.length) {
+        overall.checked = true;
+        overall.indeterminate = false;
+      } else {
+        overall.checked = false;
+        overall.indeterminate = true;
       }
     }
-
-    if(checkedCount === 0) {
-      overall.checked = false;
-      overall.indeterminate = false;
-    } else if(checkedCount === ingredients.length) {
-      overall.checked = true;
-      overall.indeterminate = false;
-    } else {
-      overall.checked = false;
-      overall.indeterminate = true;
-    }
-  }
-
   </script>
 </body>
 

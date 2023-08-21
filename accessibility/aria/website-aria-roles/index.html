@@ -2,15 +2,11 @@
 <html lang="en-US">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
 
     <title>Example website with ARIA roles</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="style.css">
-
-    <!-- the below three lines are a fix to get HTML5 semantic elements working in old versions of Internet Explorer-->
-    <!--[if lt IE 9]>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
-    <![endif]-->
   </head>
 
   <body>
@@ -21,7 +17,7 @@
 
       <!-- Even is it's not mandatory, it's common practice to put the main navigation menu within the main header -->
 
-      <nav role="navigation">
+      <nav>
         <ul>
           <li><a href="#">Home</a></li>
           <li><a href="#">Our team</a></li>
@@ -42,7 +38,7 @@
     <main>
 
       <!-- It contains an article -->
-      <article role="article">
+      <article>
         <h2>Article heading</h2>
 
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Donec a diam lectus. Set sit amet ipsum mauris. Maecenas congue ligula as quam viverra nec consectetur ant hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur.</p>
@@ -61,7 +57,7 @@
       </article>
 
       <!-- the aside content can also be nested within the main content -->
-      <aside role="complementary">
+      <aside>
         <h2>Related</h2>
 
         <ul>

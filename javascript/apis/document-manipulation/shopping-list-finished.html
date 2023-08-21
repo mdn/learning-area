@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
       }
 
       li button {
-        font-size: 8px;
+        font-size: 12px;
         margin-left: 20px;
         color: #666;
       }
@@ -35,8 +35,8 @@
       const input = document.querySelector('input');
       const button = document.querySelector('button');
 
-      button.onclick = function() {
-        let myItem = input.value;
+      button.addEventListener('click', () => {
+        const myItem = input.value;
         input.value = '';
 
         const listItem = document.createElement('li');
@@ -49,12 +49,12 @@
         listBtn.textContent = 'Delete';
         list.appendChild(listItem);
 
-        listBtn.onclick = function(e) {
+        listBtn.addEventListener('click', () => {
           list.removeChild(listItem);
-        }
+        });
 
         input.focus();
-      }
+      });
     </script>
   </body>
 </html>

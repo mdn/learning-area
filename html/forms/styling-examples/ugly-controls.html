@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html lang="en">
+  <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <title>Ugly controls basic styling</title>
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
     <style>
@@ -27,7 +28,6 @@
       }
 
       select {
-        -webkit-appearance: none;
         appearance: none;
       }
 
@@ -43,7 +43,10 @@
         position: absolute;
       }
 
-      input[type="text"], input[type="datetime-local"], input[type="color"], select {
+      input[type="text"], 
+      input[type="datetime-local"], 
+      input[type="color"], 
+      select {
         box-shadow: inset 1px 1px 3px #ccc;
         border-radius: 5px;
       }
@@ -57,17 +60,19 @@
         margin: 0 auto;
       }
     </style>
-</head>
+  </head>
 
 <body>
     <form>
       <div>
         <label for="select">Select box:</label>
-        <div class="select-wrapper"><select id="select" name="select">
-          <option>Banana</option>
-          <option>Cherry</option>
-          <option>Lemon</option>
-        </select></div>
+        <div class="select-wrapper">
+            <select id="select" name="select">
+              <option>Banana</option>
+              <option>Cherry</option>
+              <option>Lemon</option>
+            </select>
+         </div>
       </div>
       <div>
         <label for="myFruit">"Favorite fruit?" datalist:</label>
@@ -127,7 +132,6 @@
         let curFiles = fileInput.files;
 
         if(!(curFiles.length === 0))  {
-          console.log('test');
           for(let i = 0; i < curFiles.length; i++) {
             const listItem = document.createElement('li');
             listItem.textContent = 'File name: ' + curFiles[i].name + '; file size ' + returnFileSize(curFiles[i].size) + '.';

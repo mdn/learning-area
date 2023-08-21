@@ -1,35 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
 
     <title>Fetch polyfill example</title>
 
-    <link rel="stylesheet" href="">
-    <!--[if lt IE 9]>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" href="" />
   </head>
 
   <body>
     <h1>Fetch basic example</h1>
 
-    <img src="" class="my-image" alt="A flower">
+    <img src="" class="my-image" alt="A flower" />
 
     <script>
       if (browserSupportsAllFeatures()) {
         main();
       } else {
-        loadScript('polyfills.js', main);
+        loadScript("polyfills.js", main);
       }
 
       function main(err) {
-        const myImage = document.querySelector('.my-image');
+        const myImage = document.querySelector(".my-image");
 
-        fetch('flowers.jpg').then(function(response) {
-          response.blob().then(function(myBlob) {
+        fetch("flowers.jpg").then(function (response) {
+          response.blob().then(function (myBlob) {
             let objectURL = URL.createObjectURL(myBlob);
             myImage.src = objectURL;
           });
@@ -41,13 +37,13 @@
       }
 
       function loadScript(src, done) {
-        const js = document.createElement('script');
+        const js = document.createElement("script");
         js.src = src;
-        js.onload = function() {
+        js.onload = function () {
           done();
         };
-        js.onerror = function() {
-          done(new Error('Failed to load script ' + src));
+        js.onerror = function () {
+          done(new Error("Failed to load script " + src));
         };
         document.head.appendChild(js);
       }

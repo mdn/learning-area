@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
     <title>Favorite fruit length constraint</title>
     <style>
       input:invalid {
@@ -14,25 +14,34 @@
       }
 
       div {
-        margin-bottom: 10px;
+        margin-bottom: 1rem;
+      }
+      form {
+        margin: 2rem 0 2rem 0;
       }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <form>
       <div>
         <label for="choose">Would you prefer a banana or a cherry?</label>
-        <input id="choose" name="i_like" required minlength="6" maxlength="6">
+        <input id="choose" name="i_like" required minlength="6" maxlength="6" />
       </div>
       <div>
         <label for="number">How many would you like?</label>
-        <input type="number" id="number" name="amount" value="1" min="1" max="10">
+        <input
+          type="number"
+          id="number"
+          name="amount"
+          value="1"
+          min="1"
+          max="10"
+        />
       </div>
       <div>
         <button>Submit</button>
       </div>
     </form>
-</body>
-
+  </body>
 </html>

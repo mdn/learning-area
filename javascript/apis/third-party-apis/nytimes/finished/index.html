@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NY Times API example</title>
+  <script src="script.js" defer></script>
+    <link href="style.css" rel="stylesheet">
+  </head>
+<body>
+  <h1>NY Times article search</h1>
+
+  <div class="wrapper">
+
+    <div class="controls">
+      <form>
+        <p>
+          <label for="search">Enter a SINGLE search term (required): </label>
+          <input type="text" id="search" class="search" required>
+        </p>
+        <p>
+          <label for="start-date">Enter a start date (format YYYYMMDD): </label>
+          <input type="date" id="start-date" class="start-date" pattern="[0-9]{8}">
+        </p>
+        <p>
+          <label for="end-date">Enter an end date (format YYYYMMDD): </label>
+          <input type="date" id="end-date" class="end-date" pattern="[0-9]{8}">
+        </p>
+        <p>
+          <button class="submit">Submit search</button>
+        </p>
+      </form>
+    </div>
+
+    <div class="results">
+      <nav>
+        <button class="prev">Previous 10</button>
+        <button class="next">Next 10</button>
+      </nav>
+
+      <section>
+      </section>
+    </div>
+
+  </div>
+
+
+</body>
+</html>
