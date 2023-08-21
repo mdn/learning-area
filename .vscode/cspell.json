@@ -1,0 +1,71 @@
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "version": "0.2",
+  "language": "en-US",
+  "languageId": "*",
+  "dictionaries": [
+    "bash",
+    "css",
+    "cpp",
+    "django",
+    "filetypes",
+    "fonts",
+    "fullstack",
+    "html",
+    "latex",
+    "lorem-ipsum",
+    "markdown",
+    "node",
+    "npm",
+    "project-words",
+    "python",
+    "softwareTerms",
+    "svelte",
+    "typescript"
+  ],
+  "ignorePaths": [
+    ".vscode/cspell.json",
+    ".vscode/extensions.json",
+    ".markdownlint-cli2.jsonc",
+    "**/*.ogg",
+    "**/*.mp3",
+    "**/*.mp4",
+    "html/introduction-to-html/debugging-html/debug-example.html",
+    "css/styling-text/**/Lovato-Light-demo.html",
+    "css/styling-text/**/Lovato-Light-webfont.svg",
+    "javascript/apis/drawing-graphics/**/*/three.min.js",
+    "tools-testing/cross-browser-testing/**/*.js",
+    "css/**/*.otf"
+  ],
+  "ignoreRegExpList": [
+    "#[\\w-]*",
+    "aria-activedescendant=\"(?:[^\\\"]+|\\.)*\"",
+    "aria-controls=\"(?:[^\\\"]+|\\.)*\"",
+    "aria-describedby=\"(?:[^\\\"]+|\\.)*\"",
+    "aria-details=\"(?:[^\\\"]+|\\.)*\"",
+    "aria-errormessage=\"(?:[^\\\"]+|\\.)*\"",
+    "aria-flowto=\"(?:[^\\\"]+|\\.)*\"",
+    "aria-labelledby=\"(?:[^\\\"]+|\\.)*\"",
+    "aria-owns=\"(?:[^\\\"]+|\\.)*\"",
+    "Base64",
+    "class=\"(?:[^\\\"]+|\\.)*\"",
+    "data-test-id=\"(?:[^\\\"]+|\\.)*\"",
+    "EscapeCharacters",
+    "for=\"(?:[^\\\"]+|\\.)*\"",
+    "HexValues",
+    "href=\"(?:[^\\\"]+|\\.)*\"",
+    "id=\"(?:[^\\\"]+|\\.)*\"",
+    "lang=\".*\">.*</",
+    "src=\"(?:[^\\\"]+|\\.)*\"",
+    "url\\(\"data\\:image/svg\\+xml.*\"\\)[,;]",
+    "Urls"
+  ],
+  "allowCompoundWords": true,
+  "dictionaryDefinitions": [
+    {
+      "name": "project-words",
+      "path": "./project-words.txt",
+      "addWords": true
+    }
+  ]
+}

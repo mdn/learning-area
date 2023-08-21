@@ -26,7 +26,7 @@ The overall mark awarded is out of 34. Work out their final mark, and then divid
     <ul>
       <li>First of all, each row needs to be put inside the <code>&lt;tbody&gt;</code> (1 mark).</li>
       <li>Each row needs to contain a <code>&lt;th&gt;</code> element containing the planet name at the start followed by nine <code>&lt;td&gt;</code> elements containing the planet's data (5 marks). Give full marks if this is mostly right with a couple of typos, but start to reduce the mark at your discretion if significant data points are wrong, wrongly placed, or omitted. Take two marks off if the planet names are not put in headers.</li>
-      <li>The first body row needs to contain an extra <code>&lt;th&gt;</code> element at the start of it, containing "Terrestial planets", with <code>rowspan="4"</code> and <code>colspan="2"</code> (2 marks).</li>
+      <li>The first body row needs to contain an extra <code>&lt;th&gt;</code> element at the start of it, containing "Terrestrial planets", with <code>rowspan="4"</code> and <code>colspan="2"</code> (2 marks).</li>
       <li>The fifth body row needs to contain two extra <code>&lt;th&gt;</code> elements at the start, containing "Jovian planets" and "Gas giants" respectively. The former needs <code>rowspan="4"</code>, and the latter needs <code>rowspan="2"</code> (3 marks).</li>
       <li>The seventh body row needs to contain an extra <code>&lt;th&gt;</code> element at the start, containing "Ice giants", with <code>rowspan="2"</code> (2 marks).</li>
       <li>The ninth body row needs to contain an extra <code>&lt;th&gt;</code> element at the start, containing "Dwarf planets", with <code>colspan="2"</code> (2 marks).</li>
@@ -38,7 +38,7 @@ The overall mark awarded is out of 34. Work out their final mark, and then divid
     <ul>
       <li><code>col</code>: All the <code>&lt;th&gt;</code> elements in the table header row.</li>
       <li><code>row</code>: All the <code>&lt;th&gt;</code> elements containing planet names, and the one containing "Dwarf planets" (it is also a heading over only one row).</li>
-      <li><code>rowgroup</code>: The <code>&lt;th&gt;</code> elements containing "Terrestial planets", "Jovian planets", "Gas giants", and "Ice giants".</li>
+      <li><code>rowgroup</code>: The <code>&lt;th&gt;</code> elements containing "Terrestrial planets", "Jovian planets", "Gas giants", and "Ice giants".</li>
     </ul>
   </dd>
   <dt>Add a black border just around the column that contains all the planet name row headers (4 marks).</dt>
