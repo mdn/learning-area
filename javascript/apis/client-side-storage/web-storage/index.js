@@ -16,7 +16,7 @@ form.addEventListener('submit', e => e.preventDefault());
 submitBtn.addEventListener('click', () => {
   // store the entered name in web storage
   localStorage.setItem('name', nameInput.value);
-  // run nameDisplayCheck() to sort out displaying the personalised greetings and updating the form display
+  // run nameDisplayCheck() to sort out displaying the personalized greetings and updating the form display
   nameDisplayCheck();
 });
 
