@@ -17,23 +17,17 @@
   </head>
 
   <body>
-    <section class="preview">
+    <section class="preview"></section>
 
+    <textarea class="playable playable-js" style="height: 220px">
 
+let machineActive = true;
+let pwd = 'cheese';
 
-    </section>
+let machineResult;
+let pwdResult;
 
-    <textarea class="playable playable-js" style="height: 220px;">
-
-let response;
-let score = 75;
-let machineActive = false;
-
-if(machineActive) {
-	// Add your code here
-} else {
-  response = 'The machine is turned off. Turn it on to process your score.';
-}
+// Add your code here
 
 // Don't edit the code below here!
 
@@ -41,8 +35,8 @@ section.innerHTML = ' ';
 let para1 = document.createElement('p');
 let para2 = document.createElement('p');
 
-para1.textContent = `Your score is ${ score }.`;
-para2.textContent = response;
+para1.textContent = machineResult;
+para2.textContent = pwdResult;
 
 section.appendChild(para1);
 section.appendChild(para2);
