@@ -31,8 +31,8 @@
     "**/*.mp3",
     "**/*.mp4",
     "html/introduction-to-html/debugging-html/debug-example.html",
-    "/css/styling-text/**/Lovato-Light-demo.html",
-    "/css/styling-text/**/Lovato-Light-webfont.svg",
+    "css/styling-text/**/Lovato-Light-demo.html",
+    "css/styling-text/**/Lovato-Light-webfont.svg",
     "javascript/apis/drawing-graphics/**/*/three.min.js",
     "tools-testing/cross-browser-testing/**/*.js",
     "css/**/*.otf"
