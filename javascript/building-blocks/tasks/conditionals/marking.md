@@ -35,12 +35,12 @@ You need to create one `if ... else` structure that checks whether the machine i
 
 Inside the `if` part, you need to nest an `if ... else if` structure that puts appropriate messages into the `response` variable depending on different scores. The conditional operator tests should look like this:
 
-* `score < 0 || score > 100` - "This is not possible, an error has occurred." This could also be done just by an `else` clause, as the scores between 0 and 100 are all covered by the other clauses. But it's nice to be exact.
-* `score >= 0 && score < 20` - "That was a terrible score — total fail!"
-* `score >= 20 && score < 40` - "You know some things, but it\'s a pretty bad score. Needs improvement."
-* `score >= 40 && score < 70` — "You did a passable job, not bad!"
-* `score >= 70 && score < 90` — "That\'s a great score, you really know your stuff."
-* `score >= 90 && score <= 100` — "What an amazing score! Did you cheat? Are you for real?"
+- `score < 0 || score > 100` - "This is not possible, an error has occurred." This could also be done just by an `else` clause, as the scores between 0 and 100 are all covered by the other clauses. But it's nice to be exact.
+- `score >= 0 && score < 20` - "That was a terrible score — total fail!"
+- `score >= 20 && score < 40` - "You know some things, but it\'s a pretty bad score. Needs improvement."
+- `score >= 40 && score < 70` — "You did a passable job, not bad!"
+- `score >= 70 && score < 90` — "That\'s a great score, you really know your stuff."
+- `score >= 90 && score <= 100` — "What an amazing score! Did you cheat? Are you for real?"
 
 The finished code should look something like this:
 
@@ -69,40 +69,6 @@ if (machineActive) {
 ```
 
 ## Task 3
-
-In this task we want you to take the code you wrote for the previous example, and convert it so that the inner structure uses a `switch` statement.
-
-Use the switch `default` option for the "not possible" option.
-
-The full `if ... else` block including added `switch` statement should look like this:
-
-```
-if (machineActive) {
-	switch (true) {
-		case (score >= 0 && score < 20):
-		  response = 'That was a terrible score — total fail!';
-		  break;
-		case (score >= 20 && score < 40):
-		  response = 'You know some things, but it\'s a pretty bad score. Needs improvement.';
-		  break;
-		case (score >= 40 && score < 70):
-		  response = 'You did a passable job, not bad!';
-		  break;
-		case (score >= 70 && score < 90):
-		  response = 'That\'s a great score, you really know your stuff.';
-		  break;
-		case (score >= 90 && score <= 100):
-		  response = 'What an amazing score! Did you cheat? Are you for real?';
-		  break;
-		default:
-		  response = 'This is not possible, an error has occurred.';
-	}
-} else {
-  response = 'The machine is turned off. Turn it on to process your score.';
-}
-```
-
-## Task 4
 
 For the final task we have to offer in this set, we need you to first write an `if ... else` statement that checks whether `machineActive` is `true`. If so, set `machineResult` to a string telling the user they can successfully log in. If not, set it to a message telling them they need to activate the machine before they can log in.
 

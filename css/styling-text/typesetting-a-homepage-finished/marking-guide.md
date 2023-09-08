@@ -50,7 +50,7 @@ The overall mark awarded is out of 40. Work out their final mark, and then divid
 <dt>"Make it so that external links have the external link icon inserted next to them." (4 marks)</dt>
 <dd>This is worth four marks because it is fairly complex. They can get a mark each for:
   <ul>
-    <li>Using asuitable attribute selector that only selects links containing "http" in their <code>href</code> attribute.</li>
+    <li>Using a suitable attribute selector that only selects links containing "http" in their <code>href</code> attribute.</li>
     <li>Including some padding to make way for the link to be displayed.</li>
     <li>Including the correct <code>background-*</code> properties or <code>background</code> shorthand to place the background image, and to make it not repeat.</li>
     <li>Including the <code>background-size</code> property to resize the icon to something appropriate dynamically, OR resizing it in an image editor to an appropriate size.</li>
