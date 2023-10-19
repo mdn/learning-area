@@ -20,7 +20,7 @@ div + div {
   margin-top: 1em;
 }
 
-label span {
+label > span {
   display: inline-block;
   width: 120px;
   text-align: right;
