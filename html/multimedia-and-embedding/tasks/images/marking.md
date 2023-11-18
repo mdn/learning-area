@@ -14,7 +14,7 @@ This task tests your ability to embed a simple image on the page, give it some a
      width="615" height="419">
 ```
 
-The filename and path must be correct for the image to show up. The `alt` text should describe the visual appeareance of image for those that can't see it. Finally, the `width` and `height` attributes should contain the same values as the image's intrinsic width and height, so it displays at the correct size.
+The filename and path must be correct for the image to show up. The `alt` text should describe the visual appearance of image for those that can't see it. Finally, the `width` and `height` attributes should contain the same values as the image's intrinsic width and height, so it displays at the correct size.
 
 ## Task 2
 

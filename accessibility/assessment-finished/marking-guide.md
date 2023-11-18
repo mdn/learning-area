@@ -55,7 +55,7 @@ The overall mark awarded is out of 37. Work out their final mark, and then divid
 
 <dl>
   <dt>The input element in the search form at the top could do with a label, but we don't want to add a visible text label that would potentially spoil the design and isn't really needed by sighted users. How can you add a label that is only accessible to screenreaders?</dt>
-  <dd>Two marks. You can add a descriptive label into an <code>aria-label</code> attribute on the input element. This will then be read out by screenreaders when the input is encoutered.</dd>
+  <dd>Two marks. You can add a descriptive label into an <code>aria-label</code> attribute on the input element. This will then be read out by screenreaders when the input is encountered.</dd>
   <dt>The two input elements in the comment form have visible text labels, but they are not unambiguously associated with their labels — how do you achieve this? Note that you'll need to update some of the CSS rule as well.</dt>
   <dd>Four marks. The label text should be wrapped inside <code>&lt;label&gt;</code> elements, with <code>for</code> attributes containing the ID values of the input elements they are the labels for.</dd>
 </dl>
@@ -88,7 +88,7 @@ The overall mark awarded is out of 37. Work out their final mark, and then divid
     <ul>
       <li>Add client-side validation to the comment form</li>
       <li>Use media queries to make the site more usable on mobile devices.</li>
-      <li>Find a way to annouce screenreader users how many comments are displayed when the show comments control button is clicked. For example, put the <code>role</code> attribute with <code>"alert"</code> value on the <code>h2</code> element in the comments section and update its text like so "Comments (1 available)".</li>
+      <li>Find a way to announce screenreader users how many comments are displayed when the show comments control button is clicked. For example, put the <code>role</code> attribute with <code>"alert"</code> value on the <code>h2</code> element in the comments section and update its text like so "Comments (1 available)".</li>
     </ul>
   </dd>
 </dl>

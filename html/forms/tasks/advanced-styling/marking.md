@@ -145,7 +145,7 @@ In our final task for this assessment series, we provide you with a feedback for
 
 What we'd like you to do is make use of some advanced pseudo-classes to provide some useful indicators of validity.
 
-1. First of all, we want you to provide some specific styling to visually indicate which inputs have to be filled in — they cannot be left empty. The basis of doing this is use of the `:required` pseudo-class. Apart from that, you can use whatever styling you like, as long as it reasonably indicates what inputs are reuired. In our case, we've used `:required` plus an adjacent combinator to attach some generated content to the `<span>` that appears after the input, but the provided solution doesn't have to be this complex.
+1. First of all, we want you to provide some specific styling to visually indicate which inputs have to be filled in — they cannot be left empty. The basis of doing this is use of the `:required` pseudo-class. Apart from that, you can use whatever styling you like, as long as it reasonably indicates what inputs are required. In our case, we've used `:required` plus an adjacent combinator to attach some generated content to the `<span>` that appears after the input, but the provided solution doesn't have to be this complex.
 2. Second, we want you to provide a useful visual indicator of whether the data entered inside each input is valid or not. This requires use of the `:valid` and `:invalid` pseudo-classes. Again, any reasonable solution is OK here, and attaching something to the trailing `<span>` in each case remains an option.
 
 

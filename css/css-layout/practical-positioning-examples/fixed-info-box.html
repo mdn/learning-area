@@ -1,177 +1,212 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
     <title>Fixed tabbed info box</title>
-  <style>
+    <style>
+      /* General setup */
 
-  /* General setup */
+      html {
+        font-family: sans-serif;
+      }
 
-  html {
-    font-family: sans-serif;
-  }
+      * {
+        box-sizing: border-box;
+      }
 
-  * {
-    box-sizing: border-box;
-  }
+      body {
+        margin: 0;
+      }
 
-  body {
-    margin: 0;
-  }
+      /* info-box setup */
 
-  /* info-box setup */
+      .info-box {
+        width: 452px;
+        height: 400px;
+        margin: 0 auto;
+        position: fixed;
+        top: 0;
+      }
 
-  .info-box {
-    width: 452px;
-    height: 400px;
-    margin: 0 auto;
-    position: fixed;
-    top: 0;
-  }
+      /* styling info-box list */
 
-  /* styling info-box list */
+      .info-box ul {
+        border: 1px solid #b60000;
+        overflow: hidden;
+        height: 50px;
+        margin: 0;
+        padding: 0;
+      }
 
-  .info-box ul {
-    border: 1px solid #b60000;
-    overflow: hidden;
-    height: 50px;
-    margin: 0;
-    padding: 0;
-  }
+      .info-box li {
+        float: left;
+        list-style-type: none;
+        width: 150px;
+      }
 
-  .info-box li {
-    float: left;
-    list-style-type: none;
-    width: 150px;
-  }
+      .info-box li a {
+        display: inline-block;
+        text-decoration: none;
+        width: 100%;
+        line-height: 3;
+        background: white;
+        color: #b60000;
+        text-align: center;
+        font-weight: bold;
+      }
 
-  .info-box li a {
-    display: inline-block;
-    text-decoration: none;
-    width: 100%;
-    line-height: 3;
-    background: white;
-    color: #b60000;
-    text-align: center;
-    font-weight: bold;
-  }
+      .info-box li a:focus,
+      li a:hover {
+        background-color: #b60000;
+        color: white;
+      }
 
-  .info-box li a:focus, li a:hover {
-    background-color: #b60000;
-    color: white;
-  }
+      .info-box li a.active-tab {
+        background-color: #b60000;
+        color: white;
+      }
 
-  .info-box li a.active {
-    background-color: #b60000;
-    color: white;
-  }
+      /* styling info-box tabs */
 
-  /* styling info-box tabs */
+      .info-box .panels {
+        clear: both;
+        position: relative;
+        height: 352px;
+      }
 
-  .info-box .panels {
-    clear: both;
-    position: relative;
-    height: 352px;
-  }
+      .info-box article {
+        background-color: #b60000;
+        color: white;
+        position: absolute;
+        padding: 10px 20px;
+        height: 352px;
+        top: 0;
+        left: 0;
+      }
 
-  .info-box article {
-    background-color: #b60000;
-    color: white;
-    position: absolute;
-    padding: 10px 20px;
-    height: 352px;
-    top: 0;
-    left: 0;
-  }
+      .info-box .active-panel {
+        z-index: 1;
+      }
 
-  .info-box .active-panel {
-    z-index: 1;
-  }
+      /* Styling our fake content */
 
-  /* Styling our fake content */
-
-  .fake-content {
-    background-color: #a60000;
-    color: white;
-    padding: 10px;
-    height: 2000px;
-    margin-left: 470px;
-  }
-</style>
+      .fake-content {
+        background-color: #a60000;
+        color: white;
+        padding: 10px;
+        height: 2000px;
+        margin-left: 470px;
+      }
+    </style>
   </head>
-<body>
+  <body>
+    <section class="fake-content">
+      <h1>Fake content</h1>
+      <p>
+        This is fake content. Your main web page contents would probably go
+        here.
+      </p>
+      <p>
+        This is fake content. Your main web page contents would probably go
+        here.
+      </p>
+      <p>
+        This is fake content. Your main web page contents would probably go
+        here.
+      </p>
+      <p>
+        This is fake content. Your main web page contents would probably go
+        here.
+      </p>
+      <p>
+        This is fake content. Your main web page contents would probably go
+        here.
+      </p>
+      <p>
+        This is fake content. Your main web page contents would probably go
+        here.
+      </p>
+      <p>
+        This is fake content. Your main web page contents would probably go
+        here.
+      </p>
+      <p>
+        This is fake content. Your main web page contents would probably go
+        here.
+      </p>
+    </section>
 
-<section class="fake-content">
-  <h1>Fake content</h1>
-  <p>This is fake content. Your main web page contents would probably go here.</p>
-  <p>This is fake content. Your main web page contents would probably go here.</p>
-  <p>This is fake content. Your main web page contents would probably go here.</p>
-  <p>This is fake content. Your main web page contents would probably go here.</p>
-  <p>This is fake content. Your main web page contents would probably go here.</p>
-  <p>This is fake content. Your main web page contents would probably go here.</p>
-  <p>This is fake content. Your main web page contents would probably go here.</p>
-  <p>This is fake content. Your main web page contents would probably go here.</p>
-</section>
+    <section class="info-box">
+      <ul>
+        <li><a href="#" class="active-tab">Tab 1</a></li>
+        <li><a href="#">Tab 2</a></li>
+        <li><a href="#">Tab 3</a></li>
+      </ul>
+      <div class="panels">
+        <article class="active-panel">
+          <h2>The first tab</h2>
 
-<section class="info-box">
-  <ul>
-    <li><a href="#" class="active">Tab 1</a></li>
-    <li><a href="#">Tab 2</a></li>
-    <li><a href="#">Tab 3</a></li>
-  </ul>
-  <div class="panels">
-    <article class="active-panel">
-      <h2>The first tab</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Pellentesque turpis nibh, porttitor nec venenatis eu, pulvinar in
+            augue. Vestibulum et orci scelerisque, vulputate tellus quis,
+            lobortis dui. Vivamus varius libero at ipsum mattis efficitur ut nec
+            nisl. Nullam eget tincidunt metus. Donec ultrices, urna maximus
+            consequat aliquet, dui neque eleifend lorem, a auctor libero turpis
+            at sem. Aliquam ut porttitor urna. Nulla facilisi.
+          </p>
+        </article>
+        <article>
+          <h2>The second tab</h2>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque turpis nibh, porttitor nec venenatis eu, pulvinar in augue. Vestibulum et orci scelerisque, vulputate tellus quis, lobortis dui. Vivamus varius libero at ipsum mattis efficitur ut nec nisl. Nullam eget tincidunt metus. Donec ultrices, urna maximus consequat aliquet, dui neque eleifend lorem, a auctor libero turpis at sem. Aliquam ut porttitor urna. Nulla facilisi.</p>
-    </article>
-    <article>
-      <h2>The second tab</h2>
+          <p>
+            This tab hasn't got any Lorem Ipsum in it. But the content isn't
+            very exciting all the same.
+          </p>
+        </article>
+        <article>
+          <h2>The third tab</h2>
 
-      <p>This tab hasn't got any Lorem Ipsum in it. But the content isn't very exciting all the same.</p>
-    </article>
-    <article>
-      <h2>The third tab</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Pellentesque turpis nibh, porttitor nec venenatis eu, pulvinar in
+            augue. And now an ordered list: how exciting!
+          </p>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque turpis nibh, porttitor nec venenatis eu, pulvinar in augue. And now an ordered list: how exciting!</p>
+          <ol>
+            <li>dui neque eleifend lorem, a auctor libero turpis at sem.</li>
+            <li>Aliquam ut porttitor urna.</li>
+            <li>Nulla facilisi</li>
+          </ol>
+        </article>
+      </div>
+    </section>
 
-      <ol>
-        <li>dui neque eleifend lorem, a auctor libero turpis at sem.</li>
-        <li>Aliquam ut porttitor urna.</li>
-        <li>Nulla facilisi</li>
-      </ol>
-    </article>
-  </div>
-</section>
+    <script>
+      var tabs = document.querySelectorAll(".info-box li a");
+      var panels = document.querySelectorAll(".info-box article");
 
-<script>
+      for (i = 0; i < tabs.length; i++) {
+        var tab = tabs[i];
+        setTabHandler(tab, i);
+      }
 
-var tabs = document.querySelectorAll('.info-box li a');
-var panels = document.querySelectorAll('.info-box article');
+      function setTabHandler(tab, tabPos) {
+        tab.onclick = function () {
+          for (i = 0; i < tabs.length; i++) {
+            tabs[i].className = "";
+          }
 
-for(i = 0; i < tabs.length; i++) {
-  var tab = tabs[i];
-  setTabHandler(tab, i);
-}
+          tab.className = "active-tab";
 
-function setTabHandler(tab, tabPos) {
-  tab.onclick = function() {
-    for(i = 0; i < tabs.length; i++) {
-      tabs[i].className = '';
-    }
+          for (i = 0; i < panels.length; i++) {
+            panels[i].className = "";
+          }
 
-    tab.className = 'active';
-
-    for(i = 0; i < panels.length; i++) {
-      panels[i].className = '';
-    }
-
-    panels[tabPos].className = 'active-panel';
-  }
-}
-
-</script>
-
-</body>
+          panels[tabPos].className = "active-panel";
+        };
+      }
+    </script>
+  </body>
 </html>
