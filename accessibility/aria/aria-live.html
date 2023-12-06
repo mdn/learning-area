@@ -42,21 +42,14 @@
 
       let quoteJson;
 
-      getQuotes("quotes.json", populateJson);
+      getQuotes("quotes.json").then((quotes) => {
+        quoteJson = quotes;
+        window.setInterval(showQuote, 10000);
+      });
 
-      let intervalID = window.setInterval(showQuote, 10000);
-
-      function getQuotes(url, callback) {
-        let request = new XMLHttpRequest();
-        request.open("GET", url);
-        request.responseType = "json";
-        request.send();
-
-        request.onreadystatechange = function () {
-          if (request.readyState === 4 && request.status === 200) {
-            callback(request.response);
-          }
-        };
+      async function getQuotes(url, callback) {
+        const response = await fetch(url);
+        return response.json();
       }
 
       function populateJson(response) {
@@ -65,8 +58,7 @@
 
       function showQuote() {
         let random = Math.floor(Math.random() * 25);
-        quotePara.textContent =
-          quoteJson[random].quote + " -- " + quoteJson[random].author;
+        quotePara.textContent = `${quoteJson[random].quote} -- ${quoteJson[random].author}`;
       }
     </script>
   </body>
