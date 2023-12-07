@@ -11,7 +11,7 @@ showHeroes(response);
 function populateHeader(jsonObj) {
   const h1 = document.createElement("h1");
   h1.textContent = jsonObj["squadName"];
-  header.appendChild(myH1);
+  header.appendChild(h1);
 
   const para = document.createElement("p");
   para.textContent = `Hometown: ${jsonObj["homeTown"]} // Formed: ${jsonObj["formed"]}`;
