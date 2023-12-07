@@ -23,13 +23,13 @@ function showHeroes(jsonObj) {
 
   for (const hero of heroes) {
     const article = document.createElement("article");
-    const h2Elt = document.createElement("h2");
+    const h2 = document.createElement("h2");
     const para1 = document.createElement("p");
     const para2 = document.createElement("p");
     const para3 = document.createElement("p");
     const list = document.createElement("ul");
 
-    h2Elt.textContent = hero.name;
+    h2.textContent = hero.name;
     para1.textContent = `Secret identity: ${hero.secretIdentity}`;
     para2.textContent = `Age: ${hero.age}`;
     para3.textContent = "Superpowers:";
@@ -41,7 +41,7 @@ function showHeroes(jsonObj) {
       list.appendChild(listItem);
     }
 
-    article.appendChild(h2Elt);
+    article.appendChild(h2);
     article.appendChild(para1);
     article.appendChild(para2);
     article.appendChild(para3);
