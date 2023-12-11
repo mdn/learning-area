@@ -1,25 +1,37 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en-us">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
     <title>Responsive HTML images demo</title>
     <style>
-
       img {
         width: 320px;
       }
-
     </style>
   </head>
   <body>
-    
-
-        <img srcset="elva-fairy-320w.jpg,
-                     elva-fairy-480w.jpg 1.5x,
-                     elva-fairy-640w.jpg 2x"
-             src="elva-fairy-640w.jpg" alt="Elva dressed as a fairy"> 
-
-        
+    <img
+      srcset="
+        elva-fairy-320w.jpg,
+        elva-fairy-480w.jpg 1.5x,
+        elva-fairy-640w.jpg 2x
+      "
+      src="elva-fairy-640w.jpg"
+      alt="Elva dressed as a fairy"
+      id="img"
+      onload="showUrl()"
+    />
+    <script>
+      function showUrl() {
+        const img = document.getElementById("img");
+        const p = document.createElement("p");
+        const fileName = img.currentSrc?.substring(
+          img.currentSrc.lastIndexOf("/"),
+        );
+        p.textContent = `Loaded: ${fileName}`;
+        document.body.appendChild(p);
+      }
+    </script>
   </body>
 </html>

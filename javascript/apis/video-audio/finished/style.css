@@ -1,19 +1,16 @@
-body {
-  margin: 0;
-}
-
 @font-face {
-    font-family: 'HeydingsControlsRegular';
-    src: url('fonts/heydings_controls-webfont.eot');
-    src: url('fonts/heydings_controls-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/heydings_controls-webfont.woff') format('woff'),
-         url('fonts/heydings_controls-webfont.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: "HeydingsControlsRegular";
+  src: url("fonts/heydings_controls-webfont.eot");
+  src:
+    url("fonts/heydings_controls-webfont.eot?#iefix") format("embedded-opentype"),
+    url("fonts/heydings_controls-webfont.woff") format("woff"),
+    url("fonts/heydings_controls-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
 
 video {
-  max-width: 100%;
+  border: 1px solid black;
 }
 
 p {
@@ -40,12 +37,13 @@ p {
   display: flex;
 }
 
-button, .controls {
-  background: linear-gradient(to bottom,#222,#666);
+.player:hover .controls,
+.player:focus-within .controls {
+  opacity: 1;
 }
 
-.player:hover .controls, .player:focus .controls {
-  opacity: 1;
+button, .controls {
+  background: linear-gradient(to bottom,#222,#666);
 }
 
 button:before {
@@ -96,7 +94,7 @@ button {
 
 .timer div {
   position: absolute;
-  background-color: rgba(255,255,255,0.2);
+  background-color: rgb(255 255 255 / 20%);
   left: 0;
   top: 0;
   width: 0;
