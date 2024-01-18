@@ -10,23 +10,23 @@ The overall mark awarded is out of 30. Work out their final mark, and then divid
 
 <dl>
 <dt>The header (4 marks.)</dt>
-<dd>They need to wrap the &lt;h1&gt;, first &lt;img&gt; and whole of the &lt;ul&gt; in a &lt;header&gt; element.</dd>
+<dd>They need to wrap the <code>&lt;h1&gt;</code>, first <code>&lt;img&gt;</code> and whole of the <code>&lt;ul&gt;</code> in a <code>&lt;header&gt;</code> element.</dd>
 <dt>The navigation menu (4 marks.)</dt>
-<dd>They need to wrap the &lt;ul&gt; in a &lt;nav&gt; element.</dd>
+<dd>They need to wrap the <code>&lt;ul&gt;</code> in a <code>&lt;nav&gt;</code> element.</dd>
 <dt>The main content (4 marks.)</dt>
-<dd>They need to wrap both &lt;h2&gt;s, the first two &lt;p&gt;s and the last four &lt;img&gt;s in a &lt;main&gt; element.</dd>
+<dd>They need to wrap both <code>&lt;h2&gt;</code>s, the first two <code>&lt;p&gt;</code>s and the last four <code>&lt;img&gt;</code>s in a <code>&lt;main&gt;</code> element.</dd>
 <dt>The welcome text (4 marks.)</dt>
-<dd>They need to wrap the first &lt;h2&gt; and the first two &lt;p&gt;s in an &lt;article&gt; element or a &lt;section&gt; element.</dd>
+<dd>They need to wrap the first <code>&lt;h2&gt;</code> and the first two <code>&lt;p&gt;</code>s in an <code>&lt;article&gt;</code> element or a <code>&lt;section&gt;</code> element.</dd>
 <dt>The image sidebar (4 marks.)</dt>
-<dd>They need to wrap the second &lt;h2&gt; and the last four &lt;img&gt;s in an &lt;aside&gt; element.</dd>
+<dd>They need to wrap the second <code>&lt;h2&gt;</code> and the last four <code>&lt;img&gt;</code>s in an <code>&lt;aside&gt;</code> element.</dd>
 <dt>The footer (4 marks.)</dt>
-<dd>They need to wrap the last two &lt;p&gt;s in a &lt;footer&gt; element.</dd>
+<dd>They need to wrap the last two <code>&lt;p&gt;</code>s in a <code>&lt;footer&gt;</code> element.</dd>
 </dl>
 
 ## Other tasks
 
 <dl>
-<dt>Apply the provided CSS to the page by adding another &lt;link&gt; element just below the existing one provided at the start (4 marks.)</dt>
-<dd>The element should look like this: &lt;link rel="stylesheet" href="style.css"&gt;</dd>
+<dt>Apply the provided CSS to the page by adding another <code>&lt;link&gt;</code> element just below the existing one provided at the start (4 marks.)</dt>
+<dd>The element should look like this: <code>&lt;link rel="stylesheet" href="style.css"&gt;</code></dd>
 <dt>You'll get bonus points if it validates as much as possible (2 marks.)</dt>
 <dd>If the student's code validates, apart from the Google Font link element, they get the marks.</dd>
