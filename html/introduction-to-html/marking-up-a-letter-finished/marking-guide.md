@@ -45,21 +45,21 @@ The overall mark awarded is out of 45.5. Work out their final mark, and then div
 <dt>The names of the sender and receiver (and "Tel" and "Email") should be marked up with strong importance (2 marks, half a mark each)</dt>
 <dd>"Dr. Eleanor Gaye", "Miss Eileen Dover", "Tel", and "Email" should be wrapped in a <code>&lt;strong&gt;</code> element.</dd>
 <dt>The four dates in the document should be given appropriate elements containing machine-readable dates (2 marks, half a mark each)</dt>
-<dd>All four dates should be marked up using a <code>&lt;time&gt;</code> element. Each one should have a datetime attribute containing a machine readable date. For example <code>&lt;time datetime="2016-01-20"&gt;</code>20 January 2016<code>&lt;/time&gt;</code></dd>
+<dd>All four dates should be marked up using a <code>&lt;time&gt;</code> element. Each one should have a datetime attribute containing a machine readable date. For example <code>&lt;time datetime="2016-01-20"&gt;20 January 2016&lt;/time&gt;</code></dd>
 <dt>The first address and first date in the letter should be given a class attribute value of "sender-column"; the CSS you'll add later will then cause these to be right aligned, as should be the case in a classic letter layout. (2 marks)</dt>
 <dd>The first <code>&lt;p&gt;</code> element in the document should be given an attribute of class="sender-column"; the first date should be wrapped in a <code>&lt;p&gt;</code>, which should also be given the class="sender-column" attribute.</dd>
 <dt>The five acronyms/abbreviations in the main text of the letter should be marked up to provide expansions of each acronym/abbreviation. (2.5 marks, half a mark each)</dt>
-<dd>Each acronym/abbreviation in the main text of the letter — "PhD", "HTML", "CSS", "BC" and "Esq" — should be wrapped in an <code>&lt;abbr&gt;</code> element with a title attribute, for example <code>&lt;abbr title="Cascading Style Sheets"&gt;</code>CSS<code>&lt;/abbr&gt;</code></dd>
+<dd>Each acronym/abbreviation in the main text of the letter — "PhD", "HTML", "CSS", "BC" and "Esq" — should be wrapped in an <code>&lt;abbr&gt;</code> element with a title attribute, for example <code>&lt;abbr title="Cascading Style Sheets"&gt;CSS&lt;/abbr&gt;</code></dd>
 <dt>The six sub/superscripts should be marked up appropriately (3 marks, half a mark each).</dt>
-<dd>The four numbers in the chemical formulae should be wrapped in a <code>&lt;sub&gt;</code> element, e.g. H<code>&lt;sub&gt;</code>2<code>&lt;/sub&gt;</code>O. The rightmost number in both exponential expressions should be wrapped in a <code>&lt;sup&gt;</code> element, e.g. 10<code>&lt;sup&gt;</code>3<code>&lt;/sup&gt;</code>.</dd>
+<dd>The four numbers in the chemical formulae should be wrapped in a <code>&lt;sub&gt;</code> element, e.g. <code>H&lt;sub&gt;2&lt;/sub&gt;O</code>. The rightmost number in both exponential expressions should be wrapped in a <code>&lt;sup&gt;</code> element, e.g. <code>10&lt;sup&gt;3&lt;/sup&gt;</code>.</dd>
 <dt>Try to mark up at least two appropriate words in the text with strong importance/emphasis (1 mark, half a mark each)</dt>
 <dd>This is very open to interpretation; anything that seems appropriate should be fine.</dd>
 <dt>There are two places where a hyperlink should be added; add appropriate links with titles. For the location that the links point to, just use http://example.com (4 marks)</dt>
 <dd>
   The two places should have an <code>&lt;a&gt;</code> element wrapped around reasonable words to make the link. Each element should have an href attribute pointing to a dummy URL, such as "http://www.example.com" or "*", and a title attribute that describes what the link should point to. Half a mark should be taken off if the link text is inappropriate, and/or attributes are missing.
   <ul>
-    <li>First instance: something like <code>&lt;a href="http://www.example.com" title="table of awesome university important dates"&gt;</code>important university dates<code>&lt;/a&gt;</code></li>
-    <li>Second instance: something like <code>&lt;a href="http://www.example.com" title="Dr Gaye's exotic dance research"&gt;</code>exotic dance research page<code>&lt;/a&gt;</code></li>
+    <li>First instance: something like <code>&lt;a href="http://www.example.com" title="table of awesome university important dates"&gt;important university dates&lt;/a&gt;</code></li>
+    <li>Second instance: something like <code>&lt;a href="http://www.example.com" title="Dr Gaye's exotic dance research"&gt;exotic dance research page&lt;/a&gt;</code></li>
   </ul>
 </dd>
 <dt>The university motto quote and citation should be marked up with appropriate elements (2 marks)</dt>
