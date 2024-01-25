@@ -6,7 +6,7 @@ Note: If there is an error in your code, it will be outputted into the results p
 
 ## Task 1
 
-The first task asks you to store a new string in a variable to go along wth the existing one, which contains the missing half of the famous quote. Call the new variable you add `quoteEnd`.
+The first task asks you to store a new string in a variable to go along with the existing one, which contains the missing half of the famous quote. Call the new variable you add `quoteEnd`.
 
 You'll also need to escape the apostrophe in the existing string so that it doesn't throw an error.
 

@@ -9,7 +9,7 @@ const section = document.querySelector('section');
 // to get it all started
 window.addEventListener('load', onClientLoad);
 
-// Load and inialize the API, then run the onYouTubeApiLoad() function once this is done
+// Load and initialize the API, then run the onYouTubeApiLoad() function once this is done
 function onClientLoad() {
   gapi.client.load('youtube', 'v3', onYouTubeApiLoad);
 }

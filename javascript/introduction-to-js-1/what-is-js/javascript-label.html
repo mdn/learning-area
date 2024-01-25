@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
     <title>JavaScript label example</title>
     <style>
-      p {
-        font-family: 'helvetica neue', helvetica, sans-serif;
+      button {
+        font-family: "helvetica neue", helvetica, sans-serif;
         letter-spacing: 1px;
         text-transform: uppercase;
         text-align: center;
-        border: 2px solid rgba(0,0,200,0.6);
-        background: rgba(0,0,200,0.3);
-        color: rgba(0,0,200,0.6);
-        box-shadow: 1px 1px 2px rgba(0,0,200,0.4);
+        border: 2px solid rgb(200 200 0 / 0.6);
+        background: rgba(0, 217, 217, 0.6);
+        color: rgb(100 0 0 / 1);
+        box-shadow: 1px 1px 2px rgb(0 0 200 / 0.4);
         border-radius: 10px;
         padding: 3px 10px;
-        display: inline-block;
         cursor: pointer;
       }
     </style>
   </head>
   <body>
-    <p>Player 1: Chris</p>
+    <button type="button">Player 1: Chris</button>
 
     <script>
-      const para = document.querySelector('p');
+      const button = document.querySelector("button");
 
-      para.addEventListener('click', updateName);
+      button.addEventListener("click", updateName);
 
       function updateName() {
-        const name = prompt('Enter a new name');
-        para.textContent = `Player 1: ${name}`;
+        const name = prompt("Enter a new name");
+        button.textContent = `Player 1: ${name}`;
       }
     </script>
   </body>

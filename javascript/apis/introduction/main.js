@@ -12,7 +12,7 @@ function random(min,max) {
   return Math.floor(Math.random()*(max-min)) + min;
 }
 
-// function to generate rnadom color
+// function to generate random color
 
 function randomRGB() {
   return `rgb(${random(0, 255)},${random(0, 255)},${random(0, 255)})`;

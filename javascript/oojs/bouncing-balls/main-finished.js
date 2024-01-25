@@ -38,19 +38,19 @@ class Ball {
 
    update() {
       if ((this.x + this.size) >= width) {
-         this.velX = -(this.velX);
+         this.velX = -(Math.abs(this.velX));
       }
 
       if ((this.x - this.size) <= 0) {
-         this.velX = -(this.velX);
+         this.velX = Math.abs(this.velX);
       }
 
       if ((this.y + this.size) >= height) {
-         this.velY = -(this.velY);
+         this.velY = -(Math.abs(this.velY));
       }
 
       if ((this.y - this.size) <= 0) {
-         this.velY = -(this.velY);
+         this.velY = Math.abs(this.velY);
       }
 
       this.x += this.velX;

@@ -33,7 +33,7 @@ myName = 'Chris';
 
 The last task in this article focuses around fixing some variable-related errors. Basically:
 
-1. The `myAge` variable is not being outputted correctly because it is being declared once using `const`, and then an attempt is being made to change the value.
+1. The `myName` variable is not being outputted correctly because it is being declared once using `const`, and then an attempt is being made to change the value.
 2. The result of the sum is not being outputted correctly because the `myAge` variable is being declared as a number. It needs to have the quotes removed.
 
 The solution should look something like this:

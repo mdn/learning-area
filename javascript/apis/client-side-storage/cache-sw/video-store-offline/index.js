@@ -37,7 +37,7 @@ function fetchVideoFromNetwork(video) {
   // Fetch the MP4 and WebM versions of the video using the fetch() function,
   // then expose their response bodies as blobs
   const mp4Blob = fetch(`videos/${video.name}.mp4`).then(response => response.blob());
-  const webmBlob = fetch(`videos/${video.name}.mp4`).then(response => response.blob());
+  const webmBlob = fetch(`videos/${video.name}.webm`).then(response => response.blob());
 
   // Only run the next code when both promises have fulfilled
   Promise.all([mp4Blob, webmBlob]).then(values => {
@@ -102,7 +102,7 @@ request.addEventListener('error', () => console.error('Database failed to open')
 
 // success handler signifies that the database opened successfully
 request.addEventListener('success', () => {
-  console.log('Database opened succesfully');
+  console.log('Database opened successfully');
 
   // Store the opened database object in the db variable. This is used a lot below
   db = request.result;

@@ -27,7 +27,7 @@ In this next task we're doing something a bit more complex; a full-featured vide
        width="320" height="240">
   <source src="media/video.mp4" type="video/mp4">
   <source src="media/video.webm" type="video/webm">
-  <track kind="subtitles" src="media/subtitles_en.vtt" srclang="en">
+  <track kind="subtitles" src="media/subtitles_en.vtt" srclang="en-US">
   <p>Your browser doesn't support HTML5 video. Here is a <a href="media/video.mp4">link to the video</a> instead.</p>
 </video>
 ```
@@ -53,7 +53,7 @@ The finished code would probably look like something this:
 <h1>Embedding</h1>
 
 <object data="media/mypdf.pdf" type="application/pdf"
-        width="400" height="400" typemustmatch>
+        width="400" height="400">
 </object>
 
 <hr>
