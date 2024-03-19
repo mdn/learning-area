@@ -12,7 +12,7 @@
       <option value="black">Black</option>
       <option value="purple">Purple</option>
       <option value="yellow">Yellow</option>
-      <option value="psych">Psychedelic</option>
+      <option value="psychedelic">Psychedelic</option>
     </select>
 
     <h1>This is my website</h1>
@@ -37,12 +37,14 @@
           case 'yellow':
             update('yellow','darkgray');
             break;
-          case 'psych':
+          case 'psychedelic':
             update('lime','purple');
             break;
         }
       }
 
+      select.value = 'white';
+      update('white','black');
       function update(bgColor, textColor) {
         html.style.backgroundColor = bgColor;
         html.style.color = textColor;
