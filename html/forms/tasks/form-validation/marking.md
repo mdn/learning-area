@@ -45,7 +45,7 @@ The finished markup should look something like this:
 
 Now we want you to take the same form you saw in the previous task (use your previous answer if you want to), and add some more specific pattern validation to the first three fields.
 
-1. All of the user names in our application consist of a single letter, followed by a dot, followed by three or more letters or numbers. All letters should be lowercase. This will work — `pattern="[a-z]{1}.[a-z0-9]{3,}"`.
+1. All of the user names in our application consist of a single letter, followed by a dot, followed by three or more letters or numbers. All letters should be lowercase. This will work — `pattern="[a-z]{1}\.[a-z0-9]{3,}"`.
 2. All of the email addresses for our users consist of one or more letters (lower or upper case) or numbers, followed by "@bigcorp.eu". This will work — `[a-zA-Z0-9]+@bigcorp\.eu`.
 3. Remove the length validation from the phone number field if it is present, and set it so that it accepts 10 digits — either 10 digits in a row, or a pattern of three digits, three digits, then four digits, separated by either spaces, dashes, or dots. The following with work for this — `pattern="[0-9]{10}|[0-9]{3}[-. ][0-9]{3}[-. ][0-9]{4}"` — although bear in mind that it will work if the separators are not all the same (e.g. one dot and two dashes). This is OK for the purposes of this task — you'd be unlikely to get people entering numbers like this anyway, and it would be easy to sanitize the data on the server.
 
@@ -60,7 +60,7 @@ The finished markup should look something like this:
     <li>
       <label for="uname">User name:</label>
       <input type="text" name="uname" id="uname" required
-             pattern="[a-z]{1}.[a-z0-9]{3,}">
+             pattern="[a-z]{1}\.[a-z0-9]{3,}">
     </li>
     <li>
       <label for="email">Email address:</label>
