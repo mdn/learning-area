@@ -43,11 +43,13 @@ But of course, this is terrible for semantics and accessibility. A much better s
   If you have any problems with our products, our support center can offer you
   all the help you need, whether you want:
 </p>
+
 <ul>
   <li>Advice choosing a new product</li>
   <li>Tech support on an existing product</li>
   <li>Refund and cancellation assistance</li>
 </ul>
+
 <h3>Contact us now</h3>
 
 <p>Our help center contains live chat, e-mail addresses, and phone numbers.</p>
@@ -120,14 +122,11 @@ Initially the paragraph looks like this:
 
 ```html
 <p>
-  For more information about our activities, check out our fundraising page (<a
-    href="/fundraising"
-    >click here</a
-  >), education page (<a href="/education">click here</a>), sponsorship pack (<a
-    href="/resources/sponsorship.pdf"
-    >click here</a
-  >), and assessment sheets (<a href="/resources/assessments.docx">click here</a
-  >).
+  For more information about our activities, check out our fundraising page (
+  <a href="/fundraising">click here</a>), education page (
+  <a href="/education">click here</a>), sponsorship pack (
+  <a href="/resources/sponsorship.pdf">click here</a>), and assessment sheets (
+  <a href="/resources/assessments.docx">click here</a>).
 </p>
 ```
 
