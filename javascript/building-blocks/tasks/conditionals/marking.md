@@ -12,16 +12,17 @@ To finish off, you need to add an `else if` clause to also check whether it is w
 
 The finished code should look something like this:
 
-```
-let season = 'summer';
+```js
+let season = "summer";
 let response;
 
-if (season === 'summer') {
-  response = 'It\'s probably nice and warm where you are; enjoy the sun!';
-} else if(season === 'winter') {
-  response = 'I hope you are not too cold. Put some warm clothes on!';
+if (season === "summer") {
+  response = "It's probably nice and warm where you are; enjoy the sun!";
+} else if (season === "winter") {
+  response = "I hope you are not too cold. Put some warm clothes on!";
 } else {
-  response = 'I don\'t know what the season is where you are. Hope you are well.';
+  response =
+    "I don't know what the season is where you are. Hope you are well.";
 }
 ```
 
@@ -44,27 +45,28 @@ Inside the `if` part, you need to nest an `if ... else if` structure that puts a
 
 The finished code should look something like this:
 
-```
+```js
 let response;
 let score = 75;
 let machineActive = false;
 
 if (machineActive) {
   if (score < 0 || score > 100) {
-    response = 'This is not possible, an error has occurred.';
-  } else if(score >= 0 && score < 20) {
-    response = 'That was a terrible score — total fail!';
-  } else if(score >= 20 && score < 40) {
-    response = 'You know some things, but it\'s a pretty bad score. Needs improvement.';
-  } else if(score >= 40 && score < 70) {
-    response = 'You did a passable job, not bad!';
-  } else if(score >= 70 && score < 90) {
-    response = 'That\'s a great score, you really know your stuff.';
-  } else if(score >= 90 && score <= 100) {
-    response = 'What an amazing score! Did you cheat? Are you for real?';
+    response = "This is not possible, an error has occurred.";
+  } else if (score >= 0 && score < 20) {
+    response = "That was a terrible score — total fail!";
+  } else if (score >= 20 && score < 40) {
+    response =
+      "You know some things, but it's a pretty bad score. Needs improvement.";
+  } else if (score >= 40 && score < 70) {
+    response = "You did a passable job, not bad!";
+  } else if (score >= 70 && score < 90) {
+    response = "That's a great score, you really know your stuff.";
+  } else if (score >= 90 && score <= 100) {
+    response = "What an amazing score! Did you cheat? Are you for real?";
   }
 } else {
-  response = 'The machine is turned off. Turn it on to process your score.';
+  response = "The machine is turned off. Turn it on to process your score.";
 }
 ```
 
@@ -76,17 +78,20 @@ Inside the `if` part of the structure, you need to write a ternary operator that
 
 Your solution should look something like this:
 
-```
+```js
 let machineActive = true;
-let pwd = 'cheese';
+let pwd = "cheese";
 
 let machineResult;
 let pwdResult;
 
 if (machineActive) {
-  machineResult = 'Machine is active. Trying login.'
-  pwdResult = pwd === 'cheese' ? 'Login successful.' : 'Password incorrect; login failed.'
+  machineResult = "Machine is active. Trying login.";
+  pwdResult =
+    pwd === "cheese"
+      ? "Login successful."
+      : "Password incorrect; login failed.";
 } else {
-  machineResult = 'Machine is inactive. Activate and try logging in again.';
+  machineResult = "Machine is inactive. Activate and try logging in again.";
 }
 ```

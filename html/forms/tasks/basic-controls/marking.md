@@ -8,21 +8,21 @@ This task starts you off nice and gently by asking you to create two input eleme
 
 1. Create appropriate inputs for user ID and password — you need to use appropriate `<input>` elements, with `type`s of `text` and `password` respectively. They should also have `id`s and `name`s.
 2. You should also associate them with their text labels semantically — use `<label>` elements appropriately, with `for` attributes as required.
-3. Create a submit button inside the remaining list item, with button text of "Log in". Either <button>Log in</button>, or <input type="submit" value="Log in"> will do.
+3. Create a submit button inside the remaining list item, with button text of "Log in". Either `<button>Log in</button>`, or `<input type="submit" value="Log in">` will do.
 4. Try submitting your form to see if it submits successfully (there will be no redirect, but you should see the data attached to the page URL).
 
 The finished markup should look something like this:
 
-```
+```html
 <form>
   <ul>
     <li>
       <label for="uid">User ID</label>
-      <input type="text" id="uid" name="uid">
+      <input type="text" id="uid" name="uid" />
     </li>
     <li>
       <label for="pwd">Password</label>
-      <input type="password" id="pwd" name="pwd">
+      <input type="password" id="pwd" name="pwd" />
     </li>
     <li>
       <button>Log in</button>
@@ -44,22 +44,22 @@ Note: It is usually better if you set `value` attributes explicitly on radio but
 
 The finished markup should look something like this:
 
-```
+```html
 <form>
   <fieldset>
     <legend>Who is your favorite pony?</legend>
     <ul>
       <li>
         <label for="pinkie">Pinkie Pie</label>
-        <input type="radio" id="pinkie" name="pony" value="pinkie" checked>
+        <input type="radio" id="pinkie" name="pony" value="pinkie" checked />
       </li>
       <li>
         <label for="rainbow">Rainbow Dash</label>
-        <input type="radio" id="rainbow" name="pony" value="rainbow">
+        <input type="radio" id="rainbow" name="pony" value="rainbow" />
       </li>
       <li>
         <label for="twilight">Twilight Sparkle</label>
-        <input type="radio" id="twilight" name="pony" value="twilight">
+        <input type="radio" id="twilight" name="pony" value="twilight" />
       </li>
     </ul>
   </fieldset>
@@ -68,18 +68,20 @@ The finished markup should look something like this:
     <ul>
       <li>
         <label for="vegan">Vegan</label>
-        <input type="checkbox" id="vegan" name="hotdog" value="vegan">
+        <input type="checkbox" id="vegan" name="hotdog" value="vegan" />
       </li>
       <li>
         <label for="onions">Onions</label>
-        <input type="checkbox" id="onions" name="hotdog" value="onions">
+        <input type="checkbox" id="onions" name="hotdog" value="onions" />
       </li>
       <li>
         <label for="mustard">Mustard</label>
-        <input type="checkbox" id="mustard" name="hotdog" value="mustard">
+        <input type="checkbox" id="mustard" name="hotdog" value="mustard" />
+      </li>
+
       <li>
         <label for="ketchup">Ketchup</label>
-        <input type="checkbox" id="ketchup" name="hotdog" value="ketchup">
+        <input type="checkbox" id="ketchup" name="hotdog" value="ketchup" />
       </li>
     </ul>
   </fieldset>
@@ -97,15 +99,20 @@ The final task in this set requires you to create a file picker.
 
 The finished markup should look something like this:
 
-```
+```html
 <form>
-    <ul>
-      <li>
-        <label for="gallery-img">Choose gallery images to upload</label>
-        <input type="file" id="gallery-img" name="gallery-img"
-               multiple accept="image/png, image/jpeg">
-      </li>
-    </ul>
+  <ul>
+    <li>
+      <label for="gallery-img">Choose gallery images to upload</label>
+      <input
+        type="file"
+        id="gallery-img"
+        name="gallery-img"
+        multiple
+        accept="image/png, image/jpeg"
+      />
+    </li>
+  </ul>
   <button>Submit</button>
 </form>
 ```

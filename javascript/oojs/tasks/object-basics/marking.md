@@ -8,78 +8,78 @@ Note: If there is an error in your code, it will be outputted into the results p
 
 In this task you are provided with an object literal, and your tasks are to
 
-* Store the value of the `name` property inside `catName`, using bracket notation.
-* Run the `greeting()` method using dot notation (it will log the greeting to the browser DevTools' console).
-* Update the `color` property value to `black`.
+- Store the value of the `name` property inside `catName`, using bracket notation.
+- Run the `greeting()` method using dot notation (it will log the greeting to the browser DevTools' console).
+- Update the `color` property value to `black`.
 
 The finished code should look something like this:
 
-```
+```js
 const cat = {
-  name : 'Bertie',
-  breed : 'Cymric',
-  color : 'white',
-  greeting: function() {
-    console.log('Meow!');
-  }
-}
+  name: "Bertie",
+  breed: "Cymric",
+  color: "white",
+  greeting: function () {
+    console.log("Meow!");
+  },
+};
 
-const catName = cat['name'];
+const catName = cat["name"];
 cat.greeting();
-cat.color = 'black';
+cat.color = "black";
 ```
 
 ## Task 2
 
 In our next task, we want you to have a go at creating your own object literal to represent one of your favourite bands. The required members are:
 
-* `name`: A string representing the band name.
-* `nationality`: A string representing the country the band comes from.
-* `genre`: What type of music the band plays.
-* `members`: A number representing the number of members the band has.
-* `formed`: A number representing the year the band formed.
-* `split`: A number representing the year the band split up, or `false` if they are still together.
-* `albums`: An array representing the albums released by the band. Each array item should be an object containing the following members:
-  * `name`: A string representing the name of the album.
-  * `released`: A number representing the year the album was released.
+- `name`: A string representing the band name.
+- `nationality`: A string representing the country the band comes from.
+- `genre`: What type of music the band plays.
+- `members`: A number representing the number of members the band has.
+- `formed`: A number representing the year the band formed.
+- `split`: A number representing the year the band split up, or `false` if they are still together.
+- `albums`: An array representing the albums released by the band. Each array item should be an object containing the following members:
+  - `name`: A string representing the name of the album.
+  - `released`: A number representing the year the album was released.
 
-Include at least two albums in the `albums` array.   
+Include at least two albums in the `albums` array.
 
 Once you've done this, you should then write a string to the variable `bandInfo`, which will contain a small biography detailing their name, nationality, years active, and style, and the title and release date of their first album.
 
 The finished code should look something like this:
 
-```
+```js
 let bandInfo;
 
 const band = {
-  name : 'Black Sabbath',
-  nationality : 'British',
-  genre : 'heavy metal',
-  members : 4,
-  formed : 1968,
-  split : 2017,
-  albums : [
+  name: "Black Sabbath",
+  nationality: "British",
+  genre: "heavy metal",
+  members: 4,
+  formed: 1968,
+  split: 2017,
+  albums: [
     {
-       name : 'Black Sabbath',
-       released : 1970
+      name: "Black Sabbath",
+      released: 1970,
     },
     {
-       name : 'Paranoid',
-       released : 1970
+      name: "Paranoid",
+      released: 1970,
     },
     {
-       name : 'Master of Reality',
-       released : 1971
+      name: "Master of Reality",
+      released: 1971,
     },
     {
-       name : 'Vol. 4',
-       released : 1972
-    }
-  ]
-}
+      name: "Vol. 4",
+      released: 1972,
+    },
+  ],
+};
 
-bandInfo = `The ${ band.nationality } ${ band.genre } band ${ band.name } were active ${ band.formed }–${ band.split }. Their first album, ${ band.albums[0].name }, was released in ${ band.albums[0].released }.`;
+bandInfo = `The ${band.nationality} ${band.genre} band ${band.name} were active ${band.formed}–${band.split}. Their first album, ${band.albums[0].name}, was released in ${band.albums[0].released}.`;
 ```
 
 ## Task 3
@@ -92,24 +92,24 @@ Call both `greeting()` methods to check that they log appropriate greetings to t
 
 The code should look like this:
 
-```
+```js
 const cat = {
-  name : 'Bertie',
-  breed : 'Cymric',
-  color : 'white',
-  greeting: function() {
-    console.log(`Hello, said ${ this.name } the ${ this.breed }.`);
-  }
-}
+  name: "Bertie",
+  breed: "Cymric",
+  color: "white",
+  greeting: function () {
+    console.log(`Hello, said ${this.name} the ${this.breed}.`);
+  },
+};
 
 const cat2 = {
-  name : 'Elfie',
-  breed : 'Aphrodite Giant',
-  color : 'ginger',
-  greeting: function() {
-    console.log(`Hello, said ${ this.name } the ${ this.breed }.`);
-  }
-}
+  name: "Elfie",
+  breed: "Aphrodite Giant",
+  color: "ginger",
+  greeting: function () {
+    console.log(`Hello, said ${this.name} the ${this.breed}.`);
+  },
+};
 
 cat.greeting();
 cat2.greeting();
@@ -121,18 +121,18 @@ In this task we want you to update the code from Task 3 to use a constructor for
 
 The code should look like this:
 
-```
+```js
 function Cat(name, breed, color) {
   this.name = name;
   this.breed = breed;
   this.color = color;
-  this.greeting = function() {
-    console.log(`Hello, said ${ this.name } the ${ this.breed }.`);
-  }
+  this.greeting = function () {
+    console.log(`Hello, said ${this.name} the ${this.breed}.`);
+  };
 }
 
-const cat = new Cat('Bertie', 'Cymric', 'white');
-const cat2 = new Cat('Elfie', 'Aphrodite Giant', 'ginger');
+const cat = new Cat("Bertie", "Cymric", "white");
+const cat2 = new Cat("Elfie", "Aphrodite Giant", "ginger");
 
 cat.greeting();
 cat2.greeting();

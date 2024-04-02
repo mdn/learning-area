@@ -14,25 +14,24 @@ Finally, you'll need to concatenate the two strings together, and store the resu
 
 The answer should look something like this:
 
-```
-const quoteStart = 'Don\'t judge each day by the harvest you reap ';
-const quoteEnd = 'but by the seeds that you plant.'
+```js
+const quoteStart = "Don't judge each day by the harvest you reap ";
+const quoteEnd = "but by the seeds that you plant.";
 
 const finalQuote = `${quoteStart}${quoteEnd}`;
 ```
-
 
 ## Task 2
 
 Next up, task 2 requires the student to:
 
-* Check the length of the provided string using `.length`, and store the result in a variable called `quoteLength`.
-* Find the index of the substring 'green eggs and ham' using `.indexOf` and store it in `index`.
-* Use a combination of the variables you have, `.length`, and `.slice()`, to trim down the original quote to 'I do not like green eggs and ham.', and store it in `revisedQuote`.
+- Check the length of the provided string using `.length`, and store the result in a variable called `quoteLength`.
+- Find the index of the substring 'green eggs and ham' using `.indexOf` and store it in `index`.
+- Use a combination of the variables you have, `.length`, and `.slice()`, to trim down the original quote to 'I do not like green eggs and ham.', and store it in `revisedQuote`.
 
-```
-const quote = 'I do not like green eggs and ham. I do not like them, Sam-I-Am.';
-const substring = 'green eggs and ham';
+```js
+const quote = "I do not like green eggs and ham. I do not like them, Sam-I-Am.";
+const substring = "green eggs and ham";
 
 const quoteLength = quote.length;
 
@@ -45,20 +44,20 @@ const revisedQuote = quote.slice(0, index + substring.length + 1);
 
 For our next string task, we return to our Green Eggs and Ham revised quote, which someone has messed up. You need to:
 
-* Fix the casing. The best way to do this is to put it all in lower case using `.toLowerCase()`, and then put the first letter in uppercase using `replace()`, `slice()`, and `toUpperCase()`. Store the new quote in `fixedQuote`.
-* Replace `green eggs and ham` with whatever food you really don't like using `replace()`.
-* Add a full stop to the end of the sentence using some means.
+- Fix the casing. The best way to do this is to put it all in lower case using `.toLowerCase()`, and then put the first letter in uppercase using `replace()`, `slice()`, and `toUpperCase()`. Store the new quote in `fixedQuote`.
+- Replace `green eggs and ham` with whatever food you really don't like using `replace()`.
+- Add a full stop to the end of the sentence using some means.
 
 Your code should look something like this:
 
-```
-const quote = 'I dO nOT lIke gREen eGgS anD HAM';
+```js
+const quote = "I dO nOT lIke gREen eGgS anD HAM";
 
 let fixedQuote = quote.toLowerCase();
-const firstLetter = fixedQuote.slice(0,1);
+const firstLetter = fixedQuote.slice(0, 1);
 fixedQuote = fixedQuote.replace(firstLetter, firstLetter.toUpperCase());
 
-fixedQuote = fixedQuote.replace('green eggs and ham', 'pickled onions');
+fixedQuote = fixedQuote.replace("green eggs and ham", "pickled onions");
 
 const finalQuote = `${fixedQuote}.`;
 ```
@@ -67,20 +66,22 @@ const finalQuote = `${fixedQuote}.`;
 
 Our final string task looks at your ability to use template literals. Your answer is expected to take the existing string literal, `myString`, turn it into a template literal, and include four placeholders in place of the asterisks:
 
-* The `theorem` string.
-* The value of `a`.
-* The value of `b`.
-* The length of the hypotenuse, if `a` and `b` are the lengths of the two shortest sides of a right-angled triangle. You can use pythagoras' theorem to work this out.
+- The `theorem` string.
+- The value of `a`.
+- The value of `b`.
+- The length of the hypotenuse, if `a` and `b` are the lengths of the two shortest sides of a right-angled triangle. You can use pythagoras' theorem to work this out.
 
 Your code should look something like this:
 
-```
-const theorem = 'Pythagorean theorem';
+```js
+const theorem = "Pythagorean theorem";
 
 const a = 5;
 const b = 8;
 
-const myString = `Using ${ theorem }, we can work out that that if the two shortest sides of a right-angled triangle have lengths of ${ a } and ${ b }, the length of the hypotenuse is ${ Math.sqrt((a**2) + (b**2)) }.`;
+const myString = `Using ${theorem}, we can work out that that if the two shortest sides of a right-angled triangle have lengths of ${a} and ${b}, the length of the hypotenuse is ${Math.sqrt(
+  a ** 2 + b ** 2
+)}.`;
 ```
 
 You could use a different form of the fourth placeholder, such as `Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2))` or `${ Math.sqrt((a * a) + (b * b)) }`.

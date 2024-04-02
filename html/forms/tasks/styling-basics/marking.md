@@ -12,7 +12,7 @@ Our basic form styling assessment is fairly free-form, and you have a lot of fle
 
 The finished CSS could look something like this:
 
-```
+```css
 * {
   box-sizing: border-box;
 }
@@ -31,7 +31,8 @@ input,
 select {
   font-family: inherit;
   font-size: 100%;
-  padding: 0; margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 li {
@@ -50,12 +51,15 @@ label {
   padding-right: 10px;
 }
 
-input, select {
+input,
+select {
   flex: auto;
   height: 2em;
 }
 
-input, select, button {
+input,
+select,
+button {
   display: block;
   padding: 5px 10px;
   border: 1px solid #ccc;
@@ -73,7 +77,8 @@ button {
   background: #eee;
 }
 
-button:hover, button:focus {
+button:hover,
+button:focus {
   background: #ddd;
 }
 ```

@@ -10,9 +10,18 @@ In the first task, you have to create a simple function that prints a random nam
 
 The finished code should look something like this:
 
-```
-const names = ['Chris', 'Li Kang', 'Anne', 'Francesca', 'Mustafa', 'Tina', 'Bert', 'Jada']
-const para = document.querySelector('p');
+```js
+const names = [
+  "Chris",
+  "Li Kang",
+  "Anne",
+  "Francesca",
+  "Mustafa",
+  "Tina",
+  "Bert",
+  "Jada",
+];
+const para = document.querySelector("p");
 
 function chooseName() {
   const randomNumber = Math.floor(Math.random() * names.length);
@@ -23,7 +32,6 @@ function chooseName() {
 chooseName();
 ```
 
-
 ## Task 2
 
 For our second functions-related task, you need to create a function that draws a rectangle on the provided `<canvas>`, based on five input variables — `x`, `y`, `width`, `height`, and `color`.
@@ -32,18 +40,18 @@ You'll want to clear the canvas before drawing, so that when the code is updated
 
 The finished code should look something like this:
 
-```
-const canvas = document.querySelector('canvas');
-const ctx = canvas.getContext('2d');
+```js
+const canvas = document.querySelector("canvas");
+const ctx = canvas.getContext("2d");
 
 const x = 50;
 const y = 60;
 const width = 100;
 const height = 75;
-const color = 'blue';
+const color = "blue";
 
 function drawSquare(x, y, width, height, color) {
-  ctx.fillStyle = 'white';
+  ctx.fillStyle = "white";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = color;
   ctx.fillRect(x, y, width, height);
@@ -58,11 +66,20 @@ In this task, you return to the problem posed in Task 1, with the aim of improvi
 
 1. Refactor the code that generates the random number into a separate function that takes two generic bounds that the random number should be between, and returns the result.
 2. Update the `chooseName()` function so that it makes use of the random number function, takes the array to choose from as a parameter (making it more flexible), and returns its result.
-3. Print this returned result into the paragraph.   
+3. Print this returned result into the paragraph.
 
-```
-const names = ['Chris', 'Li Kang', 'Anne', 'Francesca', 'Mustafa', 'Tina', 'Bert', 'Jada']
-const para = document.querySelector('p');
+```js
+const names = [
+  "Chris",
+  "Li Kang",
+  "Anne",
+  "Francesca",
+  "Mustafa",
+  "Tina",
+  "Bert",
+  "Jada",
+];
+const para = document.querySelector("p");
 
 function random(min, max) {
   const num = Math.floor(Math.random() * (max - min)) + min;
@@ -83,10 +100,19 @@ In this task, you are asked to change the named `isShort()` function into an arr
 
 The finished code should look something like this:
 
-```
-const names = ['Chris', 'Li Kang', 'Anne', 'Francesca', 'Mustafa', 'Tina', 'Bert', 'Jada']
-const para = document.createElement('p');
+```js
+const names = [
+  "Chris",
+  "Li Kang",
+  "Anne",
+  "Francesca",
+  "Mustafa",
+  "Tina",
+  "Bert",
+  "Jada",
+];
+const para = document.createElement("p");
 
-const shortNames = names.filter(name => name.length < 5);
+const shortNames = names.filter((name) => name.length < 5);
 para.textContent = shortNames;
 ```

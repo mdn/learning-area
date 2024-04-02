@@ -12,18 +12,18 @@ The only task in this test your skills assessment looks at your knowledge of sim
 
 The finished markup should look something like this:
 
-```
+```html
 <form>
   <fieldset>
     <legend>Personal details</legend>
     <ul>
       <li>
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name">
+        <input type="text" id="name" name="name" />
       </li>
       <li>
         <label for="age">Age:</label>
-        <input type="number" id="age" name="age">
+        <input type="number" id="age" name="age" />
       </li>
     </ul>
   </fieldset>
@@ -32,11 +32,11 @@ The finished markup should look something like this:
     <ul>
       <li>
         <label for="comment">Comment:</label>
-        <input type="text" id="comment" name="comment">
+        <input type="text" id="comment" name="comment" />
       </li>
       <li>
         <label for="email">Email (include if you want a reply):</label>
-        <input type="email" id="email" name="email">
+        <input type="email" id="email" name="email" />
       </li>
     </ul>
   </fieldset>

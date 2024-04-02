@@ -12,7 +12,7 @@ Finally, you need to write a calculation that checks whether this number is even
 
 The answer should look something like this:
 
-```
+```js
 const number1 = 4;
 const number2 = 8;
 const number3 = 12;
@@ -28,8 +28,6 @@ evenOddResult = finalResult % 2;
 
 This task also tests your variable naming abilities. An extra mark if the variables have sensible names that follow best practices (lower camel case, descriptive, not too long).
 
-
-
 ## Task 2
 
 In our second task for this article we need to consider operator precedence and use parentheses to make the first two calculations give the result we were expecting.
@@ -42,7 +40,7 @@ Finally, using `typeof` we can test if a variable contains a string. We need to 
 
 The result should look something like this:
 
-```
+```js
 let result = (7 + 13) / (9 + 7);
 let result2 = 100 / (2 * 6);
 
@@ -61,7 +59,7 @@ The test results should be stored inside variables called `weightComparison`, `h
 
 Your code should look something like this:
 
-```
+```js
 const weightComparison = eleWeight < mouseWeight;
 
 const heightComparison = ostrichHeight > duckHeight;

@@ -4,11 +4,11 @@ The aim of these tasks is to demonstrate an understanding of the techniques cove
 
 ## Task 1
 
-In our first ARIA task, we present you with a section of non-semantic markup, which is obviously meant to be a list. Assuming you are not able to change the elements used, how can you allow screenreader users to recognize this as a list? 
+In our first ARIA task, we present you with a section of non-semantic markup, which is obviously meant to be a list. Assuming you are not able to change the elements used, how can you allow screenreader users to recognize this as a list?
 
 The `list` and `listitem` roles are what you need here. The updated markup would look like so:
 
-```
+```html
 <div role="list">
   <div role="listitem">Pig</div>
   <div role="listitem">Gazelle</div>
@@ -32,21 +32,23 @@ Answers:
 
 The finished HTML should look something like this:
 
-```
+```html
 <form role="search">
-  <input type="search" name="search"
-    aria-label="Search for your favorite content on our site">
+  <input
+    type="search"
+    name="search"
+    aria-label="Search for your favorite content on our site"
+  />
 </form>
 ```
 
 ## Task 3
-For this final WAI-ARIA task, we return to an example we previously saw in the [CSS and JavaScript skilltest](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/CSS_and_JavaScript/Test_your_skills:_CSS_and_JavaScript_accessibility). As before, we have a simple app that presents a list of animal names. Clicking one of the animal names causes a further description of that animal to appear in a box below the list. Here, we are starting with a mouse- and keyboard-accessible version.  
+
+For this final WAI-ARIA task, we return to an example we previously saw in the [CSS and JavaScript skilltest](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/CSS_and_JavaScript/Test_your_skills:_CSS_and_JavaScript_accessibility). As before, we have a simple app that presents a list of animal names. Clicking one of the animal names causes a further description of that animal to appear in a box below the list. Here, we are starting with a mouse- and keyboard-accessible version.
 
 The problem we have now is that when the DOM changes to show a new description, screenreaders cannot see what has changed. Can you update it so that description changes are announced by the screenreader?
 
 There are two ways to solve this:
 
-* Add an `aria-live=""` attribute to the animal-description `<div>` to turn it into a live region, so when its content changes, the updated content will be read out by a screenreader. The best value is probably `assertive`, which makes the screenreader read out the updated content as soon as it changed. `polite` means that the screenreader will wait until other descriptions have finished before it starts reading out the changed content.
-* Add a `role="alert"` attribute to the animal-description `<div>`, to make it have alert box semantics. This has the same effect on the screenreader as setting `aria-live="assertive"` on it.
-
-
+- Add an `aria-live=""` attribute to the animal-description `<div>` to turn it into a live region, so when its content changes, the updated content will be read out by a screenreader. The best value is probably `assertive`, which makes the screenreader read out the updated content as soon as it changed. `polite` means that the screenreader will wait until other descriptions have finished before it starts reading out the changed content.
+- Add a `role="alert"` attribute to the animal-description `<div>`, to make it have alert box semantics. This has the same effect on the screenreader as setting `aria-live="assertive"` on it.

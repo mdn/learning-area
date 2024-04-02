@@ -9,15 +9,15 @@ Note: If there is an error in your code, it will be outputted into the results p
 In this task we provide you with a `Shape` class containing only some data properties.
 
 We want you to:
-* add a constructor
-* define a `calcPerimeter()` method
-* create two instances of the class, a square and a triangle, and call their `calcPerimeter()` methods
+
+- add a constructor
+- define a `calcPerimeter()` method
+- create two instances of the class, a square and a triangle, and call their `calcPerimeter()` methods
 
 Your code should look something like this:
 
-```
+```js
 class Shape {
-
   name;
   sides;
   sideLength;
@@ -29,15 +29,16 @@ class Shape {
   }
 
   calcPerimeter() {
-    console.log(`The ${ this.name }'s perimeter length is ${ this.sides * this.sideLength }.`);
+    console.log(
+      `The ${this.name}'s perimeter length is ${this.sides * this.sideLength}.`
+    );
   }
-
 }
 
-const square = new Shape('square', 4, 5);
+const square = new Shape("square", 4, 5);
 square.calcPerimeter();
 
-const triangle = new Shape('triangle', 3, 3);
+const triangle = new Shape("triangle", 3, 3);
 triangle.calcPerimeter();
 ```
 
@@ -51,9 +52,8 @@ Create an instance of the `Square` called square with appropriate property value
 
 Your code should look something like this:
 
-```
+```js
 class Shape {
-
   name;
   sides;
   sideLength;
@@ -65,21 +65,22 @@ class Shape {
   }
 
   calcPerimeter() {
-    console.log(`The ${ this.name }'s perimeter length is ${ this.sides * this.sideLength }.`);
+    console.log(
+      `The ${this.name}'s perimeter length is ${this.sides * this.sideLength}.`
+    );
   }
-
 }
 
 class Square extends Shape {
-
   constructor(sideLength) {
-    super('square', 4, sideLength);
+    super("square", 4, sideLength);
   }
 
   calcArea() {
-    console.log(`The ${ this.name }'s area is ${ this.sideLength * this.sideLength } squared.`);
+    console.log(
+      `The ${this.name}'s area is ${this.sideLength * this.sideLength} squared.`
+    );
   }
-
 }
 
 const square = new Square(4);

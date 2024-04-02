@@ -8,13 +8,13 @@ Note: If there is an error in your code, it will be outputted into the results p
 
 This task covers basic understanding of declaring a variable with a value, and initializing it — both separately and at the same time. Ideally your code should look something like this:
 
-```
+```js
 let myName;
-myName = 'Chris';
+myName = "Chris";
 let myAge = 42;
 ```
 
-`let` is ideal for both declarations. `const` is not really appropriate, as such values might change, and it won't work in the first instance.  `var` is not OK.
+`let` is ideal for both declarations. `const` is not really appropriate, as such values might change, and it won't work in the first instance. `var` is not OK.
 
 The `myAge` value will work whether you've initialised it with a numeric (no quotes) or string (quotes) value, however it is a numeric value, so using quotes for it isn't correct.
 
@@ -24,9 +24,9 @@ In task 2 the student needs to add a new line to correct the `myName` variable v
 
 The finished code should look something like this:
 
-```
-let myName = 'Paul';
-myName = 'Chris';
+```js
+let myName = "Paul";
+myName = "Chris";
 ```
 
 ## Task 3
@@ -38,9 +38,9 @@ The last task in this article focuses around fixing some variable-related errors
 
 The solution should look something like this:
 
-```
-let myName = 'Default';
-myName = 'Chris'
+```js
+let myName = "Default";
+myName = "Chris";
 
 let myAge = 42;
 ```

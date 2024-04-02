@@ -8,36 +8,41 @@ In this task we will test your understanding of text semantics, and why they are
 
 The given text is a simple information panel with action buttons:
 
-```
-<font size="7">Need help?</font>
-<br><br>
-If you have any problems with our products, our  support center can offer you all the help you need, whether you want:
-<br><br>
+```html
+<font size="7">Need help?</font> <br /><br />
+If you have any problems with our products, our support center can offer you all
+the help you need, whether you want:
+<br /><br />
 1. Advice choosing a new product
-<br>
+<br />
 2. Tech support on an existing product
-<br>
+<br />
 3. Refund and cancellation assistance
-<br><br>
+<br /><br />
 <font size="5">Contact us now</font>
-<br><br>
+<br /><br />
 Our help center contains live chat, e-mail addresses, and phone numbers.
-<br><br>
+<br /><br />
 <div class="button">Find Contact Details</div>
-<br><br>
+<br /><br />
 <font size="5">Find out answers</font>
-<br><br>
-Our Forums section contains a large knowledge base of searchable previously asked questions, and you can always ask a new question if you can't find the answer you're looking for.
-<br><br>
+<br /><br />
+Our Forums section contains a large knowledge base of searchable previously
+asked questions, and you can always ask a new question if you can't find the
+answer you're looking for.
+<br /><br />
 <div class="button">Access forums</div>
 ```
 
 But of course, this is terrible for semantics and accessibility. A much better set of markup would look like so:
 
-```
+```html
 <h2>Need help?</h2>
 
-<p>If you have any problems with our products, our  support center can offer you all the help you need, whether you want:</p>
+<p>
+  If you have any problems with our products, our support center can offer you
+  all the help you need, whether you want:
+</p>
 <ul>
   <li>Advice choosing a new product</li>
   <li>Tech support on an existing product</li>
@@ -51,7 +56,11 @@ But of course, this is terrible for semantics and accessibility. A much better s
 
 <h3>Find out answers</h3>
 
-<p>Our Forums section contains a large knowledge base of searchable previously asked questions, and you can always ask a new question if you can't find the answer you're looking for.</p>
+<p>
+  Our Forums section contains a large knowledge base of searchable previously
+  asked questions, and you can always ask a new question if you can't find the
+  answer you're looking for.
+</p>
 
 <button>Access forums</button>
 ```
@@ -62,6 +71,7 @@ You can get a couple of extra marks for:
 2. Using an unordered list, not an ordered list — the list of items doesn't really need to be in any order.
 
 ## Task 2
+
 In the second task, you have a form containing three input fields. You need to:
 
 1. Semantically associate the input with their labels.
@@ -76,29 +86,29 @@ This is fairly simple, especially if you have previously worked through our [Web
 
 Your answer should end up looking something like this:
 
-```
+```html
 <form>
   <fieldset>
-  <legend>Personal data</legend>
+    <legend>Personal data</legend>
     <ul>
       <li>
         <label for="name">Name</label>
-        <input type="text" name="name" id="name">
+        <input type="text" name="name" id="name" />
       </li>
       <li>
         <label for="age">Age</label>
-        <input type="number" name="age" id="age">
+        <input type="number" name="age" id="age" />
       </li>
       <li>
         <label for="email">Email address</label>
-        <input type="email" name="email" id="email">
+        <input type="email" name="email" id="email" />
       </li>
     </ul>
   </fieldset>
 </form>
 ```
 
-# Task 3
+## Task 3
 
 In this task you are required to turn all the information links in the paragraph into good, accessible links.
 
@@ -108,14 +118,29 @@ In this task you are required to turn all the information links in the paragraph
 
 Initially the paragraph looks like this:
 
-```
-<p>For more information about our activities, check out our fundraising page (<a href="/fundraising">click here</a>), education page (<a href="/education">click here</a>), sponsorship pack (<a href="/resources/sponsorship.pdf">click here</a>), and assessment sheets (<a href="/resources/assessments.docx">click here</a>).</p>
+```html
+<p>
+  For more information about our activities, check out our fundraising page (<a
+    href="/fundraising"
+    >click here</a
+  >), education page (<a href="/education">click here</a>), sponsorship pack (<a
+    href="/resources/sponsorship.pdf"
+    >click here</a
+  >), and assessment sheets (<a href="/resources/assessments.docx">click here</a
+  >).
+</p>
 ```
 
 But you should update it to something like this:
 
-```
-<p>For more information about our activities, check out our <a href="/fundraising">fundraising page</a>, <a href="/education">education page</a>, <a href="/resources/sponsorship.pdf">sponsorship pack (PDF, 8MB)</a>, and <a href="/resources/assessments.docx">assessment sheets (Word document)</a>.</p>
+```html
+<p>
+  For more information about our activities, check out our
+  <a href="/fundraising">fundraising page</a>,
+  <a href="/education">education page</a>,
+  <a href="/resources/sponsorship.pdf">sponsorship pack (PDF, 8MB)</a>, and
+  <a href="/resources/assessments.docx">assessment sheets (Word document)</a>.
+</p>
 ```
 
 ## Task 4
@@ -127,31 +152,37 @@ In our final HTML accessibility task, you are given a simple image gallery, whic
 
 So, on to the answers:
 
-1. The header image is decorative, so doesn't really need alt text. The best solution if you are going to use decorative HTML images is to put `alt=""`, so a screenreader will just read out nothing — rather than a description, or the image file name. It is not part of the content. 
+1. The header image is decorative, so doesn't really need alt text. The best solution if you are going to use decorative HTML images is to put `alt=""`, so a screenreader will just read out nothing — rather than a description, or the image file name. It is not part of the content.
 2. The gallery images need alt text, and they are part of the content. The updated HTML could look something like this:
 
-```
-<header>
-  <img src="images/star.png" alt="">
-  <h1>Groovy images</h1>
-</header>
-<main>
-  <img src="images/teapot.jpg" alt="a black teapot placed on a shelf just inside a window">
-  <img src="images/football.jpg" alt="A black and white round panelled ball">
-</main>
-```
+   ```html
+   <header>
+     <img src="images/star.png" alt="" />
+     <h1>Groovy images</h1>
+   </header>
+   <main>
+     <img
+       src="images/teapot.jpg"
+       alt="a black teapot placed on a shelf just inside a window"
+     />
+     <img
+       src="images/football.jpg"
+       alt="A black and white round panelled ball"
+     />
+   </main>
+   ```
 
 3. It would be arguable better to implement the background header image using CSS background images. To do this, you would remove the following line:
 
-```
-<img src="images/star.png" alt="A star that I use to decorate my page">
-```
+   ```html
+   <img src="images/star.png" alt="A star that I use to decorate my page" />
+   ```
 
-And add in a CSS rule along these lines:
+   And add in a CSS rule along these lines:
 
-```
-h1 {
-  background: url(images/star.png) no-repeat left;
-  padding-left: 50px;
-}
-```
+   ```css
+   h1 {
+     background: url(images/star.png) no-repeat left;
+     padding-left: 50px;
+   }
+   ```
