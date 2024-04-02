@@ -41,19 +41,19 @@ The finished list code should look like this:
 
 <ul>
   <li>
-    <a href="blue/blue-whale.jpg" target="_blank"
-      >Link me to the blue whale image</a
-    >
+    <a href="blue/blue-whale.jpg" target="_blank">
+      Link me to the blue whale image
+    </a>
   </li>
   <li>
-    <a href="../narwhal/narwhal.png" target="_blank"
-      >Link me to the narwhal image</a
-    >
+    <a href="../narwhal/narwhal.png" target="_blank">
+      Link me to the narwhal image
+    </a>
   </li>
   <li>
-    <a href="https://www.google.co.uk/imghp" target="_blank"
-      >Link me to Google image search</a
-    >
+    <a href="https://www.google.co.uk/imghp" target="_blank">
+      Link me to Google image search
+    </a>
   </li>
   <li>
     <a href="#bottom">Link me to the paragraph at the bottom of the page</a>
