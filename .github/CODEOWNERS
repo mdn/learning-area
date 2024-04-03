@@ -1,0 +1,9 @@
+# This file is used to request PR reviews from the appropriate team.
+#
+# Order is important; the last matching pattern takes precedence.
+# Each rule is more specific than the previous rules.
+# For more information, see:
+# https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/about-code-owners
+
+# Default
+* @mdn/core-yari-content
