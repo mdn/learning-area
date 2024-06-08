@@ -101,10 +101,28 @@ ctx.fillRect(10, 10, x, y);
     let code = textarea.value;
 
     function drawCanvas() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      eval(textarea.value);
-      para.textContent = `The rectangle is ${x}px wide and ${y}px high.`;
-    }
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const lines = textarea.value.split('\n');
+
+  // Find the lines that assign values to x and y
+  const xLine = lines.find(line => line.trim().startsWith('x ='));
+  const yLine = lines.find(line => line.trim().startsWith('y ='));
+
+  if (xLine && yLine) {
+    const x = eval(xLine.split('=')[1].trim());
+    const y = eval(yLine.split('=')[1].trim());
+
+    ctx.fillStyle = 'green';
+    ctx.fillRect(10, 10, x, y);
+
+    // Update the text content of the <p> element
+    para.textContent = `The rectangle is ${x}px wide and ${y}px high.`;
+  } else {
+    // Handle the case when x or y is not assigned
+    para.textContent = 'The rectangle is not defined.';
+  }
+}
+
 
     reset.addEventListener('click', function() {
       textarea.value = code; drawCanvas();
