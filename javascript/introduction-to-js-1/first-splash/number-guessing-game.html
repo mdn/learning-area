@@ -61,7 +61,7 @@
           guesses.textContent = 'Previous guesses: ';
         }
 
-        guesses.textContent += userGuess + ' ';
+        guesses.textContent = `${guesses.textContent} ${userGuess}`;
 
         if (userGuess === randomNumber) {
           lastResult.textContent = 'Congratulations! You got it right!';
