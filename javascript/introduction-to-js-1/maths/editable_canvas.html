@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
     <title>Editable canvas example</title>
     <style>
       html {
@@ -27,10 +27,10 @@
 
       textarea {
         height: 150px;
-        background-color: #F4F7F8;
+        background-color: #f4f7f8;
         border: none;
-        border-left: 6px solid #558ABB;
-        color: #4D4E53;
+        border-left: 6px solid #558abb;
+        color: #4d4e53;
         width: 90%;
         max-width: 700px;
         padding: 10px 10px 0px;
@@ -45,12 +45,12 @@
 
       canvas {
         background: white;
-        border: 1px solid #4D4E53;
+        border: 1px solid #4d4e53;
         border-radius: 2px;
       }
-      
+
       li {
-          padding-bottom:0.5em;
+        padding-bottom: 0.5em;
       }
     </style>
   </head>
@@ -62,10 +62,11 @@
     <p>The rectangle is 50px wide and 50px high.</p>
 
     <h2>Editable code</h2>
-    <p class="a11y-label">Press Esc to move focus away from the code area (Tab inserts a tab character).</p>
-    <textarea id="code" class="playable-code" style="height: 150px;width: 95%">
-let x = 50; let y = 50;
-
+    <p class="a11y-label">
+      Press Esc to move focus away from the code area (Tab inserts a tab
+      character).
+    </p>
+    <textarea id="code" class="playable-code" style="height: 150px; width: 95%">
 // Edit the two lines below here ONLY
 x = 50;
 y = 50;
@@ -77,68 +78,95 @@ ctx.fillRect(10, 10, x, y);
     <div class="playable-buttons">
       <input id="reset" type="button" value="Reset" />
     </div>
-    
     <div>
-        <p>Let's try the following:</p>
-        <ol>
-            <li>Change the line that calculates x so the box is still 50px wide, but the 50 is calculated using the numbers 43 and 7 and an arithmetic operator.</li>
-            <li>Change the line that calculates y so the box is 75px high, but the 75 is calculated using the numbers 25 and 3 and an arithmetic operator.</li>
-            <li>Change the line that calculates x so the box is 250px wide, but the 250 is calculated using two numbers and the remainder (modulo) operator.</li>
-            <li>Change the line that calculates y so the box is 150px high, but the 150 is calculated using three numbers and the subtraction and division operators.</li>
-            <li>Change the line that calculates x so the box is 200px wide, but the 200 is calculated using the number 4 and an assignment operator.</li>
-            <li>Change the line that calculates y so the box is 200px high, but the 200 is calculated using the numbers 50 and 3, the multiplication operator, and the addition assignment operator.</li>
-        <ol>
+      <p>Let's try the following:</p>
+      <ol>
+        <li>
+          Change the line that calculates x so the box is still 50px wide, but
+          the 50 is calculated using the numbers 43 and 7 and an arithmetic
+          operator.
+        </li>
+        <li>
+          Change the line that calculates y so the box is 75px high, but the 75
+          is calculated using the numbers 25 and 3 and an arithmetic operator.
+        </li>
+        <li>
+          Change the line that calculates x so the box is 250px wide, but the
+          250 is calculated using two numbers and the remainder (modulo)
+          operator.
+        </li>
+        <li>
+          Change the line that calculates y so the box is 150px high, but the
+          150 is calculated using three numbers and the subtraction and division
+          operators.
+        </li>
+        <li>
+          Change the line that calculates x so the box is 200px wide, but the
+          200 is calculated using the number 4 and an assignment operator.
+        </li>
+        <li>
+          Change the line that calculates y so the box is 200px high, but the
+          200 is calculated using the numbers 50 and 3, the multiplication
+          operator, and the addition assignment operator.
+        </li>
+      </ol>
     </div>
+
+    <script>
+      const canvas = document.getElementById("canvas");
+      const para = document.querySelector("p");
+      const ctx = canvas.getContext("2d");
+      const textarea = document.getElementById("code");
+      const reset = document.getElementById("reset");
+      const edit = document.getElementById("edit");
+      let code = textarea.value;
+      let x = 50;
+      let y = 50;
+
+      function drawCanvas() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        eval(textarea.value);
+        para.textContent = `The rectangle is ${x}px wide and ${y}px high.`;
+      }
+
+      reset.addEventListener("click", function () {
+        textarea.value = code;
+        drawCanvas();
+      });
+
+      textarea.addEventListener("input", drawCanvas);
+      window.addEventListener("load", drawCanvas);
+
+      // stop tab key tabbing out of textarea and
+      // make it write a tab at the caret position instead
+
+      textarea.onkeydown = function (e) {
+        if (e.keyCode === 9) {
+          e.preventDefault();
+          insertAtCaret("\t");
+        }
+
+        if (e.keyCode === 27) {
+          textarea.blur();
+        }
+      };
+
+      function insertAtCaret(text) {
+        const scrollPos = textarea.scrollTop;
+        const caretPos = textarea.selectionStart;
+        const front = textarea.value.substring(0, caretPos);
+        const back = textarea.value.substring(
+          textarea.selectionEnd,
+          textarea.value.length
+        );
+
+        textarea.value = front + text + back;
+        caretPos = caretPos + text.length;
+        textarea.selectionStart = caretPos;
+        textarea.selectionEnd = caretPos;
+        textarea.focus();
+        textarea.scrollTop = scrollPos;
+      }
+    </script>
   </body>
-
-  <script>
-    const canvas = document.getElementById('canvas');
-    const para = document.querySelector('p');
-    const ctx = canvas.getContext('2d');
-    const textarea = document.getElementById('code');
-    const reset = document.getElementById('reset');
-    const edit = document.getElementById('edit');
-    let code = textarea.value;
-
-    function drawCanvas() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      eval(textarea.value);
-      para.textContent = `The rectangle is ${x}px wide and ${y}px high.`;
-    }
-
-    reset.addEventListener('click', function() {
-      textarea.value = code; drawCanvas();
-    });
-
-    textarea.addEventListener('input', drawCanvas);
-    window.addEventListener('load', drawCanvas);
-
-    // stop tab key tabbing out of textarea and
-    // make it write a tab at the caret position instead
-
-    textarea.onkeydown = function(e){
-      if (e.keyCode === 9) {
-        e.preventDefault();
-        insertAtCaret('\t');
-      }
-
-      if (e.keyCode === 27) {
-        textarea.blur();
-      }
-    };
-
-    function insertAtCaret(text) {
-      const scrollPos = textarea.scrollTop;
-      const caretPos = textarea.selectionStart;
-      const front = (textarea.value).substring(0, caretPos);
-      const back = (textarea.value).substring(textarea.selectionEnd, textarea.value.length);
-
-      textarea.value = front + text + back;
-      caretPos = caretPos + text.length;
-      textarea.selectionStart = caretPos;
-      textarea.selectionEnd = caretPos;
-      textarea.focus();
-      textarea.scrollTop = scrollPos;
-    }
-  </script>
 </html>
