@@ -9,41 +9,36 @@
 
   <body>
     <section class="info-box">
-      <ul>
-        <li>
-          <button
-            id="tab-1"
-            type="button"
-            role="tab"
-            aria-selected="true"
-            aria-controls="tabpanel-1"
-          >
-            Tab 1
-          </button>
-        </li>
-        <li>
-          <button
-            id="tab-2"
-            type="button"
-            role="tab"
-            aria-selected="false"
-            aria-controls="tabpanel-2"
-          >
-            Tab 2
-          </button>
-        </li>
-        <li>
-          <button
-            id="tab-3"
-            type="button"
-            role="tab"
-            aria-selected="false"
-            aria-controls="tabpanel-3"
-          >
-            Tab 3
-          </button>
-        </li>
-      </ul>
+      <div role="tablist" class="manual">
+        <button
+          id="tab-1"
+          type="button"
+          role="tab"
+          aria-selected="true"
+          aria-controls="tabpanel-1"
+        >
+          <span>Tab 1</span>
+        </button>
+
+        <button
+          id="tab-2"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          aria-controls="tabpanel-2"
+        >
+          <span>Tab 2</span>
+        </button>
+        <button
+          id="tab-3"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          aria-controls="tabpanel-3"
+        >
+          <span>Tab 3</span>
+        </button>
+      </div>
 
       <div class="panels">
         <article id="tabpanel-1" role="tabpanel" aria-labelledby="tab-1">
@@ -59,12 +54,7 @@
           </p>
         </article>
 
-        <article
-          id="tabpanel-2"
-          role="tabpanel"
-          aria-labelledby="tab-2"
-          class="hidden"
-        >
+        <article id="tabpanel-2" role="tabpanel" aria-labelledby="tab-2">
           <h2>The second tab</h2>
           <p>
             This tab hasn't got any Lorem Ipsum in it. But the content isn't
@@ -72,12 +62,7 @@
           </p>
         </article>
 
-        <article
-          id="tabpanel-3"
-          role="tabpanel"
-          aria-labelledby="tab-3"
-          class="hidden"
-        >
+        <article id="tabpanel-3" role="tabpanel" aria-labelledby="tab-3">
           <h2>The third tab</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -93,6 +78,6 @@
       </div>
     </section>
 
-    <script></script>
+    <script src="tabs-manual.js"></script>
   </body>
 </html>
