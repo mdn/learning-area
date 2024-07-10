@@ -87,8 +87,8 @@ class TabsManual {
   /* EVENT HANDLERS */
 
   onKeydown(event) {
-    const tgt = event.currentTarget,
-      flag = false;
+    const tgt = event.currentTarget;
+    let flag = false;
 
     switch (event.key) {
       case "ArrowLeft":

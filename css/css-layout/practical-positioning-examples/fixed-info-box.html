@@ -37,15 +37,12 @@
       }
 
       .info-box [role="tab"] {
-        display: inline-block;
-        padding: 0 1rem 0 1rem;
-        text-decoration: none;
-        line-height: 3rem;
-        background: white;
-        color: #b60000;
-        text-align: center;
-        font-weight: bold;
         border: none;
+        background: white;
+        padding: 0 1rem 0 1rem;
+        line-height: 3rem;
+        color: #b60000;
+        font-weight: bold;
         outline: none;
       }
 
@@ -64,9 +61,9 @@
       /* styling info-box panels */
 
       .info-box .panels {
+        height: 352px;
         clear: both;
         position: relative;
-        height: 352px;
       }
 
       .info-box [role="tabpanel"] {
@@ -91,6 +88,10 @@
         padding: 10px;
         height: 2000px;
         margin-left: 470px;
+      }
+
+      .fake-content p {
+        margin-bottom: 200px;
       }
     </style>
   </head>
@@ -138,8 +139,7 @@
           type="button"
           role="tab"
           aria-selected="true"
-          aria-controls="tabpanel-1"
-        >
+          aria-controls="tabpanel-1">
           <span>Tab 1</span>
         </button>
 
@@ -148,8 +148,7 @@
           type="button"
           role="tab"
           aria-selected="false"
-          aria-controls="tabpanel-2"
-        >
+          aria-controls="tabpanel-2">
           <span>Tab 2</span>
         </button>
         <button
@@ -157,8 +156,7 @@
           type="button"
           role="tab"
           aria-selected="false"
-          aria-controls="tabpanel-3"
-        >
+          aria-controls="tabpanel-3">
           <span>Tab 3</span>
         </button>
       </div>
