@@ -29,64 +29,55 @@
         top: 0;
       }
 
-      /* styling info-box list */
-
-      .info-box ul {
-        border: 1px solid #b60000;
-        overflow: hidden;
-        height: 50px;
-        margin: 0;
-        padding: 0;
-      }
-
-      .info-box li {
-        float: left;
-        list-style-type: none;
-        width: 150px;
-      }
-
-      .info-box li a {
-        display: inline-block;
-        text-decoration: none;
-        width: 100%;
-        line-height: 3;
-        background: white;
-        color: #b60000;
-        text-align: center;
-        font-weight: bold;
-      }
-
-      .info-box li a:focus,
-      li a:hover {
-        background-color: #b60000;
-        color: white;
-      }
-
-      .info-box li a.active-tab {
-        background-color: #b60000;
-        color: white;
-      }
-
       /* styling info-box tabs */
 
-      .info-box .panels {
-        clear: both;
-        position: relative;
-        height: 352px;
+      .info-box [role="tablist"] {
+        min-width: 100%;
+        display: flex;
       }
 
-      .info-box article {
+      .info-box [role="tab"] {
+        border: none;
+        background: white;
+        padding: 0 1rem 0 1rem;
+        line-height: 3rem;
+        color: #b60000;
+        font-weight: bold;
+        outline: none;
+      }
+
+      .info-box [role="tab"]:focus span,
+      .info-box [role="tab"]:hover span {
+        outline: 1px solid blue;
+        outline-offset: 6px;
+        border-radius: 4px;
+      }
+
+      .info-box [role="tab"][aria-selected="true"] {
+        background-color: #b60000;
+        color: white;
+      }
+
+      /* styling info-box panels */
+
+      .info-box .panels {
+        height: 352px;
+        clear: both;
+        position: relative;
+      }
+
+      .info-box [role="tabpanel"] {
         background-color: #b60000;
         color: white;
         position: absolute;
-        padding: 10px 20px;
+        padding: 0.8rem 1.2rem;
         height: 352px;
         top: 0;
         left: 0;
       }
 
-      .info-box .active-panel {
-        z-index: 1;
+      .info-box [role="tabpanel"].is-hidden {
+        display: none;
       }
 
       /* Styling our fake content */
@@ -97,6 +88,10 @@
         padding: 10px;
         height: 2000px;
         margin-left: 470px;
+      }
+
+      .fake-content p {
+        margin-bottom: 200px;
       }
     </style>
   </head>
@@ -138,15 +133,37 @@
     </section>
 
     <section class="info-box">
-      <ul>
-        <li><a href="#" class="active-tab">Tab 1</a></li>
-        <li><a href="#">Tab 2</a></li>
-        <li><a href="#">Tab 3</a></li>
-      </ul>
-      <div class="panels">
-        <article class="active-panel">
-          <h2>The first tab</h2>
+      <div role="tablist" class="manual">
+        <button
+          id="tab-1"
+          type="button"
+          role="tab"
+          aria-selected="true"
+          aria-controls="tabpanel-1">
+          <span>Tab 1</span>
+        </button>
 
+        <button
+          id="tab-2"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          aria-controls="tabpanel-2">
+          <span>Tab 2</span>
+        </button>
+        <button
+          id="tab-3"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          aria-controls="tabpanel-3">
+          <span>Tab 3</span>
+        </button>
+      </div>
+
+      <div class="panels">
+        <article id="tabpanel-1" role="tabpanel" aria-labelledby="tab-1">
+          <h2>The first tab</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             Pellentesque turpis nibh, porttitor nec venenatis eu, pulvinar in
@@ -157,23 +174,22 @@
             at sem. Aliquam ut porttitor urna. Nulla facilisi.
           </p>
         </article>
-        <article>
-          <h2>The second tab</h2>
 
+        <article id="tabpanel-2" role="tabpanel" aria-labelledby="tab-2">
+          <h2>The second tab</h2>
           <p>
             This tab hasn't got any Lorem Ipsum in it. But the content isn't
             very exciting all the same.
           </p>
         </article>
-        <article>
-          <h2>The third tab</h2>
 
+        <article id="tabpanel-3" role="tabpanel" aria-labelledby="tab-3">
+          <h2>The third tab</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             Pellentesque turpis nibh, porttitor nec venenatis eu, pulvinar in
             augue. And now an ordered list: how exciting!
           </p>
-
           <ol>
             <li>dui neque eleifend lorem, a auctor libero turpis at sem.</li>
             <li>Aliquam ut porttitor urna.</li>
@@ -183,30 +199,6 @@
       </div>
     </section>
 
-    <script>
-      var tabs = document.querySelectorAll(".info-box li a");
-      var panels = document.querySelectorAll(".info-box article");
-
-      for (i = 0; i < tabs.length; i++) {
-        var tab = tabs[i];
-        setTabHandler(tab, i);
-      }
-
-      function setTabHandler(tab, tabPos) {
-        tab.onclick = function () {
-          for (i = 0; i < tabs.length; i++) {
-            tabs[i].className = "";
-          }
-
-          tab.className = "active-tab";
-
-          for (i = 0; i < panels.length; i++) {
-            panels[i].className = "";
-          }
-
-          panels[tabPos].className = "active-panel";
-        };
-      }
-    </script>
+    <script src="tabs-manual.js"></script>
   </body>
 </html>

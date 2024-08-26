@@ -6,17 +6,40 @@
     <title>Tabbed info box</title>
     <style></style>
   </head>
+
   <body>
     <section class="info-box">
-      <ul>
-        <li><a href="#" class="active-tab">Tab 1</a></li>
-        <li><a href="#">Tab 2</a></li>
-        <li><a href="#">Tab 3</a></li>
-      </ul>
-      <div class="panels">
-        <article class="active-panel">
-          <h2>The first tab</h2>
+      <div role="tablist" class="manual">
+        <button
+          id="tab-1"
+          type="button"
+          role="tab"
+          aria-selected="true"
+          aria-controls="tabpanel-1">
+          <span>Tab 1</span>
+        </button>
 
+        <button
+          id="tab-2"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          aria-controls="tabpanel-2">
+          <span>Tab 2</span>
+        </button>
+        <button
+          id="tab-3"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          aria-controls="tabpanel-3">
+          <span>Tab 3</span>
+        </button>
+      </div>
+
+      <div class="panels">
+        <article id="tabpanel-1" role="tabpanel" aria-labelledby="tab-1">
+          <h2>The first tab</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             Pellentesque turpis nibh, porttitor nec venenatis eu, pulvinar in
@@ -27,23 +50,22 @@
             at sem. Aliquam ut porttitor urna. Nulla facilisi.
           </p>
         </article>
-        <article>
-          <h2>The second tab</h2>
 
+        <article id="tabpanel-2" role="tabpanel" aria-labelledby="tab-2">
+          <h2>The second tab</h2>
           <p>
             This tab hasn't got any Lorem Ipsum in it. But the content isn't
             very exciting all the same.
           </p>
         </article>
-        <article>
-          <h2>The third tab</h2>
 
+        <article id="tabpanel-3" role="tabpanel" aria-labelledby="tab-3">
+          <h2>The third tab</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             Pellentesque turpis nibh, porttitor nec venenatis eu, pulvinar in
             augue. And now an ordered list: how exciting!
           </p>
-
           <ol>
             <li>dui neque eleifend lorem, a auctor libero turpis at sem.</li>
             <li>Aliquam ut porttitor urna.</li>
@@ -53,6 +75,6 @@
       </div>
     </section>
 
-    <script></script>
+    <script src="tabs-manual.js"></script>
   </body>
 </html>
