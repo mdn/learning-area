@@ -55,7 +55,7 @@
 
   function checkGuess() {
 
-    const userGuess = Number(guessField.value);
+    let userGuess = Number(guessField.value);
     if(guessCount === 1) {
       guesses.textContent = 'Previous guesses: ';
     }
