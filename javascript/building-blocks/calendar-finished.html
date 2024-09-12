@@ -49,35 +49,40 @@
     </ul>
 
     <script>
-      const select = document.querySelector('select');
-      const list = document.querySelector('ul');
-      const h1 = document.querySelector('h1');
+      const select = document.querySelector("select");
+      const list = document.querySelector("ul");
+      const h1 = document.querySelector("h1");
 
-      select.onchange = function() {
+      select.addEventListener("change", () => {
         const choice = select.value;
+        createCalendar(choice);
+      });
+
+      function createCalendar(month) {
         let days = 31;
 
-        if(choice === 'February') {
+        if (month === "February") {
           days = 28;
-        } else if(choice === 'April' || choice === 'June' || choice === 'September' || choice === 'November') {
+        } else if (
+          month === "April" ||
+          month === "June" ||
+          month === "September" ||
+          month === "November"
+        ) {
           days = 30;
         }
 
-        createCalendar(days, choice);
-      }
-
-      function createCalendar(days, choice) {
-        list.innerHTML = '';
-        h1.textContent = choice;
-        for(let i = 1; i <= days; i++) {
-          const listItem = document.createElement('li');
+        list.textContent = "";
+        h1.textContent = month;
+        for (let i = 1; i <= days; i++) {
+          const listItem = document.createElement("li");
           listItem.textContent = i;
           list.appendChild(listItem);
         }
       }
 
-      select.value = 'January';
-      createCalendar(31, 'January');
+      select.value = "January";
+      createCalendar("January");
     </script>
   </body>
 </html>
