@@ -54,7 +54,7 @@
           border: 1px solid #ccc;
       }
 
-      .disabled-label {
+      label:has(+ :disabled) {
         color: #aaa;
       }
 
@@ -89,15 +89,15 @@
           <input type="checkbox" id="billing-checkbox" checked>
         </div>
         <div>
-          <label for="name" class="billing-label disabled-label">Name: </label>
+          <label for="name" class="billing-label">Name: </label>
           <input id="name" name="name" type="text" disabled required>
         </div>
         <div>
-          <label for="address2" class="billing-label disabled-label">Address: </label>
+          <label for="address2" class="billing-label">Address: </label>
           <input id="address2" name="address2" type="text" disabled required>
         </div>
         <div>
-          <label for="pcode2" class="billing-label disabled-label">Zip/postal code: </label>
+          <label for="pcode2" class="billing-label">Zip/postal code: </label>
           <input id="pcode2" name="pcode2" type="text" disabled required>
         </div>
       </fieldset>
@@ -116,18 +116,10 @@
       function toggleBilling() {
         // Select the billing text fields
         let billingItems = document.querySelectorAll('#billing input[type="text"]');
-        // Select the billing text labels
-        let billingLabels = document.querySelectorAll('.billing-label');
 
-        // Toggle the billing text fields and labels
+        // Toggle the billing text fields
         for (let i = 0; i < billingItems.length; i++) {
           billingItems[i].disabled = !billingItems[i].disabled;
-
-          if(billingLabels[i].getAttribute('class') === 'billing-label disabled-label') {
-            billingLabels[i].setAttribute('class', 'billing-label');
-          } else {
-            billingLabels[i].setAttribute('class', 'billing-label disabled-label');
-          }
         }
       }
     </script>
