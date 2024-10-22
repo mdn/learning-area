@@ -21,7 +21,7 @@
       const select = document.querySelector('select');
       const para = document.querySelector('p');
 
-      select.onchange = setWeather;
+      select.addEventListener("change", setWeather);
 
       function setWeather() {
         const choice = select.value;
