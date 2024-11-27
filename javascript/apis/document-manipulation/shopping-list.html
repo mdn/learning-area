@@ -1,3 +1,8 @@
+/*Append the list item as a child of the list.
+Attach an event handler to the delete button so that, when clicked, it will delete the entire list item (<li>...</li>).
+Finally, use the focus() method to focus the input element ready for entering the next shopping list item.
+*/
+
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
@@ -31,7 +36,35 @@
     </ul>
 
     <script>
+        const list = document.querySelector('ul');
+        const input = document.querySelector('input');
+        const button = document.querySelector('button');
 
+        button.addEventListener("click", () => {
+            const inputValue = input.value.trim();
+            if (inputValue === '') {
+          alert('Please enter an item.');
+          return;
+        }
+          
+            input.value = '';
+            const listItem = document.createElement('li');
+            const span = document.createElement('span');
+            const buttonInList = document.createElement('button');
+          
+              span.textContent = inputValue;
+              buttonInList.textContent = 'Delete';
+          
+              listItem.appendChild(span);
+              listItem.appendChild(buttonInList);
+              list.appendChild(listItem);
+          
+              buttonInList.addEventListener("click", () => {
+                list.removeChild(listItem);
+              });
+              input.focus();
+            });
+        }
     </script>
   </body>
 </html>
