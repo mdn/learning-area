@@ -5,29 +5,23 @@
 		<title>Your first HTML form, styled</title>
 		<style>
 			body{
-				/* Just to center the form on the page */
+				/* Center the form on the page */
 				text-align: center;
 			}
 			form {
 				display: inline-block;
-				/* To see the outline of the form */
+				/* Form outline */
 				padding: 1em;
 				border: 1px solid #ccc;
 				border-radius: 1em;
 			}
 
-			ul {
-				list-style: none;
-				padding: 0;
-				margin: 0;
-			}
-
-			form li + li {
+			p + p {
 				margin-top: 1em;
 			}
 
 			label {
-				/* To make sure that all labels have the same size and are properly aligned */
+				/* Uniform size & alignment */
 				display: inline-block;
 				min-width: 90px;
 
@@ -38,9 +32,10 @@
 			textarea {
 				/* To make sure that all text fields have the same font settings By default, textareas have a monospace font */
 				font: 1em sans-serif;
-				/* To give the same size to all text fields */
+				/* Uniform text field size */
 				width: 300px;
-				box-sizing: border-box; /* To harmonize the look & feel of text field border */
+				box-sizing: border-box;
+				/* Match form field borders */
 				border: 1px solid #999;
 			}
 
@@ -53,14 +48,14 @@
 			}
 
 			textarea {
-				/* To properly align multiline text fields with their labels */
+				/* Align multiline text fields with their labels */
 				vertical-align: top;
-				/* To give enough room to type some text */
+				/* Provide space to type some text */
 				height: 5em;
 			}
 
 			.button {
-				/* To position the buttons to the same position of the text fields */
+				/* Align buttons with the text fields */
 				padding-left: 90px;
 				/* same size as the label elements */
 			}
@@ -74,23 +69,21 @@
 
 	<body>
 		<form action="/my-handling-form-page" method="post">
-			<ul>
-				<li>
-					<label for="name">Name:</label>
-					<input type="text" id="name" name="user_name" />
-				</li>
-				<li>
-					<label for="mail">E-mail:</label>
-					<input type="email" id="mail" name="user_mail" />
-				</li>
-				<li>
-					<label for="msg">Message:</label>
-					<textarea id="msg" name="user_message"></textarea>
-				</li>
-				<li class="button">
-					<button type="submit">Send your message</button>
-				</li>
-			</ul>
+			<p>
+				<label for="name">Name:</label>
+				<input type="text" id="name" name="user_name" />
+			</p>
+			<p>
+				<label for="mail">E-mail:</label>
+				<input type="email" id="mail" name="user_mail" />
+			</p>
+			<p>
+				<label for="msg">Message:</label>
+				<textarea id="msg" name="user_message"></textarea>
+			</p>
+			<p class="button">
+				<button type="submit">Send your message</button>
+			</p>
 		</form>
 	</body>
 </html>
