@@ -1,4 +1,4 @@
-scm assignment
+SCM SUBJECT ASSIGNMENT
 it is an assignemnt which is given to us by our subject teeachers for the practical work of the git subject.
 1.open your cloned repository
 2.navigate to your cloned repo
