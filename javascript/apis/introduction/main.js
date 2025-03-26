@@ -21,12 +21,20 @@ function randomRGB() {
 // define Ball constructor
 
 function Ball() {
-  this.x = random(0,width);
-  this.y = random(0,height);
+  this.size = random(10,20);
+  this.x = random(this.size*2,width);
+  this.y = random(this.size*2,height);
   this.velX = random(-7,7);
   this.velY = random(-7,7);
   this.color = randomRGB();
-  this.size = random(10,20);
+
+  while (this.velX == 0 && this.velY == 0) {
+    var change = random(0,1);  //decides whether to change x or y
+    if(change == 0)
+      this.velX = random(-7, 7);
+    else
+      this.velY = random(-7, 7);
+  }
 }
 
 // define ball draw method
