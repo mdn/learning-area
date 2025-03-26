@@ -3,6 +3,8 @@ var editable = document.querySelector(".editable");
 var textareaHTML = document.querySelector(".playable-html");
 var textareaCSS = document.querySelector(".playable-css");
 var reset = document.getElementById("reset");
+var solution = document.getElementById("solution");
+var solutionCode = document.getElementById("solution-code").value;
 var htmlCode = textareaHTML.value;
 var cssCode = textareaCSS?.value;
 
@@ -16,6 +18,11 @@ reset.addEventListener("click", function () {
   if (textareaCSS) {
     textareaCSS.value = cssCode;
   }
+  fillCode();
+});
+
+solution.addEventListener("click", function () {
+  textareaHTML.value = solutionCode;
   fillCode();
 });
 
