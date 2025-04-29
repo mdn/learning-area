@@ -38,13 +38,13 @@ The finished code should look like this:
 
 <blockquote cite="https://developer.mozilla.org/en-US/docs/Learn/Accessibility">
   <p>
-    <abbr>HTML</abbr>, Hypertext Markup Language is by default accessible, if
+    <abbr title="Hypertext Markup Language">HTML</abbr>, Hypertext Markup Language is by default accessible, if
     used correctly.
   </p>
 </blockquote>
 
 <p>
-  <abbr>CSS</abbr>, Cascading Style Sheets, can also be used to make web pages
+  <abbr title="Cascading Style Sheets">CSS</abbr>, Cascading Style Sheets, can also be used to make web pages
   more, or less, accessible.
 </p>
 
