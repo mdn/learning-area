@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <title>Form structure: Task 1</title>
     <style>
       body {
@@ -15,23 +15,77 @@
       * {
         box-sizing: border-box;
       }
+
+      form {
+        max-width: 500px;
+      }
+
+      fieldset {
+        margin-bottom: 1.5em;
+        padding: 1em;
+        border: 1px solid #ccc;
+      }
+
+      legend {
+        font-weight: bold;
+        padding: 0 0.5em;
+      }
+
+      .form-group {
+        margin-bottom: 1em;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 0.3em;
+      }
+
+      input[type="text"],
+      input[type="number"],
+      input[type="email"] {
+        width: 100%;
+        padding: 0.5em;
+      }
+
+      button {
+        padding: 0.5em 1em;
+      }
     </style>
   </head>
 
   <body>
     <form>
-      Name:
-      <input type="text" id="name" name="name">
+      <!-- Personal Details Section -->
+      <fieldset>
+        <legend>Personal details</legend>
 
-      Age:
-      <input type="number" id="age" name="age">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" />
+        </div>
 
-      Comment:
-      <input type="text" id="comment" name="comment">
+        <div class="form-group">
+          <label for="age">Age:</label>
+          <input type="number" id="age" name="age" />
+        </div>
+      </fieldset>
 
-      Email:
-      <input type="email" id="email" name="email">
+      <!-- Comment Information Section -->
+      <fieldset>
+        <legend>Comment information</legend>
+
+        <div class="form-group">
+          <label for="comment">Comment:</label>
+          <input type="text" id="comment" name="comment" />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" />
+        </div>
+      </fieldset>
+
+      <button type="submit">Submit</button>
     </form>
   </body>
-
 </html>
