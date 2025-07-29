@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misión Aduana: Exporta sin Fronteras</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .stage {
+            display: none;
+        }
+        .stage.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .choice-card {
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+        }
+        .choice-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .result-card {
+            animation: zoomIn 0.5s ease-in-out;
+        }
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-4xl">
+        <header class="text-center mb-6">
+            <h1 class="text-3xl md:text-4xl font-bold text-blue-800">Misión Aduana: Exporta sin Fronteras</h1>
+            <p class="text-md text-gray-600 mt-2">Simulador de Logística Internacional y Gestión Aduanera</p>
+            <p class="text-sm text-gray-500 mt-1">Profesora: Carolina López Trujillo</p>
+        </header>
+
+        <!-- Progress Bar -->
+        <div class="w-full bg-gray-200 rounded-full h-2.5 mb-8">
+            <div id="progress-bar" class="bg-blue-600 h-2.5 rounded-full transition-all duration-500" style="width: 0%;"></div>
+        </div>
+
+        <div id="simulator-content">
+            <!-- Stages will be injected here by JavaScript -->
+        </div>
+
+        <div id="results-container" class="hidden">
+            <!-- Final result will be shown here -->
+        </div>
+    </div>
+
+    <script>
+        // --- DATA STRUCTURE FOR THE SIMULATOR ---
+        const stages = [
+            {
+                id: 1,
+                question: "¿Qué producto deseas exportar?",
+                choices: [
+                    { text: "A. Aguacates frescos", value: "aguacates", points: 0, flag: "perishable" },
+                    { text: "B. Artesanías mexicanas", value: "artesanias", points: 2, flag: "cultural_goods" },
+                    { text: "C. Laptops reacondicionadas", value: "laptops", points: 1, flag: "electronics" }
+                ]
+            },
+            {
+                id: 2,
+                question: "¿A qué país exportarás?",
+                choices: [
+                    { text: "A. Estados Unidos", value: "usa", points: 2, flag: "usmca" },
+                    { text: "B. Alemania", value: "germany", points: 1, flag: "eu_regulations" },
+                    { text: "C. Chile", value: "chile", points: 1, flag: "latam_trade" }
+                ]
+            },
+            {
+                id: 3,
+                question: "¿Qué transporte utilizarás?",
+                choices: [
+                    { text: "A. Marítimo", value: "maritimo", points: 1 },
+                    { text: "B. Aéreo", value: "aereo", points: 2 },
+                    { text: "C. Terrestre", value: "terrestre", points: 1 }
+                ]
+            },
+            {
+                id: 4,
+                question: "¿Qué documentos prepararás?",
+                choices: [
+                    { text: "A. Solo factura y lista de empaque", value: "docs_basic", points: -4, flag: "doc_incomplete" },
+                    { text: "B. Certificado de Origen y permisos", value: "docs_good", points: 3, flag: "doc_compliant" },
+                    { text: "C. Contratar agente aduanal", value: "agent", points: 5, flag: "pro_help" }
+                ]
+            },
+            {
+                id: 5,
+                question: "Tu embarque fue seleccionado para inspección. ¿Qué haces?",
+                choices: [
+                    { text: "A. Negociar informalmente", value: "negotiate", points: -15, flag: "illegal_act" },
+                    { text: "B. Presentar documentos completos", value: "present_docs", points: 5 },
+                    { text: "C. No tienes todos los documentos", value: "no_docs", points: -10, flag: "doc_fail" }
+                ]
+            },
+            {
+                id: 6,
+                question: "¿Cómo embalarás tu producto para exportación?",
+                choices: [
+                    { text: "A. En cajas genéricas sin etiquetas", value: "packaging_bad", points: -3, flag: "packaging_risk" },
+                    { text: "B. Con embalaje especializado y etiquetado correcto", value: "packaging_good", points: 3 },
+                    { text: "C. Solo envuelto en plástico", value: "packaging_poor", points: -2, flag: "packaging_risk" }
+                ]
+            },
+            {
+                id: 7,
+                question: "¿Contratarás seguro para tu mercancía?",
+                choices: [
+                    { text: "A. No, para ahorrar costos", value: "no_insurance", points: -4, flag: "uninsured" },
+                    { text: "B. Sí, con cobertura amplia", value: "insurance_full", points: 3 },
+                    { text: "C. Solo cobertura básica", value: "insurance_basic", points: 1 }
+                ]
+            },
+            {
+                id: 8,
+                question: "¿Qué harás para asegurar que tu producto cumpla con normas del país destino?",
+                choices: [
+                    { text: "A. Investigar normas técnicas y sanitarias", value: "research_norms", points: 5 },
+                    { text: "B. Asumir que no habrá problema", value: "assume_norms", points: -5, flag: "compliance_fail" },
+                    { text: "C. Pedirle al cliente que lo resuelva", value: "client_solves", points: -2, flag: "risky_delegation" }
+                ]
+            }
+        ];
+
+        // --- STATE MANAGEMENT ---
+        let currentStageIndex = 0;
+        let userChoices = [];
+        let score = 0;
+        let flags = new Set();
+
+        // --- DOM ELEMENTS ---
+        const simulatorContent = document.getElementById('simulator-content');
+        const resultsContainer = document.getElementById('results-container');
+        const progressBar = document.getElementById('progress-bar');
+
+        // --- FUNCTIONS ---
+
+        function renderStage(stageIndex) {
+            if (stageIndex >= stages.length) {
+                calculateAndShowResults();
+                return;
+            }
+
+            const stageData = stages[stageIndex];
+            let choicesHtml = stageData.choices.map(choice => `
+                <div class="choice-card bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-500 hover:shadow-lg" onclick="makeChoice(${stageIndex}, '${choice.value}')">
+                    <p class="text-lg font-semibold text-gray-700">${choice.text}</p>
+                </div>
+            `).join('');
+
+            simulatorContent.innerHTML = `
+                <div id="stage-${stageData.id}" class="stage active bg-white p-6 rounded-xl shadow-md">
+                    <h2 class="text-xl font-bold mb-1 text-blue-700">Etapa ${stageData.id} de ${stages.length}</h2>
+                    <p class="text-2xl font-semibold text-gray-800 mb-6">${stageData.question}</p>
+                    <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
+                        ${choicesHtml}
+                    </div>
+                </div>
+            `;
+            
+            // Update progress bar
+            progressBar.style.width = `${(stageIndex / stages.length) * 100}%`;
+        }
+
+        function makeChoice(stageIndex, choiceValue) {
+            const stageData = stages[stageIndex];
+            const choice = stageData.choices.find(c => c.value === choiceValue);
+
+            // Store choice details
+            userChoices.push({ question: stageData.question, answer: choice.text, points: choice.points, flag: choice.flag });
+            
+            // Update score and flags
+            score += choice.points;
+            if (choice.flag) {
+                flags.add(choice.flag);
+            }
+
+            // Move to next stage
+            currentStageIndex++;
+            renderStage(currentStageIndex);
+        }
+
+        function getFeedback() {
+            let feedback = [];
+            // Critical combination checks
+            if (userChoices[2]?.answer.includes('Terrestre') && (userChoices[1]?.answer.includes('Alemania'))) {
+                score -= 20;
+                flags.add('impossible_route');
+                feedback.push({ text: "La ruta México-Alemania por tierra es inviable, causando un fallo logístico catastrófico.", type: "error" });
+            }
+            if (flags.has('perishable') && userChoices[2]?.answer.includes('Marítimo')) {
+                score -= 2;
+                feedback.push({ text: "Transportar aguacates por mar es arriesgado por el tiempo de tránsito, se necesita una cadena de frío perfecta.", type: "warning" });
+            }
+             if (flags.has('electronics') && flags.has('eu_regulations')) {
+                feedback.push({ text: "Exportar electrónicos a la UE requiere certificaciones específicas (CE, RoHS, WEEE) que son complejas.", type: "warning" });
+            }
+
+            // Feedback based on flags
+            if (flags.has('illegal_act')) feedback.push({ text: "Intentar negociar informalmente en la aduana es un delito grave con consecuencias legales y financieras.", type: "error" });
+            if (flags.has('doc_fail')) feedback.push({ text: "No tener los documentos durante una inspección resulta en multas, decomiso de la mercancía y un historial negativo.", type: "error" });
+            if (flags.has('compliance_fail')) feedback.push({ text: "Asumir que un producto cumple con las normas de otro país es una de las principales causas de rechazo en frontera.", type: "error" });
+            if (flags.has('uninsured')) feedback.push({ text: "No asegurar la carga te expone a la pérdida total de tu inversión ante cualquier siniestro.", type: "error" });
+            if (flags.has('packaging_risk')) feedback.push({ text: "Un embalaje deficiente puede dañar el producto, invalidar el seguro y causar una mala impresión al cliente.", type: "warning" });
+            if (flags.has('doc_incomplete')) feedback.push({ text: "Viajar solo con factura y packing list es insuficiente para la mayoría de las exportaciones formales.", type: "warning" });
+            if (flags.has('pro_help')) feedback.push({ text: "Contratar un agente aduanal fue una decisión excelente que minimizó riesgos y profesionalizó la operación.", type: "success" });
+            if (userChoices.find(c => c.value === 'research_norms')) feedback.push({ text: "Investigar las normas del país destino es un paso crucial que asegura el cumplimiento y evita rechazos.", type: "success" });
+            
+            return feedback;
+        }
+
+        function calculateAndShowResults() {
+            simulatorContent.innerHTML = ''; // Clear stages
+            progressBar.style.width = '100%';
+            
+            const feedbackList = getFeedback();
+            let finalResult = {};
+
+            // Determine final outcome
+            const hasError = feedbackList.some(f => f.type === 'error');
+            const hasWarning = feedbackList.some(f => f.type === 'warning');
+
+            if (score <= 0 || hasError) {
+                finalResult = {
+                    title: "❌ Error Aduanero",
+                    message: "Tu operación ha encontrado problemas críticos. La exportación ha fallado debido a decisiones que comprometieron la legalidad y seguridad del embarque.",
+                    bgColor: "bg-red-100",
+                    textColor: "text-red-800",
+                    borderColor: "border-red-400"
+                };
+            } else if (score <= 12 || hasWarning) {
+                finalResult = {
+                    title: "⚠️ Retraso Logístico",
+                    message: "Tu exportación se ha completado, pero con contratiempos. Ciertas decisiones generaron retrasos y costos adicionales que afectaron la rentabilidad.",
+                    bgColor: "bg-yellow-100",
+                    textColor: "text-yellow-800",
+                    borderColor: "border-yellow-400"
+                };
+            } else {
+                finalResult = {
+                    title: "✅ Exportación Exitosa",
+                    message: "¡Felicidades! Has navegado el proceso aduanero con éxito. Tus decisiones estratégicas aseguraron una operación fluida, rentable y a tiempo.",
+                    bgColor: "bg-green-100",
+                    textColor: "text-green-800",
+                    borderColor: "border-green-400"
+                };
+            }
+
+            // Build feedback HTML
+            const feedbackHtml = feedbackList.map(f => {
+                let icon = '';
+                if (f.type === 'error') icon = '❌';
+                if (f.type === 'warning') icon = '⚠️';
+                if (f.type === 'success') icon = '✅';
+                return `<li class="flex items-start"><span class="mr-2">${icon}</span><span>${f.text}</span></li>`;
+            }).join('');
+
+            resultsContainer.innerHTML = `
+                <div class="result-card ${finalResult.bgColor} ${finalResult.textColor} border-l-4 ${finalResult.borderColor} p-6 rounded-lg shadow-lg">
+                    <h2 class="text-3xl font-bold">${finalResult.title}</h2>
+                    <p class="mt-2 text-lg">${finalResult.message}</p>
+                </div>
+                <div class="mt-6 bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold mb-4">Análisis de tus decisiones:</h3>
+                    <ul class="space-y-2 list-inside">
+                        ${feedbackHtml}
+                    </ul>
+                </div>
+                <div class="text-center mt-8">
+                    <button onclick="restartSimulator()" class="bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors text-lg">
+                        Intentar de Nuevo
+                    </button>
+                </div>
+            `;
+            resultsContainer.classList.remove('hidden');
+        }
+        
+        function restartSimulator() {
+            currentStageIndex = 0;
+            userChoices = [];
+            score = 0;
+            flags.clear();
+            resultsContainer.classList.add('hidden');
+            resultsContainer.innerHTML = '';
+            renderStage(0);
+        }
+
+        // --- INITIALIZATION ---
+        window.onload = () => {
+            renderStage(currentStageIndex);
+        };
+    </script>
+</body>
+</html>
