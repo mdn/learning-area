@@ -1,15 +1,15 @@
 // setup canvas
 
-const canvas = document.querySelector('canvas');
-const ctx = canvas.getContext('2d');
+const canvas = document.querySelector("canvas");
+const ctx = canvas.getContext("2d");
 
-const width = canvas.width = window.innerWidth;
-const height = canvas.height = window.innerHeight;
+const width = (canvas.width = window.innerWidth);
+const height = (canvas.height = window.innerHeight);
 
 // function to generate random number
 
-function random(min,max) {
-  return Math.floor(Math.random()*(max-min)) + min;
+function random(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
 }
 
 // function to generate random color
@@ -21,25 +21,23 @@ function randomRGB() {
 // define Ball constructor
 
 function Ball() {
-  this.size = random(10,20);
-  this.x = random(this.size*2,width);
-  this.y = random(this.size*2,height);
-  this.velX = random(-7,7);
-  this.velY = random(-7,7);
+  this.size = random(10, 20);
+  this.x = random(this.size * 2, width);
+  this.y = random(this.size * 2, height);
+  this.velX = random(-7, 7);
+  this.velY = random(-7, 7);
   this.color = randomRGB();
 
   while (this.velX == 0 && this.velY == 0) {
-    var change = random(0,1);  //decides whether to change x or y
-    if(change == 0)
-      this.velX = random(-7, 7);
-    else
-      this.velY = random(-7, 7);
+    var change = random(0, 1); //decides whether to change x or y
+    if (change == 0) this.velX = random(-7, 7);
+    else this.velY = random(-7, 7);
   }
 }
 
 // define ball draw method
 
-Ball.prototype.draw = function() {
+Ball.prototype.draw = function () {
   ctx.beginPath();
   ctx.fillStyle = this.color;
   ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
@@ -48,21 +46,21 @@ Ball.prototype.draw = function() {
 
 // define ball update method
 
-Ball.prototype.update = function() {
-  if((this.x + this.size) >= width) {
-    this.velX = -(this.velX);
+Ball.prototype.update = function () {
+  if (this.x + this.size >= width) {
+    this.velX = -this.velX;
   }
 
-  if((this.x - this.size) <= 0) {
-    this.velX = -(this.velX);
+  if (this.x - this.size <= 0) {
+    this.velX = -this.velX;
   }
 
-  if((this.y + this.size) >= height) {
-    this.velY = -(this.velY);
+  if (this.y + this.size >= height) {
+    this.velY = -this.velY;
   }
 
-  if((this.y - this.size) <= 0) {
-    this.velY = -(this.velY);
+  if (this.y - this.size <= 0) {
+    this.velY = -this.velY;
   }
 
   this.x += this.velX;
@@ -71,15 +69,22 @@ Ball.prototype.update = function() {
 
 // define ball collision detection
 
-Ball.prototype.collisionDetect = function() {
+Ball.prototype.collisionDetect = function () {
   for (const ball of balls) {
-    if ( (!(this.x === ball.x && this.y === ball.y && this.velX === ball.velX && this.velY === ball.velY)) ) {
+    if (
+      !(
+        this.x === ball.x &&
+        this.y === ball.y &&
+        this.velX === ball.velX &&
+        this.velY === ball.velY
+      )
+    ) {
       const dx = this.x - ball.x;
       const dy = this.y - ball.y;
       const distance = Math.sqrt(dx * dx + dy * dy);
 
       if (distance < this.size + ball.size) {
-        ball.color = this.color =  randomRGB();
+        ball.color = this.color = randomRGB();
       }
     }
   }
@@ -92,10 +97,10 @@ const balls = [];
 // define loop that keeps drawing the scene constantly
 
 function loop() {
-  ctx.fillStyle = 'rgba(0,0,0,0.25)';
-  ctx.fillRect(0,0,width,height);
+  ctx.fillStyle = "rgba(0,0,0,0.25)";
+  ctx.fillRect(0, 0, width, height);
 
-  while(balls.length < 25) {
+  while (balls.length < 25) {
     const ball = new Ball();
     balls.push(ball);
   }
@@ -108,6 +113,5 @@ function loop() {
 
   requestAnimationFrame(loop);
 }
-
 
 loop();
