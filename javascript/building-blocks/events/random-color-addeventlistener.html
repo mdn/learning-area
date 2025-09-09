@@ -19,7 +19,7 @@
         return Math.floor(Math.random() * (number+1));
       }
 
-      btn.addEventListener('click', () => {
+      btn.addEventListener('focus', () => {
         const rndCol = `rgb(${random(255)}, ${random(255)}, ${random(255)})`;
         document.body.style.backgroundColor = rndCol;
       });
