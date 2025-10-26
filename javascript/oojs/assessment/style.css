@@ -24,10 +24,25 @@ h1 {
   text-shadow: 0 0 4px white;
 }
 
+/* This styles the original instruction paragraph */
 p {
   position: absolute;
   margin: 0;
   top: 35px;
   right: 5px;
   color: #aaa;
+}
+
+/* --- UPDATED Ball Counter Style --- */
+.ball-count {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold; /* Make text bolder */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  padding: 5px 10px; /* Add some padding around the text */
+  border-radius: 5px; /* Rounded corners */
+  margin: 0;
 }
