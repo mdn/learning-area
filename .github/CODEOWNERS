@@ -9,3 +9,4 @@
 
 /.github/workflows/ @mdn/engineering
 /.github/CODEOWNERS @mdn/content-team @mdn/engineering
+/SECURITY.md @mdn/engineering
