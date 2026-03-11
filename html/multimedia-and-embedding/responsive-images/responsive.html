@@ -48,8 +48,8 @@
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget venenatis ligula. Ut lacinia at dolor vitae pulvinar. Aliquam pretium dignissim eros. Integer faucibus, dui non aliquet bibendum, lectus orci lobortis odio, ornare porttitor est tellus eget velit. Nulla eros elit, malesuada id neque vel, viverra vehicula neque. Nullam auctor turpis non leo iaculis finibus. Quisque blandit arcu venenatis libero tempor, ac pulvinar ligula dapibus.</p>
 
         <picture>
-          <source media="(max-width: 799px)" srcset="elva-480w-close-portrait.jpg">
-          <source media="(min-width: 800px)" srcset="elva-800w.jpg">
+          <source media="(width < 800px)" srcset="elva-480w-close-portrait.jpg">
+          <source media="(width >= 800px)" srcset="elva-800w.jpg">
           <img src="elva-800w.jpg" alt="Chris standing up holding his daughter Elva">
         </picture>
 
@@ -57,7 +57,7 @@
 
         <img srcset="elva-fairy-480w.jpg 480w,
                      elva-fairy-800w.jpg 800w"
-             sizes="(max-width: 600px) 480px,
+             sizes="(width <= 600px) 480px,
                     800px"
              src="elva-fairy-800w.jpg" alt="Elva dressed as a fairy">
 
