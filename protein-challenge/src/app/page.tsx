@@ -41,8 +41,8 @@ export default function Home() {
 
   useEffect(() => {
     const s = loadState()
-    if (s.pin && s.name && s.setupComplete) {
-      // Try to sync latest state from Supabase
+    if (!s.setupComplete && s.pin && s.name) {
+      // New device — no local progress, try loading from Supabase
       fetch(`/api/participant/login?name=${encodeURIComponent(s.name)}&pin=${s.pin}`)
         .then(r => r.json())
         .then(data => {
@@ -56,6 +56,7 @@ export default function Home() {
         })
         .catch(() => setState(s))
     } else {
+      // Has local state — use it as source of truth (avoids overwriting recent changes)
       setState(s)
     }
   }, [])
