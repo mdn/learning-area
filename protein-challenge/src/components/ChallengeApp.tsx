@@ -8,6 +8,7 @@ import DayView from './DayView'
 import ProgressView from './ProgressView'
 import ResultsView from './ResultsView'
 import AvatarView from './AvatarView'
+import FAQView from './FAQView'
 import NotificationBell from './NotificationBell'
 import XPBar from './XPBar'
 import Logo from './Logo'
@@ -127,6 +128,7 @@ export default function ChallengeApp({ initialState, onStateChange }: Props) {
         })()}
         {view === 'progress' && <ProgressView state={state} onNavigateDay={(n) => changeView(`day-${n}`)} />}
         {view === 'results' && <ResultsView state={state} />}
+        {view === 'faq' && <FAQView />}
         {view === 'avatar' && <AvatarView state={state} onStateChange={update} onBack={() => changeView(state.currentView || 'day-1')} />}
       </main>
 
@@ -136,6 +138,7 @@ export default function ChallengeApp({ initialState, onStateChange }: Props) {
           {[
             { v: `day-${currentDayNum}`, icon: '📅', label: "Today" },
             { v: 'progress', icon: '📊', label: 'Progress' },
+            { v: 'faq', icon: '💬', label: 'Q&A' },
             { v: 'avatar', icon: '🦸‍♀️', label: 'Avatar' },
             { v: 'results', icon: '🏅', label: 'Results' },
           ].map(item => (
