@@ -368,7 +368,7 @@ export default function DayView({ day, state, onStateChange }: Props) {
             <p className="text-xs text-gray-500 mb-3 leading-relaxed">Share today&apos;s win or question in the Facebook group and unlock the <strong>Social Wings</strong> badge 🦋</p>
             <div className="flex gap-2">
               <a
-                href="https://www.facebook.com/groups/"
+                href="https://www.facebook.com/groups/4378612459123843"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 text-center text-xs font-bold py-2.5 rounded-xl bg-[#1877F2] text-white hover:opacity-90 transition-opacity"
