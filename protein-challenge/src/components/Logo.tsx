@@ -30,7 +30,7 @@ export default function Logo({ size = 'md' }: Props) {
 
   return (
     <img
-      src="/logo.png"
+      src="/Logo.png"
       alt="Grind Lab Fitness"
       style={{ height: h, width: 'auto' }}
       className="object-contain"
