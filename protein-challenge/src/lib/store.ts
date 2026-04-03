@@ -38,6 +38,7 @@ export interface Notification {
 export interface ParticipantState {
   name: string
   email: string
+  pin: string
   startDate: string
   proteinGoal: number
   avatarType: 'preset' | 'upload'
@@ -77,6 +78,7 @@ const defaultDay = (dayNum: number, checklistLen: number): DayState => ({
 const defaultState = (): ParticipantState => ({
   name: '',
   email: '',
+  pin: '',
   startDate: '2026-04-13',
   proteinGoal: 100,
   avatarType: 'preset',
