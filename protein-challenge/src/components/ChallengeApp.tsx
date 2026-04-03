@@ -8,6 +8,7 @@ import DayView from './DayView'
 import ProgressView from './ProgressView'
 import ResultsView from './ResultsView'
 import AvatarView from './AvatarView'
+import RecipesView from './RecipesView'
 import NotificationBell from './NotificationBell'
 import XPBar from './XPBar'
 import Logo from './Logo'
@@ -127,16 +128,17 @@ export default function ChallengeApp({ initialState, onStateChange }: Props) {
         })()}
         {view === 'progress' && <ProgressView state={state} onNavigateDay={(n) => changeView(`day-${n}`)} />}
         {view === 'results' && <ResultsView state={state} />}
-{view === 'avatar' && <AvatarView state={state} onStateChange={update} onBack={() => changeView(state.currentView || 'day-1')} />}
+        {view === 'recipes' && <RecipesView />}
+        {view === 'avatar' && <AvatarView state={state} onStateChange={update} onBack={() => changeView(state.currentView || 'day-1')} />}
       </main>
 
       {/* ── BOTTOM NAV ── */}
       <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 shadow-lg bottom-nav z-40 no-print">
         <div className="max-w-lg mx-auto flex items-center justify-around px-2 py-2">
           {[
-            { v: `day-${currentDayNum}`, icon: '📅', label: "Today" },
+            { v: `day-${currentDayNum}`, icon: '📅', label: 'Today' },
             { v: 'progress', icon: '📊', label: 'Progress' },
-{ v: 'avatar', icon: '🦸‍♀️', label: 'Avatar' },
+            { v: 'recipes', icon: '🍽️', label: 'Recipes' },
             { v: 'results', icon: '🏅', label: 'Results' },
           ].map(item => (
             <button

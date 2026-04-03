@@ -31,26 +31,26 @@ export interface RewardItem {
 export const CHALLENGE_DAYS: DayData[] = [
   {
     num: 1,
-    title: 'The Protein Wake-Up Call',
+    title: 'Notice Where Protein Is Missing',
     subtitle: 'Awareness before action',
     color: '#07b0a4',
     bgGradient: 'from-teal-500 to-teal-600',
     emoji: '🔍',
-    lesson: `Most busy women over 30 are under-eating protein without even realising it — not because they're lazy, but because nobody ever taught them what fuelling for their actual goals looks like.
+    lesson: `This challenge is here to make protein easier, simpler, and more practical.
 
-Today is not about changing anything. It's about seeing clearly where you actually are.
+When protein is low, hunger and cravings usually feel worse. Protein helps meals feel more satisfying, supports muscle repair, and makes it easier to stay consistent with your goals.
 
-The average woman needs 90–120g of protein per day. Most are getting 40–60g. That gap is exactly why cravings feel out of control, energy crashes by 3pm, and the scale won't budge even when you're "being good."
+Most busy women over 30 are under-eating protein — not because they're lazy, but because nobody ever showed them what fuelling for their actual goals looks like.
 
-Nothing is wrong with you. You've just been running your car on half a tank and wondering why it keeps sputtering.`,
-    challengeTask: 'Track everything you eat today WITHOUT changing a single thing. Just observe. At the end of the day, add up how much protein you got in — even a rough estimate counts.',
-    keyInsight: 'You can\'t fix what you can\'t see. Today is pure, judgment-free awareness — just data.',
-    proteinTip: '🍗 Chicken breast (4 oz) ≈ 35g  ·  🥛 Greek yogurt (1 cup) ≈ 17g  ·  🥚 2 whole eggs ≈ 12g  ·  🥤 Protein shake ≈ 25g',
-    reflectionPrompt: 'Where did your day fall short on protein — breakfast, lunch, dinner, or snacks? Be honest with yourself. No judgment here! 💙',
+Today is not about changing anything. It's about seeing clearly where you actually are.`,
+    challengeTask: "Track everything you eat today WITHOUT changing a single thing. Look at your Breakfast, Lunch, Dinner, and Snacks. Notice where protein is already showing up — and where it is missing. This is about getting honest so you know what to improve next.",
+    keyInsight: 'Small awareness creates big momentum. You can\'t fix what you can\'t see. Today is pure, judgment-free awareness — just data.',
+    proteinTip: '🎯 Goal to work toward: 30g of protein at each meal\n\n🍗 Chicken breast (4 oz cooked) ≈ 30–35g\n🥛 Greek yogurt (170g) ≈ 15–18g\n🧀 Cottage cheese (225g) ≈ 25g\n🥚 2 large eggs ≈ 12g\n🥤 Protein shake ≈ 25g\n🫘 Lentils (198g cooked) ≈ 18g',
+    reflectionPrompt: 'Where was protein lowest today — breakfast, lunch, dinner, or snacks?\n\nWhat is one simple fix you can make tomorrow?',
     checklist: [
       'I tracked everything I ate today',
-      'I estimated my total protein for today',
-      'I identified my biggest protein gap',
+      'I looked at protein across all my meals',
+      'I identified where protein was lowest',
       'I did not judge myself — just observed',
       'I\'m showing up for all 7 days 💪',
     ],
@@ -69,22 +69,22 @@ Nothing is wrong with you. You've just been running your car on half a tank and 
     color: '#07b0a4',
     bgGradient: 'from-teal-500 to-teal-700',
     emoji: '🎯',
-    lesson: `You don't need a complicated macro calculator. You need one number you can actually remember.
+    lesson: `You do not need a complicated plan to start making progress. You need a simple standard.
 
-Here's the simple rule: aim for 0.7–1g of protein per pound of your goal bodyweight. Not sure of that number? Use 100g as your baseline right now. That is a realistic, achievable target for most women over 30 who want to support muscle and fat-loss goals.
+For this challenge, aim for 25–30g of protein at 3 meals per day. That's it.
 
 Consistency with a "good enough" number will always beat perfection with a number you forget by Wednesday.
 
 Today you set your standard — and you actually try to hit it for the first time.`,
-    challengeTask: 'Set your daily protein goal right now (write it in the goal field below). Then build your meals today with that target in mind. Don\'t stress about hitting it perfectly — just aim.',
+    challengeTask: 'Set your daily protein goal right now (use the goal field below). Then build your meals today with 25–30g of protein at each of your 3 main meals.',
     keyInsight: 'A number you can remember is worth more than a perfect number you abandon by Thursday.',
-    proteinTip: '100g protein day example 👇\nBreakfast: 2 eggs + Greek yogurt = 29g\nLunch: Chicken salad = 35g\nDinner: Salmon = 30g\nSnack: String cheese = 6g\nTotal = 100g ✓',
-    reflectionPrompt: 'What would need to change in your current meals to consistently hit your protein goal? Name one small thing you\'d actually do differently.',
+    proteinTip: '📋 Protein Cheat Sheet\n\n🥛 Greek yogurt (170g) → 15–18g\n🧀 Cottage cheese (225g) → 25g\n🥚 2 large eggs (100g) → 12g\n🍳 Egg whites (250g) → 25g\n🍗 Chicken breast (4oz cooked) → 30–35g\n🫘 Lentils (198g cooked) → 18g\n🫛 Edamame (155g) → 17g\n🧆 Extra firm tofu (113g) → 10–14g\n🧀 String cheese (1 stick) → 6–8g\n🫘 Chickpeas (164g) → 14–15g\n\n💡 Tip: Always check your label — protein varies by brand and serving size.',
+    reflectionPrompt: 'My protein rule this week is:\n\nThe meal I want to improve first is:\n\nThe protein source I\'ll use most this week is:',
     checklist: [
-      'I set my daily protein goal',
-      'I aimed for my protein goal today',
-      'I know my "protein first" meal rule',
-      'I tracked all my meals',
+      'I set my daily protein goal (25–30g per meal)',
+      'I aimed for protein at all 3 meals today',
+      'I used the cheat sheet to make a choice faster',
+      'I tracked all my meals today',
       'I completed my Day 2 reflection',
     ],
     rewardItem: {
@@ -104,18 +104,18 @@ Today you set your standard — and you actually try to hit it for the first tim
     emoji: '🌅',
     lesson: `When your morning has enough protein, the whole day gets easier. You stay fuller longer, the 3pm crash is quieter, and you make better choices at lunch because you're not starving.
 
-Most women skip protein at breakfast — not on purpose, but because it's the meal with the least structure. Toast, fruit, coffee. Maybe a bar on the run. That's 5–8g when you need 25–35g to start the day right.
+Most women skip protein at breakfast — not on purpose, but because it's the meal with the least structure. Toast, fruit, coffee. Maybe a bar on the run. That's 5–8g when you need 25–30g to start the day right.
 
 You only need ONE go-to breakfast. Not 10 healthy recipes on Pinterest. Just one you can make on autopilot — including on a Tuesday when you have a 7am call.`,
-    challengeTask: 'Choose ONE high-protein breakfast from the options in your tip below and have it today. Pick whichever one you\'d actually make on a busy morning.',
+    challengeTask: 'Choose ONE high-protein breakfast from the options below and have it today. Pick whichever one you\'d actually make on a busy morning. Then write down your go-to and the ingredients you need.',
     keyInsight: 'Repeatable beats perfect. One breakfast you make on autopilot is worth more than ten you\'ll never cook.',
-    proteinTip: '☀️ Option 1: Full-fat Greek yogurt + berries + nut butter ≈ 25–30g\n☀️ Option 2: 2 whole eggs + 2 egg whites scrambled ≈ 22g\n☀️ Option 3: Protein smoothie (1 scoop powder + milk + banana) ≈ 28g\n\nAll under 10 minutes. All repeatable.',
-    reflectionPrompt: 'Which breakfast option will you use as your go-to? What makes it realistic for your actual schedule?',
+    proteinTip: '☀️ Easy High-Protein Breakfast Ideas\n\n• Greek yogurt bowl with berries and protein granola\n• Eggs + egg whites + toast\n• Cottage cheese bowl with fruit\n• Protein smoothie\n• Overnight oats with protein powder\n• Breakfast wrap with eggs and turkey\n• Greek yogurt + chia + nuts\n• Egg bites + fruit\n• Protein oatmeal\n• Smoothie + hard-boiled eggs\n\n🎯 Goal: 25–30g protein at breakfast',
+    reflectionPrompt: 'My go-to breakfast this week is:\n\nIngredients I need to have ready:\n\nWhat makes this realistic for my actual schedule?',
     checklist: [
       'I had a high-protein breakfast (25g+)',
       'I logged my breakfast protein amount',
       'I chose my personal go-to breakfast option',
-      'I tracked all my meals today',
+      'I know what ingredients I need to keep stocked',
       'I completed my Day 3 reflection',
     ],
     rewardItem: {
@@ -128,26 +128,26 @@ You only need ONE go-to breakfast. Not 10 healthy recipes on Pinterest. Just one
   },
   {
     num: 4,
-    title: 'Build Protein-First Meals',
+    title: 'Build Protein-First Lunches & Dinners',
     subtitle: 'The formula for every meal',
     color: '#FF6B9D',
     bgGradient: 'from-pink to-pink-dark',
     emoji: '🍽️',
-    lesson: `You don't need a different meal plan for every day of the week. You need one formula you can apply to every single meal — at home, at a restaurant, on the road.
+    lesson: `You do not need a rigid meal plan. You need a simple formula.
 
-Here it is: Protein + Produce + Smart Carb or Fat.
+Protein + Produce + Carb/Fat
 
-That's it. Chicken + roasted veggies + rice. Salmon + salad + roasted potato. Greek yogurt + fruit + granola. Eggs + spinach + avocado toast.
+That's it. Learn it once. Use it forever — at home, at a restaurant, on the road.
 
-Every meal you build around this formula will keep you full, support your goals, and take the guesswork out of eating. Learn it once. Use it forever.`,
-    challengeTask: 'Apply the Protein + Produce + Carb/Fat formula to every single meal today — breakfast, lunch, AND dinner. Log what you have in each slot below.',
-    keyInsight: 'This formula works at restaurants, at home, on the road. Learn it once. Use it forever.',
-    proteinTip: '🍳 Breakfast anchors: eggs, Greek yogurt, cottage cheese, protein shake\n🥗 Lunch anchors: chicken, tuna, turkey, tofu\n🐟 Dinner anchors: salmon, lean beef, shrimp, legumes\n🧀 Snack anchors: string cheese, edamame, hard-boiled eggs',
-    reflectionPrompt: 'Which meal is hardest for you to apply the formula to? What\'s one small change that would make it easier?',
+Every meal you build around this formula will keep you full, support your goals, and take the guesswork out of eating.`,
+    challengeTask: 'Apply the Protein + Produce + Carb/Fat formula to your lunch AND dinner today. Log both below.',
+    keyInsight: 'This formula works everywhere. Learn it once. Use it forever.',
+    proteinTip: '🍽️ Formula Examples\n\n• Chicken + rice + broccoli\n• Edamame quinoa bowl + roasted vegetables\n• Turkey taco bowl + salsa + avocado\n• Stir-fry with chicken + veggies + rice\n• Rotisserie chicken wrap + fruit\n• Ground turkey bowl + roasted vegetables\n• Lentil taco bowl + salsa + avocado\n• Tofu + rice + vegetables\n\n🎯 Aim for 25–30g protein at lunch and dinner',
+    reflectionPrompt: 'My easiest lunch option is:\n\nMy easiest dinner option is:\n\nThe protein I want to use more often is:',
     checklist: [
-      'I applied the formula to breakfast',
-      'I applied the formula to lunch',
-      'I applied the formula to dinner',
+      'I applied the formula to lunch today',
+      'I applied the formula to dinner today',
+      'I know my easiest lunch and dinner options',
       'I tracked all my meals today',
       'I completed my Day 4 reflection',
     ],
@@ -161,26 +161,26 @@ Every meal you build around this formula will keep you full, support your goals,
   },
   {
     num: 5,
-    title: 'Busy Day Backup Plan',
+    title: 'Create Your Busy-Day Backup Plan',
     subtitle: 'Your plan for the hard days',
     color: '#07b0a4',
     bgGradient: 'from-teal-400 to-teal-600',
     emoji: '⚡',
-    lesson: `Your nutrition plan should work on your WORST day — not just your best one.
+    lesson: `The goal is not to eat perfectly on ideal days — it's to know what to do when life gets busy.
 
 Most women only have a plan for the good days. The days with time, energy, a calm morning, and a stocked fridge. But what about back-to-back meetings, a full inbox, zero prep, and no real lunch break?
 
-Without a backup plan, those days become "I'll start again Monday." Your Busy-Day Backup List is your secret weapon — the 5–10 foods you can always reach for when life gets away from you, with zero cooking required.
+Without a backup plan, those days become "I'll start again Monday." Your Busy-Day Backup List is your secret weapon.
 
 Build this list before you need it. That's the whole point.`,
-    challengeTask: 'Build your personal Busy-Day Backup List right now. Write down at least 5 easy, high-protein options you can grab without cooking. These are your go-to items on chaotic days.',
+    challengeTask: 'Write down your personal 5 Busy-Day Protein Backups right now. Choose options you\'d actually grab when life goes sideways. Then identify where you usually get thrown off — and what you\'ll do instead.',
     keyInsight: 'The days everything goes sideways are exactly when this list saves you. Build it before you need it.',
-    proteinTip: '⚡ Easy no-cook protein options:\nRotisserie chicken · Greek yogurt cups · String cheese · Hard-boiled eggs · Protein bars · Cottage cheese · Canned tuna packets · Deli turkey · Edamame · Protein shake',
-    reflectionPrompt: 'What usually throws you completely off track on busy days? How does your new backup list solve that specific problem?',
+    proteinTip: '⚡ Easy No-Cook Backup Options\n\n• Hard-boiled eggs\n• Greek yogurt\n• Grilled chicken salad\n• Tuna packets\n• Cottage cheese\n• Protein shake\n• Roasted edamame\n• Tofu cubes or baked tofu\n• Protein bar\n• Rotisserie chicken',
+    reflectionPrompt: 'My 5 busy-day protein backups are:\n1.\n2.\n3.\n4.\n5.\n\nWhere I usually get thrown off:\n\nWhat I\'ll do instead next time:',
     checklist: [
-      'I built my Busy-Day Backup List (5+ options)',
-      'I know my top 3 easiest grab-and-go proteins',
-      'I planned ahead for at least one busy day this week',
+      'I wrote down my 5 busy-day protein backups',
+      'I identified where I usually get thrown off',
+      'I have a plan for what to do instead',
       'I tracked all my meals today',
       'I completed my Day 5 reflection',
     ],
@@ -194,27 +194,31 @@ Build this list before you need it. That's the whole point.`,
   },
   {
     num: 6,
-    title: 'Prep Without Overwhelm',
-    subtitle: '20 minutes. One protein source. Done.',
+    title: 'Prep Protein Without Overwhelm',
+    subtitle: '20 minutes. That\'s it.',
     color: '#07b0a4',
     bgGradient: 'from-teal-600 to-teal-800',
     emoji: '🧪',
-    lesson: `You don't need to spend Sunday in the kitchen to be consistent. You need 20 minutes and a plan.
+    lesson: `Meal prep does not have to mean spending hours in the kitchen. Here is a simple prep plan:
 
-Protein prep isn't about cooking seven perfect meals in matching containers. It's about reducing the number of decisions you make when you're tired and hungry.
+✅ Prep 1–2 proteins
+✅ Prep 1 easy breakfast
+✅ Stock 2 backup protein options
+✅ Wash or prep produce
+✅ Make future meals easier
 
-Bake a batch of chicken thighs. Hard-boil a dozen eggs. Portion out your Greek yogurt cups. That's it. Those 20 minutes carry you through the entire week — especially the days you have nothing left to give.
+That's it. Those 20 minutes carry you through the week — especially the days you have nothing left to give.
 
 The goal: make the right choice the path of least resistance.`,
-    challengeTask: 'Complete ONE protein prep session today. Set a 20-minute timer. Prep at least one protein source that will make tomorrow easier.',
+    challengeTask: 'Complete ONE protein prep session today. Set a 20-minute timer. Prep at least 1–2 protein sources and 1 easy breakfast that will make the next few days easier.',
     keyInsight: 'Prep isn\'t about perfection. It\'s about making the healthy choice the easy choice.',
-    proteinTip: '⏱️ Best ROI preps:\n🍗 Baked chicken thighs → done in 25 min, lasts 5 days\n🥚 Hard-boiled eggs (batch of 12) → 5 days of snacks\n🥣 Overnight oats with protein powder → ready in the morning\n🥛 Pre-portioned Greek yogurt cups → 30 seconds each',
-    reflectionPrompt: 'What one prep habit would make the biggest difference in your week if you did it consistently every Sunday?',
+    proteinTip: '⏱️ Best ROI Preps (20 min or less)\n\n🍗 Baked chicken thighs → done in 25 min, lasts 5 days\n🥚 Hard-boiled eggs (batch of 12) → 5 days of snacks\n🥣 Overnight oats with protein powder → ready in the morning\n🥛 Pre-portioned Greek yogurt cups → 30 seconds each\n🐟 Sheet pan salmon + veggies → 25 minutes, 2 meals done',
+    reflectionPrompt: 'The 2 proteins I prepped today:\n1.\n2.\n\nMy breakfast prep is:\n\nMy 2 backup proteins are:\n1.\n2.\n\nWhat I can do in 20 minutes to make next week easier:',
     checklist: [
       'I completed a protein prep session (20 min)',
-      'I prepped at least one protein source',
-      'I set up easy backup options for the week',
-      'I tracked all my meals today',
+      'I prepped at least 1–2 protein sources',
+      'I prepped or planned my breakfast',
+      'I stocked 2 backup protein options',
       'I completed my Day 6 reflection',
     ],
     rewardItem: {
@@ -227,7 +231,7 @@ The goal: make the right choice the path of least resistance.`,
   },
   {
     num: 7,
-    title: 'Lock In the Habit',
+    title: 'Reflect, Lock In the Habit & Choose Your Next Step',
     subtitle: 'The finish line is just the starting line',
     color: '#C8F53A',
     bgGradient: 'from-lime to-teal-500',
@@ -236,19 +240,17 @@ The goal: make the right choice the path of least resistance.`,
 
 Over the past week you built awareness, set a standard, fixed breakfast, learned a meal formula, created a backup plan, and simplified your prep. That's not a 7-day transformation — that's the foundation of a sustainable habit.
 
-The goal now is to keep going with what works and let go of what doesn't. You know more about your protein patterns than you did a week ago. That knowledge doesn't expire.
-
-What you do AFTER this challenge is where the real magic happens.`,
-    challengeTask: 'Write your going-forward protein plan. What habits from this week will you keep? What will you improve? What does your next 30 days actually look like for you?',
+What you do AFTER this challenge is where the real magic happens. Keep going with what works. Let go of what doesn't. You know more about your protein patterns than you did a week ago — and that knowledge doesn't expire.`,
+    challengeTask: 'Take time today to answer all the reflection prompts below honestly. Then decide: what protein habit are you keeping next week no matter what?',
     keyInsight: 'Consistency isn\'t about being perfect every day. It\'s about having a plan that fits your real life — and coming back to it when things get messy.',
-    proteinTip: '🏆 Your 3 non-negotiables going forward:\n1. High-protein breakfast every morning\n2. Apply the Protein + Produce + Carb/Fat formula at every meal\n3. Keep your Busy-Day Backup List stocked',
-    reflectionPrompt: 'What is your single biggest win from this entire challenge? And what\'s the ONE thing you\'ll commit to keeping — no matter what?',
+    proteinTip: '🏆 Your 3 Non-Negotiables Going Forward\n\n1. High-protein breakfast every morning (25–30g)\n2. Apply the Protein + Produce + Carb/Fat formula at every meal\n3. Keep your Busy-Day Backup List stocked\n\n🎯 Long-term goal: work toward 30g of protein at each meal',
+    reflectionPrompt: 'How did the challenge go? Do you feel any different compared to 7 days ago?\n\nWhat did I learn about my eating habits this week?\n\nWhat am I most proud of from this challenge?\n\nWhere do I still need support?\n\nWhat protein habit do I want to keep next week?',
     checklist: [
-      'I reviewed my protein logs from all 7 days',
-      'I identified my single biggest win',
-      'I wrote my going-forward protein plan',
-      'I tracked all my meals today',
-      'I completed my final Day 7 reflection 🎉',
+      'I reviewed my meals and progress from all 7 days',
+      'I answered all 5 reflection prompts',
+      'I identified the protein habit I\'m keeping',
+      'I know where I still need support',
+      'I completed the full 7-Day Challenge 🎉',
     ],
     rewardItem: {
       id: 'champion_belt',
@@ -266,6 +268,211 @@ export const FACEBOOK_BONUS_ITEM: RewardItem = {
   emoji: '🦋',
   description: 'You showed up AND showed out. Community is everything.',
   xpValue: 50,
+}
+
+export const RECIPES = {
+  breakfast: [
+    {
+      name: 'Turkey, Egg & Cheese Muffins',
+      servings: 2,
+      prepTime: '10 min',
+      cookTime: '20 min',
+      protein: 45,
+      calories: 389,
+      carbs: 6,
+      fat: 20,
+      ingredients: [
+        '4 large eggs',
+        '6 large egg whites',
+        '½ red bell pepper, diced',
+        '½ small onion, diced',
+        '70g mozzarella cheese',
+        '2 tbsp chives, chopped',
+        '85g roast turkey, diced',
+        'Non-stick spray',
+      ],
+      steps: [
+        'Preheat oven to 350°F (175°C).',
+        'Whisk together eggs and egg whites in a large bowl.',
+        'Chop turkey, pepper, onion, and chives into small pieces.',
+        'Spray muffin tin with non-stick spray. Place about 1 tbsp each of turkey, peppers, and onions into each tin.',
+        'Pour the egg mix into each tin. Sprinkle with cheese and chives.',
+        'Bake for 20–25 minutes. Let cool before removing.',
+      ],
+    },
+    {
+      name: 'Berry Protein Yogurt Bowl',
+      servings: 1,
+      prepTime: '5 min',
+      cookTime: '0 min',
+      protein: 45,
+      calories: 380,
+      carbs: 34,
+      fat: 8,
+      ingredients: [
+        '170g Greek yogurt',
+        '1 scoop vanilla protein powder',
+        '½ cup berries',
+        '2 tbsp granola',
+        '1 tbsp chia seeds',
+      ],
+      steps: [
+        'Add Greek yogurt to a bowl.',
+        'Stir in protein powder until smooth.',
+        'Top with berries, granola, and chia seeds.',
+        'Serve immediately.',
+      ],
+    },
+    {
+      name: 'Egg & Turkey Breakfast Wrap',
+      servings: 1,
+      prepTime: '5 min',
+      cookTime: '7 min',
+      protein: 42,
+      calories: 400,
+      carbs: 25,
+      fat: 15,
+      ingredients: [
+        '2 whole eggs',
+        '½ cup egg whites',
+        '2 oz sliced turkey',
+        '1 whole wheat wrap',
+        'Handful of spinach',
+        'Salt and pepper',
+      ],
+      steps: [
+        'Scramble eggs and egg whites in a pan.',
+        'Add spinach and turkey and cook until warmed through.',
+        'Place mixture into wrap.',
+        'Roll and serve.',
+      ],
+    },
+  ],
+  lunch: [
+    {
+      name: 'Chicken Rice Power Bowl',
+      servings: 1,
+      prepTime: '5 min',
+      cookTime: '5 min',
+      protein: 42,
+      calories: 515,
+      carbs: 45,
+      fat: 19,
+      ingredients: [
+        '4 oz cooked chicken breast',
+        '½–¾ cup cooked rice',
+        '1 cup steamed broccoli',
+        '1 tbsp olive oil or dressing',
+        'Salt, pepper, garlic powder',
+      ],
+      steps: [
+        'Add rice, broccoli, and chicken to a bowl.',
+        'Drizzle with olive oil or dressing.',
+        'Season to taste.',
+        'Serve warm.',
+      ],
+    },
+    {
+      name: 'Lentil Taco Bowl',
+      servings: 1,
+      prepTime: '5 min',
+      cookTime: '10 min',
+      protein: 22,
+      calories: 440,
+      carbs: 71,
+      fat: 9,
+      ingredients: [
+        '1 cup cooked lentils',
+        '½ cup cooked rice',
+        '¼ avocado',
+        'Salsa',
+        'Shredded lettuce',
+        'Taco seasoning',
+      ],
+      steps: [
+        'Warm lentils with taco seasoning.',
+        'Add rice, lettuce, salsa, and avocado to a bowl.',
+        'Top with lentils.',
+        'Serve.',
+      ],
+    },
+  ],
+  dinner: [
+    {
+      name: 'Sheet Pan Salmon & Veggies',
+      servings: 2,
+      prepTime: '10 min',
+      cookTime: '25 min',
+      protein: 29,
+      calories: 380,
+      carbs: 20,
+      fat: 21,
+      ingredients: [
+        '2 salmon fillets',
+        '2 cups green beans',
+        '1 cup baby potatoes, halved',
+        '1 tbsp olive oil',
+        'Salt, pepper, garlic powder',
+      ],
+      steps: [
+        'Preheat oven to 400°F.',
+        'Place salmon, green beans, and potatoes on a sheet pan.',
+        'Drizzle with olive oil and season.',
+        'Bake for 20–25 minutes until salmon is cooked through.',
+      ],
+    },
+    {
+      name: 'Tofu Stir-Fry',
+      servings: 2,
+      prepTime: '10 min',
+      cookTime: '12 min',
+      protein: 36,
+      calories: 406,
+      carbs: 36,
+      fat: 14,
+      ingredients: [
+        '8 oz extra-firm tofu, cubed',
+        '2 cups mixed vegetables',
+        '1 cup cooked rice',
+        '1 tbsp soy sauce',
+        '1 tsp sesame oil',
+        'Garlic or ginger to taste',
+      ],
+      steps: [
+        'Cook tofu in a pan until lightly browned.',
+        'Add vegetables and cook until tender.',
+        'Stir in soy sauce and sesame oil.',
+        'Serve over rice.',
+      ],
+    },
+    {
+      name: 'Steak Bowl',
+      servings: 1,
+      prepTime: '5 min',
+      cookTime: '20 min',
+      protein: 33,
+      calories: 448,
+      carbs: 49,
+      fat: 15,
+      ingredients: [
+        '4 oz sirloin steak, sliced thin',
+        '½ large russet potato, chopped',
+        '½ cup red peppers, chopped',
+        '1 cup mushrooms, chopped',
+        '1 small shallot, chopped',
+        '¼ tbsp ghee',
+        '1 tbsp nutritional yeast',
+        'Salt, pepper, green onions to garnish',
+      ],
+      steps: [
+        'Toss potatoes, pepper, mushrooms, and shallots with ghee, salt, and pepper.',
+        'Bake at 400°F for 20 minutes (or air fry at 390°F).',
+        'Cook steak on medium heat for 5–7 minutes. Slice thin.',
+        'Add potato and vegetable mix to a bowl.',
+        'Top with steak, nutritional yeast, and green onions.',
+      ],
+    },
+  ],
 }
 
 export const COACH_TONE_SYSTEM_PROMPT = `You are the coach behind Grind Lab Fitness — warm, real, enthusiastic, and deeply encouraging. You work especially with women over 30 who are building better nutrition habits.

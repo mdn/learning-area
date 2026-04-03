@@ -43,24 +43,6 @@ export async function POST(req: Request) {
       }
     }
 
-    // Email admin
-    const resendKey = process.env.RESEND_API_KEY
-    const adminEmail = process.env.ADMIN_EMAIL
-    if (resendKey && adminEmail) {
-      try {
-        const { Resend } = await import('resend')
-        const resend = new Resend(resendKey)
-        await resend.emails.send({
-          from: process.env.FROM_EMAIL || 'onboarding@resend.dev',
-          to: adminEmail,
-          subject: `New question from ${participantName} — Day ${dayNum}`,
-          html: `<div style="font-family:sans-serif;max-width:600px;margin:0 auto"><div style="background:#07b0a4;color:white;padding:20px;border-radius:12px 12px 0 0"><h2 style="margin:0">New Participant Question 💬</h2></div><div style="background:#f9f9f9;padding:20px;border-radius:0 0 12px 12px;border:1px solid #eee;border-top:none"><p><strong>From:</strong> ${participantName} (${participantEmail}) · Day ${dayNum}</p><div style="background:#fff;border-left:3px solid #07b0a4;padding:12px 16px;border-radius:0 8px 8px 0;margin:12px 0"><p style="margin:0">${question}</p></div><p><strong>AI Draft:</strong></p><div style="background:#f0fdfb;border:1px solid #07b0a4;border-radius:8px;padding:12px 16px"><p style="margin:0">${answer}</p></div><p style="margin-top:16px"><a href="${process.env.NEXT_PUBLIC_APP_URL}/admin/questions" style="background:linear-gradient(135deg,#07b0a4,#C8F53A);color:#000;font-weight:bold;text-decoration:none;padding:10px 20px;border-radius:50px;display:inline-block">Review in Dashboard →</a></p></div></div>`,
-        })
-      } catch (emailErr) {
-        console.error('Email failed:', emailErr)
-      }
-    }
-
     return NextResponse.json({ answer })
   } catch (err) {
     console.error('AI answer error:', err)

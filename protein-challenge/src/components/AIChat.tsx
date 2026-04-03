@@ -58,8 +58,6 @@ export default function AIChat({ state, dayNum, onStateChange }: Props) {
       createdAt: new Date().toISOString(),
     }
 
-      id,
-
     const updated: ParticipantState = {
       ...state,
       xp: state.xp + XP_REWARDS.questionAsked,
@@ -83,7 +81,7 @@ export default function AIChat({ state, dayNum, onStateChange }: Props) {
           notifications: [...updated.notifications, {
             id: `answer-${id}`,
             type: 'answer',
-            title: 'Your coach answered! 💬',
+            title: 'Your assistant answered! 💬',
             message: answer.slice(0, 100) + '...',
             read: false,
             createdAt: new Date().toISOString(),
@@ -105,8 +103,8 @@ export default function AIChat({ state, dayNum, onStateChange }: Props) {
       >
         <div className="w-10 h-10 rounded-2xl bg-teal-50 border border-teal-100 flex items-center justify-center text-xl flex-shrink-0">💬</div>
         <div className="flex-1">
-          <div className="font-heading font-bold text-sm text-black">Ask Your Coach</div>
-          <div className="text-xs text-gray-400">Get a personal answer in the challenge app</div>
+          <div className="font-heading font-bold text-sm text-black">Ask Your Assistant</div>
+          <div className="text-xs text-gray-400">Get an instant AI answer</div>
         </div>
         {pending.length > 0 && (
           <span className="bg-pink text-white text-[10px] font-bold px-2 py-1 rounded-full">{pending.length} pending</span>
@@ -143,7 +141,7 @@ export default function AIChat({ state, dayNum, onStateChange }: Props) {
                         <div className="w-1.5 h-1.5 bg-teal-400 rounded-full animate-bounce" />
                         <div className="w-1.5 h-1.5 bg-teal-400 rounded-full animate-bounce" style={{ animationDelay: '0.15s' }} />
                         <div className="w-1.5 h-1.5 bg-teal-400 rounded-full animate-bounce" style={{ animationDelay: '0.3s' }} />
-                        <span>Coach is responding...</span>
+                        <span>Thinking...</span>
                       </div>
                     </div>
                   )}
@@ -173,7 +171,7 @@ export default function AIChat({ state, dayNum, onStateChange }: Props) {
             </button>
           </div>
           {error && <p className="text-xs text-red-400 mt-1">{error}</p>}
-          <p className="text-[10px] text-gray-300 mt-2 text-center">Questions go to your coach for review · +{XP_REWARDS.questionAsked} XP for asking</p>
+          <p className="text-[10px] text-gray-300 mt-2 text-center">+{XP_REWARDS.questionAsked} XP for asking</p>
         </div>
       )}
     </div>

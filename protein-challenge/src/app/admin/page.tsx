@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import { type AdminQuestion } from '@/lib/store'
-import Link from 'next/link'
 import Logo from '@/components/Logo'
 
 export default function AdminPage() {
@@ -11,6 +10,8 @@ export default function AdminPage() {
   const [authed, setAuthed] = useState(false)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [editing, setEditing] = useState<Record<string, string>>({})
+  const [sending, setSending] = useState<Record<string, boolean>>({})
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -39,20 +40,35 @@ export default function AdminPage() {
     }
   }
 
+  const sendAnswer = async (q: AdminQuestion) => {
+    const answer = editing[q.id] ?? q.aiDraft ?? ''
+    if (!answer.trim()) return
+    setSending(prev => ({ ...prev, [q.id]: true }))
+    try {
+      await fetch('/api/admin/send-answer', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ questionId: q.id, answer }),
+      })
+      await fetchQuestions()
+    } catch {}
+    setSending(prev => ({ ...prev, [q.id]: false }))
+  }
+
   if (!authed) {
     return (
       <div className="min-h-screen flex items-center justify-center px-6 bg-[#FAFAFA]">
         <div className="w-full max-w-sm">
           <div className="mb-8 text-center"><Logo size="md" /></div>
           <div className="bg-white rounded-3xl border border-gray-100 shadow-card p-6">
-            <h1 className="font-heading font-bold text-xl text-black mb-1">Coach Dashboard</h1>
-            <p className="text-xs text-gray-400 mb-5">Enter your admin password to continue</p>
+            <h1 className="font-heading font-bold text-xl text-black mb-1">Dashboard</h1>
+            <p className="text-xs text-gray-400 mb-5">Enter your admin password</p>
             <form onSubmit={login} className="space-y-4">
               <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Admin password"
                 className="w-full px-4 py-3 rounded-2xl border border-gray-100 bg-gray-50 focus:outline-none focus:border-teal-300 text-sm" />
               {error && <p className="text-xs text-red-400">{error}</p>}
               <button type="submit" className="w-full py-3 rounded-2xl font-heading font-bold text-black text-sm"
-                style={{ background: 'linear-gradient(135deg, #07b0a4, #C8F53A)' }}>Enter Dashboard →</button>
+                style={{ background: 'linear-gradient(135deg, #07b0a4, #C8F53A)' }}>Enter →</button>
             </form>
           </div>
         </div>
@@ -61,94 +77,90 @@ export default function AdminPage() {
   }
 
   const pending = questions.filter(q => q.status === 'pending')
-  const sent = questions.filter(q => q.status === 'sent')
+  const answered = questions.filter(q => q.status === 'sent')
 
   return (
     <div className="min-h-screen bg-[#FAFAFA]">
       <header className="bg-white border-b border-gray-100 shadow-sm px-6 py-4">
-        <div className="max-w-4xl mx-auto flex items-center justify-between">
+        <div className="max-w-3xl mx-auto flex items-center justify-between">
           <Logo size="sm" />
           <div className="flex items-center gap-3">
-            <button onClick={fetchQuestions} className="text-xs text-gray-400 hover:text-gray-600">↻ Refresh</button>
-            <Link href="/admin/questions" className="text-xs font-semibold text-teal-600 bg-teal-50 px-3 py-1.5 rounded-xl border border-teal-100 hover:bg-teal-100 transition-colors">
-              Q&A Queue {pending.length > 0 && `(${pending.length})`}
-            </Link>
+            <button onClick={fetchQuestions} className="text-xs text-gray-400 hover:text-gray-600">{loading ? 'Loading…' : '↻ Refresh'}</button>
             <button onClick={() => { sessionStorage.removeItem('glpc_admin_auth'); setAuthed(false) }} className="text-xs text-gray-400 hover:text-gray-600">Sign out</button>
           </div>
         </div>
       </header>
 
-      <div className="max-w-4xl mx-auto px-6 py-8 space-y-6">
-        <div>
-          <h1 className="font-heading font-extrabold text-2xl text-black">Coach Dashboard 👋</h1>
-          <p className="text-sm text-gray-500 mt-1">Monitor your challenge participants, answer questions, and track engagement.</p>
-        </div>
+      <div className="max-w-3xl mx-auto px-4 py-6 space-y-6">
+        <h1 className="font-heading font-extrabold text-xl text-black">
+          Q&amp;A Dashboard
+          {pending.length > 0 && <span className="ml-2 text-sm font-bold text-orange-500 bg-orange-50 px-2 py-0.5 rounded-full border border-orange-100">{pending.length} pending</span>}
+        </h1>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {[
-            { val: loading ? '…' : questions.length, label: 'Total Questions', icon: '💬', color: '#07b0a4' },
-            { val: loading ? '…' : pending.length,   label: 'Awaiting Reply',  icon: '⏳', color: '#FF9A3C' },
-            { val: loading ? '…' : sent.length,      label: 'Answered',        icon: '✅', color: '#07b0a4' },
-            { val: loading ? '…' : new Set(questions.map(q => q.participantEmail)).size, label: 'Active Participants', icon: '👩', color: '#FF6B9D' },
-          ].map(s => (
-            <div key={s.label} className="bg-white rounded-3xl border border-gray-100 shadow-card p-4 text-center">
-              <div className="text-2xl mb-1">{s.icon}</div>
-              <div className="font-heading font-extrabold text-2xl" style={{ color: s.color }}>{s.val}</div>
-              <div className="text-[10px] text-gray-400 font-semibold uppercase tracking-wide mt-0.5">{s.label}</div>
-            </div>
-          ))}
-        </div>
-
+        {/* Pending questions */}
         {pending.length > 0 && (
-          <div className="bg-white rounded-3xl border border-orange-100 shadow-card p-5">
-            <div className="flex items-center justify-between mb-4">
-              <div className="font-heading font-bold text-sm text-black">⏳ Questions Needing Your Reply</div>
-              <Link href="/admin/questions" className="text-xs text-teal-600 font-semibold hover:underline">View all →</Link>
-            </div>
-            <div className="space-y-3">
-              {pending.slice(0, 3).map(q => (
-                <div key={q.id} className="p-3 rounded-2xl bg-orange-50 border border-orange-100">
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-xs font-bold text-orange-600">{q.participantName}</span>
-                    <span className="text-[10px] text-gray-400">{new Date(q.createdAt).toLocaleDateString()}</span>
+          <div className="space-y-4">
+            {pending.map(q => (
+              <div key={q.id} className="bg-white rounded-3xl border border-orange-100 shadow-card p-5 space-y-3">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="font-semibold text-sm text-black">{q.participantName}</div>
+                    <div className="text-xs text-gray-400">{new Date(q.createdAt).toLocaleString()}</div>
                   </div>
-                  <p className="text-xs text-gray-700 leading-relaxed">{q.question}</p>
-                  {q.aiDraft && (
-                    <div className="mt-2 p-2.5 rounded-xl bg-teal-50 border border-teal-100">
-                      <div className="text-[10px] font-bold text-teal-600 mb-1">AI Draft</div>
-                      <p className="text-xs text-teal-700 leading-relaxed">{q.aiDraft}</p>
-                    </div>
-                  )}
+                  <span className="text-xs font-bold text-orange-500 bg-orange-50 px-2 py-1 rounded-xl border border-orange-100">Pending</span>
                 </div>
-              ))}
-              {pending.length > 3 && (
-                <Link href="/admin/questions" className="block text-center text-xs text-teal-600 font-semibold py-2 hover:underline">
-                  +{pending.length - 3} more →
-                </Link>
-              )}
-            </div>
-          </div>
-        )}
 
-        <div className="bg-white rounded-3xl border border-gray-100 shadow-card p-5">
-          <div className="font-heading font-bold text-sm text-black mb-3">📌 Daily Coach Checklist</div>
-          <div className="space-y-2">
-            {[
-              'Check Q&A queue and reply to all pending questions',
-              'Post a check-in message in the Facebook group',
-              'Personally DM 3–5 engaged participants',
-              'Note who\'s most engaged — potential 1:1 coaching leads',
-              'Celebrate wins publicly in the group',
-            ].map((item, i) => (
-              <div key={i} className="flex items-center gap-3 text-xs text-gray-600 p-2.5 rounded-xl bg-gray-50">
-                <div className="w-5 h-5 rounded-full border-2 border-gray-200 flex-shrink-0" />
-                {item}
+                <div className="bg-gray-50 rounded-2xl p-3">
+                  <p className="text-sm text-gray-700 leading-relaxed">{q.question}</p>
+                </div>
+
+                <textarea
+                  value={editing[q.id] ?? q.aiDraft ?? ''}
+                  onChange={e => setEditing(p => ({ ...p, [q.id]: e.target.value }))}
+                  rows={4}
+                  placeholder="Edit or write your reply..."
+                  className="w-full text-sm border border-gray-100 rounded-2xl px-4 py-3 bg-gray-50 focus:outline-none focus:border-teal-300 focus:bg-white transition-colors resize-none leading-relaxed placeholder:text-gray-300"
+                />
+
+                <button
+                  onClick={() => sendAnswer(q)}
+                  disabled={!((editing[q.id] ?? q.aiDraft ?? '').trim()) || sending[q.id]}
+                  className="w-full py-3 rounded-2xl font-heading font-bold text-black text-sm disabled:opacity-40 transition-all"
+                  style={{ background: 'linear-gradient(135deg, #07b0a4, #C8F53A)' }}
+                >
+                  {sending[q.id] ? 'Saving…' : 'Save Answer ✓'}
+                </button>
               </div>
             ))}
           </div>
-        </div>
+        )}
 
-        <div className="text-center text-xs text-gray-300 pb-4">Grind Lab Fitness · Admin Dashboard · {new Date().getFullYear()}</div>
+        {/* Answered questions */}
+        {answered.length > 0 && (
+          <div className="space-y-3">
+            <h2 className="font-heading font-bold text-sm text-gray-500 uppercase tracking-wide">Answered ({answered.length})</h2>
+            {answered.map(q => (
+              <div key={q.id} className="bg-white rounded-3xl border border-gray-100 shadow-card p-4 space-y-2">
+                <div className="flex items-center justify-between">
+                  <div className="font-semibold text-xs text-black">{q.participantName}</div>
+                  <span className="text-xs font-bold text-teal-500 bg-teal-50 px-2 py-0.5 rounded-full">Answered</span>
+                </div>
+                <p className="text-xs text-gray-500">{q.question}</p>
+                <div className="bg-teal-50 rounded-xl p-2.5">
+                  <p className="text-xs text-teal-700 leading-relaxed">{q.finalAnswer}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {!loading && questions.length === 0 && (
+          <div className="text-center py-16">
+            <div className="text-4xl mb-3">💬</div>
+            <div className="font-heading font-bold text-lg text-black mb-1">No questions yet</div>
+            <div className="text-sm text-gray-400">Questions will appear here once participants start asking</div>
+          </div>
+        )}
       </div>
     </div>
   )
