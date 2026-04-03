@@ -6,6 +6,25 @@ export interface MealEntry {
   protein: string
 }
 
+export interface CheckIn {
+  win: string
+  easy: string
+  hard: string
+  improve: string
+}
+
+export interface Day0State {
+  preChecklist: boolean[]
+  howToChecklist: boolean[]
+  grocery: {
+    proteins: string
+    breakfast: string
+    produce: string
+    carbs: string
+    busyDay: string
+  }
+}
+
 export interface DayState {
   completed: boolean
   meals: MealEntry[]
@@ -14,6 +33,8 @@ export interface DayState {
   proteinTotal: number
   goalHit: boolean
   completedAt?: string
+  prompts: Record<string, string>
+  checkIn: CheckIn
 }
 
 export interface Question {
@@ -40,6 +61,7 @@ export interface ParticipantState {
   email: string
   pin: string
   startDate: string
+  day0: Day0State
   proteinGoal: number
   avatarType: 'preset' | 'upload'
   avatarId: string
@@ -73,6 +95,14 @@ const defaultDay = (dayNum: number, checklistLen: number): DayState => ({
   notes: '',
   proteinTotal: 0,
   goalHit: false,
+  prompts: {},
+  checkIn: { win: '', easy: '', hard: '', improve: '' },
+})
+
+const defaultDay0 = (): Day0State => ({
+  preChecklist: new Array(5).fill(false),
+  howToChecklist: new Array(5).fill(false),
+  grocery: { proteins: '', breakfast: '', produce: '', carbs: '', busyDay: '' },
 })
 
 const defaultState = (): ParticipantState => ({
@@ -80,6 +110,7 @@ const defaultState = (): ParticipantState => ({
   email: '',
   pin: '',
   startDate: '2026-04-13',
+  day0: defaultDay0(),
   proteinGoal: 100,
   avatarType: 'preset',
   avatarId: 'avatar_1',

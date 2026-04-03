@@ -88,9 +88,14 @@ export default function AIChat({ state, dayNum, onStateChange }: Props) {
           }],
         }
         onStateChange(withAnswer)
+      } else {
+        // Remove the pending question and show error
+        onStateChange({ ...updated, questions: updated.questions.filter(x => x.id !== id), xp: state.xp })
+        setError('Assistant is unavailable right now. Please try again in a moment.')
       }
     } catch {
-      // Question queued for coach, no AI response
+      onStateChange({ ...updated, questions: updated.questions.filter(x => x.id !== id), xp: state.xp })
+      setError('Could not connect. Please try again.')
     }
     setLoading(false)
   }

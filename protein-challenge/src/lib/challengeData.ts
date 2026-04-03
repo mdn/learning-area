@@ -4,6 +4,19 @@ export interface Meal {
   protein: string
 }
 
+export interface WorkbookPrompt {
+  id: string
+  label: string
+  type: 'text' | 'textarea' | 'list'
+  count?: number
+  placeholder?: string
+}
+
+export interface WorkbookContent {
+  intro?: string
+  items?: string[]
+}
+
 export interface DayData {
   num: number
   title: string
@@ -18,6 +31,8 @@ export interface DayData {
   reflectionPrompt: string
   checklist: string[]
   rewardItem: RewardItem
+  workbookContent?: WorkbookContent
+  workbookPrompts: WorkbookPrompt[]
 }
 
 export interface RewardItem {
@@ -61,6 +76,10 @@ Today is not about changing anything. It's about seeing clearly where you actual
       description: 'You opened your eyes. That\'s how every transformation begins.',
       xpValue: 75,
     },
+    workbookPrompts: [
+      { id: 'protein_lowest', label: 'Where was protein lowest today?', type: 'textarea', placeholder: 'e.g. Breakfast — I just had coffee and toast...' },
+      { id: 'simple_fix', label: 'What is one simple fix I can make tomorrow?', type: 'textarea', placeholder: 'e.g. Add Greek yogurt to my morning...' },
+    ],
   },
   {
     num: 2,
@@ -94,6 +113,14 @@ Today you set your standard — and you actually try to hit it for the first tim
       description: 'Your standard is set. Now you have something to protect.',
       xpValue: 80,
     },
+    workbookContent: {
+      intro: 'For this challenge, aim for 25–30g of protein at 3 meals per day. You do not need a complicated plan — just a simple standard you can remember.',
+    },
+    workbookPrompts: [
+      { id: 'protein_rule', label: 'My protein rule this week is:', type: 'text', placeholder: 'e.g. 25-30g of protein at every meal' },
+      { id: 'improve_first', label: 'The meal I want to improve first is:', type: 'text', placeholder: 'e.g. Breakfast' },
+      { id: 'protein_source', label: 'The protein source I\'ll use most this week is:', type: 'text', placeholder: 'e.g. Greek yogurt, chicken, eggs...' },
+    ],
   },
   {
     num: 3,
@@ -125,6 +152,24 @@ You only need ONE go-to breakfast. Not 10 healthy recipes on Pinterest. Just one
       description: 'You\'re already winning before most people wake up.',
       xpValue: 85,
     },
+    workbookContent: {
+      items: [
+        'Greek yogurt bowl with berries and protein granola',
+        'Eggs + egg whites + toast',
+        'Cottage cheese bowl with fruit',
+        'Protein smoothie',
+        'Overnight oats with protein powder',
+        'Breakfast wrap with eggs and turkey',
+        'Greek yogurt + chia + nuts',
+        'Egg bites + fruit',
+        'Protein oatmeal',
+        'Smoothie + hard-boiled eggs',
+      ],
+    },
+    workbookPrompts: [
+      { id: 'goto_breakfast', label: 'My go-to breakfast this week is:', type: 'textarea', placeholder: 'The one I\'d actually make on a busy Tuesday...' },
+      { id: 'ingredients', label: 'Ingredients I need:', type: 'textarea', placeholder: 'What do I need to have in my fridge/pantry...' },
+    ],
   },
   {
     num: 4,
@@ -158,6 +203,24 @@ Every meal you build around this formula will keep you full, support your goals,
       description: 'Every hero needs a formula. This is yours.',
       xpValue: 90,
     },
+    workbookContent: {
+      intro: 'You do not need a rigid meal plan. You need a simple formula: Protein + Produce + Carb/Fat',
+      items: [
+        'Chicken + rice + broccoli',
+        'Edamame quinoa bowl + roasted vegetables',
+        'Turkey taco bowl + salsa + avocado',
+        'Stir-fry with chicken + veggies + rice',
+        'Rotisserie chicken wrap + fruit',
+        'Ground turkey bowl + roasted vegetables',
+        'Lentil taco bowl + salsa + avocado',
+        'Tofu + rice + vegetables',
+      ],
+    },
+    workbookPrompts: [
+      { id: 'easiest_lunch', label: 'My easiest lunch option is:', type: 'text', placeholder: 'e.g. Rotisserie chicken + salad + wrap' },
+      { id: 'easiest_dinner', label: 'My easiest dinner option is:', type: 'text', placeholder: 'e.g. Sheet pan chicken + veggies + rice' },
+      { id: 'protein_more', label: 'The protein I want to use more often is:', type: 'text', placeholder: 'e.g. Salmon, tofu, turkey...' },
+    ],
   },
   {
     num: 5,
@@ -191,6 +254,19 @@ Build this list before you need it. That's the whole point.`,
       description: 'Always prepared. Never caught off guard.',
       xpValue: 90,
     },
+    workbookContent: {
+      intro: 'The goal is not to eat perfectly on ideal days — it\'s to know what to do when life gets busy.',
+      items: [
+        'Hard-boiled eggs', 'Greek yogurt', 'Grilled chicken salad',
+        'Tuna packets', 'Cottage cheese', 'Protein shake',
+        'Roasted edamame', 'Tofu cubes or baked tofu', 'Protein bar',
+      ],
+    },
+    workbookPrompts: [
+      { id: 'backup_1', label: 'My 5 busy-day protein backups:', type: 'list', count: 5, placeholder: 'e.g. Greek yogurt' },
+      { id: 'thrown_off', label: 'Where I usually get thrown off:', type: 'textarea', placeholder: 'e.g. Back-to-back meetings with no lunch break...' },
+      { id: 'instead_next', label: 'What I\'ll do instead next time:', type: 'textarea', placeholder: 'e.g. Keep a protein bar in my bag...' },
+    ],
   },
   {
     num: 6,
@@ -228,6 +304,22 @@ The goal: make the right choice the path of least resistance.`,
       description: 'A little preparation is a superpower. You\'ve got it.',
       xpValue: 95,
     },
+    workbookContent: {
+      intro: 'Meal prep does not have to mean hours in the kitchen. Set a 20-minute timer and do this:',
+      items: [
+        'Prep 1–2 proteins',
+        'Prep 1 easy breakfast',
+        'Stock 2 backup protein options',
+        'Wash or prep produce',
+        'Make future meals easier',
+      ],
+    },
+    workbookPrompts: [
+      { id: 'prep_proteins', label: 'The 2 proteins I\'ll prep:', type: 'list', count: 2, placeholder: 'e.g. Chicken thighs' },
+      { id: 'breakfast_prep', label: 'My breakfast prep is:', type: 'text', placeholder: 'e.g. Overnight oats with protein powder' },
+      { id: 'backup_proteins', label: 'My 2 backup proteins are:', type: 'list', count: 2, placeholder: 'e.g. Hard-boiled eggs' },
+      { id: 'twenty_min', label: 'What I can do in 20 minutes to make next week easier:', type: 'textarea', placeholder: 'e.g. Batch cook chicken + portion snacks...' },
+    ],
   },
   {
     num: 7,
@@ -259,6 +351,12 @@ What you do AFTER this challenge is where the real magic happens. Keep going wit
       description: 'Seven days. Fully earned. You are a Protein Champion.',
       xpValue: 150,
     },
+    workbookPrompts: [
+      { id: 'learned', label: 'What did I learn about my eating habits this week?', type: 'textarea', placeholder: 'Be honest — even the small things count...' },
+      { id: 'proud_of', label: 'What am I most proud of from this challenge?', type: 'textarea', placeholder: 'Every win counts, big or small...' },
+      { id: 'need_support', label: 'Where do I still need support?', type: 'textarea', placeholder: 'No judgment — just honesty...' },
+      { id: 'keep_habit', label: 'What protein habit do I want to keep next week?', type: 'textarea', placeholder: 'One thing. Make it non-negotiable...' },
+    ],
   },
 ]
 
@@ -274,6 +372,7 @@ export const RECIPES = {
   breakfast: [
     {
       name: 'Turkey, Egg & Cheese Muffins',
+      image: '🧁',
       servings: 2,
       prepTime: '10 min',
       cookTime: '20 min',
@@ -302,6 +401,7 @@ export const RECIPES = {
     },
     {
       name: 'Berry Protein Yogurt Bowl',
+      image: '🍓',
       servings: 1,
       prepTime: '5 min',
       cookTime: '0 min',
@@ -325,6 +425,7 @@ export const RECIPES = {
     },
     {
       name: 'Egg & Turkey Breakfast Wrap',
+      image: '🌯',
       servings: 1,
       prepTime: '5 min',
       cookTime: '7 min',
@@ -351,6 +452,7 @@ export const RECIPES = {
   lunch: [
     {
       name: 'Chicken Rice Power Bowl',
+      image: '🍱',
       servings: 1,
       prepTime: '5 min',
       cookTime: '5 min',
@@ -374,6 +476,7 @@ export const RECIPES = {
     },
     {
       name: 'Lentil Taco Bowl',
+      image: '🌮',
       servings: 1,
       prepTime: '5 min',
       cookTime: '10 min',
@@ -400,6 +503,7 @@ export const RECIPES = {
   dinner: [
     {
       name: 'Sheet Pan Salmon & Veggies',
+      image: '🐟',
       servings: 2,
       prepTime: '10 min',
       cookTime: '25 min',
@@ -423,6 +527,7 @@ export const RECIPES = {
     },
     {
       name: 'Tofu Stir-Fry',
+      image: '🥢',
       servings: 2,
       prepTime: '10 min',
       cookTime: '12 min',
@@ -447,6 +552,7 @@ export const RECIPES = {
     },
     {
       name: 'Steak Bowl',
+      image: '🥩',
       servings: 1,
       prepTime: '5 min',
       cookTime: '20 min',
@@ -470,6 +576,88 @@ export const RECIPES = {
         'Cook steak on medium heat for 5–7 minutes. Slice thin.',
         'Add potato and vegetable mix to a bowl.',
         'Top with steak, nutritional yeast, and green onions.',
+      ],
+    },
+  ],
+  vegan: [
+    {
+      name: 'Edamame Quinoa Power Bowl',
+      image: '🫛',
+      servings: 1,
+      prepTime: '5 min',
+      cookTime: '5 min',
+      protein: 28,
+      calories: 420,
+      carbs: 48,
+      fat: 10,
+      ingredients: [
+        '½ cup cooked quinoa (microwave pouch)',
+        '1 cup shelled edamame (frozen, thawed)',
+        '1 cup baby spinach',
+        '1 tbsp tahini',
+        '1 tbsp lemon juice',
+        '1 tsp soy sauce',
+        'Sesame seeds to top',
+      ],
+      steps: [
+        'Heat quinoa per packet instructions (90 seconds).',
+        'Thaw edamame in warm water for 2 minutes.',
+        'Mix tahini, lemon juice, and soy sauce as dressing.',
+        'Combine quinoa, edamame, and spinach in a bowl.',
+        'Drizzle with dressing and top with sesame seeds.',
+      ],
+    },
+    {
+      name: 'Plant Protein Smoothie Bowl',
+      image: '🫐',
+      servings: 1,
+      prepTime: '5 min',
+      cookTime: '0 min',
+      protein: 30,
+      calories: 350,
+      carbs: 38,
+      fat: 7,
+      ingredients: [
+        '1 scoop plant-based protein powder (vanilla)',
+        '1 cup unsweetened almond milk',
+        '½ frozen banana',
+        '½ cup frozen mixed berries',
+        '1 tbsp chia seeds',
+        '2 tbsp granola to top',
+      ],
+      steps: [
+        'Blend protein powder, almond milk, banana, and berries until thick and smooth.',
+        'Pour into a bowl (should be thick — use less milk if needed).',
+        'Top with chia seeds and granola.',
+        'Serve immediately.',
+      ],
+    },
+    {
+      name: 'Tofu Scramble with Spinach',
+      image: '🥬',
+      servings: 1,
+      prepTime: '3 min',
+      cookTime: '7 min',
+      protein: 26,
+      calories: 280,
+      carbs: 10,
+      fat: 14,
+      ingredients: [
+        '200g firm tofu, crumbled',
+        '1 cup baby spinach',
+        '1 tbsp nutritional yeast',
+        '½ tsp turmeric',
+        '½ tsp garlic powder',
+        '1 tsp olive oil',
+        'Salt and pepper',
+      ],
+      steps: [
+        'Crumble tofu with your hands into chunky pieces.',
+        'Heat olive oil in a pan on medium-high.',
+        'Add tofu and season with turmeric, garlic powder, salt, and pepper.',
+        'Cook 5 minutes, stirring occasionally, until lightly golden.',
+        'Add spinach and nutritional yeast, stir for 1–2 minutes until wilted.',
+        'Serve immediately. Optional: add salsa or hot sauce.',
       ],
     },
   ],
