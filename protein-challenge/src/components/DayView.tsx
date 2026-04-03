@@ -6,7 +6,6 @@ import { type ParticipantState, type MealEntry, ensureDayState, saveState } from
 import { XP_REWARDS } from '@/lib/gamification'
 import RewardUnlock from './RewardUnlock'
 import MealRow from './MealRow'
-import AIChat from './AIChat'
 
 interface Props {
   day: DayData
@@ -202,7 +201,7 @@ export default function DayView({ day, state, onStateChange }: Props) {
           <div className="bg-white rounded-3xl border border-gray-100 shadow-card p-4 space-y-4">
             <div className="flex items-center gap-2">
               <span className="text-xl">📋</span>
-              <span className="font-heading font-bold text-sm text-black">Your Workbook</span>
+              <span className="font-heading font-bold text-sm text-black">Your Workbook Tasks</span>
             </div>
 
             {/* Intro text */}
@@ -294,8 +293,8 @@ export default function DayView({ day, state, onStateChange }: Props) {
           </div>
         </div>
 
-        {/* ── DAILY CHECK-IN ── */}
-        <div className="bg-white rounded-3xl border border-gray-100 shadow-card p-4 space-y-4">
+        {/* ── DAILY CHECK-IN (not on Day 7 — has its own reflection prompts) ── */}
+        {day.num !== 7 && <div className="bg-white rounded-3xl border border-gray-100 shadow-card p-4 space-y-4">
           <div className="flex items-center gap-2">
             <span className="text-xl">✍️</span>
             <div>
@@ -322,7 +321,7 @@ export default function DayView({ day, state, onStateChange }: Props) {
               />
             </div>
           ))}
-        </div>
+        </div>}
 
         {/* ── FACEBOOK BONUS ── */}
         {!localState.facebookBonusClaimed && (
@@ -348,9 +347,6 @@ export default function DayView({ day, state, onStateChange }: Props) {
             </div>
           </div>
         )}
-
-        {/* ── AI CHAT ── */}
-        <AIChat state={localState} dayNum={day.num} onStateChange={update} />
 
         {/* ── MARK COMPLETE ── */}
         {!dayState?.completed ? (
