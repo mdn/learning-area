@@ -5,6 +5,7 @@ import { type DayData } from '@/lib/challengeData'
 import { type ParticipantState, type MealEntry, ensureDayState, calcProteinTotal, saveState, type Question } from '@/lib/store'
 import { XP_REWARDS } from '@/lib/gamification'
 import RewardUnlock from './RewardUnlock'
+import MealRow from './MealRow'
 import AIChat from './AIChat'
 
 interface Props {
@@ -280,29 +281,13 @@ export default function DayView({ day, state, onStateChange }: Props) {
           </div>
 
           {/* Meal rows */}
-          <div className="space-y-2">
+          <div className="space-y-3">
             {(dayState?.meals || []).map((meal, i) => (
-              <div key={i} className="flex items-center gap-2">
-                <div className="w-16 text-xs font-semibold text-gray-400 flex-shrink-0">{meal.name}</div>
-                <input
-                  type="text"
-                  value={meal.food}
-                  onChange={e => updateMeal(i, 'food', e.target.value)}
-                  placeholder="What did you have?"
-                  className="flex-1 text-xs border border-gray-100 rounded-xl px-3 py-2 bg-gray-50 focus:outline-none focus:border-teal-300 focus:bg-white transition-colors placeholder:text-gray-300"
-                />
-                <div className="relative flex-shrink-0">
-                  <input
-                    type="number"
-                    min={0} max={200}
-                    value={meal.protein}
-                    onChange={e => updateMeal(i, 'protein', e.target.value)}
-                    placeholder="0"
-                    className="w-14 text-xs border border-gray-100 rounded-xl px-2 py-2 text-center bg-gray-50 focus:outline-none focus:border-teal-300 transition-colors"
-                  />
-                  <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[9px] text-gray-300 pointer-events-none">g</span>
-                </div>
-              </div>
+              <MealRow
+                key={i}
+                meal={meal}
+                onUpdate={(field, value) => updateMeal(i, field, value)}
+              />
             ))}
           </div>
 
