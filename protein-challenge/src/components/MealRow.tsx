@@ -19,6 +19,7 @@ const PORTIONS = [
 export default function MealRow({ meal, onUpdate }: Props) {
   const [open, setOpen] = useState(false)
   const [portion, setPortion] = useState('')
+  const [quantity, setQuantity] = useState('')
   const [cooked, setCooked] = useState<'cooked' | 'raw' | null>(null)
   const [imageUrl, setImageUrl] = useState('')
   const [estimating, setEstimating] = useState(false)
@@ -46,6 +47,7 @@ export default function MealRow({ meal, onUpdate }: Props) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           foodName: meal.food,
+          quantity: quantity || null,
           portion: PORTIONS.find(p => p.id === portion)?.label || portion || null,
           cooked,
           imageBase64: imageUrl || null,
@@ -70,6 +72,7 @@ export default function MealRow({ meal, onUpdate }: Props) {
     setOpen(false)
     setResult(null)
     setPortion('')
+    setQuantity('')
     setCooked(null)
     setImageUrl('')
   }
@@ -133,9 +136,25 @@ export default function MealRow({ meal, onUpdate }: Props) {
             </div>
           )}
 
+          {/* Quantity */}
+          <div>
+            <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1.5">How many? <span className="text-gray-300 normal-case font-normal">(great for eggs, pieces, slices...)</span></div>
+            <div className="flex gap-1.5 flex-wrap">
+              {['1','2','3','4','5','6','7','8'].map(n => (
+                <button
+                  key={n}
+                  onClick={() => setQuantity(quantity === n ? '' : n)}
+                  className={`w-10 h-10 rounded-xl border text-sm font-bold transition-all ${quantity === n ? 'border-teal-400 bg-teal-50 text-teal-700' : 'border-gray-100 bg-gray-50 text-gray-600 hover:border-teal-200'}`}
+                >
+                  {n}
+                </button>
+              ))}
+            </div>
+          </div>
+
           {/* Portion */}
           <div>
-            <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1.5">How much did you have?</div>
+            <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1.5">Or — how much by size?</div>
             <div className="grid grid-cols-3 gap-1.5">
               {PORTIONS.map(p => (
                 <button

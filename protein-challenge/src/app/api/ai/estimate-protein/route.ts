@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 
 export async function POST(req: Request) {
   try {
-    const { foodName, portion, cooked, imageBase64 } = await req.json()
+    const { foodName, quantity, portion, cooked, imageBase64 } = await req.json()
 
     const apiKey = process.env.ANTHROPIC_API_KEY
     if (!apiKey) {
@@ -14,7 +14,8 @@ export async function POST(req: Request) {
 
     const textLines = [
       foodName && `Food: ${foodName}`,
-      portion && `Portion: ${portion}`,
+      quantity && `Quantity: ${quantity}`,
+      portion && `Portion size: ${portion}`,
       cooked && `Preparation: ${cooked}`,
     ].filter(Boolean).join('\n')
 
