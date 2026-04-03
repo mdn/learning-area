@@ -287,6 +287,15 @@ export default function DayView({ day, state, onStateChange }: Props) {
               <MealRow key={i} meal={meal} onUpdate={(field, value) => updateMeal(i, field, value)} />
             ))}
           </div>
+          {(() => {
+            const total = (dayState?.meals || []).reduce((sum, m) => sum + (parseFloat(m.protein) || 0), 0)
+            return total > 0 ? (
+              <div className="mt-3 flex items-center justify-between px-1">
+                <span className="text-xs font-bold text-teal-600">~{Math.round(total)}g protein today</span>
+                <span className="text-[10px] text-gray-300">AI estimate — not exact</span>
+              </div>
+            ) : null
+          })()}
           <div className="mt-3 p-3 rounded-2xl bg-teal-50 border border-teal-100">
             <div className="text-[10px] font-bold text-teal-600 uppercase tracking-wider mb-1">💡 Tip</div>
             <p className="text-xs text-teal-700 leading-relaxed whitespace-pre-line">{day.proteinTip}</p>

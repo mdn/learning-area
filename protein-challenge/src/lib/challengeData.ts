@@ -117,7 +117,7 @@ Today you set your standard — and you actually try to hit it for the first tim
       intro: 'For this challenge, aim for 25–30g of protein at 3 meals per day. You do not need a complicated plan — just a simple standard you can remember.',
     },
     workbookPrompts: [
-      { id: 'protein_rule', label: 'My protein rule this week is:', type: 'text', placeholder: 'e.g. 25-30g of protein at every meal' },
+      { id: 'protein_rule', label: 'My protein rule this week is:', type: 'text', placeholder: 'e.g. I will eat 2 egg whites at every meal' },
       { id: 'improve_first', label: 'The meal I want to improve first is:', type: 'text', placeholder: 'e.g. Breakfast' },
       { id: 'protein_source', label: 'The protein source I\'ll use most this week is:', type: 'text', placeholder: 'e.g. Greek yogurt, chicken, eggs...' },
     ],
