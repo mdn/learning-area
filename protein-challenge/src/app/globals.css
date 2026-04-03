@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap');
+
+:root {
+  --font-syne: 'Syne', sans-serif;
+  --font-dm: 'DM Sans', sans-serif;
+  --teal: #07b0a4;
+  --teal-light: #0ecfc1;
+  --lime: #C8F53A;
+  --pink: #FF6B9D;
+  --orange: #FF9A3C;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #FAFAFA;
+  color: #1A1A1A;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,h2,h3,h4,h5,h6,.font-heading {
+  font-family: 'Syne', sans-serif;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #07b0a4; border-radius: 2px; }
+
+/* ── Selection ── */
+::selection { background: rgba(7,176,164,0.2); color: #07b0a4; }
+
+/* ── Glass card ── */
+.glass {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.6);
+}
+
+/* ── Teal gradient text ── */
+.gradient-text {
+  background: linear-gradient(135deg, #07b0a4, #C8F53A);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-pink {
+  background: linear-gradient(135deg, #FF6B9D, #07b0a4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Floating particles background ── */
+.particles-bg {
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(7,176,164,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(200,245,58,0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(255,107,157,0.04) 0%, transparent 50%),
+    #FAFAFA;
+}
+
+/* ── Shimmer ── */
+.shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+/* ── XP bar ── */
+.xp-bar { transition: width 1s cubic-bezier(0.4,0,0.2,1); }
+
+/* ── Day circle states ── */
+.day-dot-complete { background: #07b0a4; box-shadow: 0 0 0 3px rgba(7,176,164,0.25); }
+.day-dot-today    { background: white; border: 2px solid #07b0a4; box-shadow: 0 0 0 4px rgba(7,176,164,0.2); animation: pulse-soft 2s ease-in-out infinite; }
+.day-dot-future   { background: #E8E8E8; }
+
+/* ── Confetti burst ── */
+@keyframes confetti-fall {
+  0%   { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(80px) rotate(360deg); opacity: 0; }
+}
+.confetti-piece {
+  position: absolute;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  animation: confetti-fall 1s ease-out forwards;
+}
+
+/* ── Mobile bottom nav safe area ── */
+.bottom-nav {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ── Print styles ── */
+@media print {
+  .no-print { display: none !important; }
+  .print-only { display: block !important; }
+  body { background: white; font-size: 12px; }
+  .page-break { page-break-before: always; }
+}
+
+/* ── Animations ── */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+@keyframes pulse-soft {
+  0%,100% { opacity:1; transform:scale(1); }
+  50%      { opacity:.75; transform:scale(1.05); }
+}
+@keyframes slide-up {
+  from { opacity:0; transform:translateY(20px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes bounce-in {
+  from { opacity:0; transform:scale(0.5); }
+  to   { opacity:1; transform:scale(1); }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.animate-slide-up { animation: slide-up 0.5s ease-out; }
+.animate-bounce-in { animation: bounce-in 0.6s cubic-bezier(0.68,-0.55,0.265,1.55); }
+.animate-float { animation: float 3s ease-in-out infinite; }
+.animate-spin-slow { animation: spin-slow 8s linear infinite; }
