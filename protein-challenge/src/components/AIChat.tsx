@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { type ParticipantState, type Question, addAdminQuestion } from '@/lib/store'
+import { useState, useEffect } from 'react'
+import { type ParticipantState, type Question } from '@/lib/store'
 import { XP_REWARDS } from '@/lib/gamification'
 
 interface Props {
@@ -17,6 +17,29 @@ export default function AIChat({ state, dayNum, onStateChange }: Props) {
   const [error, setError] = useState('')
 
   const questions = state.questions || []
+
+  // Poll for coach answers every 30s
+  useEffect(() => {
+    const pending = (state.questions || []).filter(q => q.status === 'pending')
+    if (pending.length === 0) return
+    const check = async () => {
+      try {
+        const ids = pending.map(q => q.id).join(',')
+        const res = await fetch(`/api/participant/answers?ids=${ids}`)
+        if (!res.ok) return
+        const answers = await res.json()
+        if (answers.length === 0) return
+        const updated = (state.questions || []).map((q: Question) => {
+          const found = answers.find((a: {id:string;finalAnswer:string}) => a.id === q.id)
+          return found ? { ...q, finalAnswer: found.finalAnswer, status: 'answered' as const } : q
+        })
+        onStateChange({ ...state, questions: updated })
+      } catch {}
+    }
+    check()
+    const interval = setInterval(check, 30000)
+    return () => clearInterval(interval)
+  }, [state.questions?.length])
   const answered = questions.filter(q => q.status === 'answered')
   const pending = questions.filter(q => q.status === 'pending')
 
@@ -35,15 +58,7 @@ export default function AIChat({ state, dayNum, onStateChange }: Props) {
       createdAt: new Date().toISOString(),
     }
 
-    // Add to admin queue
-    addAdminQuestion({
       id,
-      participantName: state.name,
-      participantEmail: state.email,
-      question: q,
-      status: 'pending',
-      createdAt: new Date().toISOString(),
-    })
 
     const updated: ParticipantState = {
       ...state,
@@ -57,7 +72,7 @@ export default function AIChat({ state, dayNum, onStateChange }: Props) {
       const res = await fetch('/api/ai/answer', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question: q, dayNum, participantName: state.name, questionId: id }),
+        body: JSON.stringify({ question: q, dayNum, participantName: state.name, participantEmail: state.email, questionId: id }),
       })
       if (res.ok) {
         const { answer } = await res.json()

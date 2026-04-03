@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { loadAdminQuestions, type AdminQuestion } from '@/lib/store'
+import { type AdminQuestion } from '@/lib/store'
 import Link from 'next/link'
 import Logo from '@/components/Logo'
 
@@ -10,21 +10,30 @@ export default function AdminPage() {
   const [password, setPassword] = useState('')
   const [authed, setAuthed] = useState(false)
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const a = sessionStorage.getItem('glpc_admin_auth')
-      if (a === 'true') { setAuthed(true); setQuestions(loadAdminQuestions()) }
+      if (a === 'true') { setAuthed(true); fetchQuestions() }
     }
   }, [])
 
+  const fetchQuestions = async () => {
+    setLoading(true)
+    try {
+      const res = await fetch('/api/admin/questions')
+      if (res.ok) setQuestions(await res.json())
+    } catch {}
+    setLoading(false)
+  }
+
   const login = (e: React.FormEvent) => {
     e.preventDefault()
-    // Simple client-side check — in production use server-side auth
     if (password === (process.env.NEXT_PUBLIC_ADMIN_PASS || 'grindlab2024')) {
       sessionStorage.setItem('glpc_admin_auth', 'true')
       setAuthed(true)
-      setQuestions(loadAdminQuestions())
+      fetchQuestions()
     } else {
       setError('Wrong password')
     }
@@ -39,17 +48,11 @@ export default function AdminPage() {
             <h1 className="font-heading font-bold text-xl text-black mb-1">Coach Dashboard</h1>
             <p className="text-xs text-gray-400 mb-5">Enter your admin password to continue</p>
             <form onSubmit={login} className="space-y-4">
-              <input
-                type="password"
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-                placeholder="Admin password"
-                className="w-full px-4 py-3 rounded-2xl border border-gray-100 bg-gray-50 focus:outline-none focus:border-teal-300 text-sm"
-              />
+              <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Admin password"
+                className="w-full px-4 py-3 rounded-2xl border border-gray-100 bg-gray-50 focus:outline-none focus:border-teal-300 text-sm" />
               {error && <p className="text-xs text-red-400">{error}</p>}
-              <button type="submit" className="w-full py-3 rounded-2xl font-heading font-bold text-black text-sm" style={{ background: 'linear-gradient(135deg, #07b0a4, #C8F53A)' }}>
-                Enter Dashboard →
-              </button>
+              <button type="submit" className="w-full py-3 rounded-2xl font-heading font-bold text-black text-sm"
+                style={{ background: 'linear-gradient(135deg, #07b0a4, #C8F53A)' }}>Enter Dashboard →</button>
             </form>
           </div>
         </div>
@@ -62,20 +65,15 @@ export default function AdminPage() {
 
   return (
     <div className="min-h-screen bg-[#FAFAFA]">
-      {/* Header */}
       <header className="bg-white border-b border-gray-100 shadow-sm px-6 py-4">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
           <Logo size="sm" />
           <div className="flex items-center gap-3">
+            <button onClick={fetchQuestions} className="text-xs text-gray-400 hover:text-gray-600">↻ Refresh</button>
             <Link href="/admin/questions" className="text-xs font-semibold text-teal-600 bg-teal-50 px-3 py-1.5 rounded-xl border border-teal-100 hover:bg-teal-100 transition-colors">
               Q&A Queue {pending.length > 0 && `(${pending.length})`}
             </Link>
-            <button
-              onClick={() => { sessionStorage.removeItem('glpc_admin_auth'); setAuthed(false) }}
-              className="text-xs text-gray-400 hover:text-gray-600"
-            >
-              Sign out
-            </button>
+            <button onClick={() => { sessionStorage.removeItem('glpc_admin_auth'); setAuthed(false) }} className="text-xs text-gray-400 hover:text-gray-600">Sign out</button>
           </div>
         </div>
       </header>
@@ -86,13 +84,12 @@ export default function AdminPage() {
           <p className="text-sm text-gray-500 mt-1">Monitor your challenge participants, answer questions, and track engagement.</p>
         </div>
 
-        {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { val: questions.length, label: 'Total Questions', icon: '💬', color: '#07b0a4' },
-            { val: pending.length, label: 'Awaiting Reply', icon: '⏳', color: '#FF9A3C' },
-            { val: sent.length, label: 'Answered', icon: '✅', color: '#07b0a4' },
-            { val: new Set(questions.map(q => q.participantEmail)).size, label: 'Active Participants', icon: '👩', color: '#FF6B9D' },
+            { val: loading ? '…' : questions.length, label: 'Total Questions', icon: '💬', color: '#07b0a4' },
+            { val: loading ? '…' : pending.length,   label: 'Awaiting Reply',  icon: '⏳', color: '#FF9A3C' },
+            { val: loading ? '…' : sent.length,      label: 'Answered',        icon: '✅', color: '#07b0a4' },
+            { val: loading ? '…' : new Set(questions.map(q => q.participantEmail)).size, label: 'Active Participants', icon: '👩', color: '#FF6B9D' },
           ].map(s => (
             <div key={s.label} className="bg-white rounded-3xl border border-gray-100 shadow-card p-4 text-center">
               <div className="text-2xl mb-1">{s.icon}</div>
@@ -102,7 +99,6 @@ export default function AdminPage() {
           ))}
         </div>
 
-        {/* Pending questions preview */}
         {pending.length > 0 && (
           <div className="bg-white rounded-3xl border border-orange-100 shadow-card p-5">
             <div className="flex items-center justify-between mb-4">
@@ -127,21 +123,20 @@ export default function AdminPage() {
               ))}
               {pending.length > 3 && (
                 <Link href="/admin/questions" className="block text-center text-xs text-teal-600 font-semibold py-2 hover:underline">
-                  +{pending.length - 3} more questions →
+                  +{pending.length - 3} more →
                 </Link>
               )}
             </div>
           </div>
         )}
 
-        {/* Quick tips */}
         <div className="bg-white rounded-3xl border border-gray-100 shadow-card p-5">
           <div className="font-heading font-bold text-sm text-black mb-3">📌 Daily Coach Checklist</div>
           <div className="space-y-2">
             {[
               'Check Q&A queue and reply to all pending questions',
               'Post a check-in message in the Facebook group',
-              'Personally DM 3-5 engaged participants',
+              'Personally DM 3–5 engaged participants',
               'Note who\'s most engaged — potential 1:1 coaching leads',
               'Celebrate wins publicly in the group',
             ].map((item, i) => (

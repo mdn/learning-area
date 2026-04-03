@@ -19,7 +19,8 @@
     "framer-motion": "^11.1.7",
     "lucide-react": "^0.378.0",
     "clsx": "^2.1.1",
-    "tailwind-merge": "^2.3.0"
+    "tailwind-merge": "^2.3.0",
+    "@supabase/supabase-js": "^2.43.4"
   },
   "devDependencies": {
     "@types/node": "^20",
