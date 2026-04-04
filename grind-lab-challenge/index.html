@@ -111,6 +111,9 @@
     .card-status{font-size:13px;font-weight:600;display:none}
     .meal-card.yes .card-status{display:block;color:var(--accent)}
     .meal-card.no .card-status{display:block;color:#444}
+    .card-undo{display:none;font-size:11px;color:var(--text-secondary);margin-top:8px;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+    .meal-card.yes .card-undo,.meal-card.no .card-undo{display:block}
+    .day-counter{font-size:12px;font-weight:700;color:var(--text-secondary);letter-spacing:.1em;text-transform:uppercase;margin-bottom:20px}
     .btn-yes{
       display:block;width:100%;padding:15px;
       background:var(--accent);color:#fff;
@@ -258,6 +261,7 @@
   <div id="screen-today" class="screen">
     <div class="today-top">
       <div class="greeting" id="greeting">Hey there &#128075;</div>
+      <div class="day-counter" id="day-counter"></div>
       <div id="streak-area"></div>
     </div>
     <div class="meals" id="meals"></div>
@@ -467,6 +471,13 @@ function renderToday(){
   user = users[user.email] || user;
   document.getElementById('greeting').textContent = 'Hey ' + user.nickname + ' \uD83D\uDC4B';
 
+  // Day counter
+  const sorted = [...user.days].sort((a,b)=>a.date.localeCompare(b.date));
+  const startDate = sorted.length > 0 ? sorted[0].date : today();
+  const dayNum = Math.min(Math.floor((new Date(today()) - new Date(startDate)) / 86400000) + 1, 7);
+  const dcEl = document.getElementById('day-counter');
+  if(dcEl) dcEl.textContent = 'DAY ' + dayNum + ' OF 7';
+
   // streak
   const sa = document.getElementById('streak-area');
   if(user.streak > 0){
@@ -492,7 +503,8 @@ function renderToday(){
       '<div class="card-header"><div class="card-name">' + LABELS[m] + '</div><div class="card-icon">' + icon + '</div></div>' +
       '<div class="card-q">Did you hit your palm of protein?</div>' +
       (ans===null ? '<div class="card-btns"><button class="btn-yes" onclick="handleMeal(\'' + m + '\',true,event)">YES \u2014 I GOT IT</button><button class="btn-no" onclick="handleMeal(\'' + m + '\',false,event)">No, I missed it</button></div>' : '') +
-      '<div class="card-status">' + status + '</div>';
+      '<div class="card-status">' + status + '</div>' +
+      '<div class="card-undo" onclick="resetMeal(\'' + m + '\')">tap to change</div>';
     container.appendChild(card);
   });
 
@@ -502,6 +514,40 @@ function renderToday(){
 function updatePtsDisplay(){
   const el = document.getElementById('pts-total');
   if(el) el.innerHTML = 'Total points: <span>' + user.points + ' pts</span>';
+}
+
+// === RESET MEAL (unselect) ===
+function resetMeal(meal){
+  const day = getDayData();
+  const prev = day[meal];
+  if(prev === null) return;
+  if(prev === true){
+    day.points = Math.max(0, (day.points||0) - 10);
+    user.points = Math.max(0, user.points - 10);
+  }
+  day[meal] = null;
+  const t = today();
+  const i = user.days.findIndex(x => x.date === t);
+  if(i >= 0) user.days[i] = day;
+  saveUser();
+  // Re-render the card
+  const card = document.getElementById('card-' + meal);
+  if(card){
+    card.className = 'meal-card';
+    const icon = card.querySelector('.card-icon'); if(icon) icon.textContent='';
+    const stat = card.querySelector('.card-status'); if(stat) stat.textContent='';
+    const btns = card.querySelector('.card-btns');
+    if(btns) btns.style.display='flex';
+    else {
+      const LABELS = {breakfast:'BREAKFAST',lunch:'LUNCH',dinner:'DINNER'};
+      card.innerHTML =
+        '<div class="card-header"><div class="card-name">'+LABELS[meal]+'</div><div class="card-icon"></div></div>' +
+        '<div class="card-q">Did you hit your palm of protein?</div>' +
+        '<div class="card-btns"><button class="btn-yes" onclick="handleMeal(\''+meal+'\',true,event)">YES \u2014 I GOT IT</button><button class="btn-no" onclick="handleMeal(\''+meal+'\',false,event)">No, I missed it</button></div>' +
+        '<div class="card-status"></div><div class="card-undo" onclick="resetMeal(\''+meal+'\')">tap to change</div>';
+    }
+  }
+  updatePtsDisplay();
 }
 
 // === MEAL HANDLER ===
