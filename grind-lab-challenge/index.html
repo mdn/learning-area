@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#0D0D0D">
+  <title>Grind Lab Challenge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none;user-select:none}
+    :root{
+      --bg:#0D0D0D;--accent:#FF6B35;--accent-deep:#2A1000;--gold:#FFD23F;
+      --text-primary:#F5F0E8;--text-secondary:#8A8A8A;
+      --card-bg:#1A1A1A;--card-border:#2A2A2A;
+    }
+    html,body{height:100%;background:var(--bg);color:var(--text-primary);font-family:'DM Sans',-apple-system,sans-serif;overflow:hidden;position:fixed;width:100%}
+    #app{position:fixed;inset:0;overflow:hidden}
+
+    /* SCREENS */
+    .screen{
+      position:absolute;inset:0;bottom:72px;
+      overflow-y:auto;-webkit-overflow-scrolling:touch;
+      padding:0 24px 32px;
+      transform:translateX(100%);opacity:0;
+    }
+    .screen.active{transform:translateX(0);opacity:1}
+    #screen-onboarding{
+      bottom:0;padding:48px 32px 40px;
+      display:flex;flex-direction:column;justify-content:flex-start;
+      overflow-y:auto;-webkit-overflow-scrolling:touch;
+    }
+    #screen-onboarding.active{transform:translateX(0);opacity:1}
+
+    /* TYPOGRAPHY */
+    .bebas{font-family:'Bebas Neue',sans-serif;letter-spacing:.04em}
+
+    /* INPUTS */
+    .inp{
+      width:100%;padding:16px 20px;
+      background:var(--card-bg);border:1.5px solid var(--card-border);
+      border-radius:16px;color:var(--text-primary);
+      font-family:'DM Sans',sans-serif;font-size:16px;outline:none;
+      -webkit-appearance:none;transition:border-color .2s;
+    }
+    .inp::placeholder{color:var(--text-secondary)}
+    .inp:focus{border-color:var(--accent);background:#1F1F1F}
+    .inp[type=number]::-webkit-inner-spin-button,.inp[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
+
+    /* BUTTONS */
+    .btn-cta{
+      display:block;width:100%;padding:18px;
+      background:var(--accent);color:#fff;
+      font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.1em;
+      text-align:center;border:none;border-radius:50px;cursor:pointer;
+      box-shadow:0 6px 28px rgba(255,107,53,.35);
+      transition:transform .15s,box-shadow .15s;
+    }
+    .btn-cta:active{transform:scale(.97);box-shadow:0 3px 14px rgba(255,107,53,.2)}
+    .btn-ghost{
+      display:block;width:100%;padding:13px;
+      background:transparent;color:var(--text-secondary);
+      font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;
+      text-align:center;border:1px solid var(--card-border);border-radius:50px;
+      cursor:pointer;transition:background .15s;
+    }
+    .btn-ghost:active{background:rgba(255,255,255,.04)}
+
+    /* ONBOARDING */
+    .ob-logo{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--accent);letter-spacing:.12em;margin-bottom:32px;margin-top:8px}
+    .ob-headline{font-family:'Bebas Neue',sans-serif;font-size:clamp(54px,15vw,78px);line-height:.95;color:var(--text-primary);margin-bottom:14px}
+    .ob-sub{font-size:15px;color:var(--text-secondary);margin-bottom:44px;line-height:1.6}
+    .form-label{font-size:11px;font-weight:700;color:var(--text-secondary);letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:7px}
+    .form-group{margin-bottom:14px}
+    .form-toggle{text-align:center;margin-top:20px;font-size:14px;color:var(--text-secondary)}
+    .form-toggle a{color:var(--accent);font-weight:700;cursor:pointer;text-decoration:none}
+    .err{color:#ff4444;font-size:13px;text-align:center;margin-top:10px;min-height:18px}
+
+    /* TODAY */
+    .today-top{padding-top:56px;margin-bottom:4px}
+    .greeting{font-size:18px;font-weight:500;color:var(--text-primary);margin-bottom:20px}
+    .streak-wrap{display:flex;align-items:center;gap:14px;margin-bottom:28px}
+    .streak-flame{font-size:52px;filter:drop-shadow(0 0 14px rgba(255,107,53,.7))}
+    .streak-num{font-family:'Bebas Neue',sans-serif;font-size:76px;color:var(--gold);line-height:1;transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+    .streak-lbl{font-size:12px;font-weight:700;color:var(--text-secondary);letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+    .streak-zero{font-size:15px;color:var(--text-secondary);font-style:italic;margin-bottom:28px}
+    .streak-bump{animation:s-bump .4s cubic-bezier(.34,1.56,.64,1)}
+    @keyframes s-bump{0%{transform:scale(1)}50%{transform:scale(1.5)}100%{transform:scale(1)}}
+
+    /* MEAL CARDS */
+    .meals{display:flex;flex-direction:column;gap:14px;margin-bottom:20px}
+    .meal-card{
+      background:var(--card-bg);border:1px solid var(--card-border);
+      border-left:4px solid var(--accent);border-radius:16px;
+      padding:20px;position:relative;overflow:hidden;
+      transition:background .4s,border-color .4s;
+    }
+    .meal-card.yes{background:var(--accent-deep);border-color:rgba(255,107,53,.3);border-left-color:var(--accent)}
+    .meal-card.no{background:#161616;border-left-color:#333;border-color:#1f1f1f}
+    .card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+    .card-name{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.04em}
+    .card-icon{font-size:22px;transform:scale(0);transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+    .meal-card.yes .card-icon,.meal-card.no .card-icon{transform:scale(1)}
+    .card-q{font-size:13px;color:var(--text-secondary);margin-bottom:16px}
+    .meal-card.yes .card-q,.meal-card.no .card-q{margin-bottom:4px}
+    .card-btns{display:flex;flex-direction:column;gap:10px}
+    .meal-card.yes .card-btns,.meal-card.no .card-btns{display:none}
+    .card-status{font-size:13px;font-weight:600;display:none}
+    .meal-card.yes .card-status{display:block;color:var(--accent)}
+    .meal-card.no .card-status{display:block;color:#444}
+    .btn-yes{
+      display:block;width:100%;padding:15px;
+      background:var(--accent);color:#fff;
+      font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.06em;
+      text-align:center;border:none;border-radius:50px;cursor:pointer;
+      box-shadow:0 4px 18px rgba(255,107,53,.28);
+    }
+    .btn-yes.pressed{animation:yes-press .2s ease}
+    @keyframes yes-press{0%{transform:scale(1)}40%{transform:scale(.95)}70%{transform:scale(1.04)}100%{transform:scale(1)}}
+    .btn-no{
+      display:block;width:100%;padding:11px;
+      background:transparent;color:var(--text-secondary);
+      font-size:13px;font-weight:500;text-align:center;
+      border:1px solid #2a2a2a;border-radius:50px;cursor:pointer;
+    }
+    .pts-total{text-align:center;font-size:13px;color:var(--text-secondary);padding-bottom:8px}
+    .pts-total span{color:var(--gold);font-weight:700}
+
+    /* FLOAT ANIMATION */
+    .float-pts{
+      position:fixed;pointer-events:none;z-index:9999;
+      font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--gold);
+      text-shadow:0 2px 10px rgba(255,210,63,.6);
+      animation:float-up .85s ease forwards;
+    }
+    @keyframes float-up{0%{opacity:1;transform:translateY(0) scale(1.2)}100%{opacity:0;transform:translateY(-65px) scale(.8)}}
+
+    /* LEADERBOARD */
+    .screen-hdr{padding-top:56px;text-align:center;margin-bottom:28px}
+    .screen-title{font-family:'Bebas Neue',sans-serif;font-size:44px;color:var(--text-primary)}
+    .screen-sub{font-size:13px;color:var(--text-secondary);margin-top:2px;font-weight:500}
+    .podium{display:flex;align-items:flex-end;justify-content:center;gap:6px;margin-bottom:28px;padding:0 4px}
+    .p-slot{flex:1;display:flex;flex-direction:column;align-items:center}
+    .p-avatar{
+      border-radius:50%;display:flex;align-items:center;justify-content:center;
+      font-family:'Bebas Neue',sans-serif;font-size:22px;color:#000;
+      margin-bottom:8px;position:relative;flex-shrink:0;
+    }
+    .p-slot:nth-child(1) .p-avatar{width:52px;height:52px;background:linear-gradient(135deg,#aaa,#ccc)}
+    .p-slot:nth-child(2) .p-avatar{width:64px;height:64px;font-size:28px;background:linear-gradient(135deg,#FFD700,#FFA500);box-shadow:0 0 24px rgba(255,210,63,.45)}
+    .p-slot:nth-child(3) .p-avatar{width:48px;height:48px;font-size:20px;background:linear-gradient(135deg,#cd7f32,#b87333)}
+    .p-crown{position:absolute;top:-20px;font-size:18px}
+    .p-name{font-family:'Bebas Neue',sans-serif;font-size:15px;text-align:center;max-width:88px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text-primary);margin-bottom:3px}
+    .p-pts{font-size:12px;font-weight:700;margin-bottom:8px}
+    .p-slot:nth-child(1) .p-pts{color:#ccc}
+    .p-slot:nth-child(2) .p-pts{color:var(--gold)}
+    .p-slot:nth-child(3) .p-pts{color:#cd7f32}
+    .p-block{width:100%;border-radius:10px 10px 0 0;display:flex;align-items:center;justify-content:center;padding:8px 0}
+    .p-slot:nth-child(1) .p-block{height:62px;background:linear-gradient(180deg,#3a3a3a,#252525)}
+    .p-slot:nth-child(2) .p-block{height:96px;background:linear-gradient(180deg,rgba(255,210,63,.18),rgba(255,210,63,.08));border:1px solid rgba(255,210,63,.25)}
+    .p-slot:nth-child(3) .p-block{height:46px;background:linear-gradient(180deg,#2a1e0e,#1c1408)}
+    .p-medal{font-size:22px}
+    .lb-list{display:flex;flex-direction:column;gap:2px;margin-bottom:16px}
+    .lb-row{display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:12px;background:var(--card-bg)}
+    .lb-row:nth-child(even){background:#161616}
+    .lb-row.me{background:rgba(255,107,53,.1);border:1px solid rgba(255,107,53,.2)}
+    .lb-rank{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--text-secondary);width:26px;text-align:center;flex-shrink:0}
+    .lb-nick{flex:1;font-weight:600;font-size:14px;color:var(--text-primary)}
+    .lb-pts{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--gold)}
+    .lb-str{font-size:12px}
+    .lb-pinned{position:sticky;bottom:0;background:rgba(13,13,13,.96);backdrop-filter:blur(16px);padding:10px 0 4px}
+    .lb-empty{color:var(--text-secondary);font-size:14px;text-align:center;padding:24px 0}
+
+    /* ME SCREEN */
+    .me-top{padding-top:56px;margin-bottom:28px}
+    .me-nick{font-family:'Bebas Neue',sans-serif;font-size:52px;line-height:1;color:var(--text-primary);margin-bottom:24px;word-break:break-word}
+    .me-stats{display:flex;gap:12px;margin-bottom:36px}
+    .stat-card{flex:1;background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;padding:20px 12px;text-align:center}
+    .stat-val{font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--gold);line-height:1;margin-bottom:4px}
+    .stat-lbl{font-size:11px;font-weight:700;color:var(--text-secondary);letter-spacing:.08em;text-transform:uppercase}
+    .grid-lbl{font-size:11px;font-weight:700;color:var(--text-secondary);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
+    .day-grid{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
+    .day-wrap{display:flex;flex-direction:column;align-items:center;gap:6px}
+    .day-circle{width:38px;height:38px;border-radius:50%;border:2px solid var(--card-border);display:flex;align-items:center;justify-content:center;font-size:15px;transition:all .3s ease}
+    .day-circle.on{background:var(--accent);border-color:var(--accent);box-shadow:0 0 14px rgba(255,107,53,.4)}
+    .day-lbl{font-size:10px;font-weight:700;color:var(--text-secondary);letter-spacing:.04em}
+
+    /* BOTTOM NAV */
+    #bottom-nav{
+      position:fixed;bottom:0;left:0;right:0;height:72px;
+      background:rgba(22,22,22,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+      border-top:1px solid var(--card-border);
+      display:none;align-items:center;justify-content:space-around;
+      z-index:100;
+    }
+    .nav-item{
+      flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+      gap:3px;cursor:pointer;padding:8px 0;position:relative;
+    }
+    .nav-ico{font-size:22px;transition:transform .2s;filter:grayscale(.8) brightness(.5)}
+    .nav-item.active .nav-ico{filter:none;transform:scale(1.1)}
+    .nav-lbl{font-size:10px;font-weight:700;color:var(--text-secondary);letter-spacing:.05em;text-transform:uppercase;transition:color .2s}
+    .nav-item.active .nav-lbl{color:var(--accent)}
+    .nav-dot{position:absolute;bottom:2px;width:5px;height:5px;background:var(--accent);border-radius:50%;opacity:0;transition:opacity .25s}
+    .nav-item.active .nav-dot{opacity:1}
+
+    /* PERFECT DAY OVERLAY */
+    #pd-overlay{
+      position:fixed;inset:0;z-index:9000;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      background:rgba(8,4,0,.97);
+      opacity:0;pointer-events:none;transition:opacity .35s ease;
+    }
+    #pd-overlay.show{opacity:1;pointer-events:all}
+    .pd-flame{font-size:96px;margin-bottom:12px;animation:pd-pulse .5s ease-in-out infinite alternate}
+    @keyframes pd-pulse{0%{transform:scale(1) rotate(-3deg)}100%{transform:scale(1.12) rotate(3deg)}}
+    .pd-text{font-family:'Bebas Neue',sans-serif;font-size:82px;color:var(--accent);line-height:.95;text-align:center;text-shadow:0 0 40px rgba(255,107,53,.5)}
+    .pd-sub{font-size:16px;color:var(--gold);margin-top:14px;font-weight:700;letter-spacing:.12em}
+    #confetti-canvas{position:fixed;inset:0;z-index:9001;pointer-events:none}
+
+    /* UTIL */
+    .gap8{height:8px}.gap16{height:16px}.gap24{height:24px}
+  </style>
+</head>
+<body>
+<div id="app">
+
+  <!-- ONBOARDING -->
+  <div id="screen-onboarding" class="screen">
+    <div class="ob-logo">GRIND LAB FITNESS</div>
+    <div class="ob-headline">YOUR<br>PROTEIN.<br>YOUR PALM.<br>7 DAYS.</div>
+    <div class="ob-sub">No counting. No apps. Just show up.</div>
+
+    <div id="form-signup">
+      <div class="form-group"><label class="form-label">Nickname</label><input class="inp" id="inp-nick" type="text" placeholder="e.g. Queen D" maxlength="20" autocomplete="off"></div>
+      <div class="form-group"><label class="form-label">Email</label><input class="inp" id="inp-email" type="email" placeholder="your@email.com" autocomplete="off"></div>
+      <div class="form-group"><label class="form-label">4-Digit PIN</label><input class="inp" id="inp-pin" type="number" placeholder="e.g. 1234" inputmode="numeric"></div>
+      <div class="gap8"></div>
+      <button class="btn-cta" onclick="doSignup()">LET'S GO</button>
+      <div class="form-toggle">Already a Grinder? <a onclick="showLogin()">Sign in &rarr;</a></div>
+    </div>
+
+    <div id="form-login" style="display:none">
+      <div class="form-group"><label class="form-label">Email</label><input class="inp" id="inp-lemail" type="email" placeholder="your@email.com" autocomplete="off"></div>
+      <div class="form-group"><label class="form-label">4-Digit PIN</label><input class="inp" id="inp-lpin" type="number" placeholder="Your PIN" inputmode="numeric"></div>
+      <div class="gap8"></div>
+      <button class="btn-cta" onclick="doLogin()">SIGN IN</button>
+      <div class="form-toggle">New here? <a onclick="showSignup()">Sign up &rarr;</a></div>
+    </div>
+
+    <div class="err" id="auth-err"></div>
+  </div>
+
+  <!-- TODAY -->
+  <div id="screen-today" class="screen">
+    <div class="today-top">
+      <div class="greeting" id="greeting">Hey there &#128075;</div>
+      <div id="streak-area"></div>
+    </div>
+    <div class="meals" id="meals"></div>
+    <div class="pts-total" id="pts-total"></div>
+  </div>
+
+  <!-- LEADERBOARD -->
+  <div id="screen-leaderboard" class="screen">
+    <div class="screen-hdr">
+      <div class="screen-title">LEADERBOARD</div>
+      <div class="screen-sub">7-Day Protein Challenge</div>
+    </div>
+    <div class="podium" id="podium"></div>
+    <div class="lb-list" id="lb-list"></div>
+    <div class="lb-pinned" id="lb-pinned"></div>
+  </div>
+
+  <!-- ME -->
+  <div id="screen-me" class="screen">
+    <div class="me-top">
+      <div class="me-nick" id="me-nick">GRINDER</div>
+      <div class="me-stats" id="me-stats"></div>
+      <div class="grid-lbl">7-DAY JOURNEY</div>
+      <div class="day-grid" id="day-grid"></div>
+    </div>
+  </div>
+
+</div><!-- /app -->
+
+<!-- BOTTOM NAV -->
+<nav id="bottom-nav">
+  <div class="nav-item active" id="nav-today" onclick="goTab('today',0)">
+    <div class="nav-ico">&#128293;</div>
+    <div class="nav-lbl">Today</div>
+    <div class="nav-dot"></div>
+  </div>
+  <div class="nav-item" id="nav-leaderboard" onclick="goTab('leaderboard',1)">
+    <div class="nav-ico">&#127942;</div>
+    <div class="nav-lbl">Leaderboard</div>
+    <div class="nav-dot"></div>
+  </div>
+  <div class="nav-item" id="nav-me" onclick="goTab('me',2)">
+    <div class="nav-ico">&#128100;</div>
+    <div class="nav-lbl">Me</div>
+    <div class="nav-dot"></div>
+  </div>
+</nav>
+
+<!-- PERFECT DAY OVERLAY -->
+<div id="pd-overlay">
+  <div class="pd-flame">&#128293;</div>
+  <div class="pd-text">PERFECT<br>DAY</div>
+  <div class="pd-sub">+30 POINTS EARNED</div>
+</div>
+<canvas id="confetti-canvas"></canvas>
+
+<script>
+// === CONSTANTS ===
+const USERS_KEY = 'glc_users_v2';
+const LB_KEY = 'glc_lb_v2';
+const CUR_KEY = 'glc_cur_v2';
+const TABS = ['today','leaderboard','me'];
+let CUR_TAB = 0;
+let user = null;
+
+// === STORAGE ===
+function getUsers(){ try{ return JSON.parse(localStorage.getItem(USERS_KEY)||'{}') }catch(e){ return {} } }
+function saveUsers(u){ localStorage.setItem(USERS_KEY, JSON.stringify(u)) }
+function getLB(){ try{ return JSON.parse(localStorage.getItem(LB_KEY)||'[]') }catch(e){ return [] } }
+function saveLB(l){ localStorage.setItem(LB_KEY, JSON.stringify(l)) }
+function today(){ return new Date().toISOString().split('T')[0] }
+function yesterday(){
+  const d = new Date(); d.setDate(d.getDate()-1);
+  return d.toISOString().split('T')[0];
+}
+
+function syncLB(){
+  let lb = getLB();
+  const idx = lb.findIndex(u2 => u2.email === user.email);
+  const entry = { nickname: user.nickname, email: user.email, points: user.points, streak: user.streak };
+  if(idx >= 0) lb[idx] = entry; else lb.push(entry);
+  lb.sort((a,b) => b.points - a.points);
+  saveLB(lb);
+}
+
+function saveUser(){
+  const users = getUsers();
+  users[user.email] = user;
+  saveUsers(users);
+  syncLB();
+}
+
+function getDayData(){
+  const t = today();
+  let d = user.days.find(x => x.date === t);
+  if(!d){ d = { date:t, breakfast:null, lunch:null, dinner:null, points:0 }; user.days.push(d); }
+  return d;
+}
+
+function hadYesYesterday(){
+  const y = yesterday();
+  const d = user.days.find(x => x.date === y);
+  return d && (d.breakfast===true || d.lunch===true || d.dinner===true);
+}
+
+// === AUTH ===
+function doSignup(){
+  const nick = document.getElementById('inp-nick').value.trim();
+  const email = document.getElementById('inp-email').value.trim().toLowerCase();
+  const pin = String(document.getElementById('inp-pin').value).trim();
+  const err = document.getElementById('auth-err');
+  if(!nick){ err.textContent='Enter a nickname.'; return }
+  if(!email || !email.includes('@')){ err.textContent='Enter a valid email.'; return }
+  if(!pin || pin.length !== 4 || isNaN(Number(pin))){ err.textContent='PIN must be exactly 4 digits.'; return }
+  const users = getUsers();
+  if(users[email]){ err.textContent='Email already exists. Sign in instead.'; return }
+  err.textContent='';
+  user = { nickname:nick, email, pin, points:0, streak:0, lastCheckIn:null, days:[] };
+  saveUser();
+  localStorage.setItem(CUR_KEY, email);
+  enterApp();
+}
+
+function doLogin(){
+  const email = document.getElementById('inp-lemail').value.trim().toLowerCase();
+  const pin = String(document.getElementById('inp-lpin').value).trim();
+  const err = document.getElementById('auth-err');
+  if(!email){ err.textContent='Enter your email.'; return }
+  if(!pin){ err.textContent='Enter your PIN.'; return }
+  const users = getUsers();
+  const u = users[email];
+  if(!u){ err.textContent='No account found. Sign up first.'; return }
+  if(String(u.pin) !== pin){ err.textContent='Wrong PIN. Try again.'; return }
+  err.textContent='';
+  user = u;
+  localStorage.setItem(CUR_KEY, email);
+  enterApp();
+}
+
+function showLogin(){
+  document.getElementById('form-signup').style.display='none';
+  document.getElementById('form-login').style.display='block';
+  document.getElementById('auth-err').textContent='';
+}
+function showSignup(){
+  document.getElementById('form-login').style.display='none';
+  document.getElementById('form-signup').style.display='block';
+  document.getElementById('auth-err').textContent='';
+}
+
+// === NAVIGATION ===
+function enterApp(){
+  const ob = document.getElementById('screen-onboarding');
+  ob.style.transition = 'opacity .4s ease';
+  ob.style.opacity = '0';
+  setTimeout(() => {
+    ob.classList.remove('active');
+    ob.style.display = 'none';
+    document.getElementById('bottom-nav').style.display = 'flex';
+    const s = document.getElementById('screen-today');
+    s.classList.add('active');
+    CUR_TAB = 0;
+    renderToday();
+  }, 400);
+}
+
+function goTab(tab, idx){
+  if(TABS[CUR_TAB] === tab) return;
+  const dir = idx > CUR_TAB ? 1 : -1;
+  const fromEl = document.getElementById('screen-' + TABS[CUR_TAB]);
+  const toEl = document.getElementById('screen-' + tab);
+
+  toEl.style.transition = 'none';
+  toEl.style.transform = 'translateX(' + (dir*100) + '%)';
+  toEl.style.opacity = '0';
+  toEl.classList.add('active');
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      const t = 'transform .32s cubic-bezier(.4,0,.2,1), opacity .32s ease';
+      fromEl.style.transition = t;
+      toEl.style.transition = t;
+      fromEl.style.transform = 'translateX(' + (dir*-100) + '%)';
+      fromEl.style.opacity = '0';
+      toEl.style.transform = 'translateX(0)';
+      toEl.style.opacity = '1';
+      setTimeout(() => {
+        fromEl.classList.remove('active');
+        fromEl.style.transform = fromEl.style.opacity = fromEl.style.transition = '';
+        toEl.style.transform = toEl.style.opacity = toEl.style.transition = '';
+      }, 340);
+    });
+  });
+
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+  document.getElementById('nav-' + tab).classList.add('active');
+  CUR_TAB = idx;
+
+  if(tab === 'today') renderToday();
+  else if(tab === 'leaderboard') renderLeaderboard();
+  else renderMe();
+}
+
+// === RENDER TODAY ===
+function renderToday(){
+  const users = getUsers();
+  user = users[user.email] || user;
+  document.getElementById('greeting').textContent = 'Hey ' + user.nickname + ' \uD83D\uDC4B';
+
+  // streak
+  const sa = document.getElementById('streak-area');
+  if(user.streak > 0){
+    sa.innerHTML = '<div class="streak-wrap"><span class="streak-flame">\uD83D\uDD25</span><div><div class="streak-num" id="s-num">' + user.streak + '</div><div class="streak-lbl">DAY STREAK</div></div></div>';
+  } else {
+    sa.innerHTML = '<div class="streak-zero">Start your streak today \uD83D\uDCAA</div>';
+  }
+
+  const day = getDayData();
+  const MEALS = ['breakfast','lunch','dinner'];
+  const LABELS = {breakfast:'BREAKFAST', lunch:'LUNCH', dinner:'DINNER'};
+  const container = document.getElementById('meals');
+  container.innerHTML = '';
+
+  MEALS.forEach(m => {
+    const ans = day[m];
+    const card = document.createElement('div');
+    card.className = 'meal-card' + (ans===true?' yes':ans===false?' no':'');
+    card.id = 'card-' + m;
+    const icon = ans===true ? '\u2713' : ans===false ? '\u2715' : '';
+    const status = ans===true ? 'You hit it! \uD83D\uDCAA' : ans===false ? 'Not this time.' : '';
+    card.innerHTML =
+      '<div class="card-header"><div class="card-name">' + LABELS[m] + '</div><div class="card-icon">' + icon + '</div></div>' +
+      '<div class="card-q">Did you hit your palm of protein?</div>' +
+      (ans===null ? '<div class="card-btns"><button class="btn-yes" onclick="handleMeal(\'' + m + '\',true,event)">YES \u2014 I GOT IT</button><button class="btn-no" onclick="handleMeal(\'' + m + '\',false,event)">No, I missed it</button></div>' : '') +
+      '<div class="card-status">' + status + '</div>';
+    container.appendChild(card);
+  });
+
+  updatePtsDisplay();
+}
+
+function updatePtsDisplay(){
+  const el = document.getElementById('pts-total');
+  if(el) el.innerHTML = 'Total points: <span>' + user.points + ' pts</span>';
+}
+
+// === MEAL HANDLER ===
+function handleMeal(meal, answer, ev){
+  const btn = ev.currentTarget;
+  btn.classList.add('pressed');
+  setTimeout(() => btn.classList.remove('pressed'), 250);
+
+  const day = getDayData();
+  const firstYes = answer===true && [day.breakfast,day.lunch,day.dinner].filter(x=>x===true).length===0;
+
+  day[meal] = answer;
+
+  if(answer === true){
+    day.points = (day.points||0) + 10;
+    user.points += 10;
+
+    if(firstYes && user.lastCheckIn !== today()){
+      if(!user.lastCheckIn || user.lastCheckIn !== yesterday()){
+        user.streak = (hadYesYesterday() || !user.lastCheckIn) ? (user.streak||0)+1 : 1;
+        if(!user.lastCheckIn) user.streak = 1;
+      } else {
+        user.streak++;
+      }
+      user.lastCheckIn = today();
+    }
+
+    // Float +10
+    const rect = btn.getBoundingClientRect();
+    const fp = document.createElement('div');
+    fp.className = 'float-pts';
+    fp.textContent = '+10';
+    fp.style.left = (rect.left + rect.width/2 - 18) + 'px';
+    fp.style.top = rect.top + 'px';
+    document.body.appendChild(fp);
+    setTimeout(() => fp.remove(), 900);
+
+    // Streak bump
+    setTimeout(() => {
+      const sn = document.getElementById('s-num');
+      if(sn){ sn.textContent = user.streak; sn.classList.remove('streak-bump'); void sn.offsetWidth; sn.classList.add('streak-bump'); }
+      else { const sa = document.getElementById('streak-area'); if(sa && user.streak>0) sa.innerHTML = '<div class="streak-wrap"><span class="streak-flame">\uD83D\uDD25</span><div><div class="streak-num" id="s-num">' + user.streak + '</div><div class="streak-lbl">DAY STREAK</div></div></div>'; }
+    }, 200);
+  }
+
+  // Save days
+  const t = today();
+  const i = user.days.findIndex(x => x.date === t);
+  if(i >= 0) user.days[i] = day; else user.days.push(day);
+  saveUser();
+
+  // Animate card
+  const card = document.getElementById('card-' + meal);
+  if(card){
+    card.className = 'meal-card ' + (answer ? 'yes' : 'no');
+    const q = card.querySelector('.card-q');
+    if(q) q.style.marginBottom = '4px';
+    const icon = card.querySelector('.card-icon');
+    if(icon) icon.textContent = answer ? '\u2713' : '\u2715';
+    const stat = card.querySelector('.card-status');
+    if(stat) stat.textContent = answer ? 'You hit it! \uD83D\uDCAA' : 'Not this time.';
+  }
+
+  setTimeout(() => {
+    updatePtsDisplay();
+    const d = getDayData();
+    if(d.breakfast===true && d.lunch===true && d.dinner===true) triggerPerfectDay();
+  }, 350);
+}
+
+// === PERFECT DAY ===
+let confAnim = null;
+function triggerPerfectDay(){
+  const ov = document.getElementById('pd-overlay');
+  ov.classList.add('show');
+  startConfetti();
+  setTimeout(() => { ov.classList.remove('show'); stopConfetti(); }, 2100);
+}
+
+function startConfetti(){
+  const cv = document.getElementById('confetti-canvas');
+  cv.width = window.innerWidth; cv.height = window.innerHeight;
+  const ctx = cv.getContext('2d');
+  const colors = ['#FF6B35','#FFD23F','#FF8C61','#FFE08A','#FF4500','#FFC200'];
+  const particles = Array.from({length:130}, () => ({
+    x: Math.random()*cv.width, y: -20-Math.random()*80,
+    vx:(Math.random()-.5)*5, vy:Math.random()*3+2,
+    size:Math.random()*9+4, color:colors[Math.floor(Math.random()*colors.length)],
+    rot:Math.random()*360, rspd:(Math.random()-.5)*12,
+    rect:Math.random()>.4
+  }));
+  function draw(){
+    ctx.clearRect(0,0,cv.width,cv.height);
+    particles.forEach(p => {
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot*Math.PI/180);
+      ctx.fillStyle=p.color; ctx.globalAlpha=Math.max(0,1-p.y/cv.height*1.2);
+      if(p.rect){ ctx.fillRect(-p.size/2,-p.size/4,p.size,p.size/2); }
+      else{ ctx.beginPath(); ctx.arc(0,0,p.size/2,0,Math.PI*2); ctx.fill(); }
+      ctx.restore();
+      p.x+=p.vx; p.y+=p.vy; p.rot+=p.rspd; p.vy+=0.08;
+    });
+    confAnim = requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+function stopConfetti(){
+  if(confAnim){ cancelAnimationFrame(confAnim); confAnim=null; }
+  const cv = document.getElementById('confetti-canvas');
+  cv.getContext('2d').clearRect(0,0,cv.width,cv.height);
+}
+
+// === RENDER LEADERBOARD ===
+function renderLeaderboard(){
+  const lb = getLB();
+  const pod = document.getElementById('podium');
+  const list = document.getElementById('lb-list');
+  const pinned = document.getElementById('lb-pinned');
+  pod.innerHTML=''; list.innerHTML=''; pinned.innerHTML='';
+
+  if(!lb.length){ pod.innerHTML='<div class="lb-empty">No competitors yet. Be first! \uD83D\uDD25</div>'; return; }
+
+  // Podium — order: 2nd, 1st, 3rd
+  const top = lb.slice(0,3);
+  const ORDER = [1,0,2]; // indices into top[] for [left,center,right]
+  const MEDALS = ['\uD83E\uDD48','\uD83E\uDD47','\uD83E\uDD49'];
+  ORDER.forEach((ti, pi) => {
+    const u2 = top[ti];
+    if(!u2){ pod.appendChild(document.createElement('div')); return; }
+    const isMe = u2.email === user.email;
+    const slot = document.createElement('div');
+    slot.className = 'p-slot';
+    const init = (u2.nickname||'?')[0].toUpperCase();
+    slot.innerHTML =
+      '<div class="p-avatar">' + (pi===1?'<div class="p-crown">\uD83D\uDC51</div>':'') + init + '</div>' +
+      '<div class="p-name">' + u2.nickname + (isMe?' (you)':'') + '</div>' +
+      '<div class="p-pts">' + u2.points + ' pts' + (u2.streak>0?' \uD83D\uDD25'+u2.streak:'') + '</div>' +
+      '<div class="p-block"><div class="p-medal">' + MEDALS[pi] + '</div></div>';
+    pod.appendChild(slot);
+  });
+
+  // List 4+
+  lb.slice(3).forEach((u2, i) => {
+    const isMe = u2.email === user.email;
+    const row = document.createElement('div');
+    row.className = 'lb-row' + (isMe?' me':'');
+    row.innerHTML = '<div class="lb-rank">'+(i+4)+'</div><div class="lb-nick">'+u2.nickname+(isMe?' \uD83D\uDC48':'')+'</div><div class="lb-pts">'+u2.points+'</div><div class="lb-str">'+(u2.streak>0?'\uD83D\uDD25'+u2.streak:'')+'</div>';
+    list.appendChild(row);
+  });
+
+  // Pinned self
+  const me = lb.find(u2 => u2.email === user.email);
+  if(me){
+    const rank = lb.indexOf(me)+1;
+    pinned.innerHTML = '<div class="lb-row me"><div class="lb-rank">'+rank+'</div><div class="lb-nick">'+me.nickname+' (you)</div><div class="lb-pts">'+me.points+'</div><div class="lb-str">'+(me.streak>0?'\uD83D\uDD25'+me.streak:'')+'</div></div>';
+  }
+}
+
+// === RENDER ME ===
+function renderMe(){
+  const users = getUsers();
+  user = users[user.email] || user;
+  document.getElementById('me-nick').textContent = user.nickname.toUpperCase();
+  document.getElementById('me-stats').innerHTML =
+    '<div class="stat-card"><div class="stat-val">'+user.points+'</div><div class="stat-lbl">Total Points</div></div>' +
+    '<div class="stat-card"><div class="stat-val">'+user.streak+'</div><div class="stat-lbl">\uD83D\uDD25 Streak</div></div>';
+
+  const grid = document.getElementById('day-grid');
+  grid.innerHTML = '';
+  const sorted = [...user.days].sort((a,b)=>a.date.localeCompare(b.date));
+  const start = sorted.length > 0 ? sorted[0].date : today();
+  for(let i=0;i<7;i++){
+    const d = new Date(start); d.setDate(d.getDate()+i);
+    const ds = d.toISOString().split('T')[0];
+    const dd = user.days.find(x=>x.date===ds);
+    const on = dd && (dd.breakfast===true||dd.lunch===true||dd.dinner===true);
+    const w = document.createElement('div');
+    w.className='day-wrap';
+    w.innerHTML='<div class="day-circle'+(on?' on':'')+'">'+( on?'\uD83D\uDD25':'')+'</div><div class="day-lbl">D'+(i+1)+'</div>';
+    grid.appendChild(w);
+  }
+}
+
+// === INIT ===
+function checkStreakReset(){
+  if(!user.lastCheckIn || user.lastCheckIn===today()) return;
+  if(user.lastCheckIn !== yesterday() && !hadYesYesterday()){
+    user.streak = 0; saveUser();
+  }
+}
+
+function init(){
+  const email = localStorage.getItem(CUR_KEY);
+  if(email){
+    const users = getUsers();
+    const u = users[email];
+    if(u){ user=u; checkStreakReset(); enterApp(); return; }
+  }
+  const ob = document.getElementById('screen-onboarding');
+  ob.classList.add('active');
+  ob.style.opacity='1';
+  ob.style.transform='none';
+}
+
+// PIN max 4 digits
+['inp-pin','inp-lpin'].forEach(id => {
+  const el = document.getElementById(id);
+  el.addEventListener('input', function(){ if(this.value.length>4) this.value=this.value.slice(0,4); });
+  el.addEventListener('keydown', e => { if(e.key==='Enter'){ if(id==='inp-pin') doSignup(); else doLogin(); } });
+});
+document.getElementById('inp-email').addEventListener('keydown', e => { if(e.key==='Enter') document.getElementById('inp-pin').focus(); });
+document.getElementById('inp-nick').addEventListener('keydown', e => { if(e.key==='Enter') document.getElementById('inp-email').focus(); });
+document.getElementById('inp-lemail').addEventListener('keydown', e => { if(e.key==='Enter') document.getElementById('inp-lpin').focus(); });
+
+init();
+</script>
+</body>
+</html>
