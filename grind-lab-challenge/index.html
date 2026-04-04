@@ -298,19 +298,6 @@
     .win-pts{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--gold)}
     .win-dismiss{font-size:13px;color:var(--text-secondary);cursor:pointer;text-decoration:underline;margin-top:8px}
 
-    /* COMPLETION OVERLAY (Day 11+) */
-    #done-overlay{
-      position:fixed;inset:0;z-index:8500;
-      background:#050a05;
-      display:flex;flex-direction:column;align-items:center;justify-content:center;
-      padding:32px;text-align:center;
-      opacity:0;pointer-events:none;transition:opacity .4s ease;overflow-y:auto;
-    }
-    #done-overlay.show{opacity:1;pointer-events:all}
-    .done-emoji{font-size:72px;margin-bottom:12px}
-    .done-title{font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--accent);line-height:1;margin-bottom:8px}
-    .done-sub{font-size:15px;color:var(--text-secondary);line-height:1.6;margin-bottom:32px}
-    .done-dismiss{font-size:12px;color:var(--text-secondary);cursor:pointer;text-decoration:underline;margin-top:16px}
   </style>
 </head>
 <body>
@@ -396,22 +383,9 @@
   <div class="win-title">DAY 7<br>WINNERS</div>
   <div class="win-sub">Look how far you've all come. 🔥<br>The challenge doesn't stop here.</div>
   <div class="win-lb" id="win-lb"></div>
-  <button class="btn-cta" onclick="dismissWinner()">KEEP GOING &rarr;</button>
   <div class="win-dismiss" onclick="dismissWinner()">close</div>
 </div>
 
-<!-- DONE OVERLAY (Day 11+) -->
-<div id="done-overlay">
-  <div class="done-emoji">&#127881;</div>
-  <div class="done-title">YOU DID IT.</div>
-  <div class="done-sub">10 days of showing up for yourself.<br>That's not a challenge — that's a lifestyle.</div>
-  <div class="pitch-banner" style="margin-bottom:0">
-    <div class="pitch-title">Want to do 1:1 coaching?</div>
-    <div class="pitch-body">This challenge gave you the foundation. If you want everything customised to your body, your goals and your life — let's have a conversation about what that looks like.</div>
-    <a href="https://form.jotform.com/243235558047055" class="pitch-cta">LET'S CHAT</a>
-  </div>
-  <div class="done-dismiss" onclick="document.getElementById('done-overlay').classList.remove('show')">I'll think about it</div>
-</div>
 
 <!-- BOTTOM NAV -->
 <nav id="bottom-nav">
@@ -609,6 +583,9 @@ function enterApp(){
 
 function goTab(tab, idx){
   if(TABS[CUR_TAB] === tab) return;
+  // Always hide pitch drawer when leaving Today tab
+  const drawer = document.getElementById('pitch-drawer');
+  if(drawer && tab !== 'today') drawer.style.display = 'none';
   const dir = idx > CUR_TAB ? 1 : -1;
   const fromEl = document.getElementById('screen-' + TABS[CUR_TAB]);
   const toEl = document.getElementById('screen-' + tab);
@@ -660,11 +637,9 @@ function renderToday(){
   const sorted = [...user.days].sort((a,b)=>a.date.localeCompare(b.date));
   const startDate = sorted.length > 0 ? sorted[0].date : todayStr;
   const viewedDayNum = Math.floor((new Date(viewingDate) - new Date(startDate)) / 86400000) + 1;
-  const maxDays = actualDayNum <= 7 ? 7 : 10;
-
   const dcEl = document.getElementById('day-counter');
   if(isViewingToday){
-    if(dcEl) dcEl.textContent = 'DAY ' + Math.min(actualDayNum, 10) + ' OF ' + maxDays;
+    if(dcEl) dcEl.textContent = 'DAY ' + Math.min(actualDayNum, 7) + ' OF 7';
   } else {
     if(dcEl) dcEl.textContent = 'DAY ' + Math.max(1, viewedDayNum) + ' \u2022 PAST';
   }
@@ -679,11 +654,6 @@ function renderToday(){
   if(isViewingToday && actualDayNum === 7 && !sessionStorage.getItem('winner_shown')){
     sessionStorage.setItem('winner_shown','1');
     setTimeout(showWinnerOverlay, 800);
-  }
-
-  // Day 11+ completion screen — only when on today
-  if(isViewingToday && actualDayNum > 9){
-    setTimeout(() => document.getElementById('done-overlay').classList.add('show'), 600);
   }
 
   // Coaching pitch drawer (Day 5+, only when viewing today)
@@ -992,7 +962,7 @@ async function showWinnerOverlay(){
       const row = document.createElement('div');
       row.className = 'win-row' + (isFirst?' first':'');
       const medals = ['\uD83E\uDD47','\uD83E\uDD48','\uD83E\uDD49'];
-      row.innerHTML = '<div class="win-rank">'+(medals[i]||i+1)+'</div><div class="win-nick">'+u2.nickname+'</div><div class="win-pts">'+u2.points+'</div>';
+      row.innerHTML = '<div class="win-rank">'+(medals[i]||i+1)+'</div><div class="win-nick">'+u2.nickname+'</div><div style="text-align:right"><div class="win-pts">'+u2.points+' pts</div>'+(u2.streak>0?'<div style="font-size:11px;color:var(--text-secondary)">\uD83D\uDD25 '+u2.streak+' streak</div>':'')+'</div>';
       lbEl.appendChild(row);
     });
   }catch(e){}
