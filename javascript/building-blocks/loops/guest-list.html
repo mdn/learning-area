@@ -1,28 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <title>Guest list example</title>
     <style>
-      
+
     </style>
   </head>
   <body>
 
   <p class="admitted">Admit: </p>
   <p class="refused">Refuse: </p>
-    
+
 
     <script>
-    var people = ['Chris', 'Anne', 'Colin', 'Terri', 'Phil', 'Lola', 'Sam', 'Kay', 'Bruce'];
-    
-    var admitted = document.querySelector('.admitted');
-    var refused = document.querySelector('.refused');
+    const people = ['Chris', 'Anne', 'Colin', 'Terri', 'Phil', 'Lola', 'Sam', 'Kay', 'Bruce'];
 
-    var i = 0;
+    const admitted = document.querySelector('.admitted');
+    const refused = document.querySelector('.refused');
+
+    let i = 0;
 
     do {
-      if(people[i] === 'Phil' || people[i] === 'Lola') {  
+      if(people[i] === 'Phil' || people[i] === 'Lola') {
         refused.textContent += people[i] + ', ';
       } else {
         admitted.textContent += people[i] + ', ';
@@ -35,6 +36,6 @@
     admitted.textContent = admitted.textContent.slice(0,admitted.textContent.length-2) + '.';
 
     </script>
-    
+
   </body>
 </html>

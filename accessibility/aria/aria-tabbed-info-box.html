@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>ARIA tabbed info box</title>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>ARIA tabbed info box</title>
   <style>
 
   /* General setup */
@@ -77,10 +78,8 @@
     z-index: 1;
   }
 
-
-
-  </style>
-</head>
+</style>
+  </head>
 <body>
 
 <section class="info-box">
@@ -116,38 +115,46 @@
 
 <script>
 
-var tabs = document.querySelectorAll('.info-box li');
-var panels = document.querySelectorAll('.info-box article');
+let tabs = document.querySelectorAll('.info-box li');
+let panels = document.querySelectorAll('.info-box article');
 
-for(i = 0; i < tabs.length; i++) {
-  var tab = tabs[i];
-  setTabHandler(tab, i);
+for(let i = 0; i < tabs.length; i++) {
+  let tab = tabs[i];
+  setTabHandler(tab);
 }
 
-function setTabHandler(tab, tabPos) {
-  tab.onclick = function() {
-    for(i = 0; i < tabs.length; i++) {
-      if(tabs[i].getAttribute('class')) {
-        tabs[i].removeAttribute('class');
-      }
-
-      tabs[i].setAttribute('aria-selected', 'false');
-    }
-
-    tab.setAttribute('class', 'active');
-    tab.setAttribute('aria-selected', 'true');
-
-    for(i = 0; i < panels.length; i++) {
-      if(panels[i].getAttribute('class')) {
-        panels[i].removeAttribute('class');
-      }
-
-      panels[i].setAttribute('aria-hidden', 'true');
-    }
-
-    panels[tabPos].setAttribute('class', 'active-panel');
-    panels[tabPos].setAttribute('aria-hidden', 'false');
+function setTab(e) {
+  if(e.type === 'keypress' && e.keyCode !== 13) {
+    return;
   }
+
+  let tabPos = Number(this.getAttribute('aria-posinset'))-1;
+  for(let i = 0; i < tabs.length; i++) {
+    if(tabs[i].getAttribute('class')) {
+      tabs[i].removeAttribute('class');
+    }
+
+    tabs[i].setAttribute('aria-selected', 'false');
+  }
+
+  this.setAttribute('class', 'active');
+  this.setAttribute('aria-selected', 'true');
+
+  for(let i = 0; i < panels.length; i++) {
+    if(panels[i].getAttribute('class')) {
+      panels[i].removeAttribute('class');
+    }
+
+    panels[i].setAttribute('aria-hidden', 'true');
+  }
+
+  panels[tabPos].setAttribute('class', 'active-panel');
+  panels[tabPos].setAttribute('aria-hidden', 'false');
+}
+
+function setTabHandler(tab) {
+  tab.addEventListener('click', setTab);
+  tab.addEventListener('keypress', setTab);
 }
 
 </script>

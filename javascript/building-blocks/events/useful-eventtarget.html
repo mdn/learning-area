@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <title>Useful event target example</title>
     <style>
-      div {
-        background-color: red;
+      .tile {
         height: 100px;
         width: 25%;
         float: left;
@@ -13,28 +13,37 @@
     </style>
   </head>
   <body>
-    <script>
-      for(var i = 1; i <= 16; i++) {
-        var myDiv = document.createElement('div');
-        document.body.appendChild(myDiv);
-      }
+    <div id="container">
+     <div class="tile"></div>
+     <div class="tile"></div>
+     <div class="tile"></div>
+     <div class="tile"></div>
+     <div class="tile"></div>
+     <div class="tile"></div>
+     <div class="tile"></div>
+     <div class="tile"></div>
+     <div class="tile"></div>
+     <div class="tile"></div>
+     <div class="tile"></div>
+     <div class="tile"></div>
+     <div class="tile"></div>
+     <div class="tile"></div>
+     <div class="tile"></div>
+     <div class="tile"></div>
+   </div>
 
+    <script>
       function random(number) {
         return Math.floor(Math.random()*number);
       }
 
       function bgChange() {
-        var rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+        const rndCol = `rgb(${random(255)}, ${random(255)}, ${random(255)})`;
         return rndCol;
       }
 
-      var divs = document.querySelectorAll('div');
-
-      for(var i = 0; i < divs.length; i++) {
-        divs[i].onclick = function(e) {
-          e.target.style.backgroundColor = bgChange();
-        }
-      }
+      const container = document.querySelector('#container');
+      container.addEventListener('click', event => event.target.style.backgroundColor = bgChange());
     </script>
   </body>
 </html>

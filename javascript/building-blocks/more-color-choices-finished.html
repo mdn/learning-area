@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <title>More color choices!</title>
   </head>
   <body>
@@ -11,17 +12,17 @@
       <option value="black">Black</option>
       <option value="purple">Purple</option>
       <option value="yellow">Yellow</option>
-      <option value="psych">Psychedelic</option>
+      <option value="psychedelic">Psychedelic</option>
     </select>
 
     <h1>This is my website</h1>
 
     <script>
-      var select = document.querySelector('select');
-      var html = document.querySelector('html');
+      const select = document.querySelector('select');
+      const html = document.querySelector('html');
 
       select.onchange = function() {
-        var choice = select.value;
+        const choice = select.value;
 
         switch(choice) {
           case 'black':
@@ -36,12 +37,14 @@
           case 'yellow':
             update('yellow','darkgray');
             break;
-          case 'psych':
+          case 'psychedelic':
             update('lime','purple');
             break;
         }
       }
 
+      select.value = 'white';
+      update('white','black');
       function update(bgColor, textColor) {
         html.style.backgroundColor = bgColor;
         html.style.color = textColor;

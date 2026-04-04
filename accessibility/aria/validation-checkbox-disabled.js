@@ -1,20 +1,20 @@
-var inputs = document.querySelectorAll('input');
-var labels = document.querySelectorAll('label');
-var form = document.querySelector('form');
+const inputs = document.querySelectorAll('input');
+const labels = document.querySelectorAll('label');
+const form = document.querySelector('form');
 
-var formItems = [];
+let formItems = [];
 
-var errorField = document.querySelector('.errors');
-var errorList = document.querySelector('.errors ul');
+const errorField = document.querySelector('.errors');
+const errorList = document.querySelector('.errors ul');
 
-var checkbox;
-var checkboxLabel;
+let checkbox;
+let checkboxLabel;
 
-var hiddenAlert = document.querySelector('.hidden-alert');
+const hiddenAlert = document.querySelector('.hidden-alert');
 
-for(var i = 0; i < inputs.length-1; i++) {
+for(let i = 0; i < inputs.length-1; i++) {
   if(inputs[i].type !== 'checkbox') {
-    var obj = {};
+    let obj = {};
     obj.label = labels[i];
     obj.input = inputs[i];
     formItems.push(obj);
@@ -32,8 +32,8 @@ form.onsubmit = validate;
 
 function validate(e) {
   errorList.innerHTML = '';
-  for(var i = 0; i < formItems.length; i++) {
-    var testItem = formItems[i];
+  for(let i = 0; i < formItems.length; i++) {
+    let testItem = formItems[i];
     if(testItem.input.value === '' && testItem.input.disabled === false) {
       errorField.style.left = '390px';
       createLink(testItem);
@@ -46,8 +46,8 @@ function validate(e) {
 }
 
 function createLink(testItem) {
-  var listItem = document.createElement('li');
-  var anchor = document.createElement('a');
+  const listItem = document.createElement('li');
+  const anchor = document.createElement('a');
   anchor.textContent = testItem.input.name + ' field is empty: fill in your ' + testItem.input.name + '.';
   anchor.href = '#' + testItem.input.name;
   anchor.onclick = function() {
@@ -66,7 +66,7 @@ checkbox.onchange = function() {
 };
 
 function toggleMusician(bool) {
-  var instruItem = formItems[formItems.length-1];
+  let instruItem = formItems[formItems.length-1];
   if(bool) {
     instruItem.input.disabled = false;
     instruItem.label.style.color = '#000';
@@ -76,7 +76,6 @@ function toggleMusician(bool) {
     instruItem.input.disabled = true;
     instruItem.label.style.color = '#999';
     instruItem.input.setAttribute('aria-disabled', 'true');
-    instruItem.input.removeAttribute('aria-label');
     hiddenAlert.textContent = 'Instruments played field now disabled.';
   }
 }

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <title>Simple ternary operator example</title>
   </head>
   <body>
@@ -14,12 +15,10 @@
     <h1>This is my website</h1>
 
     <script>
-      var select = document.querySelector('select');
-      var html = document.querySelector('html');
+      const select = document.querySelector('select');
+      const html = document.querySelector('html');
 
-      select.onchange = function() {
-        select.value === 'black' ? update('black','white') : update('white','black');
-      }
+      select.addEventListener('change', () => ( select.value === 'black' ) ? update('black','white') : update('white','black'));
 
       function update(bgColor, textColor) {
         html.style.backgroundColor = bgColor;

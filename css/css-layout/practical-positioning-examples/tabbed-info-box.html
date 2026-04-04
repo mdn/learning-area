@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Tabbed info box</title>
+    <style>
+      /* General setup */
+
+      html {
+        font-family: sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      /* info-box setup */
+
+      .info-box {
+        width: 452px;
+        height: 400px;
+        margin: 1.25rem auto 0;
+      }
+
+      /* styling info-box tabs */
+
+      .info-box [role="tablist"] {
+        min-width: 100%;
+        display: flex;
+      }
+
+      .info-box [role="tab"] {
+        border: none;
+        background: white;
+        padding: 0 1rem 0 1rem;
+        line-height: 3rem;
+        color: #b60000;
+        font-weight: bold;
+        outline: none;
+      }
+
+      .info-box [role="tab"]:focus span,
+      .info-box [role="tab"]:hover span {
+        outline: 1px solid blue;
+        outline-offset: 6px;
+        border-radius: 4px;
+      }
+
+      .info-box [role="tab"][aria-selected="true"] {
+        background-color: #b60000;
+        color: white;
+      }
+
+      /* styling info-box panels */
+
+      .info-box .panels {
+        height: 352px;
+        clear: both;
+        position: relative;
+      }
+
+      .info-box [role="tabpanel"] {
+        background-color: #b60000;
+        color: white;
+        position: absolute;
+        padding: 0.8rem 1.2rem;
+        height: 352px;
+        top: 0;
+        left: 0;
+      }
+
+      .info-box [role="tabpanel"].is-hidden {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="info-box">
+      <div role="tablist" class="manual">
+        <button
+          id="tab-1"
+          type="button"
+          role="tab"
+          aria-selected="true"
+          aria-controls="tabpanel-1">
+          <span>Tab 1</span>
+        </button>
+
+        <button
+          id="tab-2"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          aria-controls="tabpanel-2">
+          <span>Tab 2</span>
+        </button>
+        <button
+          id="tab-3"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          aria-controls="tabpanel-3">
+          <span>Tab 3</span>
+        </button>
+      </div>
+
+      <div class="panels">
+        <article id="tabpanel-1" role="tabpanel" aria-labelledby="tab-1">
+          <h2>The first tab</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Pellentesque turpis nibh, porttitor nec venenatis eu, pulvinar in
+            augue. Vestibulum et orci scelerisque, vulputate tellus quis,
+            lobortis dui. Vivamus varius libero at ipsum mattis efficitur ut nec
+            nisl. Nullam eget tincidunt metus. Donec ultrices, urna maximus
+            consequat aliquet, dui neque eleifend lorem, a auctor libero turpis
+            at sem. Aliquam ut porttitor urna. Nulla facilisi.
+          </p>
+        </article>
+
+        <article id="tabpanel-2" role="tabpanel" aria-labelledby="tab-2">
+          <h2>The second tab</h2>
+          <p>
+            This tab hasn't got any Lorem Ipsum in it. But the content isn't
+            very exciting all the same.
+          </p>
+        </article>
+
+        <article id="tabpanel-3" role="tabpanel" aria-labelledby="tab-3">
+          <h2>The third tab</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Pellentesque turpis nibh, porttitor nec venenatis eu, pulvinar in
+            augue. And now an ordered list: how exciting!
+          </p>
+          <ol>
+            <li>dui neque eleifend lorem, a auctor libero turpis at sem.</li>
+            <li>Aliquam ut porttitor urna.</li>
+            <li>Nulla facilisi</li>
+          </ol>
+        </article>
+      </div>
+    </section>
+
+    <script src="tabs-manual.js"></script>
+  </body>
+</html>

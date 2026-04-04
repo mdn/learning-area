@@ -52,7 +52,7 @@ The overall mark awarded is out of 28. Work out their final mark, and then divid
       <li>Use the correct image inside the link (Firefox logo for "Download Firefox", Dinosaur for mozilla.org, Add-ons image for the add-ons site.)</li>
       <li>Include an appropriate <code>src</code> and <code>alt</code> attribute.</li>
       <li>Include a <code>srcset</code> attribute that declares the 120px version of the image as 120w, and the 400px version of 400w.</li>
-      <li>Include a <code>sizes</code> attribute that declares that the 120px version should be used if the viewport is 480px wide or narrower (<code>(max-width: 480px)</code>), and the 400px version should be used otherwise.</li>
+      <li>Include a <code>sizes</code> attribute that declares that the 120px version should be used if the viewport is 500px wide or narrower (<code>(max-width: 500px)</code>), and the 400px version should be used otherwise.</li>
     </ul>
   </li>
   <li>2 for embedding the SVG image inside the last link, just in a normal image element, with appropriate <code>src</code> attribute and <code>alt</code> text.</li>

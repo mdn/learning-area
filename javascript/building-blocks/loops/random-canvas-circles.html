@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <title>Random canvas circles</title>
     <style>
       html {
@@ -29,15 +30,15 @@
   <button>Update</button>
 
   <canvas></canvas>
-    
+
 
     <script>
-    var btn = document.querySelector('button');
-    var canvas = document.querySelector('canvas');
-    var ctx = canvas.getContext('2d');
+    const btn = document.querySelector('button');
+    const canvas = document.querySelector('canvas');
+    const ctx = canvas.getContext('2d');
 
-    var WIDTH = document.documentElement.clientWidth;
-    var HEIGHT = document.documentElement.clientHeight;
+    let WIDTH = document.documentElement.clientWidth;
+    let HEIGHT = document.documentElement.clientHeight;
 
     canvas.width = WIDTH;
     canvas.height = HEIGHT;
@@ -48,7 +49,7 @@
 
     function draw() {
       ctx.clearRect(0,0,WIDTH,HEIGHT);
-      for(var i = 0; i < 100; i++) {
+      for(let i = 0; i < 100; i++) {
         ctx.beginPath();
         ctx.fillStyle = 'rgba(255,0,0,0.5)';
         ctx.arc(random(WIDTH), random(HEIGHT), random(50), 0, 2 * Math.PI);
@@ -57,8 +58,8 @@
     }
 
     btn.addEventListener('click',draw);
-      
+
     </script>
-    
+
   </body>
 </html>

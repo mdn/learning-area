@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
 
     <title>Random quotes</title>
 
@@ -26,13 +27,10 @@
         color: white;
         min-height: 150px;
       }
-
-
     </style>
   </head>
 
   <body>
-
     <section aria-live="assertive" aria-atomic="true">
       <h1>Random quote</h1>
       <blockquote>
@@ -40,35 +38,28 @@
       </blockquote>
     </section>
     <script>
-    var quotePara = document.querySelector('section p');
+      const quotePara = document.querySelector("section p");
 
-    var quoteJson;
+      let quoteJson;
 
-    getQuotes('quotes.json', populateJson);
+      getQuotes("quotes.json").then((quotes) => {
+        quoteJson = quotes;
+        window.setInterval(showQuote, 10000);
+      });
 
-    var intervalID = window.setInterval(showQuote, 10000);
+      async function getQuotes(url, callback) {
+        const response = await fetch(url);
+        return response.json();
+      }
 
-    function getQuotes(url, callback) {
-      var request = new XMLHttpRequest();
-      request.open('GET', url);
-      request.responseType = 'json';
-      request.send();
+      function populateJson(response) {
+        quoteJson = response;
+      }
 
-      request.onreadystatechange = function() {
-        if (request.readyState === 4 && request.status === 200) {
-          callback(request.response);
-        }
-      };
-    }
-
-    function populateJson(response) {
-      quoteJson = response;
-    }
-
-    function showQuote() {
-      var random = Math.floor((Math.random()*25));
-      quotePara.textContent = quoteJson[random].quote + ' -- ' + quoteJson[random].author;
-    }
+      function showQuote() {
+        let random = Math.floor(Math.random() * 25);
+        quotePara.textContent = `${quoteJson[random].quote} -- ${quoteJson[random].author}`;
+      }
     </script>
   </body>
 </html>

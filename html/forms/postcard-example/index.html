@@ -1,144 +1,120 @@
 <!DOCTYPE html>
-<html>
-
-<head>
+<html lang="en-US">
+  <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <title>Postcard example</title>
     <style>
 
-    @font-face {
-        font-family: 'handwriting';
-        src: url('fonts/journal-webfont.woff2') format('woff2'),
-             url('fonts/journal-webfont.woff') format('woff');
-        font-weight: normal;
-        font-style: normal;
-    }
+@font-face {
+    font-family: 'handwriting';
+    src: url('fonts/journal-webfont.woff2') format('woff2'),
+         url('fonts/journal-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
-    @font-face {
-        font-family: 'typewriter';
-        src: url('fonts/veteran_typewriter-webfont.woff2') format('woff2'),
-             url('fonts/veteran_typewriter-webfont.woff') format('woff');
-        font-weight: normal;
-        font-style: normal;
-    }
+@font-face {
+    font-family: 'typewriter';
+    src: url('fonts/veteran_typewriter-webfont.woff2') format('woff2'),
+         url('fonts/veteran_typewriter-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
-    body {
-      font  : 21px sans-serif;
+body {
+  font  : 1.3rem sans-serif;
+  padding : 0.5em;
+  margin  : 0;
+  background : #222;
+}
 
-      padding : 2em;
-      margin  : 0;
+form {
+  position : relative;
+  width  : 740px;
+  height : 498px;
+  margin : 0 auto;
+  padding: 1em;
+  box-sizing: border-box;
+  background : #FFF url(background.jpg);
 
-      background : #222;
-    }
+  /* we create our grid */
+  display  : grid;
+  gap : 20px;
+  grid-template-columns : repeat(2, 1fr);
+  grid-template-rows    : 10em 1em 1em 1em;
+}
 
-    form {
-      position: relative;
+h1 {
+  font : 1em "typewriter", monospace;
+  align-self : end;
+}
 
-      width  : 740px;
-      height : 498px;
-      margin : 0 auto;
+#message {
+   grid-row: 1 / 5;
+}
 
-      background: #FFF url(background.jpg);
-    }
+#from, #reply {
+   display: flex;
+}
 
-    h1 {
-      position : absolute;
-      left : 415px;
-      top  : 185px;
+label {
+  font : .8em "typewriter", sans-serif;
+}
 
-      font : 1em "typewriter", sans-serif;
-    }
+input,
+textarea {
+  font    : 1.4em/1.5em "handwriting", cursive, sans-serif;
+  border  : none;
+  padding : 0 10px;
+  margin  : 0;
+  width   : 80%;
+  background : none;
+}
 
-    #from {
-      position: absolute;
-      left : 398px;
-      top  : 235px;
-    }
+input:focus,
+textarea:focus {
+  background   : rgba(0,0,0,.1);
+  border-radius: 5px;
+}
 
-    #reply {
-      position: absolute;
-      left : 390px;
-      top  : 285px;
-    }
+textarea {
+  display : block;
 
-    #message {
-      position: absolute;
-      left : 20px;
-      top  : 70px;
-    }
+  padding : 10px;
+  margin  : 10px 0 0 -10px;
+  width   : 100%;
+  height  : 90%;
 
-    label {
-      font : .8em "typewriter", sans-serif;
-    }
+  border-right: 1px solid;
 
-    input, textarea {
-      font    : .9em/1.5em "handwriting", sans-serif;
+  /* resize  : none; */
+  overflow: auto;
+}
 
-      border  : none;
-      padding : 0 10px;
-      margin  : 0;
-      width   : 240px;
+button {
+  padding      : 5px;
+  font         : bold .6em sans-serif;
+  border       : 2px solid #333;
+  border-radius: 5px;
+  background   : none;
+  cursor       : pointer;
+  transform    : rotate(-1.5deg);
+}
 
-      background: none;
-    }
+button:after {
+  content      : " >>>";
+}
 
-    input:focus, textarea:focus {
-      background   : rgba(0,0,0,.1);
-      border-radius: 5px;
-      outline      : none;
-    }
-
-    input {
-        height: 2.5em; /* for IE */
-        vertical-align: middle; /* This is optional but it makes legacy IEs look better */
-    }
-
-    textarea {
-      display : block;
-
-      padding : 10px;
-      margin  : 10px 0 0 -10px;
-      width   : 340px;
-      height  : 360px;
-
-      resize  : none;
-      overflow: auto;
-    }
-
-    button {
-      position     : absolute;
-      left         : 440px;
-      top          : 360px;
-
-      padding      : 5px;
-
-      font         : bold .6em sans-serif;
-      border       : 2px solid #333;
-      border-radius: 5px;
-      background   : none;
-
-      cursor       : pointer;
-
-    -webkit-transform: rotate(-1.5deg);
-       -moz-transform: rotate(-1.5deg);
-        -ms-transform: rotate(-1.5deg);
-         -o-transform: rotate(-1.5deg);
-            transform: rotate(-1.5deg);
-    }
-
-    button:after {
-      content: " >>>";
-    }
-
-    button:hover,
-    button:focus {
-      outline   : none;
-      background: #000;
-      color   : #FFF;
-    }
+button:hover,
+button:focus {
+  outline     : none;
+  background  : #000;
+  color       : #FFF;
+}
 
     </style>
-</head>
+  </head>
 
 <body>
 

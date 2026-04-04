@@ -1,111 +1,105 @@
-// setup canvas
+// set up canvas
 
-var canvas = document.querySelector('canvas');
-var ctx = canvas.getContext('2d');
+const canvas = document.querySelector("canvas");
+const ctx = canvas.getContext("2d");
 
-var width = canvas.width = window.innerWidth;
-var height = canvas.height = window.innerHeight;
+const width = (canvas.width = window.innerWidth);
+const height = (canvas.height = window.innerHeight);
 
 // function to generate random number
 
-function random(min,max) {
-  var num = Math.floor(Math.random()*(max-min)) + min;
-  return num;
+function random(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// define Ball constructor
+// function to generate random RGB color value
 
-function Ball(x, y, velX, velY, color, size) {
-  this.x = x;
-  this.y = y;
-  this.velX = velX;
-  this.velY = velY;
-  this.color = color;
-  this.size = size;
+function randomRGB() {
+  return `rgb(${random(0, 255)},${random(0, 255)},${random(0, 255)})`;
 }
 
-// define ball draw method
-
-Ball.prototype.draw = function() {
-  ctx.beginPath();
-  ctx.fillStyle = this.color;
-  ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
-  ctx.fill();
-};
-
-// define ball update method
-
-Ball.prototype.update = function() {
-  if((this.x + this.size) >= width) {
-    this.velX = -(this.velX);
+class Ball {
+  constructor(x, y, velX, velY, color, size) {
+    this.x = x;
+    this.y = y;
+    this.velX = velX;
+    this.velY = velY;
+    this.color = color;
+    this.size = size;
   }
 
-  if((this.x - this.size) <= 0) {
-    this.velX = -(this.velX);
+  draw() {
+    ctx.beginPath();
+    ctx.fillStyle = this.color;
+    ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+    ctx.fill();
   }
 
-  if((this.y + this.size) >= height) {
-    this.velY = -(this.velY);
+  update() {
+    if (this.x + this.size >= width) {
+      this.velX = -Math.abs(this.velX);
+    }
+
+    if (this.x - this.size <= 0) {
+      this.velX = Math.abs(this.velX);
+    }
+
+    if (this.y + this.size >= height) {
+      this.velY = -Math.abs(this.velY);
+    }
+
+    if (this.y - this.size <= 0) {
+      this.velY = Math.abs(this.velY);
+    }
+
+    this.x += this.velX;
+    this.y += this.velY;
   }
 
-  if((this.y - this.size) <= 0) {
-    this.velY = -(this.velY);
-  }
+  collisionDetect() {
+    for (const ball of balls) {
+      if (!(this === ball)) {
+        const dx = this.x - ball.x;
+        const dy = this.y - ball.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
 
-  this.x += this.velX;
-  this.y += this.velY;
-};
-
-// define ball collision detection
-
-Ball.prototype.collisionDetect = function() {
-  for(var j = 0; j < balls.length; j++) {
-    if(!(this === balls[j])) {
-      var dx = this.x - balls[j].x;
-      var dy = this.y - balls[j].y;
-      var distance = Math.sqrt(dx * dx + dy * dy);
-
-      if (distance < this.size + balls[j].size) {
-        balls[j].color = this.color = 'rgb(' + random(0,255) + ',' + random(0,255) + ',' + random(0,255) +')';
+        if (distance < this.size + ball.size) {
+          ball.color = this.color = randomRGB();
+        }
       }
     }
   }
-};
+}
 
-// define array to store balls
+const balls = [];
 
-var balls = [];
+while (balls.length < 25) {
+  const size = random(10, 20);
+  const ball = new Ball(
+    // ball position always drawn at least one ball width
+    // away from the edge of the canvas, to avoid drawing errors
+    random(0 + size, width - size),
+    random(0 + size, height - size),
+    random(-7, 7),
+    random(-7, 7),
+    randomRGB(),
+    size
+  );
 
-// define loop that keeps drawing the scene constantly
+  balls.push(ball);
+}
 
 function loop() {
-  ctx.fillStyle = 'rgba(0,0,0,0.25)';
-  ctx.fillRect(0,0,width,height);
+  ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
+  ctx.fillRect(0, 0, width, height);
 
-  while(balls.length < 25) {
-    var size = random(10,20);
-    var ball = new Ball(
-      // ball position always drawn at least one ball width
-      // away from the adge of the canvas, to avoid drawing errors
-      random(0 + size,width - size),
-      random(0 + size,height - size),
-      random(-7,7),
-      random(-7,7),
-      'rgb(' + random(0,255) + ',' + random(0,255) + ',' + random(0,255) +')',
-      size
-    );
-    balls.push(ball);
-  }
-
-  for(var i = 0; i < balls.length; i++) {
-    balls[i].draw();
-    balls[i].update();
-    balls[i].collisionDetect();
+  for (const ball of balls) {
+    ball.draw();
+    ball.update();
+    ball.collisionDetect();
   }
 
   requestAnimationFrame(loop);
 }
-
-
 
 loop();

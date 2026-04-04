@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <title>Object-oriented JavaScript prototype addition</title>
   </head>
 
@@ -16,12 +17,12 @@
   </body>
 
     <script>
-      var input = document.querySelector('input');
-      var btn = document.querySelector('button');
-      var para = document.querySelector('p');
+      const input = document.querySelector('input');
+      const btn = document.querySelector('button');
+      const para = document.querySelector('p');
 
       btn.onclick = function() {
-        var code = input.value;
+        const code = input.value;
         para.textContent = eval(code);
       }
 
@@ -36,11 +37,11 @@
         this.bio = function() {
           // First define a string, and make it equal to the part of
           // the bio that we know will always be the same.
-          var string = this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years old. ';
+          let string = this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years old. ';
           // define a variable that will contain the pronoun part of
-          // the sencond sentence
-          var pronoun;
-          
+          // the second sentence
+          let pronoun;
+
           // check what the value of gender is, and set pronoun
           // to an appropriate value in each case
           if(this.gender === 'male' || this.gender === 'Male' || this.gender === 'm' || this.gender === 'M') {
@@ -50,7 +51,7 @@
           } else {
             pronoun = 'They like ';
           }
-          
+
           // add the pronoun string on to the end of the main string
           string += pronoun;
 
@@ -64,8 +65,8 @@
           } else {
             // if there are more than 2 interests, we loop through them
             // all, adding each one to the main string followed by a comma,
-            // except for the last one, which needs an and & a full stop 
-            for(var i = 0; i < this.interests.length; i++) {
+            // except for the last one, which needs an and & a full stop
+            for(let i = 0; i < this.interests.length; i++) {
               if(i === this.interests.length - 1) {
                 string += 'and ' + this.interests[i] + '.';
               } else {
@@ -82,7 +83,7 @@
         };
       };
 
-      var person1 = new Person('Tammi', 'Smith', 32, 'neutral', ['music', 'skiing', 'kickboxing']);
+      let person1 = new Person('Tammi', 'Smith', 32, 'neutral', ['music', 'skiing', 'kickboxing']);
 
       Person.prototype.farewell = function() {
         console.log(this.name.first + ' has left the building. Bye for now!');

@@ -1,0 +1,6 @@
+# This .prettierignore file uses .gitignore syntax
+# see https://prettier.io/docs/en/ignore.html#ignoring-files-prettierignore
+
+/css/introduction-to-css/debugging-css/style.css
+/html/introduction-to-html/debugging-html/debug-example.html
+/tools-testing/cross-browser-testing/javascript/broken-js-test.js

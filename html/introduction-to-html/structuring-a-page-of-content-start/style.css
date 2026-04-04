@@ -113,7 +113,7 @@ main {
   display: flex;
 }
 
-article {
+article, section {
   flex: 4;
 }
 

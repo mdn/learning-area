@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <title>Simple switch example</title>
   </head>
   <body>
@@ -17,14 +18,13 @@
     <p></p>
 
     <script>
-      var select = document.querySelector('select');
-      var para = document.querySelector('p');
-      var temperature = 29;
+      const select = document.querySelector('select');
+      const para = document.querySelector('p');
 
-      select.onchange = setWeather;
+      select.addEventListener("change", setWeather);
 
       function setWeather() {
-        var choice = select.value;
+        const choice = select.value;
 
         switch(choice) {
           case 'sunny':

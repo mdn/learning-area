@@ -1,0 +1,75 @@
+/* Some default styling for cookbook examples */
+/*
+rgb(53,43,34)
+rgb(75,70,74)
+rgb(95,97,110)
+rgb(137,151,188)
+rgb(160,178,226)
+*/
+body {
+    background-color: #fff;
+    color: #333;
+    font: 1em / 1.4 Helvetica Neue, Helvetica, Arial, sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+h2 {
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+p {
+  margin: 0.5em 0;
+}
+
+/* styles for the editor */
+
+.playable {
+    font-family: monospace;
+    display: block;
+    margin-bottom: 10px;
+    background-color: #F4F7F8;
+    border: none;
+    border-left: 6px solid #558ABB;
+    color: #4D4E53;
+    width: 90%;
+    max-width: 700px;
+    padding: 10px 10px 0px;
+    font-size: 90%;
+  }
+
+  .playable-css {
+    height: 80px;
+  }
+
+  .playable-html {
+    height: 160px;
+  }
+
+  .playable-buttons {
+    text-align: right;
+    width: 90%;
+    max-width: 700px;
+    padding: 5px 10px 5px 26px;
+    font-size: 100%;
+  }
+
+  .preview {
+    width: 90%;
+    max-width: 700px;
+    border: 1px solid #4D4E53;
+    border-radius: 2px;
+    padding: 10px 14px 10px 10px;
+    margin-bottom: 10px;
+  }
+
+  .preview input {
+    display: block;
+    margin: 5px;
+  }

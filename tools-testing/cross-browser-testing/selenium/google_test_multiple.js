@@ -1,12 +1,12 @@
-var webdriver = require('selenium-webdriver'),
+const webdriver = require('selenium-webdriver'),
     By = webdriver.By,
     until = webdriver.until;
 
-var driver_fx = new webdriver.Builder()
+let driver_fx = new webdriver.Builder()
     .forBrowser('firefox')
     .build();
 
-var driver_chr = new webdriver.Builder()
+let driver_chr = new webdriver.Builder()
     .forBrowser('chrome')
     .build();
 

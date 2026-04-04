@@ -1,39 +1,36 @@
-// create a variable to store the products 'database' in
-var products;
-
-// use fetch to retrieve it, and report any errors that occur in the fetch operation
+// use fetch to retrieve the products and pass them to init
+// report any errors that occur in the fetch operation
 // once the products have been successfully loaded and formatted as a JSON object
 // using response.json(), run the initialize() function
-fetch('products.json').then(function(response) {
-  if(response.ok) {
-    response.json().then(function(json) {
-      products = json;
-      initialize();
-    });
-  } else {
-    console.log('Network request for products.json failed with response ' + response.status + ': ' + response.statusText);
-  }
-});
+fetch('products.json')
+  .then( response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then( json => initialize(json) )
+  .catch( err => console.error(`Fetch problem: ${err.message}`) );
 
 // sets up the app logic, declares required variables, contains all the other functions
-function initialize() {
+function initialize(products) {
   // grab the UI elements that we need to manipulate
-  var category = document.querySelector('#category');
-  var searchTerm = document.querySelector('#searchTerm');
-  var searchBtn = document.querySelector('button');
-  var main = document.querySelector('main');
+  const category = document.querySelector('#category');
+  const searchTerm = document.querySelector('#searchTerm');
+  const searchBtn = document.querySelector('button');
+  const main = document.querySelector('main');
 
   // keep a record of what the last category and search term entered were
-  var lastCategory = category.value;
+  let lastCategory = category.value;
   // no search has been made yet
-  var lastSearch = '';
+  let lastSearch = '';
 
   // these contain the results of filtering by category, and search term
   // finalGroup will contain the products that need to be displayed after
   // the searching has been done. Each will be an array containing objects.
   // Each object will represent a product
-  var categoryGroup;
-  var finalGroup;
+  let categoryGroup;
+  let finalGroup;
 
   // To start with, set finalGroup to equal the entire products database
   // then run updateDisplay(), so ALL products are displayed initially.
@@ -46,7 +43,7 @@ function initialize() {
 
   // when the search button is clicked, invoke selectCategory() to start
   // a search running to select the category of products we want to display
-  searchBtn.onclick = selectCategory;
+  searchBtn.addEventListener('click', selectCategory);
 
   function selectCategory(e) {
     // Use preventDefault() to stop the form submitting — that would ruin
@@ -60,7 +57,7 @@ function initialize() {
     // if the category and search term are the same as they were the last time a
     // search was run, the results will be the same, so there is no point running
     // it again — just return out of the function
-    if(category.value === lastCategory && searchTerm.value.trim() === lastSearch) {
+    if (category.value === lastCategory && searchTerm.value.trim() === lastSearch) {
       return;
     } else {
       // update the record of last category and search term
@@ -68,7 +65,7 @@ function initialize() {
       lastSearch = searchTerm.value.trim();
       // In this case we want to select all products, then filter them by the search
       // term, so we just set categoryGroup to the entire JSON object, then run selectProducts()
-      if(category.value === 'All') {
+      if (category.value === 'All') {
         categoryGroup = products;
         selectProducts();
       // If a specific category is chosen, we need to filter out the products not in that
@@ -78,46 +75,32 @@ function initialize() {
         // the values in the <option> elements are uppercase, whereas the categories
         // store in the JSON (under "type") are lowercase. We therefore need to convert
         // to lower case before we do a comparison
-        var lowerCaseType = category.value.toLowerCase();
-        for(var i = 0; i < products.length ; i++) {
-          // If a product's type property is the same as the chosen category, we want to
-          // dispay it, so we push it onto the categoryGroup array
-          if(products[i].type === lowerCaseType) {
-            categoryGroup.push(products[i]);
-          }
-        }
+        const lowerCaseType = category.value.toLowerCase();
+        // Filter categoryGroup to contain only products whose type includes the category
+        categoryGroup = products.filter( product => product.type === lowerCaseType );
 
-        // Run selectProducts() after the filtering has bene done
+        // Run selectProducts() after the filtering has been done
         selectProducts();
       }
     }
   }
 
   // selectProducts() Takes the group of products selected by selectCategory(), and further
-  // filters them by the tnered search term (if one has bene entered)
+  // filters them by the tiered search term (if one has been entered)
   function selectProducts() {
     // If no search term has been entered, just make the finalGroup array equal to the categoryGroup
-    // array — we don't want to filter the products further — then run updateDisplay().
-    if(searchTerm.value.trim() === '') {
+    // array — we don't want to filter the products further.
+    if (searchTerm.value.trim() === '') {
       finalGroup = categoryGroup;
-      updateDisplay();
     } else {
       // Make sure the search term is converted to lower case before comparison. We've kept the
       // product names all lower case to keep things simple
-      var lowerCaseSearchTerm = searchTerm.value.trim().toLowerCase();
-      // For each product in categoryGroup, see if the search term is contained inside the product name
-      // (if the indexOf() result doesn't return -1, it means it is) — if it is, then push the product
-      // onto the finalGroup array
-      for(var i = 0; i < categoryGroup.length ; i++) {
-        if(categoryGroup[i].name.indexOf(lowerCaseSearchTerm) !== -1) {
-          finalGroup.push(categoryGroup[i]);
-        }
-      }
-
-      // run updateDisplay() after this second round of filtering has been done
-      updateDisplay();
+      const lowerCaseSearchTerm = searchTerm.value.trim().toLowerCase();
+      // Filter finalGroup to contain only products whose name includes the search term
+      finalGroup = categoryGroup.filter( product => product.name.includes(lowerCaseSearchTerm));
     }
-
+    // Once we have the final group, update the display
+    updateDisplay();
   }
 
   // start the process of updating the display with the new set of products
@@ -128,14 +111,14 @@ function initialize() {
     }
 
     // if no products match the search term, display a "No results to display" message
-    if(finalGroup.length === 0) {
-      var para = document.createElement('p');
+    if (finalGroup.length === 0) {
+      const para = document.createElement('p');
       para.textContent = 'No results to display!';
       main.appendChild(para);
     // for each product we want to display, pass its product object to fetchBlob()
     } else {
-      for(var i = 0; i < finalGroup.length; i++) {
-        fetchBlob(finalGroup[i]);
+      for (const product of finalGroup) {
+        fetchBlob(product);
       }
     }
   }
@@ -145,31 +128,30 @@ function initialize() {
   // display it
   function fetchBlob(product) {
     // construct the URL path to the image file from the product.image property
-    var url = 'images/' + product.image;
+    const url = `images/${product.image}`;
     // Use fetch to fetch the image, and convert the resulting response to a blob
     // Again, if any errors occur we report them in the console.
-    fetch(url).then(function(response) {
-      if(response.ok) {
-        response.blob().then(function(blob) {
-          // Convert the blob to an object URL — this is basically an temporary internal URL
-          // that points to an object stored inside the browser
-          objectURL = URL.createObjectURL(blob);
-          // invoke showProduct
-          showProduct(objectURL, product);
-        });
-      } else {
-        console.log('Network request for "' + product.name + '" image failed with response ' + response.status + ': ' + response.statusText);
-      }
-    });
+    fetch(url)
+      .then( response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error: ${response.status}`);
+        }
+        return response.blob();
+      })
+      .then( blob => showProduct(blob, product) )
+      .catch( err => console.error(`Fetch problem: ${err.message}`) );
   }
 
   // Display a product inside the <main> element
-  function showProduct(objectURL, product) {
+  function showProduct(blob, product) {
+    // Convert the blob to an object URL — this is basically an temporary internal URL
+    // that points to an object stored inside the browser
+    const objectURL = URL.createObjectURL(blob);
     // create <section>, <h2>, <p>, and <img> elements
-    var section = document.createElement('section');
-    var heading = document.createElement('h2');
-    var para = document.createElement('p');
-    var image = document.createElement('img');
+    const section = document.createElement('section');
+    const heading = document.createElement('h2');
+    const para = document.createElement('p');
+    const image = document.createElement('img');
 
     // give the <section> a classname equal to the product "type" property so it will display the correct icon
     section.setAttribute('class', product.type);
@@ -181,7 +163,7 @@ function initialize() {
     // Give the <p> textContent equal to the product "price" property, with a $ sign in front
     // toFixed(2) is used to fix the price at 2 decimal places, so for example 1.40 is displayed
     // as 1.40, not 1.4.
-    para.textContent = '$' + product.price.toFixed(2);
+    para.textContent = `$${product.price.toFixed(2)}`;
 
     // Set the src of the <img> element to the ObjectURL, and the alt to the product "name" property
     image.src = objectURL;

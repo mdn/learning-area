@@ -1,29 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <title>Basic for loop example</title>
     <style>
-      
+
     </style>
   </head>
   <body>
 
   <p></p>
-    
+
 
     <script>
-    var cats = ['Bill', 'Jeff', 'Pete', 'Biggles', 'Jasmin'];
-    var info = 'My cats are called ';
-    var para = document.querySelector('p');
+    const cats = ['Bill', 'Jeff', 'Pete', 'Biggles', 'Jasmin'];
+    let info = 'My cats are called ';
+    const para = document.querySelector('p');
 
-    for(var i = 0; i < cats.length; i++) {
+    for(let i = 0; i < cats.length; i++) {
       info += cats[i] + ', ';
     }
 
     para.textContent = info;
-      
+
     </script>
-    
+
   </body>
 </html>

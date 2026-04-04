@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <title>Native keyboard accessibility</title>
     <style>
       input {
@@ -57,15 +58,15 @@
     </form>
 
     <script>
-      var buttons = document.querySelectorAll('button');
+      const buttons = document.querySelectorAll('button');
 
-      for(var i = 0; i < buttons.length; i++) {
+      for(let i = 0; i < buttons.length; i++) {
         addHandler(buttons[i]);
       }
 
       function addHandler(button) {
         button.addEventListener('click', function(e) {
-          var message = e.target.getAttribute('data-message');
+          let message = e.target.getAttribute('data-message');
           alert(message);
         })
       }

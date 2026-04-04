@@ -1,23 +1,23 @@
 // Get references to all audio and video players
 // Store them all in a single array
 
-var videos = document.querySelectorAll('video');
+const videos = document.querySelectorAll('video');
 
-var audios = document.querySelectorAll('audio');
+const audios = document.querySelectorAll('audio');
 
-var players = [];
+let players = [];
 
-for(var a = 0; a < audios.length; a++) {
+for(let a = 0; a < audios.length; a++) {
   players.push(audios[a]);
 }
 
-for(var v = 0; v < videos.length; v++) {
+for(let v = 0; v < videos.length; v++) {
   players.push(videos[v]);
 }
 
 // Remove the native controls from all players
 
-for(var p = 0; p < players.length; p++) {
+for(let p = 0; p < players.length; p++) {
   players[p].removeAttribute('controls');
 }
 
@@ -63,10 +63,10 @@ function PlayerController(player, playPauseBtn, stopBtn, rwdBtn, fwdBtn, timeLab
   }
 
   this.player.ontimeupdate = function() {
-    var minutes = Math.floor(player.currentTime / 60);
-    var seconds = Math.floor(player.currentTime - minutes * 60);
-    var minuteValue;
-    var secondValue;
+    let minutes = Math.floor(player.currentTime / 60);
+    let seconds = Math.floor(player.currentTime - minutes * 60);
+    let minuteValue;
+    let secondValue;
 
     if (minutes<10) {
       minuteValue = "0" + minutes;
@@ -89,16 +89,16 @@ function PlayerController(player, playPauseBtn, stopBtn, rwdBtn, fwdBtn, timeLab
 
 // Add the controls bar to all players
 
-for(var i = 0; i < players.length; i++) {
-  var controls = document.createElement('div');
+for(let i = 0; i < players.length; i++) {
+  const controls = document.createElement('div');
   controls.setAttribute('class', 'controls');
   players[i].parentNode.appendChild(controls);
 
-  var playpause = document.createElement('button');
-  var stop = document.createElement('button');
-  var rwd = document.createElement('button');
-  var fwd = document.createElement('button');
-  var time = document.createElement('div');
+  const playpause = document.createElement('button');
+  const stop = document.createElement('button');
+  const rwd = document.createElement('button');
+  const fwd = document.createElement('button');
+  const time = document.createElement('div');
 
   playpause.setAttribute('class', 'playpause');
   stop.setAttribute('class', 'stop');
@@ -118,5 +118,5 @@ for(var i = 0; i < players.length; i++) {
   controls.appendChild(fwd);
   controls.appendChild(time);
 
-  var playerInstance = new PlayerController(players[i], playpause, stop, rwd, fwd, time);
+  let playerInstance = new PlayerController(players[i], playpause, stop, rwd, fwd, time);
 }

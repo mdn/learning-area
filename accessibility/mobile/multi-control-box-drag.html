@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
@@ -32,7 +32,7 @@
       document.body.width = window.innerWidth;
       document.body.height = window.innerHeight;
 
-      var posX, posY;
+      let posX, posY;
 
       document.onmousemove = positionHandler;
       document.ontouchmove = positionHandler;
@@ -48,13 +48,13 @@
         }
       }
 
-      var div = document.querySelector('div');
+      const div = document.querySelector('div');
 
-      var initialPosX = null;
+      let initialPosX = null;
 
-      var initialPosY = null;
+      let initialPosY = null;
 
-      var rAF;
+      let rAF;
 
       div.onmousedown = function() {
         initialBoxX = div.offsetLeft;
@@ -77,11 +77,11 @@
           initialPosX = posX;
           initialPosY = posY;
         } else {
-          var posMoveX = posX - initialPosX;
-          var posMoveY = posY - initialPosY;
+          let posMoveX = posX - initialPosX;
+          let posMoveY = posY - initialPosY;
 
-          var offsetX = initialBoxX + posMoveX;
-          var offsetY = initialBoxY + posMoveY;
+          let offsetX = initialBoxX + posMoveX;
+          let offsetY = initialBoxY + posMoveY;
 
           div.style.left = offsetX + 'px';
           div.style.top = offsetY + 'px';

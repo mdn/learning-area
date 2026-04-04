@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <title>Allowance updater example</title>
   </head>
   <body>
@@ -11,24 +12,25 @@
     <p></p>
 
     <script>
-      var checkBox = document.querySelector('input');
-      var para = document.querySelector('p');
-      var shoppingDone = false;
+      const checkBox = document.querySelector('input');
+      const para = document.querySelector('p');
+      let shoppingDone = false;
 
-      checkBox.addEventListener('change',function() {
+      checkBox.addEventListener('change', () => {
         checkBox.disabled = true;
         shoppingDone = true;
         updateAllowance();
       });
 
       function updateAllowance() {
-        if(shoppingDone === true) {
-          var childsAllowance = 10;
+        let childsAllowance;
+        if (shoppingDone === true) {
+          childsAllowance = 10;
         } else {
-          var childsAllowance = 5;
+          childsAllowance = 5;
         }
 
-        para.textContent = 'Child has earned $' + childsAllowance + ' this week.';
+        para.textContent = `Child has earned \$${childsAllowance} this week.`;
       }
 
       updateAllowance();

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <title>Simple box drag example</title>
     <style>
       html {
@@ -31,18 +32,18 @@
       document.body.width = window.innerWidth;
       document.body.height = window.innerHeight;
 
-      var mouseX, mouseY;
+      let mouseX, mouseY;
 
       document.onmousemove = function(e) {
         mouseX = e.clientX;
         mouseY = e.clientY;
       }
 
-      var div = document.querySelector('div');
+      const div = document.querySelector('div');
 
-      var initialMouseX = null;
+      let initialMouseX = null;
 
-      var initialMouseY = null;
+      let initialMouseY = null;
 
       var initialBoxX, initialBoxY, rAF;
 
@@ -59,11 +60,11 @@
           initialMouseX = mouseX;
           initialMouseY = mouseY;
         } else {
-          var mouseMoveX = mouseX - initialMouseX;
-          var mouseMoveY = mouseY - initialMouseY;
+          let mouseMoveX = mouseX - initialMouseX;
+          let mouseMoveY = mouseY - initialMouseY;
 
-          var offsetX = initialBoxX + mouseMoveX;
-          var offsetY = initialBoxY + mouseMoveY;
+          let offsetX = initialBoxX + mouseMoveX;
+          let offsetY = initialBoxY + mouseMoveY;
           console.log(offsetX + ' ' + offsetY);
 
           div.style.left = offsetX + 'px';

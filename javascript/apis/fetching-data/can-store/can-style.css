@@ -175,3 +175,40 @@ section p {
   background: black url(icons/soup.png) no-repeat 2px 2px;
   background-size: 24px 24px;
 }
+
+/* mobile responsive styles*/
+@media screen and (max-width: 800px){
+  body, body div {
+    display: grid;
+    max-width: 480px;
+  }
+  header {
+    grid-row: 1;
+    margin-top: 10px;
+  }  
+  header h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    background: url(icons/bean_can.png) no-repeat 0% center, url(icons/bean_can.png) no-repeat 100% center;
+    background-size: 48px 48px;
+  }
+  aside {
+    grid-row: 1;
+    border-right: none;    
+    border-bottom: 5px solid black;    
+  }
+  input{
+    width: calc(100% - 5px);
+    padding: 5px 0 5px 5px;
+  }
+  main {
+    grid-row: 2;
+  }
+  footer {
+    grid-row: 3;
+    margin-bottom: 10px;
+  }
+  .vegetables, .meat, .soup {
+    background: black;
+  }
+}

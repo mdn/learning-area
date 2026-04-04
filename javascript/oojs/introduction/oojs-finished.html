@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <title>Object-oriented JavaScript example</title>
   </head>
 
@@ -11,23 +12,23 @@
   </body>
 
     <script>
-      var person = {
-        name : {
-          first : 'Bob',
-          last : 'Smith'
+      const person = {
+        name: ["Kate", "Smith"],
+        age: 32,
+        gender: "female",
+        interests: ["music", "skiing"],
+        bio() {
+          alert(
+            `${this.name[0]} ${this.name[1]} is ${this.age} years old. She likes ${
+              this.interests[0]} and ${this.interests[1]}.`,
+          );
         },
-        age : 32,
-        gender : 'male',
-        interests : ['music', 'skiing'],
-        bio : function() { alert(this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years old. He likes ' + this.interests[0] + ' and ' + this.interests[1] + '.');
+        greeting() {
+          alert(`Hi! I'm ${this.name[0]}.`);
         },
-        greeting: function() {
-          alert('Hi! I\'m ' + this.name.first + '.');
-        }
       };
-
-      var myDataName = 'height';
-      var myDataValue = '1.75m';
+      const myDataName = 'height';
+      const myDataValue = '1.75m';
       person[myDataName] = myDataValue;
     </script>
 </html>

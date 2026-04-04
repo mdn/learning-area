@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple DOM example</title>
     <style>
       .highlight {
@@ -20,17 +21,17 @@
     </section>
 
     <script>
-      var link = document.querySelector('a');
+      const link = document.querySelector('a');
       link.textContent = 'Mozilla Developer Network';
       link.href = 'https://developer.mozilla.org';
 
-      var sect = document.querySelector('section');
-      var para = document.createElement('p');
+      const sect = document.querySelector('section');
+      const para = document.createElement('p');
       para.textContent = 'We hope you enjoyed the ride.';
       sect.appendChild(para);
 
-      var text = document.createTextNode(' — the premier source for web development knowledge.');
-      var linkPara = document.querySelector('p');
+      const text = document.createTextNode(' — the premier source for web development knowledge.');
+      const linkPara = document.querySelector('p');
       linkPara.appendChild(text);
 
       // You could clone link para by doing something like this and inserting the new para instead

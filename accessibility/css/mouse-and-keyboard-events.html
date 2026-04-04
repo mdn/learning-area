@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <title>Mouse and keyboard events example</title>
     <style>
       .thumb {
@@ -18,7 +19,7 @@
 
     <img class="thumb" src="pirate.jpg" tabindex="0" alt="A lego pirate figure with a cutlass, pistol, tricornered hat, peg leg, long hair and beard.">
     <script>
-      var imgThumb = document.querySelector('.thumb');
+      const imgThumb = document.querySelector('.thumb');
 
       imgThumb.onmouseover = showImg;
       imgThumb.onmouseout = hideImg;
@@ -27,20 +28,20 @@
       imgThumb.onblur = hideImg;
 
       function showImg() {
-        var imgZoom = document.createElement('img');
+        const imgZoom = document.createElement('img');
         imgZoom.setAttribute('class','zoom');
         imgZoom.setAttribute('src',imgThumb.getAttribute('src'));
 
-        var widthOffset = imgThumb.x + imgThumb.width + 10;
+        let widthOffset = imgThumb.x + imgThumb.width + 10;
         imgZoom.style.left = widthOffset + 'px';
-        var heightOffset = imgThumb.y;
+        let heightOffset = imgThumb.y;
         imgZoom.style.top = heightOffset + 'px';
 
         document.body.appendChild(imgZoom);
       }
 
       function hideImg() {
-        var imgZoom = document.querySelector('.zoom');
+        const imgZoom = document.querySelector('.zoom');
         document.body.removeChild(imgZoom);
       }
 

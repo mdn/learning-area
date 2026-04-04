@@ -24,7 +24,7 @@ The overall mark awarded is out of 19. Work out their final mark, and then divid
 <dd>One mark for adding a <code>background</code> property that just specifies <code>url(top-image.png) no-repeat left top</code> in it's value; one mark for putting it before the main <code>background</code> declaration.</dd>
 <dt>"Add a white background color to the letter." (1 mark)</dt>
 <dd>Easy — <code>background-color: white;</code>.</dd>
-<dt>"Add a 1mm top and bottom solid border to the letter, in a color that is inkeeping with the rest of the color scheme." (3 marks)</dt>
+<dt>"Add a 1mm top and bottom solid border to the letter, in a color that is in keeping with the rest of the color scheme." (3 marks)</dt>
 <dd>Two marks for an appropriate <code>border-top</code> and <code>border-bottom</code> declaration (one for each), and one mark for choosing an appropriate color to go with the top and bottom graphics (e.g. a red or brown for the default provided options).</dd>
 </dl>
 
@@ -38,7 +38,7 @@ The overall mark awarded is out of 19. Work out their final mark, and then divid
 <dt>"Now comment out the filter and implement the drop shadow in a different (slightly more cross-browser compatible) way, which still follows the shape of the round image." (3 marks)</dt>
 <dd>The marks available are:
   <ul>
-    <li>One mark for commenting out the filer property.</li>
+    <li>One mark for commenting out the filter property.</li>
     <li>One mark for making the box circular. <code>border-radius: 64px;</code> or <code>border-radius: 50%;</code> would both be fine.</li>
     <li>One mark for appropriate use of the <code>box-shadow</code> property.</li>
   </ul>

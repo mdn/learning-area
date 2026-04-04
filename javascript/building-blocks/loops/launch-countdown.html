@@ -1,21 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <title>Launch countdown example</title>
     <style>
-      
+
     </style>
   </head>
   <body>
-    
+
 
     <script>
 
-    var i = 10;
+    let i = 10;
 
     while(i >= 0) {
-      var para = document.createElement('p');
+      const para = document.createElement('p');
       if(i === 10) {
         para.textContent = 'Countdown ' + i;
       } else if(i === 0) {
@@ -28,7 +29,8 @@
 
       i--;
     }
+      
     </script>
-    
+
   </body>
 </html>

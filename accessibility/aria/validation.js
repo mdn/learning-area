@@ -1,14 +1,14 @@
-var inputs = document.querySelectorAll('input');
-var labels = document.querySelectorAll('label');
-var form = document.querySelector('form');
+const inputs = document.querySelectorAll('input');
+const labels = document.querySelectorAll('label');
+const form = document.querySelector('form');
 
-var formItems = [];
+let formItems = [];
 
-var errorField = document.querySelector('.errors');
-var errorList = document.querySelector('.errors ul');
+const errorField = document.querySelector('.errors');
+const errorList = document.querySelector('.errors ul');
 
-for(var i = 0; i < inputs.length-1; i++) {
-  var obj = {};
+for(let i = 0; i < inputs.length-1; i++) {
+  let obj = {};
   obj.label = labels[i];
   obj.input = inputs[i];
   formItems.push(obj);
@@ -20,8 +20,8 @@ form.onsubmit = validate;
 
 function validate(e) {
   errorList.innerHTML = '';
-  for(var i = 0; i < formItems.length; i++) {
-    var testItem = formItems[i];
+  for(let i = 0; i < formItems.length; i++) {
+    let testItem = formItems[i];
     if(testItem.input.value === '') {
       errorField.style.left = '360px';
       createLink(testItem);
@@ -34,8 +34,8 @@ function validate(e) {
 }
 
 function createLink(testItem) {
-  var listItem = document.createElement('li');
-  var anchor = document.createElement('a');
+  const listItem = document.createElement('li');
+  const anchor = document.createElement('a');
   anchor.textContent = testItem.input.name + ' field is empty: fill in your ' + testItem.input.name + '.';
   anchor.href = '#' + testItem.input.name;
   anchor.onclick = function() {

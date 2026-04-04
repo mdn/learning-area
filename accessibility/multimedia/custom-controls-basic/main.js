@@ -1,12 +1,12 @@
 // grab references to buttons and video
 
-var playPauseBtn = document.querySelector('.playpause');
-var stopBtn = document.querySelector('.stop');
-var rwdBtn = document.querySelector('.rwd');
-var fwdBtn = document.querySelector('.fwd');
-var timeLabel = document.querySelector('.time');
+const playPauseBtn = document.querySelector('.playpause');
+const stopBtn = document.querySelector('.stop');
+const rwdBtn = document.querySelector('.rwd');
+const fwdBtn = document.querySelector('.fwd');
+const timeLabel = document.querySelector('.time');
 
-var player = document.querySelector('video');
+const player = document.querySelector('video');
 
 // Remove the native controls from all players
 
@@ -44,10 +44,10 @@ fwdBtn.onclick = function() {
 };
 
 player.ontimeupdate = function() {
-  var minutes = Math.floor(player.currentTime / 60);
-  var seconds = Math.floor(player.currentTime - minutes * 60);
-  var minuteValue;
-  var secondValue;
+  let minutes = Math.floor(player.currentTime / 60);
+  let seconds = Math.floor(player.currentTime - minutes * 60);
+  let minuteValue;
+  let secondValue;
 
   if (minutes<10) {
     minuteValue = "0" + minutes;

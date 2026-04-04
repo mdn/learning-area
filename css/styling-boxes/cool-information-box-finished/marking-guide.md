@@ -15,23 +15,23 @@ The overall mark awarded is out of 22. Work out their final mark, and then divid
 ## Styling the box
 
 <dl>
-<dt>"A reasonable width for a large button." (1 mark)</dt>
-<dd>One mark for giving the paragraph a <code>width</code> of around 150-300px. This is fairly hard to not get, as long as it isn't set to 1000px, or 50px.</dd>
-<dt>"A reasonable height for a large button, centering the text vertically." (1 mark)</dt>
-<dd>One mark for giving the paragraph a <code>line-height</code> of around 2-4. Again, award the mark as long as it doesn't look ridiculous.</dd>
-<dt>"Centered text." (1 mark)</dt>
-<dd>One mark for giving the paragraph <code>margin</code> of <code>0 auto</code>, or <code>auto</code>, or similar.</dd>
+<dt>"A reasonable width for a large box." (1 mark)</dt>
+  <dd>One mark for giving the <code>div</code> a <code>width</code> of around 150-300px. This is fairly hard to not get, as long as it isn't set to 1000px, or 50px.</dd>
+<dt>"A reasonable height for a large box, centering the text vertically." (1 mark)</dt>
+  <dd>One mark for giving the <code>div</code> a <code>line-height</code> of around 8-10. Again, award the mark as long as it doesn't look ridiculous.</dd>
+<dt>"Horizontally Centered box." (1 mark)</dt>
+<dd>One mark for giving the <code>div</code> <code>margin</code> of <code>0 auto</code>, or <code>auto</code>, or similar.</dd>
 <dt>"A slight Increase in font size, to around 17-18px computed style. Use rems." (2 marks)</dt>
 <dd>One mark for setting an appropriate <code>font-size</code> (somewhere between 1.0625-1.125rem), and one mark for a good explanation. Something like recalling that the default font size is 16px, and calculating an exact rem value (e.g. 17/16), or approximating it and checking it in the browser dev tools, will do fine.</dd>
 <dt>"A base color for the design. Give the box this color as its background color." (1 mark)</dt>
 <dd>One mark for choosing a reasonable color and setting it as a <code>background-color</code>. Easy.</dd>
-<dt>"The same color for the text; make it readable using a black text shadow." (2 marks)</dt>
-<dd>One mark for setting the same color as before as a <code>background-color</code>, and one mark for making it readable with a tight <code>text-shadow</code>. Something like <code>1px 1px 1px black</code> is fine, but nothing too diffuse.</dd>
+<dt>"A contrasting color for the text; a black text shadow. Make it readable." (2 marks)</dt>
+<dd>One mark for setting a contrasting color and one mark for a tight <code>text-shadow</code>. Something like <code>1px 1px 1px black</code> is fine, but nothing too diffuse.</dd>
 <dt>"A fairly subtle border radius." (1 mark)</dt>
 <dd>One mark for setting a fairly subtle <code>border-radius</code> value like 10-15px, or 1rem perhaps. 20px at the most; nothing too ridiculous.</dd>
 <dt>"A 1 pixel solid border with a color similar to the base color, but a slightly darker shade." (2 marks)</dt>
 <dd>One mark for setting the <code>border</code> as <code>1px solid [a color]</code>, and one mark for setting the color to a slightly darker shade than the base color, e.g. if your base color is <code>rgb(255,0,0)</code>, set it to <code>rgb(200,0,0)</code>.</dd>
-<dt>"A linear semi-transparent black gradient that goes towards the top left corner. Make it completely transparent at the start, gradiating to around 0.2 opacity by 30% along, and remaining at the same color until the end." (4 marks)</dt>
+<dt>"A linear semi-transparent black gradient that goes towards the top left corner. Make it completely transparent at the start, a gradient to around 0.2 opacity by 30%, and remaining at the same color until the end." (4 marks)</dt>
 <dd>An ideal value would be <code>background-image: linear-gradient(to top left, rgba(0,0,0,0.2), rgba(0,0,0,0.2) 30%, rgba(0,0,0,0));</code>. The student can get:
   <ul>
     <li>One mark for knowing how to use a <code>linear-gradient</code>.</li>

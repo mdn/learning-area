@@ -1,17 +1,17 @@
-var webdriver = require('selenium-webdriver'),
+const webdriver = require('selenium-webdriver'),
     By = webdriver.By,
     until = webdriver.until,
     username = "YOUR-USER-NAME",
     accessKey = "YOUR-ACCESS-KEY";
 
-var SauceLabs = require('saucelabs');
+let SauceLabs = require('saucelabs');
 
-var saucelabs = new SauceLabs({
+let saucelabs = new SauceLabs({
     username : "YOUR-USER-NAME",
     password : "YOUR-ACCESS-KEY"
 });
 
-var driver = new webdriver.Builder().
+let driver = new webdriver.Builder().
     withCapabilities({
       'browserName': 'chrome',
       'platform': 'Windows XP',
@@ -40,10 +40,10 @@ driver.sleep(2000).then(function() {
   driver.getTitle().then(function(title) {
     if(title === 'webdriver - Google Search') {
       console.log('Test passed');
-      var testPassed = true;
+      let testPassed = true;
     } else {
       console.log('Test failed');
-      var testPassed = false;
+      let testPassed = false;
     }
 
     saucelabs.updateJob(driver.sessionID, {

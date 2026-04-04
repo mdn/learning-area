@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping list example</title>
     <style>
       li {
@@ -9,7 +10,7 @@
       }
 
       li button {
-        font-size: 8px;
+        font-size: 12px;
         margin-left: 20px;
         color: #666;
       }
@@ -19,28 +20,30 @@
 
     <h1>My shopping list</h1>
 
-    <div>
+    <form>
       <label for="item">Enter a new item:</label>
       <input type="text" name="item" id="item">
       <button>Add item</button>
-    </div>
+    </form>
 
     <ul>
 
     </ul>
 
     <script>
-      var list = document.querySelector('ul');
-      var input = document.querySelector('input');
-      var button = document.querySelector('button');
+      const list = document.querySelector('ul');
+      const input = document.querySelector('input');
+      const button = document.querySelector('button');
 
-      button.onclick = function() {
-        var myItem = input.value;
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        const myItem = input.value;
         input.value = '';
 
-        var listItem = document.createElement('li');
-        var listText = document.createElement('span');
-        var listBtn = document.createElement('button');
+        const listItem = document.createElement('li');
+        const listText = document.createElement('span');
+        const listBtn = document.createElement('button');
 
         listItem.appendChild(listText);
         listText.textContent = myItem;
@@ -48,12 +51,12 @@
         listBtn.textContent = 'Delete';
         list.appendChild(listItem);
 
-        listBtn.onclick = function(e) {
+        listBtn.addEventListener('click', () => {
           list.removeChild(listItem);
-        }
+        });
 
         input.focus();
-      }
+      });
     </script>
   </body>
 </html>

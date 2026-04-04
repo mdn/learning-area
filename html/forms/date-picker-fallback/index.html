@@ -1,9 +1,9 @@
 <!doctype html>
-<html>
-
-<head>
-  <meta charset="utf-8">
-  <title>date control with fallback</title>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>date control with fallback</title>
   <style>
     input:invalid+span:after {
       content: '✖';
@@ -15,7 +15,7 @@
       padding-left: 5px;
     }
   </style>
-</head>
+  </head>
 
 <body>
   <form>
@@ -72,7 +72,13 @@ fallbackLabel.style.display = 'none';
 
 // test whether a new date input falls back to a text input or not
 var test = document.createElement('input');
-test.type = 'date';
+
+try {
+  test.type = 'date';
+} catch (e) {
+  console.log(e.description);
+}
+
 // if it does, run the code inside the if() {} block
 if(test.type === 'text') {
   // hide the native picker and show the fallback
@@ -103,8 +109,9 @@ function populateDays(month) {
     dayNum = 30;
   } else {
   // If month is February, calculate whether it is a leap year or not
-    var year = yearSelect.value;
-    (year - 2016) % 4 === 0 ? dayNum = 29 : dayNum = 28;
+  var year = yearSelect.value;
+  var isLeap = new Date(year, 1, 29).getMonth() == 1;
+  isLeap ? dayNum = 29 : dayNum = 28;
   }
 
   // inject the right number of new <option> elements into the day <select>

@@ -20,7 +20,7 @@ function isFunction(x) {
   return typeof x === 'function';
 }
 
-var _isArray = undefined;
+let _isArray = undefined;
 if (!Array.isArray) {
   _isArray = function (x) {
     return Object.prototype.toString.call(x) === '[object Array]';
@@ -29,13 +29,13 @@ if (!Array.isArray) {
   _isArray = Array.isArray;
 }
 
-var isArray = _isArray;
+let isArray = _isArray;
 
-var len = 0;
-var vertxNext = undefined;
-var customSchedulerFn = undefined;
+let len = 0;
+let vertxNext = undefined;
+let customSchedulerFn = undefined;
 
-var asap = function asap(callback, arg) {
+let asap = function asap(callback, arg) {
   queue[len] = callback;
   queue[len + 1] = arg;
   len += 2;

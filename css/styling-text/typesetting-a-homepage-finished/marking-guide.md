@@ -27,7 +27,7 @@ The overall mark awarded is out of 40. Work out their final mark, and then divid
 <dt>"Give your body text a suitable <code>line-height</code>." (1 mark)</dt>
 <dd>Between about 1.4 and 1.6 is ideal, and will get the mark.</dd>
 <dt>"Center your top level heading on the page." (1 mark)</dt>
-<dd>Setting <code>text-align: center;</code> on the <code></code> will get the mark. Flexbox would also do. Anything else is probably too convoluted to get the mark.</dd>
+<dd>Setting <code>text-align: center;</code> on the <code>h1</code> will get the mark. Flexbox would also do. Anything else is probably too convoluted to get the mark.</dd>
 <dt>"Give your headings a little bit of <code>letter-spacing</code>..." (1 mark)</dt>
 <dd>Generally something small like 1 or 2 pixels (0.1 or 0.2 rem) will work ok, depending on the font.</dd>
 <dt>"Give your body text some letter-spacing and word-spacing, as appropriate." (1 mark)</dt>
@@ -50,7 +50,7 @@ The overall mark awarded is out of 40. Work out their final mark, and then divid
 <dt>"Make it so that external links have the external link icon inserted next to them." (4 marks)</dt>
 <dd>This is worth four marks because it is fairly complex. They can get a mark each for:
   <ul>
-    <li>Using asuitable attribute selector that only selects links containing "http" in their <code>href</code> attribute.</li>
+    <li>Using a suitable attribute selector that only selects links containing "http" in their <code>href</code> attribute.</li>
     <li>Including some padding to make way for the link to be displayed.</li>
     <li>Including the correct <code>background-*</code> properties or <code>background</code> shorthand to place the background image, and to make it not repeat.</li>
     <li>Including the <code>background-size</code> property to resize the icon to something appropriate dynamically, OR resizing it in an image editor to an appropriate size.</li>

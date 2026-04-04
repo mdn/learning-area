@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <title>Function stage 2</title>
     <style>
       .msgBox {
@@ -38,24 +39,22 @@
 
     <script>
       function displayMessage() {
-        var html = document.querySelector('html');
+        const html = document.querySelector('html');
 
-        var panel = document.createElement('div');
+        const panel = document.createElement('div');
         panel.setAttribute('class','msgBox');
         html.appendChild(panel);
 
-        var msg = document.createElement('p');
+        const msg = document.createElement('p');
         msg.textContent = 'This is a message box';
         panel.appendChild(msg);
 
-        var closeBtn = document.createElement('button');
+        const closeBtn = document.createElement('button');
         closeBtn.textContent = 'x';
         panel.appendChild(closeBtn);
 
-        closeBtn.onclick = function() {
-          panel.parentNode.removeChild(panel);
-        }
-      }    
+        closeBtn.addEventListener('click', () => panel.parentNode.removeChild(panel));
+      }
     </script>
   </body>
 </html>

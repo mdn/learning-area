@@ -1,8 +1,8 @@
-var request = require("request");
+const request = require("request");
 
-var bsUser = "BROWSERSTACK_USERNAME";
-var bsKey = "BROWSERSTACK_ACCESS_KEY";
-var baseUrl = "https://" + bsUser + ":" + bsKey + "@www.browserstack.com/automate/";
+let bsUser = "BROWSERSTACK_USERNAME";
+let bsKey = "BROWSERSTACK_ACCESS_KEY";
+let baseUrl = "https://" + bsUser + ":" + bsKey + "@www.browserstack.com/automate/";
 
 function getPlanDetails(){
 	request({uri: baseUrl + "plan.json"}, function(err, res, body){

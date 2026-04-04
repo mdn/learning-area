@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <title>Object-oriented JavaScript inheritance</title>
   </head>
 
@@ -16,12 +17,12 @@
   </body>
 
     <script>
-      var input = document.querySelector('input');
-      var btn = document.querySelector('button');
-      var para = document.querySelector('p');
+      const input = document.querySelector('input');
+      const btn = document.querySelector('button');
+      const para = document.querySelector('p');
 
       btn.onclick = function() {
-        var code = input.value;
+        const code = input.value;
         para.textContent = eval(code);
       }
 
@@ -38,10 +39,10 @@
       Person.prototype.bio = function() {
         // First define a string, and make it equal to the part of
         // the bio that we know will always be the same.
-        var string = this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years old. ';
+        let string = this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years old. ';
         // define a variable that will contain the pronoun part of
-        // the sencond sentence
-        var pronoun;
+        // the second sentence
+        let pronoun;
 
         // check what the value of gender is, and set pronoun
         // to an appropriate value in each case
@@ -67,7 +68,7 @@
           // if there are more than 2 interests, we loop through them
           // all, adding each one to the main string followed by a comma,
           // except for the last one, which needs an and & a full stop
-          for(var i = 0; i < this.interests.length; i++) {
+          for(let i = 0; i < this.interests.length; i++) {
             if(i === this.interests.length - 1) {
               string += 'and ' + this.interests[i] + '.';
             } else {
@@ -88,7 +89,7 @@
         alert(this.name.first + ' has left the building. Bye for now!');
       }
 
-      var person1 = new Person('Tammi', 'Smith', 17, 'female', ['music', 'skiing', 'kickboxing']);
+      let person1 = new Person('Tammi', 'Smith', 17, 'female', ['music', 'skiing', 'kickboxing']);
 
       function Teacher(first, last, age, gender, interests, subject) {
         Person.call(this, first, last, age, gender, interests);
@@ -100,7 +101,7 @@
       Teacher.prototype.constructor = Teacher;
 
       Teacher.prototype.greeting = function() {
-        var prefix;
+        let prefix;
 
         if(this.gender === 'male' || this.gender === 'Male' || this.gender === 'm' || this.gender === 'M') {
           prefix = 'Mr.';
@@ -113,7 +114,7 @@
         alert('Hello. My name is ' + prefix + ' ' + this.name.last + ', and I teach ' + this.subject + '.');
       };
 
-      var teacher1 = new Teacher('Dave', 'Griffiths', 31, 'male', ['football', 'cookery'], 'mathematics');
+      let teacher1 = new Teacher('Dave', 'Griffiths', 31, 'male', ['football', 'cookery'], 'mathematics');
 
 
       // Student class!
@@ -130,6 +131,6 @@
         alert('Yo! I\'m ' + this.name.first + '.');
       };
 
-      var student1 = new Student('Liz', 'Sheppard', 17, 'female', ['ninjitsu', 'air cadets']);
+      let student1 = new Student('Liz', 'Sheppard', 17, 'female', ['ninjitsu', 'air cadets']);
     </script>
 </html>

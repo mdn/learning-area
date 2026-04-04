@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <title>Fake div buttons</title>
     <style>
       div {
@@ -28,26 +29,26 @@
 
     <h2>Fake buttons</h2>
 
-    <div data-message="This is from the first button" tabindex="0">Click me!</div>
-    <div data-message="This is from the second button" tabindex="0">Click me too!</div>
-    <div data-message="This is from the third button" tabindex="0">And me!</div>
+    <div data-message="This is from the first button" tabindex="0" role="button">Click me!</div>
+    <div data-message="This is from the second button" tabindex="0" role="button">Click me too!</div>
+    <div data-message="This is from the third button" tabindex="0" role="button">And me!</div>
 
     <script>
-      var buttons = document.querySelectorAll('div');
+      const buttons = document.querySelectorAll('div');
 
-      for(var i = 0; i < buttons.length; i++) {
+      for(let i = 0; i < buttons.length; i++) {
         addHandler(buttons[i]);
       }
 
       function addHandler(button) {
         button.onclick = function(e) {
-          var message = e.target.getAttribute('data-message');
+          let message = e.target.getAttribute('data-message');
           alert(message);
         }
       }
 
       document.onkeydown = function(e) {
-        if(e.keyCode === 13) { // The Enter/Return key
+        if(e.key === 'Enter') { // The Enter/Return key
           document.activeElement.onclick(e);
         }
       };

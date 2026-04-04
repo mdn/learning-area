@@ -1,10 +1,10 @@
-var request = require("request"); // require request to use the REST API
-var webdriver = require('selenium-webdriver'),
+const request = require('request'); // require request to use the REST API
+let webdriver = require('selenium-webdriver'),
     By = webdriver.By,
     until = webdriver.until;
 
 // Input capabilities
-var capabilities = {
+let capabilities = {
    'browserName' : 'Firefox',
    'browser_version' : '56.0 beta',
    'os' : 'OS X',
@@ -17,16 +17,16 @@ var capabilities = {
    'project' : 'Google test 2' // split up into projects
 };
 
-var driver = new webdriver.Builder().
+let driver = new webdriver.Builder().
   usingServer('http://hub-cloud.browserstack.com/wd/hub').
   withCapabilities(capabilities).
   build();
 
 // obtain session ID
-var sessionId;
+let sessionId;
 
 driver.session_.then(function(sessionData) {
-    sessionId = sessionData.id_;
+  sessionId = sessionData.id_;
 });
 
 driver.get('http://www.google.com');
