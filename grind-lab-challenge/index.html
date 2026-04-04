@@ -240,7 +240,6 @@
     <div id="form-signup">
       <div class="form-group"><label class="form-label">Nickname</label><input class="inp" id="inp-nick" type="text" placeholder="e.g. Queen D" maxlength="20" autocomplete="off"></div>
       <div class="form-group"><label class="form-label">Email</label><input class="inp" id="inp-email" type="email" placeholder="your@email.com" autocomplete="off"></div>
-      <div class="form-group"><label class="form-label">4-Digit PIN</label><input class="inp" id="inp-pin" type="number" placeholder="e.g. 1234" inputmode="numeric"></div>
       <div class="gap8"></div>
       <button class="btn-cta" onclick="doSignup()">LET'S GO</button>
       <div class="form-toggle">Already a Grinder? <a onclick="showLogin()">Sign in &rarr;</a></div>
@@ -248,7 +247,6 @@
 
     <div id="form-login" style="display:none">
       <div class="form-group"><label class="form-label">Email</label><input class="inp" id="inp-lemail" type="email" placeholder="your@email.com" autocomplete="off"></div>
-      <div class="form-group"><label class="form-label">4-Digit PIN</label><input class="inp" id="inp-lpin" type="number" placeholder="Your PIN" inputmode="numeric"></div>
       <div class="gap8"></div>
       <button class="btn-cta" onclick="doLogin()">SIGN IN</button>
       <div class="form-toggle">New here? <a onclick="showSignup()">Sign up &rarr;</a></div>
@@ -371,15 +369,13 @@ function hadYesYesterday(){
 function doSignup(){
   const nick = document.getElementById('inp-nick').value.trim();
   const email = document.getElementById('inp-email').value.trim().toLowerCase();
-  const pin = String(document.getElementById('inp-pin').value).trim();
   const err = document.getElementById('auth-err');
   if(!nick){ err.textContent='Enter a nickname.'; return }
   if(!email || !email.includes('@')){ err.textContent='Enter a valid email.'; return }
-  if(!pin || pin.length !== 4 || isNaN(Number(pin))){ err.textContent='PIN must be exactly 4 digits.'; return }
   const users = getUsers();
-  if(users[email]){ err.textContent='Email already exists. Sign in instead.'; return }
+  if(users[email]){ err.textContent='Email already registered. Sign in instead.'; return }
   err.textContent='';
-  user = { nickname:nick, email, pin, points:0, streak:0, lastCheckIn:null, days:[] };
+  user = { nickname:nick, email, points:0, streak:0, lastCheckIn:null, days:[] };
   saveUser();
   localStorage.setItem(CUR_KEY, email);
   enterApp();
@@ -387,14 +383,11 @@ function doSignup(){
 
 function doLogin(){
   const email = document.getElementById('inp-lemail').value.trim().toLowerCase();
-  const pin = String(document.getElementById('inp-lpin').value).trim();
   const err = document.getElementById('auth-err');
   if(!email){ err.textContent='Enter your email.'; return }
-  if(!pin){ err.textContent='Enter your PIN.'; return }
   const users = getUsers();
   const u = users[email];
   if(!u){ err.textContent='No account found. Sign up first.'; return }
-  if(String(u.pin) !== pin){ err.textContent='Wrong PIN. Try again.'; return }
   err.textContent='';
   user = u;
   localStorage.setItem(CUR_KEY, email);
@@ -550,11 +543,15 @@ function resetMeal(meal){
   updatePtsDisplay();
 }
 
+// === HAPTIC ===
+function haptic(pattern){ try{ navigator.vibrate && navigator.vibrate(pattern); }catch(e){} }
+
 // === MEAL HANDLER ===
 function handleMeal(meal, answer, ev){
   const btn = ev.currentTarget;
   btn.classList.add('pressed');
   setTimeout(() => btn.classList.remove('pressed'), 250);
+  if(answer) haptic([30, 20, 60]); else haptic(20);
 
   const day = getDayData();
   const firstYes = answer===true && [day.breakfast,day.lunch,day.dinner].filter(x=>x===true).length===0;
@@ -752,15 +749,9 @@ function init(){
   ob.style.transform='none';
 }
 
-// PIN max 4 digits
-['inp-pin','inp-lpin'].forEach(id => {
-  const el = document.getElementById(id);
-  el.addEventListener('input', function(){ if(this.value.length>4) this.value=this.value.slice(0,4); });
-  el.addEventListener('keydown', e => { if(e.key==='Enter'){ if(id==='inp-pin') doSignup(); else doLogin(); } });
-});
-document.getElementById('inp-email').addEventListener('keydown', e => { if(e.key==='Enter') document.getElementById('inp-pin').focus(); });
 document.getElementById('inp-nick').addEventListener('keydown', e => { if(e.key==='Enter') document.getElementById('inp-email').focus(); });
-document.getElementById('inp-lemail').addEventListener('keydown', e => { if(e.key==='Enter') document.getElementById('inp-lpin').focus(); });
+document.getElementById('inp-email').addEventListener('keydown', e => { if(e.key==='Enter') doSignup(); });
+document.getElementById('inp-lemail').addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
 
 init();
 </script>
