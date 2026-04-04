@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none;user-select:none}
     :root{
@@ -325,6 +326,11 @@ const TABS = ['today','leaderboard','me'];
 let CUR_TAB = 0;
 let user = null;
 
+// === SUPABASE ===
+const SB_URL = 'https://bqqoczbminqhknwbhslh.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJxcW9jemJtaW5xaGtud2Joc2xoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUyNDA4NTYsImV4cCI6MjA5MDgxNjg1Nn0.-NBZEI_NXx3IsHXCyrPB3lLvJtWq0mzUsxnADzyu6pA';
+const sb = supabase.createClient(SB_URL, SB_KEY);
+
 // === STORAGE ===
 function getUsers(){ try{ return JSON.parse(localStorage.getItem(USERS_KEY)||'{}') }catch(e){ return {} } }
 function saveUsers(u){ localStorage.setItem(USERS_KEY, JSON.stringify(u)) }
@@ -337,12 +343,18 @@ function yesterday(){
 }
 
 function syncLB(){
+  // Local cache
   let lb = getLB();
   const idx = lb.findIndex(u2 => u2.email === user.email);
   const entry = { nickname: user.nickname, email: user.email, points: user.points, streak: user.streak };
   if(idx >= 0) lb[idx] = entry; else lb.push(entry);
   lb.sort((a,b) => b.points - a.points);
   saveLB(lb);
+  // Supabase — fire and forget
+  sb.from('glc_leaderboard').upsert(
+    { email: user.email, nickname: user.nickname, points: user.points, streak: user.streak, updated_at: new Date().toISOString() },
+    { onConflict: 'email' }
+  ).then(()=>{}).catch(()=>{});
 }
 
 function saveUser(){
@@ -658,18 +670,14 @@ function stopConfetti(){
 }
 
 // === RENDER LEADERBOARD ===
-function renderLeaderboard(){
-  const lb = getLB();
+function paintLB(lb){
   const pod = document.getElementById('podium');
   const list = document.getElementById('lb-list');
   const pinned = document.getElementById('lb-pinned');
   pod.innerHTML=''; list.innerHTML=''; pinned.innerHTML='';
-
   if(!lb.length){ pod.innerHTML='<div class="lb-empty">No competitors yet. Be first! \uD83D\uDD25</div>'; return; }
-
-  // Podium — order: 2nd, 1st, 3rd
   const top = lb.slice(0,3);
-  const ORDER = [1,0,2]; // indices into top[] for [left,center,right]
+  const ORDER = [1,0,2];
   const MEDALS = ['\uD83E\uDD48','\uD83E\uDD47','\uD83E\uDD49'];
   ORDER.forEach((ti, pi) => {
     const u2 = top[ti];
@@ -679,28 +687,39 @@ function renderLeaderboard(){
     slot.className = 'p-slot';
     const init = (u2.nickname||'?')[0].toUpperCase();
     slot.innerHTML =
-      '<div class="p-avatar">' + (pi===1?'<div class="p-crown">\uD83D\uDC51</div>':'') + init + '</div>' +
-      '<div class="p-name">' + u2.nickname + (isMe?' (you)':'') + '</div>' +
-      '<div class="p-pts">' + u2.points + ' pts' + (u2.streak>0?' \uD83D\uDD25'+u2.streak:'') + '</div>' +
-      '<div class="p-block"><div class="p-medal">' + MEDALS[pi] + '</div></div>';
+      '<div class="p-avatar">'+(pi===1?'<div class="p-crown">\uD83D\uDC51</div>':'')+init+'</div>'+
+      '<div class="p-name">'+u2.nickname+(isMe?' (you)':'')+'</div>'+
+      '<div class="p-pts">'+u2.points+' pts'+(u2.streak>0?' \uD83D\uDD25'+u2.streak:'')+'</div>'+
+      '<div class="p-block"><div class="p-medal">'+MEDALS[pi]+'</div></div>';
     pod.appendChild(slot);
   });
-
-  // List 4+
   lb.slice(3).forEach((u2, i) => {
     const isMe = u2.email === user.email;
     const row = document.createElement('div');
-    row.className = 'lb-row' + (isMe?' me':'');
+    row.className = 'lb-row'+(isMe?' me':'');
     row.innerHTML = '<div class="lb-rank">'+(i+4)+'</div><div class="lb-nick">'+u2.nickname+(isMe?' \uD83D\uDC48':'')+'</div><div class="lb-pts">'+u2.points+'</div><div class="lb-str">'+(u2.streak>0?'\uD83D\uDD25'+u2.streak:'')+'</div>';
     list.appendChild(row);
   });
-
-  // Pinned self
   const me = lb.find(u2 => u2.email === user.email);
   if(me){
     const rank = lb.indexOf(me)+1;
     pinned.innerHTML = '<div class="lb-row me"><div class="lb-rank">'+rank+'</div><div class="lb-nick">'+me.nickname+' (you)</div><div class="lb-pts">'+me.points+'</div><div class="lb-str">'+(me.streak>0?'\uD83D\uDD25'+me.streak:'')+'</div></div>';
   }
+}
+
+async function renderLeaderboard(){
+  // Show local cache instantly
+  const cached = getLB();
+  if(cached.length) paintLB(cached);
+  else document.getElementById('podium').innerHTML = '<div class="lb-empty">Loading... \u23F3</div>';
+  // Fetch from Supabase
+  try{
+    const { data, error } = await sb.from('glc_leaderboard').select('*').order('points', { ascending: false });
+    if(data && data.length){
+      saveLB(data);
+      paintLB(data);
+    }
+  }catch(e){}
 }
 
 // === RENDER ME ===
