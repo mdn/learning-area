@@ -12,7 +12,7 @@ fetch('products.json')
   .then( json => initialize(json) )
   .catch( err => console.error(`Fetch problem: ${err.message}`) );
 
-// sets up the app logic, declares required variables, contains all the other functions
+// sets up the app logic, declares required variables, and contains all the other functions
 function initialize(products) {
   // grab the UI elements that we need to manipulate
   const category = document.querySelector('#category');
@@ -144,7 +144,7 @@ function initialize(products) {
 
   // Display a product inside the <main> element
   function showProduct(blob, product) {
-    // Convert the blob to an object URL — this is basically an temporary internal URL
+    // Convert the blob to an object URL — this is basically a temporary internal URL
     // that points to an object stored inside the browser
     const objectURL = URL.createObjectURL(blob);
     // create <section>, <h2>, <p>, and <img> elements
@@ -161,7 +161,7 @@ function initialize(products) {
     heading.textContent = product.name.replace(product.name.charAt(0), product.name.charAt(0).toUpperCase());
 
     // Give the <p> textContent equal to the product "price" property, with a $ sign in front
-    // toFixed(2) is used to fix the price at 2 decimal places, so for example 1.40 is displayed
+    // toFixed(2) is used to fix the price at 2 decimal places, so for example, 1.40 is displayed
     // as 1.40, not 1.4.
     para.textContent = `$${product.price.toFixed(2)}`;
 
