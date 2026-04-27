@@ -63,7 +63,9 @@
       while (section.firstChild) {
           section.removeChild(section.firstChild);
       }
-      section.innerHTML = textarea.value;
+      const parser = new DOMParser();
+      const parserdValue = parser.parseFromString(textarea.value,"text/html");
+      section.replaceChildren(...parserdValue.body.childNodes);
     }
 
     reset.addEventListener('click', function() {

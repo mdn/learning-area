@@ -35,7 +35,7 @@ let evenOddResult;
 
 // Don't edit the code below here!
 
-section.innerHTML = ' ';
+section.replaceChildren();
 const para1 = document.createElement('p');
 const finalResultCheck = finalResult === 48 ? `Yes, well done!` : `No, it is ${ finalResult }`;
 para1.textContent = `Is the finalResult 48? ${ finalResultCheck }`;

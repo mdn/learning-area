@@ -35,7 +35,7 @@
 
     const section = document.querySelector('section');
 
-    section.innerHTML = ' ';
+    section.replaceChildren();
     const para1 = document.createElement('p');
     para1.textContent = `The quote is ${ quoteLength } characters long.`;
     const para2 = document.createElement('p');

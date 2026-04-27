@@ -31,7 +31,7 @@ let myString = 'Ryu+Ken+Chun-Li+Cammy+Guile+Sakura+Sagat+Juri';
 
 // Don't edit the code below here!
 
-section.innerHTML = ' ';
+section.replaceChildren();
 let para1 = document.createElement('p');
 para1.textContent = `Array: ${ myArray }`;
 

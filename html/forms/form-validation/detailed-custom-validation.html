@@ -86,7 +86,7 @@
       if (email.validity.valid) {
         // In case there is an error message visible, if the field
         // is valid, we remove the error message.
-        emailError.innerHTML = ''; // Reset the content of the message
+        emailError.replaceChildren(); // Reset the content of the message
         emailError.className = 'error'; // Reset the visual state of the message
       } else {
         // If there is still an error, show the correct error

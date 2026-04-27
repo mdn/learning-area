@@ -7,10 +7,22 @@ var htmlCode = textareaHTML.value;
 var cssCode = textareaCSS.value;
 
 function fillCode() {
-    editable.innerHTML = textareaCSS.value;
-    section.innerHTML = textareaHTML.value;
+    editable.textContent = textareaCSS.value;
+    section.replaceChildren(...parseToHtml(textareaHTML.value));
 }
+function parseToHtml(string) {
+  try {
+    const parser = new DOMParser();
+    const parsedHTML = parser.parseFromString(string, "text/html");
+    const nodes = Array.from(parsedHTML.body.childNodes);
 
+    return nodes.filter(n => n.tagName !== "SCRIPT");
+
+  } catch (error) {
+    console.log("Error While Parsing HTML: ", error);
+    return [];
+  }
+}
 reset.addEventListener('click', function () {
     textareaHTML.value = htmlCode;
     textareaCSS.value = cssCode;

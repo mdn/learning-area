@@ -31,7 +31,7 @@ let myName = 'Paul';
 
 // Don't edit the code below here!
 
-section.innerHTML = ' ';
+section.replaceChildren();
 const para = document.createElement('p');
 para.textContent = myName;
 section.appendChild(para);

@@ -1931,7 +1931,9 @@ local.setDocument = function(document){
 
 	// on non-HTML documents innerHTML and getElementsById doesnt work properly
 	try {
-		testNode.innerHTML = '<a id="'+id+'"></a>';
+		const a = document.createElement('a');
+		a.id = id;
+		testNode.appendChild(a);
 		features.isHTMLDocument = !!document.getElementById(id);
 	} catch (e){}
 
@@ -1945,7 +1947,8 @@ local.setDocument = function(document){
 
 		// IE returns closed nodes (EG:"</foo>") for getElementsByTagName('*') for some documents
 		try {
-			testNode.innerHTML = 'foo</foo>';
+			testNode.appendChild(document.createTextNode('foo'));
+			testNode.appendChild(document.createElement('/foo'));
 			selected = testNode.getElementsByTagName('*');
 			starSelectsClosed = (selected && !!selected.length && selected[0].nodeName.charAt(0) == '/');
 		} catch (e){};
@@ -1954,7 +1957,11 @@ local.setDocument = function(document){
 
 		// IE returns elements with the name instead of just id for getElementsById for some documents
 		try {
-			testNode.innerHTML = '<a name="'+ id +'"></a><b id="'+ id +'"></b>';
+			const a = document.createElement('a');
+			a.name = id;
+			const b = document.createElement("b");
+			b.id = id;
+			testNode.replaceChildren(a,b);
 			features.idGetsName = document.getElementById(id) === testNode.firstChild;
 		} catch (e){}
 
@@ -1962,7 +1969,12 @@ local.setDocument = function(document){
 
 			// Safari 3.2 getElementsByClassName caches results
 			try {
-				testNode.innerHTML = '<a class="f"></a><a class="b"></a>';
+				const a1 = document.createElement("a");
+				const a2 = document.createElement("a");
+				a1.className = "f"; a2.className = "b"; 
+				while(testNode.firstChild) testNode.removeChild(testNode.firstChild);
+				testNode.appendChild(a1); 
+				testNode.appendChild(a2);
 				testNode.getElementsByClassName('b').length;
 				testNode.firstChild.className = 'b';
 				cachedGetElementsByClassName = (testNode.getElementsByClassName('b').length != 2);
@@ -1970,7 +1982,12 @@ local.setDocument = function(document){
 
 			// Opera 9.6 getElementsByClassName doesnt detects the class if its not the first one
 			try {
-				testNode.innerHTML = '<a class="a"></a><a class="f b a"></a>';
+				const a1 = document.createElement("a");
+				const a2 = document.createElement("a");
+				a1.className = "a"; a2.className = "f b a";
+				while(testNode.firstChild) testNode.removeChild(testNode.firstChild);
+				testNode.appendChild(a1); 
+				testNode.appendChild(a2);
 				brokenSecondClassNameGEBCN = (testNode.getElementsByClassName('a').length != 2);
 			} catch (e){}
 
@@ -1980,26 +1997,36 @@ local.setDocument = function(document){
 		if (testNode.querySelectorAll){
 			// IE 8 returns closed nodes (EG:"</foo>") for querySelectorAll('*') for some documents
 			try {
-				testNode.innerHTML = 'foo</foo>';
+				testNode.appendChild(document.createTextNode('foo'));
+				testNode.appendChild(document.createElement('/foo'));
 				selected = testNode.querySelectorAll('*');
 				features.starSelectsClosedQSA = (selected && !!selected.length && selected[0].nodeName.charAt(0) == '/');
 			} catch (e){}
 
 			// Safari 3.2 querySelectorAll doesnt work with mixedcase on quirksmode
 			try {
-				testNode.innerHTML = '<a class="MiX"></a>';
+				const a = document.createElement("a");
+				a.className = "MiX";
+				testNode.replaceChildren(a);
 				features.brokenMixedCaseQSA = !testNode.querySelectorAll('.MiX').length;
 			} catch (e){}
 
 			// Webkit and Opera dont return selected options on querySelectorAll
 			try {
-				testNode.innerHTML = '<select><option selected="selected">a</option></select>';
+				const select = document.createElement("select");
+				const opt = document.createElement("option");
+				opt.selected = true;
+				opt.textContent = a;
+				select.appendChild(opt);
+				testNode.appendChild(select);
 				features.brokenCheckedQSA = (testNode.querySelectorAll(':checked').length == 0);
 			} catch (e){};
 
 			// IE returns incorrect results for attr[*^$]="" selectors on querySelectorAll
 			try {
-				testNode.innerHTML = '<a class=""></a>';
+				const a = document.createElement('a');
+ 				a.setAttribute('class', '');
+  				testNode.replaceChildren(a);
 				features.brokenEmptyAttributeQSA = (testNode.querySelectorAll('[class*=""]').length != 0);
 			} catch (e){}
 
@@ -2007,7 +2034,12 @@ local.setDocument = function(document){
 
 		// IE6-7, if a form has an input of id x, form.getAttribute(x) returns a reference to the input
 		try {
-			testNode.innerHTML = '<form action="s"><input id="action"/></form>';
+			const form = document.createElement("form");
+			form.setAttribute("action","s");
+			const input = document.createElement("input");
+			input.id = "action";
+			form.appendChild(input);
+			testNode.appendChild(form);
 			brokenFormAttributeGetter = (testNode.firstChild.getAttribute('action') != 's');
 		} catch (e){}
 
@@ -3048,8 +3080,8 @@ var canChangeStyleHTML = (function(){
 	var div = document.createElement('style'),
 		flag = false;
 	try {
-		div.innerHTML = '#justTesing{margin: 0px;}';
-		flag = !!div.innerHTML;
+		div.innerText = '#justTesing{margin: 0px;}';
+		flag = !!div.innerText;
 	} catch (e){}
 	return flag;
 })();
@@ -3302,7 +3334,7 @@ Array.forEach([
 	properties[property.toLowerCase()] = property;
 });
 
-properties.html = 'innerHTML';
+properties.html = 'textContent';
 properties.text = (document.createElement('div').textContent == null) ? 'innerText': 'textContent';
 
 Object.forEach(properties, function(real, key){
@@ -3324,7 +3356,7 @@ propertySetters.text = (function(){
 
 propertyGetters.text = (function(getter){
 	return function(node){
-		return (node.get('tag') == 'style') ? node.innerHTML : getter(node);
+		return (node.get('tag') == 'style') ? node.textContent : getter(node);
 	};
 })(propertyGetters.text);
 /*</ltIE9>*/
@@ -3394,8 +3426,8 @@ var canChangeStyleHTML = (function(){
 	var div = document.createElement('style'),
 		flag = false;
 	try {
-		div.innerHTML = '#justTesing{margin: 0px;}';
-		flag = !!div.innerHTML;
+		div.textContent = '#justTesing{margin: 0px;}';
+		flag = !!div.textContent;
 	} catch (e){}
 	return flag;
 })();
@@ -3435,7 +3467,15 @@ var pollutesGetAttribute = (function(div){
 })(document.createElement('div'));
 
 var hasCloneBug = (function(test){
-	test.innerHTML = '<object><param name="should_fix" value="the unknown" /></object>';
+	const obj = document.createElement('object');
+	const param = document.createElement('param');
+
+	param.setAttribute('name', 'should_fix');
+	param.setAttribute('value', 'the unknown');
+
+	obj.appendChild(param);
+
+	test.appendChild(obj);
 	return test.cloneNode(true).firstChild.childNodes.length != 1;
 })(document.createElement('div'));
 /* </ltIE9> */
@@ -3817,17 +3857,49 @@ Element.Properties.tag = {
 
 Element.Properties.html = {
 
-	set: function(html){
-		if (html == null) html = '';
-		else if (typeOf(html) == 'array') html = html.join('');
+    set: function(html){
+        if (html == null) html = '';
+        else if (typeOf(html) == 'array') html = html.join('');
 
-		/*<ltIE9>*/
-		if (this.styleSheet && !canChangeStyleHTML) this.styleSheet.cssText = html;
-		else /*</ltIE9>*/this.innerHTML = html;
-	},
-	erase: function(){
-		this.set('html', '');
-	}
+        /*<ltIE9>*/
+        if (this.styleSheet && !canChangeStyleHTML) {
+            this.styleSheet.cssText = html;
+            return;
+        }
+        /*</ltIE9>*/
+
+        // 1. Safely clear the current element's contents (Modern + Fallback)
+        if (this.replaceChildren) {
+            this.replaceChildren();
+        } else {
+            while (this.firstChild) this.removeChild(this.firstChild);
+        }
+
+        // 2. Parse the HTML string into a safe, disconnected DOM
+        var parser = new DOMParser();
+        var parsedDoc = parser.parseFromString(html, 'text/html');
+
+        // 3. Strip <script> tags to prevent execution
+        var scripts = parsedDoc.querySelectorAll('script');
+        for (var i = 0; i < scripts.length; i++) {
+            scripts[i].parentNode.removeChild(scripts[i]);
+        }
+
+        // 4. Safely extract and append the created element nodes
+        var nodes = Array.prototype.slice.call(parsedDoc.body.childNodes);
+        for (var j = 0; j < nodes.length; j++) {
+            this.appendChild(nodes[j]);
+        }
+    },
+    
+    erase: function(){
+        // Safely empty the element (Modern + Fallback)
+        if (this.replaceChildren) {
+            this.replaceChildren();
+        } else {
+            while (this.firstChild) this.removeChild(this.firstChild);
+        }
+    }
 
 };
 
@@ -3837,7 +3909,8 @@ var supportsHTML5Elements = true, supportsTableInnerHTML = true, supportsTRInner
 // technique by jdbarlett - http://jdbartlett.com/innershiv/
 var div = document.createElement('div');
 var fragment;
-div.innerHTML = '<nav></nav>';
+const nav = document.createElement('nav');
+div.appendChild(nav);
 supportsHTML5Elements = (div.childNodes.length == 1);
 if (!supportsHTML5Elements){
 	var tags = 'abbr article aside audio canvas datalist details figcaption figure footer header hgroup mark meter nav output progress section summary time video'.split(' ');
@@ -3850,14 +3923,17 @@ div = null;
 /*<IE>*/
 supportsTableInnerHTML = Function.attempt(function(){
 	var table = document.createElement('table');
-	table.innerHTML = '<tr><td></td></tr>';
+	const tr = document.createElement('tr');
+	const td = document.createElement('td');
+	tr.appendChild(td);
+	table.appendChild(tr);
 	return true;
 });
 
 /*<ltFF4>*/
-var tr = document.createElement('tr'), html = '<td></td>';
-tr.innerHTML = html;
-supportsTRInnerHTML = (tr.innerHTML == html);
+var tr = document.createElement('tr');
+tr.appendChild(document.createElement('td'));
+supportsTRInnerHTML = !!tr.firstChild;
 tr = null;
 /*</ltFF4>*/
 
@@ -3885,7 +3961,21 @@ if (!supportsTableInnerHTML || !supportsTRInnerHTML || !supportsHTML5Elements){
 
 			var level = wrap[0], wrapper = document.createElement('div'), target = wrapper;
 			if (!supportsHTML5Elements) fragment.appendChild(wrapper);
-			wrapper.innerHTML = [wrap[1], html, wrap[2]].flatten().join('');
+			var fullHtml = [wrap[1], html, wrap[2]].flatten().join('');
+            var parser = new DOMParser();
+            var parsedDoc = parser.parseFromString(fullHtml, 'text/html');
+            
+            // Optional but recommended: Strip <script> tags
+            var scripts = parsedDoc.querySelectorAll('script');
+            for (var s = 0; s < scripts.length; s++) {
+                scripts[s].parentNode.removeChild(scripts[s]);
+            }
+
+            // Append the safe nodes into the wrapper
+            var nodes = Array.prototype.slice.call(parsedDoc.body.childNodes);
+            for (var i = 0; i < nodes.length; i++) {
+                wrapper.appendChild(nodes[i]);
+            }
 			while (level--) target = target.firstChild;
 			this.empty().adopt(target.childNodes);
 			if (!supportsHTML5Elements) fragment.removeChild(wrapper);
@@ -3898,7 +3988,11 @@ if (!supportsTableInnerHTML || !supportsTRInnerHTML || !supportsHTML5Elements){
 
 /*<ltIE9>*/
 var testForm = document.createElement('form');
-testForm.innerHTML = '<select><option>s</option></select>';
+var testSelect = document.createElement('select');
+var testOption = document.createElement('option');
+testOption.appendChild(document.createTextNode('s'));
+testSelect.appendChild(testOption);
+testForm.appendChild(testSelect);
 
 if (testForm.firstChild.value != 's') Element.Properties.value = {
 

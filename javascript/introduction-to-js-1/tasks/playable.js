@@ -9,7 +9,7 @@ function fillCode() {
     try {
       eval(editable.textContent);
     } catch(e) {
-      section.innerHTML = ' ';
+      section.replaceChildren();
       let para = document.createElement('p');
       para.textContent = e;
       section.appendChild(para);

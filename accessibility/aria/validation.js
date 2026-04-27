@@ -19,7 +19,7 @@ errorField.style.left = '-100%';
 form.onsubmit = validate;
 
 function validate(e) {
-  errorList.innerHTML = '';
+  errorList.replaceChildren();
   for(let i = 0; i < formItems.length; i++) {
     let testItem = formItems[i];
     if(testItem.input.value === '') {
@@ -28,7 +28,7 @@ function validate(e) {
     }
   }
 
-  if(errorList.innerHTML !== '') {
+  if(errorList.children.length > 0) {
     e.preventDefault();
   }
 }
